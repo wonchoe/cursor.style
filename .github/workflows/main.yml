@@ -19,12 +19,12 @@ jobs:
     - name: Debug SSH Keyscan
       run: |
         echo "Running ssh-keyscan..."
-        ssh-keyscan -H ${{ secrets.WONCHOE_HOSTNAME }} || true
+        ssh-keyscan -H ${{ secrets.WONCHOE_HOST }} || true
         echo "Done with ssh-keyscan."
 
     - name: Connect and Pull
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.WONCHOE_USERNAME }}@${{ secrets.WONCHOE_HOSTNAME }} \
+        ssh -o StrictHostKeyChecking=no ${{ secrets.WONCHOE_USERNAME }}@${{ secrets.WONCHOE_HOST }} \
         "cd /var/www/cursor.style && git checkout main && git pull"
 
     - name: Cleanup
