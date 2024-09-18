@@ -15,7 +15,12 @@ jobs:
         chmod 700 ~/.ssh
         echo "${{ secrets.WONCHOE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.WONCHOE_HOSTNAME }} >> ~/.ssh/known_hosts
+
+    - name: Debug SSH Keyscan
+      run: |
+        echo "Running ssh-keyscan..."
+        ssh-keyscan -H ${{ secrets.WONCHOE_HOSTNAME }} || true
+        echo "Done with ssh-keyscan."
 
     - name: Connect and Pull
       run: |
