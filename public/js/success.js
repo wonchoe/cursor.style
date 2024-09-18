@@ -1,0 +1,3 @@
+if (!isInstalled){
+    location.href = '/';
+}

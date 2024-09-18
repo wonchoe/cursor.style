@@ -1,0 +1,5 @@
+version: 0.0
+os: linux
+files:
+  - source: / # Звичайно, це кореневий каталог артефактів
+    destination: /path/to/your/app # Каталог на EC2 інстансі, куди розгортати
