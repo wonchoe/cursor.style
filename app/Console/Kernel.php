@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel {
         $schedule->command('quote:daily')->daily();
         $schedule->command('randomTop')->daily();
         $schedule->command('getExtensionData')->hourly();
-        $schedule->command('GetYandexMetrika')->everyFiveMinutes();
+	$schedule->command('GetYandexMetrika')->everyTenMinutes();
     }
 
     /**
