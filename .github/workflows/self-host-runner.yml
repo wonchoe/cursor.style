@@ -1,0 +1,21 @@
+name: CI Workflow
+on:
+  push:
+    branches:
+      - main
+workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: cursorstyle-runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run a script
+      run: |
+        cd /var/www/cursor.style
+        git pull
+
+    # Add more steps as needed
