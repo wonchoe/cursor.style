@@ -15,7 +15,6 @@ jobs:
 
     - name: Run a script
       run: |
-        git config --global --add safe.directory /var/www/cursor.style
         cd /var/www/cursor.style
         git pull
 
