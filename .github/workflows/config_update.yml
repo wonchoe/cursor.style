@@ -10,7 +10,7 @@ jobs:
     - name: Run a script
       run: |
         cd /var/www/cursor.style
-        echo -e "${{ secrets.CURSOR_STYLE_ENV }}" > .env
+        echo -e "\"${{ secrets.CURSOR_STYLE_ENV }}\"" > .env
         php artisan config:clear
         chmod 660 .env
         mkdir -p storage/{app,framework,logs}
