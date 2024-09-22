@@ -46,7 +46,10 @@ class AppServiceProvider extends ServiceProvider {
         	    unlink($link);
 	        }
         }
-	symlink($target, $link);
+
+	if (!file_exists($link)) {
+	    symlink($target, $link);
+	}
     }
 
 }
