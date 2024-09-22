@@ -7,13 +7,9 @@ jobs:
     runs-on: cursorstyle-runner
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
     - name: Run a script
       run: |
         cd /var/www/cursor.style
         echo -e "${{ secrets.CURSOR_STYLE_ENV }}" > .env
         php artisan config:clear
-
-    # Add more steps as needed
+        chmod 660 .env
