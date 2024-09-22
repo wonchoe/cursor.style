@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    runs-on: cursorstyle-runnera
+    runs-on: cursorstyle-runner
 
     steps:
     - name: Checkout code
