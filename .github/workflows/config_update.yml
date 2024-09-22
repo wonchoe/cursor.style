@@ -11,3 +11,5 @@ jobs:
       run: |
         cd /var/www/cursor.style
         echo -e "${{ secrets.CURSOR_STYLE_ENV }}" > .env
+        chmod 660 .env || echo "Failed to change permissions on .env"
+        php artisan config:clear        
