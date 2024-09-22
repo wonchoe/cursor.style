@@ -1,0 +1,18 @@
+name: CI Workflow
+on:
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: cursorstyle-runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run a script
+      run: |
+        cd /var/www/cursor.style
+        echo ${{secrets.CURSOR_STYLE_ENV}} >> .env
+
+    # Add more steps as needed
