@@ -11,5 +11,3 @@ jobs:
       run: |
         cd /var/www/cursor.style
         echo -e "${{ secrets.CURSOR_STYLE_ENV }}" > .env
-        php artisan config:clear
-        chmod 660 .env
