@@ -10,6 +10,7 @@ use Request;
 use Illuminate\Http\Request as rqst;
 use Redirect;
 use Cookie;
+use Illuminate\Support\Facades\File;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -32,6 +33,17 @@ class AppServiceProvider extends ServiceProvider {
     public function boot() {
         date_default_timezone_set("America/New_York");
         Paginator::defaultView('vendor/pagination/bootstrap-4');
+
+        $this->createSymlinkIfNotExists(storage_path('app/public/collection'), public_path('collection'));
+        $this->createSymlinkIfNotExists(storage_path('app/public/cursors'), public_path('cursors'));
+        $this->createSymlinkIfNotExists(storage_path('app/public/pointers'), public_path('pointers'));
+    }
+
+    private function createSymlinkIfNotExists($target, $link)
+    {
+        if (!File::exists($link)) {
+            symlink($target, $link);
+        }
     }
 
 }
