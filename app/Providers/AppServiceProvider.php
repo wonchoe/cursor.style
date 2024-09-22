@@ -41,9 +41,12 @@ class AppServiceProvider extends ServiceProvider {
 
     private function createSymlinkIfNotExists($target, $link)
     {
-        if (!File::exists($link)) {
-            symlink($target, $link);
+        if (File::exists($link)) {
+	        if (is_file($link)) {
+        	    unlink($link);
+	        }
         }
+	symlink($target, $link);
     }
 
 }
