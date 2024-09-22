@@ -1,10 +1,10 @@
-name: CI Workflow
+name: Cursor style config update
 on:
   workflow_dispatch: 
 
 jobs:
   build:
-    runs-on: cursorstyle-runner
+    runs-on: cursorstyle-runnera
 
     steps:
     - name: Checkout code
