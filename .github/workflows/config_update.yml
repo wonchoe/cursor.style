@@ -14,6 +14,6 @@ jobs:
       run: |
         echo ${{ secrets.CURSOR_STYLE_ENV }}
         cd /var/www/cursor.style
-        echo ${{secrets.CURSOR_STYLE_ENV}} >> .env
+        echo -e "${{ secrets.CURSOR_STYLE_ENV }}" > .env
 
     # Add more steps as needed
