@@ -1,4 +1,4 @@
-name: Cursor style config update
+name: ⚙ Cursor style config update
 on:
   workflow_dispatch: 
 
