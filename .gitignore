@@ -5,3 +5,4 @@
 /storage/logs/
 /nbproject/private/
 /nbproject
+.env
