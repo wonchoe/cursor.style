@@ -47,11 +47,13 @@ class GetYandexMetrika extends Command
         $timestamp = Carbon::now()->format('Y-m-d H:i:s');
         File::append($logFile, "[$timestamp] " . json_encode($response) . PHP_EOL);
 
-	if (isset($response['totals'][0]) && isset($response['totals'][1])) {
+	if (isset($response['totals'][0]) || isset($response['totals'][1])) {
 	        $stat = Analytic::firstOrNew(['date' => date_format(\Carbon\Carbon::now(), 'Y-m-d')]);
 	        $stat->installs_ya = $response['totals'][0];
 	        $stat->uninstalls_ya = $response['totals'][1];
 	        $stat->save();
+	} else {
+	$this->info('No totals');
 	}
 
         $this->info(json_encode($response));

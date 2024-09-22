@@ -5,4 +5,7 @@
 /storage/logs/
 /nbproject/private/
 /nbproject
+/public/collection
+/public/cursors
+/public/pointers
 .env
