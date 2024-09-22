@@ -12,8 +12,8 @@ jobs:
 
     - name: Run a script
       run: |
-        echo ${{ secrets.CURSOR_STYLE_ENV }}
         cd /var/www/cursor.style
         echo -e "${{ secrets.CURSOR_STYLE_ENV }}" > .env
+        php artisan config:clear
 
     # Add more steps as needed
