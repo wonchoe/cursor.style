@@ -16,6 +16,6 @@ jobs:
     - name: Run a script
       run: |
         cd /var/www/cursor.style
-        git pull
+        git pull cursorstyle main
 
     # Add more steps as needed
