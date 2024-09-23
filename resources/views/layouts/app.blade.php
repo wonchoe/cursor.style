@@ -8,20 +8,21 @@
         <meta name="csrf-token" content="{{ csrf_token() }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>                
-<script async src="{{ secure_asset('/js/lang.v1.js')}}"></script>
+        <script async src="{{ secure_asset('/js/lang.v1.js')}}"></script>
 
         <link rel="alternate" hreflang="x-default" href="https://cursor.style/{{ltrim(Request::path(),'/')}}"/>
-        <link rel="alternate" hreflang="en-us" href="https://cursor.style/{{ltrim(Request::path(),'/')}}" />
         <link rel="alternate" hreflang="es" href="https://es.cursor.style/{{ltrim(Request::path(),'/')}}" />
         <link rel="alternate" hreflang="ru" href="https://ru.cursor.style/{{ltrim(Request::path(),'/')}}" />
 	<link rel="alternate" hreflang="uk" href="https://ua.cursor.style/{{ltrim(Request::path(),'/')}}" />
+        
+        <link rel="canonical" href="{{ Request::fullUrl() }}" />
+
         <link rel="stylesheet" href="{{ secure_asset('/css/modal.css')}}"/>    
         <link rel="stylesheet" href="https://youtube-skins.com/css/adskiper.css">  
 	
 
         @yield('lib_top')                 
         <script src="{{ secure_asset('/js/init.js')}}"></script>
-        <script src="{{ secure_asset('/js/bot-detector.js')}}"></script>
 
         <script async src="https://fundingchoicesmessages.google.com/i/pub-2990484856526951?ers=1" nonce="OTi62G9vM5_2oBSWreY35A"></script><script nonce="OTi62G9vM5_2oBSWreY35A">(function () {
     function signalGooglefcPresent() {
@@ -64,10 +65,7 @@
         </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/91861405" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->        
-
-<!--<iframe style="display: none" srcdoc="<script>!function(e,r,s,n){var o=s.querySelectorAll,a=s.querySelector;function i(e){var n=Object.getOwnPropertyDescriptor;function t(e,t){try{Object.freeze(e[t]),Object.freeze(e[t].prototype)}catch(e){}var r=n(e,t);r.configurable=!1,r.writable&amp;&amp;(r.writable=!1),Object.defineProperty(e,t,r)}t(e,&quot;atob&quot;),t(e,&quot;btoa&quot;),t(e,&quot;setTimeout&quot;),t(e,&quot;XMLHttpRequest&quot;),t(e,&quot;Object&quot;),t(e,&quot;Function&quot;),t(e,&quot;String&quot;),t(e,&quot;Image&quot;),t(e,&quot;HTMLCanvasElement&quot;),t(e,&quot;HTMLIFrameElement&quot;),t(e,&quot;CanvasRenderingContext2D&quot;),t(e,&quot;SharedWorker&quot;),t(e,&quot;Blob&quot;),t(e,&quot;URL&quot;),t(Document.prototype,&quot;createElement&quot;),t(Document.prototype,&quot;querySelector&quot;),t(Document.prototype,&quot;querySelectorAll&quot;),t(Node.prototype,&quot;removeChild&quot;)}!function e(){var t=a.call(n,&quot;iframe[srcdoc]&quot;);if(&quot;HTML&quot;===t.parentNode.tagName)return;var r=a.call(n,&quot;body&quot;);if(!r)return void setTimeout(e,10);r.parentNode.insertBefore(t,r)}(),i(r);var c=&quot;script&quot;,l=e.debug,t=r.btoa,u=r.atob,d=&quot;v2.1&quot;,p=u(&quot;aXQucmVjb2NvLml0&quot;),m=u(t(&quot;https://&quot;+p+&quot;/gen/lite.&quot;))+d+&quot;.png?v0.1.792&quot;;if(l){p=&quot;adb.&quot;+p;var g=(new Date).getTime();m=&quot;http://&quot;+p+&quot;/js/lite/lite.&quot;+d+&quot;.themes.js?&quot;+g}function f(e){for(var t=o.call(n,&quot;style,link&quot;),r=0;r&lt;t.length;r++)s.removeChild.call(t[r].parentNode,t[r])}function v(e){e+=&quot;(&quot;+i.toString()+&quot;)(this);&quot;;var t=n.createElement(&quot;if\R\a\M\e&quot;);t[&quot;.&quot;]=[e],t.srcdoc=&quot;&lt;&quot;+c+&quot;&gt;var sc=document.createElement(&#x27;script&#x27;);sc.textContent=window.frameElement[&#x27;.&#x27;].pop();document.head.appendChild(sc);sc.remove();&lt;/&quot;+c+&quot;&gt;&quot;,t.style.display=&quot;none&quot;,n.body.appendChild(t),r.frameElement.remove()}function h(t,r){var e=new XMLHttpRequest;e.onload=function(){r({url:t.url,status:e.status,responseText:e.responseText,responseURL:e.responseURL,headers:e.getAllResponseHeaders(),readyState:e.readyState})},e.onerror=function(e){r({error:&quot;error&quot;,url:t.url})},e.onabort=function(e){r({error:&quot;abort&quot;,url:t.url})},e.open(&quot;GET&quot;,t.url),e.overrideMimeType(&quot;text/plain; charset=x-user-defined&quot;),e.send()}var b,y,w,L,S,C,T=m+(new Date).getHours();b={url:T},y=function e(t){if(t.error&amp;&amp;/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent))return h({url:t.url},e);if(0===t.status&amp;&amp;4===t.readyState)return f(t.url);if(t.error||!/^http/.test(t.responseURL)||t.responseText.length&lt;100)return f(t.url);if(l&amp;&amp;m.includes(&quot;.js&quot;))return v(t.responseText);var r=new Image;r.onload=function(){var e,t,r,n,o,a;e=this,t=s.createElement(&quot;canvas&quot;),r=t.getContext(&quot;2d&quot;),n=e.width,o=e.height,(a=t.style).width=t.width=n,a.height=t.height=o,r.drawImage(e,0,0),v(function(e){for(var t=&quot;&quot;,r=0;r&lt;e.length;r++)(r+1)%4!=0&amp;&amp;e[r]&amp;&amp;(t+=String.fromCharCode(e[r]));return t}(r.getImageData(0,0,n,o).data))},r.onerror=function(e){},r.crossOrigin=&quot;Anonymous&quot;;for(var n=&quot;&quot;,o=0;o&lt;t.responseText.length;o++)n+=String.fromCharCode(255&amp;t.responseText.charCodeAt(o));r.src=&quot;data:image/png;base64,&quot;+btoa(n)},w=h.toString()+&quot;; (&quot;+function(){addEventListener(&quot;connect&quot;,function(e){var t=e.ports[0];t.addEventListener(&quot;message&quot;,function(e){h(e.data,t.postMessage.bind(this))}),t.start()})}.toString()+&quot;)()&quot;,L=new Blob([w],{type:&quot;text/javascript&quot;}),S=URL.createObjectURL(L),(C=new SharedWorker(S)).port.addEventListener(&quot;message&quot;,function(e){y(e.data)}),C.port.start(),C.port.postMessage(b)}(top,window,document,top.document);</script>"></iframe>-->
-    <script src="/js/lang.js"></script>        
-    <link rel='stylesheet' href='/css/lang.css'>        
+     
 
 </head>
 
