@@ -15,7 +15,7 @@
         <link rel="alternate" hreflang="ru" href="https://ru.cursor.style/{{ltrim(Request::path(),'/')}}" />
 	<link rel="alternate" hreflang="uk" href="https://ua.cursor.style/{{ltrim(Request::path(),'/')}}" />
         
-        <link rel="canonical" href="{{ Request::fullUrl() }}" />
+        <link rel="canonical" href="https://{{ Request::host() }}{{ Request::getRequestUri() }}" />
 
         <link rel="stylesheet" href="{{ secure_asset('/css/modal.css')}}"/>    
         <link rel="stylesheet" href="https://youtube-skins.com/css/adskiper.css">  
