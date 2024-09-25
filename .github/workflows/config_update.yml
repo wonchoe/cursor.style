@@ -16,4 +16,4 @@ jobs:
         php artisan optimize        
         mkdir -p storage/{app,framework,logs}
         mkdir -p storage/framework/{sessions,views,cache}
-        chmod -R 777 storage
+        sudo chmod -R 777 storage
