@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id(); // ID з автоінкрементом
             $table->date('date'); // Поле дати
+            $table->string('project'); // Рейтинг у категорії
             $table->integer('installs'); // Інсталяції
             $table->integer('uninstalls'); // Деінсталяції
             $table->integer('users_total'); // Загальна кількість користувачів
@@ -24,11 +25,12 @@ return new class extends Migration
             $table->integer('overal_rank'); // Загальний рейтинг
             $table->integer('cat_rank'); // Рейтинг у категорії
             $table->timestamps(); // Стандартні поля created_at та updated_at
+            $table->index(['date', 'project']); // Індекс на дві колонки
         });
     }
 
     public function down()
     {
-       // Schema::dropIfExists('reports');
+        Schema::dropIfExists('reports');
     }
 };
