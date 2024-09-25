@@ -12,8 +12,8 @@ jobs:
         cd /var/www/cursor.style
         echo -e "${{ secrets.CURSOR_STYLE_ENV }}" | sed "s/\"/'/g" > .env
         chmod 660 .env
+        php artisan config:clear
+        php artisan optimize        
         mkdir -p storage/{app,framework,logs}
         mkdir -p storage/framework/{sessions,views,cache}
         chmod -R 777 storage
-        php artisan config:clear
-        php artisan optimize        
