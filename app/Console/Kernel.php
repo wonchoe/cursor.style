@@ -10,9 +10,8 @@ class Kernel extends ConsoleKernel {
     protected $commands = [
         Commands\DailyQuote::class,
         Commands\randomTop::class,
-        Commands\GetYandexMetrika::class,
-        Commands\getExtensionData::class    
-        //
+        Commands\getExtensionData::class,
+        Commands\ReportGetCommand::class
     ];
     
 
