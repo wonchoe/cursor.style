@@ -3,73 +3,58 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\Analytic;
+use App\Models\reports;
 
 class getExtensionData extends Command {
 
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'getExtensionData';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Get data from Chrome stat';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+    public function getReport($id, $project) {
+        $url = 'https://chrome-stats.com/api/detail?id='.$id.'&date=' . date("Y-m-d");
+        $ch = curl_init();
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'curl/7.68.0');
+        curl_setopt($ch, CURLOPT_REFERER, 'https://chrome-stats.com/');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept:*/*'));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($result);
+
+        $reports = reports::firstOrNew(['date' => date('Y-m-d'), 'project' => $project]);
+
+        if (isset($response->userCount)) {
+            $reports->users_total = $response->userCount;
+        }
+        if (isset($response->ratingValue)) {
+            $reports->rating_value = $response->ratingValue;
+        }
+        if (isset($response->ratingCount)) {
+            $reports->feedbacks_total = $response->ratingCount;
+        }
+        if (isset($response->allRanks[0]->value)) {
+            $reports->overal_rank = $response->allRanks[0]->value;
+        }
+        if (isset($response->allRanks[1]->value)) {
+            $reports->cat_rank = $response->allRanks[1]->value;
+        }
+        $reports->save();  
+        $this->info($reports);
+    }
+    
     public function __construct() {
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle() {
         date_default_timezone_set("America/Los_Angeles");
-        
-        $url = 'https://chrome-stats.com/api/detail?id=bmjmipppabdlpjccanalncobmbacckjn&date=' . date("Y-m-d");
-        $ch = curl_init();
-        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'curl/7.68.0');
-        curl_setopt($ch, CURLOPT_REFERER, 'https://chrome-stats.com/');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept:*/*'));
-        $result=curl_exec($ch);
-        curl_close($ch);
-        $homepage = json_decode($result);
-
-        $stat = Analytic::firstOrNew(['date' => date_format(\Carbon\Carbon::now(), 'Y-m-d')]);
-
-        if (isset($homepage->userCount)) {
-            $stat->userCount = $homepage->userCount;
-        }
-        if (isset($homepage->ratingValue)) {
-            $stat->ratingValue = $homepage->ratingValue;
-        }
-        if (isset($homepage->ratingCount)) {
-            $stat->ratingCount = $homepage->ratingCount;
-        }
-        if (isset($homepage->allRanks[0]->value)) {
-            $stat->overallRank = $homepage->allRanks[0]->value;
-        }
-        if (isset($homepage->allRanks[1]->value)) {
-            $stat->catRank = $homepage->allRanks[1]->value;
-        }    
-        $stat->save();  
-             
+        $this->getReport('imomahaddnhnhfggpmpbphdiobpmahof', 'youtube_skins_com');
+        $this->getReport('gideponcmplkbifbmopkmhncghnkpjng', 'ad_skipper');
+        $this->getReport('oodajhdbojacdmkhkiafdhicifcdjoig', 'fb_zone');
+        $this->getReport('oinkhgpjmeccknjbbccabjfonamfmcbn', 'cursor_land_com');
+        $this->getReport('bmjmipppabdlpjccanalncobmbacckjn', 'cursor_style');        
         return 0;
     }
-
 }
