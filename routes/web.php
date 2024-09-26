@@ -8,7 +8,10 @@ use App\Http\Controllers\CursorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\TraficController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Http\Request;
+
+Route::get('/reports', [ReportsController::class, 'index']);
 
 Route::prefix('/collections')->group(function() {
     Route::get('/', [IndexController::class,'showAllCat']);
