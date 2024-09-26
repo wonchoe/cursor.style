@@ -3,7 +3,7 @@
         <title>Cursor style reports</title>
         <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
         <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">    
-        
+
     </head>
     <body>
         <style>
@@ -21,22 +21,46 @@
                 font-size: 0.8em; /* Adjust font size as needed */
                 color: #555; /* Change color as needed */
             }
+            
+            .gh_work{
+                background: linear-gradient(45deg, transparent, #7bfd6c, transparent);
+            }
+            
+            .gh_not_work{
+                background: linear-gradient(45deg, transparent, #7bfd6c, transparent);
+            }            
         </style>    
 
-        
-        
+
+
         @if ($grub_hub)
-        <div style="margin: 50px;background: #bfffbf;">   
-            <div class="seven" style="background: #bfffbf;">
-                <h1>GrubHub Work!</h1>
-            </div>        
-        </div>
+        <section class="py-1 bg-blueGray-50">
+            <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-12">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
+                    <div class="rounded-t mb-0 px-4 py-3 border-0">
+                        <div class="flex flex-wrap items-center">
+                            <div class="flex-1 bg-gradient-to-r gh_work from-cyan-400 to-cyan-600 rounded-lg flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
+                                <h3 class="text-2xl font-bold text-gray-600">GRUBHUB WORK!</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         @else
-        <div style="margin: 50px;background: #ff5555">   
-            <div class="seven" style="background: #ff5555">
-                <h1>GrubHub NOT Work!</h1>
-            </div>        
-        </div>
+        <section class="py-1 bg-blueGray-50">
+            <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-12">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
+                    <div class="rounded-t mb-0 px-4 py-3 border-0">
+                        <div class="flex flex-wrap items-center">
+                            <div class="flex-1 bg-gradient-to-r gh_not_work from-cyan-400 to-cyan-600 rounded-lg flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
+                                <h3 class="text-2xl font-bold text-gray-600">GRUBHUB NOT WORK!</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         @endif            
 
         @foreach($projects as $project => $data)
