@@ -32,8 +32,9 @@ class grubhub_cmd extends Command
     public function handle() {
         date_default_timezone_set("America/New_York");
         $str = Grubhub::first();
-                
+        
         $time_difference = (strtotime(date("Y-m-d H:i:s")) - strtotime($str->updated)) / 60;
+       // dd($time_difference);
         if ($time_difference >= 55) {
             $this->update_rt($str);
         }
