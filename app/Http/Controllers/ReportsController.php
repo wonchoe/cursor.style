@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\reports;
 use Carbon\Carbon;
+use App\Models\Grubhub;
 
 class ReportsController extends Controller {
 
@@ -94,6 +95,18 @@ class ReportsController extends Controller {
             }
         }
 
-        return view('reports', compact('projects'));
+        
+        $grub_hub = Grubhub::select('updated')->get()->filter(function ($item) {
+            $twoHoursAgo = Carbon::now()->subHours(2);
+            return Carbon::parse($item->updated)->gt($twoHoursAgo);
+        });
+
+        if ($grub_hub->isEmpty()) {
+            $grub_hub = false;
+        } else {
+            $grub_hub = true;
+        }
+               
+        return view('reports', compact('projects', 'grub_hub'));
     }
 }
