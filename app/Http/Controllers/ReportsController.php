@@ -13,7 +13,7 @@ class ReportsController extends Controller {
         // Get the last 5 days
         $lastFiveDays = Carbon::now()->subDays(5);
 
-// Fetch data grouped by project
+        // Fetch data grouped by project
         $projects = reports::where('date', '>=', $lastFiveDays)
                 ->select('*')
                 ->orderBy('date', 'desc') // Сортуємо за датою в порядку спадання
@@ -22,86 +22,68 @@ class ReportsController extends Controller {
                 ->groupBy('project');
 
         foreach ($projects as $project => $data) {
-            // Get today's and yesterday's date
+            // Get today's date
             $today = Carbon::today()->toDateString();
-            $yesterday = Carbon::yesterday()->toDateString();
 
-            // Fetch today's and yesterday's data
-            $todayData = $data->where('date', $today)->first();
-            $yesterdayData = $data->where('date', $yesterday)->first();
-
-            $projectNameMapping = [
-                'ad_skipper' => 'Ad Skipper',
-                'cursor_land_com' => 'Cursor Land',
-                'cursor_style' => 'Cursor Style',
-                'fb_zone' => 'Facebook themes',
-                'youtube_skins_com' => 'Youtube skins',
-            ];
-            
+            // Прорахунок процентів анулювань для всіх даних
             foreach ($data as $report) {
                 if ($report->installs > 0 && $report->uninstalls >= 0) {
                     $report->uninstall_rate = round(($report->uninstalls / $report->installs) * 100, 2) . '%';
                 } else {
                     $report->uninstall_rate = '0%';
                 }
-            }            
+            }
 
-            // Add comparison results to today's data
-            if ($todayData) {
-                $projectDisplayName = $projectNameMapping[$project] ?? $project; // Use original if not found
-                // Initialize signs
-                $todayData->feedbacks_sign = '';
-                $todayData->overal_rank_sign = '';
-                $todayData->cat_rank_sign = '';
+            // Додаємо порівняння для кожного дня
+            $previousData = null;
 
-                // Initialize comparison values
-                $todayData->feedbacks_total_comparison = '';
-                $todayData->overal_rank_comparison = '';
-                $todayData->cat_rank_comparison = '';
-
-                // Check if yesterday's data exists
-                if ($yesterdayData) {
-                    // Compare feedbacks_total
-                    if ($todayData->feedbacks_total !== 0) {
-                        if ($todayData->feedbacks_total > $yesterdayData->feedbacks_total) {
-                            $todayData->feedbacks_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
-                            $difference = $todayData->feedbacks_total - $yesterdayData->feedbacks_total;
-                            $todayData->feedbacks_total_comparison = ' (+' . $difference . ')'; // No "up"
-                        } elseif ($todayData->feedbacks_total < $yesterdayData->feedbacks_total) {
-                            $todayData->feedbacks_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
-                            $difference = $yesterdayData->feedbacks_total - $todayData->feedbacks_total;
-                            $todayData->feedbacks_total_comparison = ' (' . '-' . $difference . ')'; // No "down"
+            foreach ($data as $report) {
+                if ($previousData) {
+                    // Порівняння з попереднім днем
+                    if ($report->feedbacks_total !== 0) {
+                        if ($report->feedbacks_total > $previousData->feedbacks_total) {
+                            $report->feedbacks_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
+                            $difference = $report->feedbacks_total - $previousData->feedbacks_total;
+                            $report->feedbacks_total_comparison = ' (+' . $difference . ')'; // No "up"
+                        } elseif ($report->feedbacks_total < $previousData->feedbacks_total) {
+                            $report->feedbacks_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
+                            $difference = $previousData->feedbacks_total - $report->feedbacks_total;
+                            $report->feedbacks_total_comparison = ' (' . '-' . $difference . ')'; // No "down"
                         }
                     }
 
                     // Compare overal_rank
-                    if ($todayData->overal_rank !== 0) {
-                        if ($todayData->overal_rank > $yesterdayData->overal_rank) {
-                            $todayData->overal_rank_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
-                            $difference = $todayData->overal_rank - $yesterdayData->overal_rank;
-                            $todayData->overal_rank_comparison = ' (+' . $difference . ')'; // No "up"
-                        } elseif ($todayData->overal_rank < $yesterdayData->overal_rank) {
-                            $todayData->overal_rank_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
-                            $difference = $yesterdayData->overal_rank - $todayData->overal_rank;
-                            $todayData->overal_rank_comparison = ' (' . '-' . $difference . ')'; // No "down"
+                    if ($report->overal_rank !== 0) {
+                        if ($report->overal_rank > $previousData->overal_rank) {
+                            $report->overal_rank_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
+                            $difference = $report->overal_rank - $previousData->overal_rank;
+                            $report->overal_rank_comparison = ' (+' . $difference . ')'; // No "up"
+                        } elseif ($report->overal_rank < $previousData->overal_rank) {
+                            $report->overal_rank_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
+                            $difference = $previousData->overal_rank - $report->overal_rank;
+                            $report->overal_rank_comparison = ' (' . '-' . $difference . ')'; // No "down"
                         }
                     }
 
                     // Compare cat_rank
-                    if ($todayData->cat_rank !== 0) {
-                        if ($todayData->cat_rank > $yesterdayData->cat_rank) {
-                            $todayData->cat_rank_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
-                            $difference = $todayData->cat_rank - $yesterdayData->cat_rank;
-                            $todayData->cat_rank_comparison = ' (+' . $difference . ')'; // No "up"
-                        } elseif ($todayData->cat_rank < $yesterdayData->cat_rank) {
-                            $todayData->cat_rank_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
-                            $difference = $yesterdayData->cat_rank - $todayData->cat_rank;
-                            $todayData->cat_rank_comparison = ' (' . '-' . $difference . ')'; // No "down"
+                    if ($report->cat_rank !== 0) {
+                        if ($report->cat_rank > $previousData->cat_rank) {
+                            $report->cat_rank_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
+                            $difference = $report->cat_rank - $previousData->cat_rank;
+                            $report->cat_rank_comparison = ' (+' . $difference . ')'; // No "up"
+                        } elseif ($report->cat_rank < $previousData->cat_rank) {
+                            $report->cat_rank_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
+                            $difference = $previousData->cat_rank - $report->cat_rank;
+                            $report->cat_rank_comparison = ' (' . '-' . $difference . ')'; // No "down"
                         }
                     }
                 }
 
-                $todayData->project_name = $projectDisplayName;
+                // Запам'ятовуємо поточні дані як попередні для наступної ітерації
+                $previousData = $report;
+
+                // Додати ім'я проекту
+                $report->project_name = $projectNameMapping[$project] ?? $project; // Use original if not found
             }
         }
 
