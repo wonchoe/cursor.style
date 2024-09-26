@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Reports;
+use App\Models\reports;
 use Carbon\Carbon;
 
 class ReportsController extends Controller {
@@ -13,7 +13,7 @@ class ReportsController extends Controller {
         $lastFiveDays = Carbon::now()->subDays(5);
 
         // Отримуємо дані, згруповані за проектом
-        $projects = Reports::where('date', '>=', $lastFiveDays)
+        $projects = reports::where('date', '>=', $lastFiveDays)
                 ->select('*')
                 ->orderBy('date', 'desc')
                 ->orderBy('project')
