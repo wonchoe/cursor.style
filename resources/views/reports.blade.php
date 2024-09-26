@@ -25,7 +25,7 @@
 
         
         
-        @if ($grubhubwork)
+        @if ($grub_hub)
         <div style="margin: 50px;background: #bfffbf;">   
             <div class="seven" style="background: #bfffbf;">
                 <h1>GrubHub Work!</h1>
