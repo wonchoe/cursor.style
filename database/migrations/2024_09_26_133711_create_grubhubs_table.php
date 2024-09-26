@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id(); 
             $table->string('at');
             $table->string('rt'); 
-            $table->date('updated'); 
+            $table->datetime('updated'); 
         });
     }
 
