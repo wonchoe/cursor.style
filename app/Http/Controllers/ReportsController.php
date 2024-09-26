@@ -37,10 +37,17 @@ class ReportsController extends Controller {
                 'fb_zone' => 'Facebook themes',
                 'youtube_skins_com' => 'Youtube skins',
             ];
+            
+            foreach ($data as $report) {
+                if ($report->installs > 0 && $report->uninstalls >= 0) {
+                    $report->uninstall_rate = round(($report->uninstalls / $report->installs) * 100, 2) . '%';
+                } else {
+                    $report->uninstall_rate = '0%';
+                }
+            }            
 
             // Add comparison results to today's data
             if ($todayData) {
-
                 $projectDisplayName = $projectNameMapping[$project] ?? $project; // Use original if not found
                 // Initialize signs
                 $todayData->feedbacks_sign = '';
@@ -94,13 +101,6 @@ class ReportsController extends Controller {
                     }
                 }
 
-                if (!empty($todayData->installs) && !empty($todayData->uninstalls)) {
-                    $uninstallPercentage = ($todayData->uninstalls / $todayData->installs) * 100;
-                    $todayData->uninstall_rate = round($uninstallPercentage, 2) . '%';
-                } else {
-                    $todayData->uninstall_rate = '0%'; // Default value if no installs or uninstalls
-                }
-                
                 $todayData->project_name = $projectDisplayName;
             }
         }
