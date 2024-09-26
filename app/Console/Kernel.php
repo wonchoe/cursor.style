@@ -18,6 +18,11 @@ class Kernel extends ConsoleKernel {
         $schedule->command('getExtensionData')->hourly();
         $schedule->command('yandex:report')->everyFiveMinutes();
         $schedule->command('grubhub')->hourly();
+
+        $schedule->command('grubhub:schedule')->dailyAt('10:40');
+        $schedule->command('grubhub:schedule')->dailyAt('15:40');       
+        $schedule->command('grubhub:schedule_reverse')->dailyAt('10:40');
+        $schedule->command('grubhub:schedule_reverse')->dailyAt('15:40');         
     }
 
     protected function commands() {
