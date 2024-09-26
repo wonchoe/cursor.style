@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel {
     protected function schedule(Schedule $schedule) {
 //        $schedule->command('quote:daily')->daily();
 //        $schedule->command('randomTop')->daily();
-        $schedule->command('getExtensionData')->everySixHours($minutes = 0);
+        $schedule->command('getExtensionData')->hourly();
         $schedule->command('yandex:report')->everyFiveMinutes();
     }
 
