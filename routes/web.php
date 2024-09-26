@@ -11,7 +11,10 @@ use App\Http\Controllers\TraficController;
 use App\Http\Controllers\ReportsController;
 use Illuminate\Http\Request;
 
-Route::get('/reports', [ReportsController::class, 'index']);
+Route::domain('reports.cursor.style')->group(function () {
+    Route::get('/', [ReportsController::class, 'index']); // Assuming you have an index method
+});
+
 
 Route::prefix('/collections')->group(function() {
     Route::get('/', [IndexController::class,'showAllCat']);
