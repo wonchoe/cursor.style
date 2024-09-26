@@ -84,7 +84,7 @@
                                         {{ $report->uninstalls }}
                                     </td>
                                     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        {{ $todayData->uninstall_percentage }}
+                                        {{ $report->uninstall_percentage }}
                                     </td>                                    
                                     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         {{ $report->users_total }}
