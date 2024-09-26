@@ -16,6 +16,7 @@ class ReportsController extends Controller {
 // Fetch data grouped by project
         $projects = Reports::where('date', '>=', $lastFiveDays)
                 ->select('*')
+                ->orderBy('date', 'desc')
                 ->orderBy('project')
                 ->get()
                 ->groupBy('project');
