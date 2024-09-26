@@ -21,6 +21,15 @@ class ReportsController extends Controller {
                 ->get()
                 ->groupBy('project');
 
+        $projectNameMapping = [
+            'ad_skipper' => 'Ad Skipper',
+            'cursor_land_com' => 'Cursor Land',
+            'cursor_style' => 'Cursor Style',
+            'fb_zone' => 'Facebook themes',
+            'youtube_skins_com' => 'Youtube skins',
+        ];
+
+        
         foreach ($projects as $project => $data) {
             // Прорахунок процентів анулювань для всіх даних
             foreach ($data as $report) {
