@@ -22,9 +22,6 @@ class ReportsController extends Controller {
                 ->groupBy('project');
 
         foreach ($projects as $project => $data) {
-            // Get today's date
-            $today = Carbon::today()->toDateString();
-
             // Прорахунок процентів анулювань для всіх даних
             foreach ($data as $report) {
                 if ($report->installs > 0 && $report->uninstalls >= 0) {
@@ -37,7 +34,8 @@ class ReportsController extends Controller {
             // Додаємо порівняння для кожного дня
             $previousData = null;
 
-            foreach ($data as $report) {
+            // Сортуємо дані в реверсному порядку для порівняння
+            foreach ($data->reverse() as $report) {
                 if ($previousData) {
                     // Порівняння з попереднім днем
                     if ($report->feedbacks_total !== 0) {
