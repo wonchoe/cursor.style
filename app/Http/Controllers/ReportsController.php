@@ -96,9 +96,9 @@ class ReportsController extends Controller {
 
                 if (!empty($todayData->installs) && !empty($todayData->uninstalls)) {
                     $uninstallPercentage = ($todayData->uninstalls / $todayData->installs) * 100;
-                    $todayData->uninstall_percentage = round($uninstallPercentage, 2) . '%';
+                    $todayData->uninstall_rate = round($uninstallPercentage, 2) . '%';
                 } else {
-                    $todayData->uninstall_percentage = '0%'; // Default value if no installs or uninstalls
+                    $todayData->uninstall_rate = '0%'; // Default value if no installs or uninstalls
                 }
                 
                 $todayData->project_name = $projectDisplayName;
