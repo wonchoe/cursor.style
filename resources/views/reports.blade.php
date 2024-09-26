@@ -23,6 +23,21 @@
             }
         </style>    
 
+        
+        
+        @if ($grubhubwork)
+        <div style="margin: 50px;background: #bfffbf;">   
+            <div class="seven" style="background: #bfffbf;">
+                <h1>GrubHub Work!</h1>
+            </div>        
+        </div>
+        @else
+        <div style="margin: 50px;background: #ff5555">   
+            <div class="seven" style="background: #ff5555">
+                <h1>GrubHub NOT Work!</h1>
+            </div>        
+        </div>
+        @endif            
 
         @foreach($projects as $project => $data)
         <section class="py-1 bg-blueGray-50">
