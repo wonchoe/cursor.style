@@ -27,41 +27,25 @@
             }
             
             .gh_not_work{
-                background: linear-gradient(45deg, transparent, #7bfd6c, transparent);
+                background: linear-gradient(45deg, transparent, #ff4d4d, transparent);
             }            
         </style>    
 
 
 
-        @if ($grub_hub)
         <section class="py-1 bg-blueGray-50">
             <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-12">
                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
                     <div class="rounded-t mb-0 px-4 py-3 border-0">
                         <div class="flex flex-wrap items-center">
-                            <div class="flex-1 bg-gradient-to-r gh_work from-cyan-400 to-cyan-600 rounded-lg flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
-                                <h3 class="text-2xl font-bold text-gray-600">GRUBHUB WORK!</h3>
+                            <div class="flex-1 bg-gradient-to-r {{ $grub_hub ? 'gh_work' : 'gh_not_work' }} from-cyan-400 to-cyan-600 rounded-lg flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
+                                <h3 class="text-2xl font-bold text-gray-600">{{ $grub_hub ? 'GRUBHUB WORK!' : 'GRUBHUB NOT WORK!' }}</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        @else
-        <section class="py-1 bg-blueGray-50">
-            <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-12">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
-                    <div class="rounded-t mb-0 px-4 py-3 border-0">
-                        <div class="flex flex-wrap items-center">
-                            <div class="flex-1 bg-gradient-to-r gh_not_work from-cyan-400 to-cyan-600 rounded-lg flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
-                                <h3 class="text-2xl font-bold text-gray-600">GRUBHUB NOT WORK!</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        @endif            
+        </section>          
 
         @foreach($projects as $project => $data)
         <section class="py-1 bg-blueGray-50">
