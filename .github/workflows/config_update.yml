@@ -17,3 +17,4 @@ jobs:
         mkdir -p storage/{app,framework,logs}
         mkdir -p storage/framework/{sessions,views,cache}
         sudo chmod -R 777 storage
+        sudo chown -R www-data:www-data storage
