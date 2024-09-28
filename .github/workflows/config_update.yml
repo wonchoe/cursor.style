@@ -18,3 +18,4 @@ jobs:
         mkdir -p storage/framework/{sessions,views,cache}
         sudo chmod -R 777 storage
         sudo chown -R www-data:www-data storage
+        php artisan storage:link
