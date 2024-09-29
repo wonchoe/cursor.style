@@ -38,7 +38,7 @@ class randomTop extends Command
      */
     public function handle()
     {
-        DB::update('update cursors set top=1');
+        DB::table('cursors')->update(['top' => DB::raw('FLOOR(RAND() * 100 + 1)')]);
         return 0;
     }
 }
