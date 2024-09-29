@@ -22,7 +22,10 @@ class Kernel extends ConsoleKernel {
         $schedule->command('grubhub:schedule')->dailyAt('10:40');
         $schedule->command('grubhub:schedule')->dailyAt('15:40');       
         $schedule->command('grubhub:schedule_reverse')->dailyAt('10:40');
-        $schedule->command('grubhub:schedule_reverse')->dailyAt('15:40');         
+        $schedule->command('grubhub:schedule_reverse')->dailyAt('15:40');  
+        
+        $schedule->command('randomTop')->daily();
+        
     }
 
     protected function commands() {
