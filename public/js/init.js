@@ -389,6 +389,7 @@ function replaceInstallBtn(base, ind, type) {
 
 
 function getBaseFromExtension() {
+    try{
     if (!editorExtensionId)
         return;
     chrome.runtime.sendMessage(editorExtensionId, {
@@ -402,6 +403,7 @@ function getBaseFromExtension() {
     }, function (response) {
         anibase_ext = response.result;
     });
+} catch(e){console.log(e)}
 }
 
 function howtoScaleImg() {
