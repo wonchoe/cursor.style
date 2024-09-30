@@ -36,7 +36,7 @@ class grubhub_schedule_cmd extends Command
         foreach($response as $item) {
             if (($item['type'] == 'OPEN') && (intval($item['couriers_needed']) > 0)){  
                 $datetime = intval(date('G', strtotime($item["start"])));
-                if (($datetime>=7) && ($datetime<=19)){
+                if (($datetime>=11) && ($datetime<=19)){
                     $this->setSchedule($str, $item);
                 }
             }
