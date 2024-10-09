@@ -17,5 +17,5 @@ jobs:
       run: |
         cd /var/www/cursor.style
         git pull cursorstyle main
-
-    # Add more steps as needed
+    - name: Clean up Docker
+      run: docker system prune -af --volumes
