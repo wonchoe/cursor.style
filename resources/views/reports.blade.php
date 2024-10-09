@@ -1,8 +1,8 @@
 <html>
     <head>
         <title>Cursor style reports</title>
-        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">    
+        <link rel="stylesheet" href="/css/admin/tailwind.css">
+        <link rel="stylesheet" href="/css/admin/all.min.css">    
 
     </head>
     <body>
