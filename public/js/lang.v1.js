@@ -18,7 +18,10 @@ function isBot() {
         'spider', // Загальне "spider"
         'robot', // Загальне "robot"
         'bot', // Загальне "bot"
-        'python-requests' // Підхід через requests (інколи боти роблять такі запити)
+        'python-requests',
+        'pagespeedinsights', // Google PageSpeed Insights
+        'googleweblight',
+        'google'
     ];
     
     return botPatterns.some(function (pattern) {
