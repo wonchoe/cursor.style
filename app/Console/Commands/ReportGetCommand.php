@@ -14,7 +14,6 @@ class ReportGetCommand extends Command {
     public function handle() {
         date_default_timezone_set("America/New_York");
         $access_token = env('YANDEX_METRIKA_TOKEN');
-        
         $today = date('Y-m-d');
         $yesterday = date('Y-m-d', strtotime('-1 day'));
         $api_endpoint = 'https://api-metrika.yandex.net/stat/v1/data/bytime?metrics=ym:s:goal276893276users,ym:s:goal276893278users,ym:s:goal277063809users,ym:s:goal277063810users,ym:s:goal279424905users,ym:s:goal279424922users,ym:s:goal277063811users,ym:s:goal277063812users,ym:s:goal317222294users,ym:s:goal317222328users&date1=' . $yesterday . '&date2=' . $today . '&group=day&ids=91861407,91843199,91861405,91861418';
