@@ -41,16 +41,39 @@ class grubhub_schedule_cmd extends Command
                 }
             }
         }
+	return $response;
     }
+
+public function checkDate($response){
+if (!empty($response)) {
+    usort($response, function ($a, $b) {
+        return strtotime($b['updated_date']) <=> strtotime($a['updated_date']);
+    });
+
+    $lastUpdatedDate = $response[0]['updated_date'] ?? null;
+
+    return $lastUpdatedDate ? $lastUpdatedDate : "error";
+} else {
+    return "error";
+}
+}
     
     public function handle()
     {
         date_default_timezone_set("America/New_York");
         $str = Grubhub::first();  
                
-        if (date("w") == '6'){
-                $this->checkSchedule($str);
-        }
+//        if (date("w") == '6'){
+                $response = $this->checkSchedule($str);
+//        }
+	$response = $this->checkDate($response);
+
+	$result = [
+	    "current_datetime" => date("Y-m-d\TH:i:s\Z"), // Поточна дата і час у форматі ISO 8601
+	    "last_updated_date" => $response
+	];
+	echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
         return Command::SUCCESS;
     }
 }
