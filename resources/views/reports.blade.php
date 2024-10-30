@@ -40,6 +40,8 @@
                         <div class="flex flex-wrap items-center">
                             <div class="flex-1 bg-gradient-to-r {{ $grub_hub ? 'gh_work' : 'gh_not_work' }} from-cyan-400 to-cyan-600 rounded-lg flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
                                 <h3 class="text-2xl font-bold text-gray-600">{{ $grub_hub ? 'GRUBHUB WORK!' : 'GRUBHUB NOT WORK!' }}</h3>
+				<h1>Last check: {{ (new DateTime($grubhub_schedule_response['current_datetime']))->format('d-m-Y H:i:s') }}</h1>
+				<h1>Grubhub updates: {{ (new DateTime($grubhub_schedule_response['last_updated_date']))->format('d-m-Y H:i:s') }}</h1>
                             </div>
                         </div>
                     </div>
