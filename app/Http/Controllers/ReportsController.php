@@ -106,7 +106,14 @@ class ReportsController extends Controller {
         } else {
             $grub_hub = true;
         }
-               
-        return view('reports', compact('projects', 'grub_hub'));
+
+	$grubhub_schedule_response = json_decode(@file_get_contents(base_path('grubhub.txt')), true);               
+	if (empty($grubhub_schedule_response) || json_last_error() !== JSON_ERROR_NONE) {
+	    $grubhub_schedule_response = [
+	        'current_datetime' => "1973-01-01T00:00:00Z",
+	        'last_updated_date' => '1973-01-01T00:00:00Z'
+	    ];
+	}
+        return view('reports', compact('projects', 'grub_hub','grubhub_schedule_response'));
     }
 }
