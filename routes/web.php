@@ -22,6 +22,9 @@ Route::prefix('/collections')->group(function() {
     Route::get('/{alt_name}/{success?}', [IndexController::class,'showCat']);
 });
 
+Route::get('/example', function () {
+    abort(404);
+});
 
 Route::get('/details/{id}-{name}', [IndexController::class,'showCursorPreview']);
 
