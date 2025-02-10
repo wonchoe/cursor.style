@@ -43,23 +43,7 @@
 
 <link rel="icon" type="image/x-icon" href="{{ secure_asset('images/favicon.png') }}"/>
 
-    <script>
-        // Array of image paths
-        const donate_images = [
-            '{{ asset('images/donate/donate_1.jpeg') }}',
-            '{{ asset('images/donate/donate_2.jpeg') }}',
-            '{{ asset('images/donate/donate_3.jpeg') }}',
-            '{{ asset('images/donate/donate_4.jpeg') }}'
-        ];
-
-        // Select a random image
-        const randomDonateImage = donate_images[Math.floor(Math.random() * donate_images.length)];
-
-        setTimeout(() => {
-            document.getElementById('donate_img').src = randomDonateImage;
-        },500);
-    </script>
-    
+   
     
 @endsection
 
@@ -88,11 +72,6 @@
             @lang('messages.main_text_1')
         </div>   
 
-
-        <div class="adskipper">
-            <a target="_blank" href="https://www.patreon.com/wonchoe">
-                <img id="donate_img" src="images/donate/donate_1.jpeg"></a>
-        </div>
 
         <div class="tabs_menu">
                 <div class="wrapper">
