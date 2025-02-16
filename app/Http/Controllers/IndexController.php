@@ -325,4 +325,7 @@ class IndexController extends Controller {
         return view('feedback');
     }
 
+    public function mycollection(Request $request) {
+        return view('mycollection');
+    }    
 }

@@ -26,6 +26,8 @@ Route::get('/example', function () {
     abort(404);
 });
 
+Route::get('/mycollection', [IndexController::class, 'mycollection']);
+
 Route::get('/details/{id}-{name}', [IndexController::class,'showCursorPreview']);
 
 
