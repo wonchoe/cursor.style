@@ -62,11 +62,12 @@ if (!empty($response)) {
     {
         date_default_timezone_set("America/New_York");
         $str = Grubhub::first();  
-               
-//        if (date("w") == '6'){
+
+        if (date("w") == '6'){
                 $response = $this->checkSchedule($str);
-//        }
+        }
 	$response = $this->checkDate($response);
+	
 
 	$result = [
 	    "current_datetime" => date("Y-m-d\TH:i:s\Z"), // Поточна дата і час у форматі ISO 8601
