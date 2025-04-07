@@ -11,15 +11,7 @@
 @section('lib_top')
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round"/>
-<link rel="stylesheet" href="{{ secure_asset('css/hover-min.css') }}"/>        
-<link rel="stylesheet" href="{{ secure_asset('fonts/fonts.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/libscss.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/main.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/ie.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/loader.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/contact/main.css') }}"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="{{ secure_asset('/js/cat/preload.js') }}"></script>    
+
 <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}"/>
 
 
@@ -102,9 +94,6 @@ document.head.appendChild(recap);
 @endsection
 
 
-@section('lib_bottom')
-<script src="{{ secure_asset('/js/contact/contact.js') }}"></script>    
+@section('lib_bottom')    
 <script src="{{ secure_asset('/js/main.js') }}"></script>    
-
-<script src="{{ secure_asset('/js/banner_cursor.js') }}"></script>  
 @endsection

@@ -37,6 +37,6 @@ return [
     'i_12' => '<img src="/images/en/howto/pick-added.webp" alt="Uploaded cursor" title="Use the uploaded cursor"/>',
     'i_13' => '<img src="/images/en/howto/add-own.webp" alt="Your own cursor" title="Upload your cursor directly from the extension"/>',
     'i_14' => '<img src="/images/en/howto/own-menu.webp" alt="Save cursor" title="Click save to add the cursor to your collection."/>',
-    'i_15' => '<img src="/images/en/howto/delete.webp" alt="Delete cursor" title="Delete dislike cursors"/>',
+    'i_15' => '<img src="/images/en/howto/delete.png" alt="Delete cursor" title="Delete dislike cursors"/>',
     'i_16' => '<img src="/images/en/howto/favorites.webp" alt="Favorite" title="Add cursors to your favorites for quick access."/>'
 ];

@@ -57,7 +57,13 @@ class IndexController extends Controller {
         if (!isset($id_next))
             $id_next = null;
 
-        return view('cursor', ['all_cursors' => $cursors2, 'cursor' => $cursors2->find($r->id), 'id_prev' => $id_prev, 'id_next' => $id_next]);
+            $collections = categories::all();
+    
+            //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
+            $random_cat = $collections->random(3);
+
+            
+        return view('cursor', ['random_cat' => $random_cat, 'all_cursors' => $cursors2, 'cursor' => $cursors2[1] ?? null, 'id_prev' => $id_prev, 'id_next' => $id_next]);
     }
 
     public function show(Request $r) {

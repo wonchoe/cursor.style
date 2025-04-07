@@ -1,179 +1,158 @@
 @extends('layouts.app')
 
 @section('title')
-@lang('collections.'.$alt_name) @lang('collections.mouse_cursors') | @lang('collections.'.$alt_name.'_short_descr')}
+    @lang('collections.' . $alt_name) @lang('collections.mouse_cursors') |
+    @lang('collections.' . $alt_name . '_short_descr')}
 @endsection
 
 @section('descr')
-@lang('collections.'.$alt_name.'_descr')
+    @lang('collections.' . $alt_name . '_descr')
+@endsection
+
+@section('page_meta')
+    <meta property="og:title"
+        content="@lang('collections.' . $alt_name) @lang('collections.mouse_cursors') | @lang('collections.' . $alt_name . '_short_descr')" />
+    <meta property="og:image:width" content="700" />
+    <meta property="og:image:height" content="350" />
+    <meta property="og:description" content="@lang('collections.' . $alt_name . '_descr')" />
+    <meta property="og:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@cursor.style" />
+    <meta name="twitter:title"
+        content="@lang('collections.' . $alt_name) @lang('collections.mouse_cursors') | @lang('collections.' . $alt_name . '_short_descr')" />
+    <meta name="twitter:description" content="@lang('collections.' . $alt_name . '_descr')" />
+    <meta name="twitter:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
 @endsection
 
 @section('lib_top')
-<meta property="og:title" content="@lang('collections.'.$alt_name) @lang('collections.mouse_cursors') | @lang('collections.'.$alt_name.'_short_descr')" />
-<meta property="og:image:width" content="700" />
-<meta property="og:image:height" content="350" />
-<meta property="og:description" content="@lang('collections.'.$alt_name.'_descr')" />
-<meta property="og:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@cursor.style" />
-<meta name="twitter:title" content="@lang('collections.'.$alt_name) @lang('collections.mouse_cursors') | @lang('collections.'.$alt_name.'_short_descr')" />
-<meta name="twitter:description" content="@lang('collections.'.$alt_name.'_descr')" />
-<meta name="twitter:image" content="https://en.cursor.style/collection/{{$alt_name}}.png"/>
-
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round"/>
-<link rel="stylesheet" href="{{ secure_asset('css/hover-min.css') }}"/>        
-<link rel="stylesheet" href="{{ secure_asset('fonts/fonts.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/libscss.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/main.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/ie.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/loader.css') }}"/>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
-
-<script src="{{ secure_asset('/js/cat/preload.js') }}"></script>    
-<link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}"/>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
+    <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
 @endsection
 
 @section('main')
 
-@include('layouts.modal')
-<div class="main">   
-    <div class="container">
-
-        @include('layouts.testzone')
+    @include('layouts.modal')
+    <div class="main">
+        <div class="container collection_page">
 
 
-        @include('layouts.banner')
-       
-
-        <div class="collection-page">
-            <div class="container_cat">
-                <div class="crumb" style="display: flex">
-                    <ol class="bread_ol">
-                        <li>
-                            <a href="/" title="@lang('collections.a_title_1')">@lang('messages.menu_main')</a>
-                        </li>
-                        <li>
-                            <a href="/collections" title="@lang('collections.a_title_2')">@lang('messages.collections')</a>
-                        </li>
-                        <li>
-                            <a class="active_crumb" href="/collections/{{$alt_name}}" title="@lang('collections.'.$alt_name.'_short_descr')">@lang('collections.'.$alt_name)</a>
-                        </li>                            
-                    </ol>
-                </div>
-                <div class="main__list">
+            @include('layouts.banner')
 
 
-                    <div class="collection-page__head">
-                        <div class="collection-page__info">
-                            <img src="/collection/{{$alt_name}}.png" class="cat_img" alt="@lang('collections.cursor_collection') @lang('collections.'.$alt_name)" title="@lang('collections.'.$alt_name.'_short_descr')">
-                            <h1 class="collection-page__title">@lang('collections.'.$alt_name) - @lang('messages.mouse_cursors')</h1>
-                            <div class="collection-page__text">@php echo stripslashes(app('translator')->get('collections.'.$alt_name.'_descr')); @endphp</div>
-                        </div>                        
+            <div class="collection-page">
+                <div class="container_cat">
+
+
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <ol>
+                            <li><a href="/">@lang('messages.menu_main')</a></li>
+                            <li><a href="/collections">@lang('messages.menu_collection')</a></li>
+                            <li class="active">@lang('collections.' . $alt_name)</li>
+                        </ol>
+                    </nav>
+
+
+                    <div class="collection-description">
+                        <div class="collection-description__img">
+                            <img src="/collection/{{$alt_name}}.png"
+                                alt="@lang('collections.cursor_collection') @lang('collections.' . $alt_name)"
+                                title="@lang('collections.' . $alt_name . '_short_descr')">
+                        </div>
+
+                        <div class="collection-description__text">
+                            <h1 class="collection-description__title">
+                                @lang('collections.' . $alt_name) - @lang('messages.mouse_cursors')
+                            </h1>
+
+                            <div class="collection-description__body">
+                                @php
+                                    $rawText = __('collections.' . $alt_name . '_descr');
+                                    $text = strip_tags(stripslashes($rawText));
+                                    $preview = Str::limit($text, 450, '...');
+                                @endphp
+
+                                {!! nl2br(e($preview)) !!}
+
+                                @if(strlen($text) > 450)
+                                    <a class="read-more-btn" href="#"
+                                        onclick="event.preventDefault(); this.parentElement.innerHTML = `{!! nl2br(e($text)) !!}`">Read
+                                        more</a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
 
- 
-                           
-          <div id="Adscode" style="width:100%">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2990484856526951"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-2990484856526951"
-     data-ad-slot="9892927268"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>     
-        
-                    
-                    <div class="h1list">
-                        <h1>@lang('collections.collection_list_from_colllection') @lang('collections.'.$alt_name)</h1>
-                        <div class="addthis_inline_share_toolbox"></div>
-                    </div>
-                 
-      
-      
-                    <div class="main__list">                        
+
+
+
+                    <div class="main__list">
                         @forelse ($cursors as $cursor)
-                         <div class="main__item">
-                            <div class="main__btns">
-                                <button onClick="addToBtn(this)" data-type="stat" data-cataltname="{{ $cursor->collection->alt_name }}" data-catbasename_en="{{ $cursor->collection->base_name_en }}"  data-catbasename_es="{{ $cursor->collection->base_name_es }}"  data-catbasename="{{ $cursor->collection->base_name }}" data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_'.$cursor->id)" data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}" data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}" data-c_file="/cursors/{{ $cursor->id.'-'.$cursor->name_s }}-cursor.svg" data-p_file="/pointers/{{ $cursor->id.'-'.$cursor->name_s }}-pointer.svg" class="hvr-shutter-out-horizontal-g newbtn">Add</a>                        
-                                <button onClick='location.href="/details/{{$cursor->id}}-{{$cursor->name_s}}"' class="hvr-shutter-out-horizontal">Preview</a>                        
-                            </div>                    
-                            <div class="div_ar_p">
-                                <p>@lang('cursors.c_'.$cursor->id) </p>
+                            <div class="main__item" onclick="handleItemClick(event, '/details/{{$cursor->id}}-{{$cursor->name_s}}')">                                
+                                <div class="div_ar_p">
+                                    <p>@lang('cursors.c_' . $cursor->id) </p>
+                                </div>
+                                <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
+                                    <img class="cursorimg"
+                                        style="cursor: url(/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
+                                        src="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg">
+                                    <img class="cursorimg"
+                                        style="cursor: url(/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
+                                        src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                </div>
+                                <div class="main__btns">
+                                    <button class="cursor-button" data-label="ADD TO COLLECTION" data-disabled="✔ ADDED"
+                                        data-type="stat" data-cataltname="{{ $cursor->collection->alt_name }}"
+                                        data-catbasename_en="{{ $cursor->collection->base_name_en }}"
+                                        data-catbasename_es="{{ $cursor->collection->base_name_es }}"
+                                        data-catbasename="{{ $cursor->collection->base_name }}" data-cat="{{ $cursor->cat }}"
+                                        data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
+                                        data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                        data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                        data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                        data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg"
+                                        class="hvr-shutter-out-horizontal-g newbtn"></a>
+                                </div>
                             </div>
-                            <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                                <img class="cursorimg" style="cursor: url(/cursors/{{ $cursor->id.'-'.$cursor->name_s }}-cursor.svg) 0 0, auto !important;" src="/cursors/{{ $cursor->id.'-'.$cursor->name_s }}-cursor.svg">
-                                <img class="cursorimg" style="cursor: url(/pointers/{{ $cursor->id.'-'.$cursor->name_s }}-pointer.svg) 0 0, auto !important;"src="/pointers/{{ $cursor->id.'-'.$cursor->name_s }}-pointer.svg">
-                            </div>
-                        </div>                    
                         @empty
-                        @include('other.nocursors')
-                        @endforelse                     
+                            @include('other.nocursors')
+                        @endforelse
                     </div>
 
-        <div id="Adscode" style="width:100%">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2990484856526951"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-2990484856526951"
-     data-ad-slot="9892927268"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>          
-        
-                    <div class="random_cat_header"><h2>@lang('messages.other_collections')</h2></div>
+
                     <div class="random_cat">
                         @foreach($random_cat as $item)
-                        <a href="/collections/{{$item->alt_name}}" title="@lang('collections.'.$item->alt_name.'_short_descr')">
-                            <div class="random_cat_obj">
-                                <div class="random_cat_text">
-                                    <h2>@lang('collections.'.$item->alt_name) @lang('messages.collection')</h2>
+                            <a href="/collections/{{$item->alt_name}}"
+                                title="@lang('collections.' . $item->alt_name . '_short_descr')">
+                                <div class="random_cat_obj">
+                                    <div class="random_cat_text">
+                                        <h2>@lang('collections.' . $item->alt_name) @lang('messages.collection')</h2>
+                                    </div>
+                                    <div class="random_cat_img">
+                                        <img src="/collection/{{$item->alt_name}}.png"
+                                            alt="@lang('collections.' . $item->alt_name)">
+                                    </div>
                                 </div>
-                                <div class="random_cat_img">
-                                    <img src="/collection/{{$item->alt_name}}.png" title="@lang('collections.'.$item->alt_name.'_short_descr')" alt="@lang('collections.'.$item->alt_name) @lang('collections.sborka_cursorov')">
-                                </div>                                                
-                            </div>
-                        </a>
+                            </a>
                         @endforeach
                     </div>
 
-               
-                    
 
                 </div>
             </div>
-        </div>        
+        </div>
 
     </div>
 
 
-</div>
+    </div>
 
 
-@include('layouts.install')
+    @include('layouts.install')
 
 @endsection
 
 
 @section('lib_bottom')
-<script src="{{ secure_asset('/js/main.js') }}"></script>    
-<script src="{{ secure_asset('/js/banner_cursor.js') }}"></script>  
-<script src="{{ secure_asset('/js/installed.js') }}"></script>  
-<script src="{{ secure_asset('/js/test_area_prev.js')}}"></script>    
+<script src="{{ secure_asset('/js/main.js') }}"></script>
 @endsection

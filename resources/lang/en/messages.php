@@ -44,11 +44,11 @@ return [
     'main_text_1' => 'The mouse cursor is a seemingly small detail that, nevertheless, each of us encounters every day. But even despite its small size, this element is very important, it is he who is able to create a certain mood. A creative, original mouse cursor can show your personality, cheer you up even on the grayest day, and set it up positive for everyday tasks. On our site you will find sets of cursors of different styles and design - we took into account all sorts of interests and developed solutions for each.',
     'main_text_2' => 'Moreover, collections are constantly updated and updated with new ideas. Games and emoticons, traditional flags and heroes of series - here you can find everything that your heart desires. Set your favorite plot or change cursors every day to suit your mood - with us you can afford it! The cursor is installed from the official Google Chrome catalog in just two clicks, probably - this is the easiest and fastest way to change the mouse cursor. You can download the cursor, which is presented in the collections catalog, or even make the cursor yourself by uploading your images in the corresponding extension menu. And finally, you can change the size of the cursor, because each screen of the monitor displays the contents of the page in different ways and it is so important to be able to customize all the elements "for themselves". If you are tired of standard solutions - just change the mouse cursor to a bright and unusual image! You will see how this small detail can instantly change the world around.',
 // MAIN PAGE CURSORS MENU
-    'main_page_menu_1' => 'Popular today',
-    'main_page_menu_2' => 'New',
+    'main_page_menu_1' => '🔥 Trending',
+    'main_page_menu_2' => '🆕 New',
+    'main_page_menu_4' => '🎨 Collections',
+    'main_page_search' => 'Search',    
     'main_page_menu_3' => 'Animated',
-    'main_page_menu_4' => 'Collections',
-    'main_page_search' => 'Search...',
 // TEST AREA
     'test_area_hover_cursor' => 'Hover your mouse cursor here',
 // MODAL WIN

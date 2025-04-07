@@ -44,11 +44,11 @@ return [
     'main_text_1' => 'El cursor del mouse es un detalle aparentemente pequeño que, sin embargo, cada uno de nosotros encuentra todos los días. Pero incluso a pesar de su pequeño tamaño, este elemento es muy importante, es él quien puede crear un cierto estado de ánimo. Un cursor de mouse creativo y original puede mostrar su personalidad, animarlo incluso en el día más gris y configurarlo para las tareas cotidianas. En nuestro sitio encontrará conjuntos de cursores de diferentes estilos y diseños: tomamos en cuenta todo tipo de intereses y desarrollamos soluciones para cada uno.',
     'main_text_2' => 'Además, las colecciones se actualizan constantemente y se actualizan con nuevas ideas. Juegos y emoticones, banderas tradicionales y héroes de series: aquí puedes encontrar todo lo que tu corazón desea. Establezca su parcela favorita o cambie los cursores todos los días para adaptarse a su estado de ánimo, ¡con nosotros puede permitírselo! El cursor se instala desde el catálogo oficial de Google Chrome en solo dos clics, probablemente, esta es la forma más fácil y rápida de cambiar el cursor del mouse. Puede descargar el cursor, que se presenta en el catálogo de colecciones, o incluso hacer el cursor usted mismo cargando sus imágenes en el menú de extensión correspondiente. Y finalmente, puede cambiar el tamaño del cursor, porque cada pantalla del monitor muestra el contenido de la página de diferentes maneras y es muy importante poder personalizar todos los elementos "por sí mismos". Si está cansado de las soluciones estándar, ¡simplemente cambie el cursor del mouse a una imagen brillante e inusual! Verá cómo este pequeño detalle puede cambiar instantáneamente el mundo.',
 // MAIN PAGE CURSORS MENU
-    'main_page_menu_1' => 'Popular hoy',
-    'main_page_menu_2' => 'Nuevo',
+    'main_page_menu_1' => '🔥 Tendencias',
+    'main_page_menu_2' => '🆕 Nuevos',
+    'main_page_menu_4' => '🎨 Colecciones',
+    'main_page_search' => 'Buscar',
     'main_page_menu_3' => 'Animado',
-    'main_page_menu_4' => 'Colecciones',
-    'main_page_search' => 'Buscar...',
 // TEST AREA
     'test_area_hover_cursor' => 'Pase el cursor del mouse aquí',
     // MODAL WIN

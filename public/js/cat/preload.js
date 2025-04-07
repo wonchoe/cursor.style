@@ -70,6 +70,7 @@ window.onload = function () {
 //    else data_base = data_base;    
 }
 
+<<<<<<< HEAD
 
 $(document).keyup(function (e) {
     if (e.key === "Escape") {
@@ -94,3 +95,5 @@ $(function () {
         checkEnabledButtons();
     }, 1500);
 })
+=======
+>>>>>>> 8f96918 (🔄 Update site to new version)
