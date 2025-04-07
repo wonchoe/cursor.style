@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\TraficController;
 use App\Http\Controllers\ReportsController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ChatController;
+use Ably\AblyRest;
+
 
 Route::domain('reports.cursor.style')->group(function () {
     Route::get('/', [ReportsController::class, 'index']); // Assuming you have an index method

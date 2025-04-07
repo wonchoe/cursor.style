@@ -1,37 +1,50 @@
-$('.how__btn').on('click', function () {
-    var then = $(this);
-    var index = then.index();
-    $('.how__btn').removeClass('active');
-    then.addClass('active');
-    $('.how__tab.active').fadeOut(300, function () {
-        $('.how__tab.active').removeClass('active');
-        $('.how__tab:eq(' + index + ')').addClass('active').fadeIn(300);
-    });
+// .how__btn click logic
+document.querySelectorAll('.how__btn').forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.how__btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const tabs = document.querySelectorAll('.how__tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    if (tabs[index]) {
+      tabs[index].classList.add('active');
+    }
+  });
 });
 
-
-$('.burger').on('click', function () {
-    $('.mobile__nav').fadeIn(300).addClass('active');
+// .burger click logic
+document.querySelector('.burger')?.addEventListener('click', () => {
+  const nav = document.querySelector('.mobile__nav');
+  if (nav) {
+    nav.classList.add('active');
+    nav.style.display = 'flex';
+  }
 });
 
-$('.close').on('click', function () {
-    $('.mobile__nav').removeClass('active').fadeOut(300);
+// .close click logic
+document.querySelector('.close')?.addEventListener('click', () => {
+  const nav = document.querySelector('.mobile__nav');
+  if (nav) {
+    nav.classList.remove('active');
+    nav.style.display = 'none';
+  }
 });
 
-$('.banner__tab_1 .banner__text').mouseenter(function () {
-    $('.banner__tab_1').hide();
-    $('.banner__tab_2').css({
-        'display': 'flex'
-    });
-})
-$('.banner__tab_2 .banner__text').mouseleave(function () {
-    $('.banner__tab_2').hide();
-    $('.banner__tab_1').css({
-        'display': 'flex'
-    });
-})
+// banner hover logic
+document.querySelector('.banner__tab_1 .banner__text')?.addEventListener('mouseenter', () => {
+  const tab1 = document.querySelector('.banner__tab_1');
+  const tab2 = document.querySelector('.banner__tab_2');
+  if (tab1 && tab2) {
+    tab1.style.display = 'none';
+    tab2.style.display = 'flex';
+  }
+});
 
-if ($('.js-tilt').length != 0)
-    $('.js-tilt').tilt({
-        scale: 1.1
-    })
+document.querySelector('.banner__tab_2 .banner__text')?.addEventListener('mouseleave', () => {
+  const tab1 = document.querySelector('.banner__tab_1');
+  const tab2 = document.querySelector('.banner__tab_2');
+  if (tab1 && tab2) {
+    tab2.style.display = 'none';
+    tab1.style.display = 'flex';
+  }
+});

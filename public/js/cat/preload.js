@@ -70,27 +70,3 @@ window.onload = function () {
 //    else data_base = data_base;    
 }
 
-
-$(document).keyup(function (e) {
-    if (e.key === "Escape") {
-        if (prev_container.style.display == 'block') {
-            prev_container.style.display = 'none';
-            document.body.style.overflow = ovf;
-        }
-    }
-
-    if ((e.key == 'ArrowLeft') || (e.keyCode === 65)) {
-        if (prev_container.style.display == 'block')
-            plusSlides(-1);
-    }
-    if ((e.key == 'ArrowRight') || (e.keyCode === 68)) {
-        if (prev_container.style.display == 'block')
-            plusSlides(1);
-    }
-});
-
-$(function () {
-    setTimeout(function () {
-        checkEnabledButtons();
-    }, 50);
-})

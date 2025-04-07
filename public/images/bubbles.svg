@@ -1,0 +1,54 @@
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 79.452545 124.31335"
+   enable-background="new 0 0 100% 100%"
+   xml:space="preserve"
+   sodipodi:docname="417af5a030fa8f54a6e98d9d95881b35.svg"
+   width="100%"
+   height="100%"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   preserveAspectRatio="xMidYMid slice"
+   >
+    <defs>
+        <radialGradient id="bubbleGradient" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+            <stop offset="0%" style="stop-color: rgba(255, 255, 255, 0.3);stop-opacity:0.3" />
+            <stop offset="50%" style="stop-color:rgba(173, 216, 230, 0.7);stop-opacity:0.7" />
+        </radialGradient>
+    </defs>
+    <circle cx="15" cy="85" r="1.5" fill="url(#bubbleGradient)" id="bubble1">
+        <animate attributeName="cy" from="85" to="-5" dur="10s" repeatCount="indefinite"/>
+        <animate attributeName="cx" values="15;17;15" dur="6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.5;0" dur="10s" repeatCount="indefinite"/>
+        <animate attributeName="r" begin="bubble1.click" values="3.5;4.2;0" dur="0.5s" fill="freeze"/>
+    </circle>
+    <circle cx="40" cy="90" r="1.8" fill="url(#bubbleGradient)" id="bubble2">
+        <animate attributeName="cy" from="90" to="-4" dur="12s" repeatCount="indefinite" begin="1s"/>
+        <animate attributeName="cx" values="40;42;40" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.5;0" dur="12s" repeatCount="indefinite" begin="1s"/>
+        <animate attributeName="r" begin="bubble2.click" values="2.8;3.5;0" dur="0.5s" fill="freeze"/>
+    </circle>
+    <circle cx="65" cy="88" r="1.2" fill="url(#bubbleGradient)" id="bubble3">
+        <animate attributeName="cy" from="88" to="-6" dur="11s" repeatCount="indefinite" begin="2s"/>
+        <animate attributeName="cx" values="65;67;65" dur="8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.5;0" dur="11s" repeatCount="indefinite" begin="2s"/>
+        <animate attributeName="r" begin="bubble3.click" values="4.2;5;0" dur="0.5s" fill="freeze"/>
+    </circle>
+    <circle cx="25" cy="95" r="1.1" fill="url(#bubbleGradient)" id="bubble4">
+        <animate attributeName="cy" from="95" to="-3" dur="13s" repeatCount="indefinite" begin="3s"/>
+        <animate attributeName="cx" values="25;27;25" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.5;0" dur="13s" repeatCount="indefinite" begin="3s"/>
+        <animate attributeName="r" begin="bubble4.click" values="2.1;2.8;0" dur="0.5s" fill="freeze"/>
+    </circle>
+    <circle cx="75" cy="92" r="1.15" fill="url(#bubbleGradient)" id="bubble5">
+        <animate attributeName="cy" from="92" to="-4.5" dur="14s" repeatCount="indefinite" begin="4s"/>
+        <animate attributeName="cx" values="75;77;75" dur="10s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.5;0" dur="14s" repeatCount="indefinite" begin="4s"/>
+        <animate attributeName="r" begin="bubble5.click" values="3.15;3.9;0" dur="0.5s" fill="freeze"/>
+    </circle>
+</svg>

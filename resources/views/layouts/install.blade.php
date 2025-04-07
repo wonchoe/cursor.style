@@ -7,6 +7,8 @@
             <div class="install-panel__title">@lang('messages.install_text_1')</div>
             <div class="install-panel__description">@lang('messages.install_text_2')</div>
         </div>
-        <div class="install-panel__right"> <a class="install-panel__btn hvr-shutter-out-horizontal-g" onclick="window.open(ext_link,'_blank')">@lang('collections.install')</a></div>
+        <div class="install-panel__right"> 
+            <button class="cursor-button" data-label="Add to Browser" onclick="window.open(ext_link,'_blank')"></button>
+        </div>
     </div>
 </div>

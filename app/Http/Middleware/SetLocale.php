@@ -18,21 +18,25 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-    $currentDomain = $request->getHost();
-    $domainParts = explode('.', $currentDomain);
-    $domainLanguage = strtolower(substr($domainParts[0], 0, 2));
-
-    if ($domainLanguage === 'ua') {
-        $domainLanguage = 'uk';
+        $currentDomain = $request->getHost();
+        $domainParts = explode('.', $currentDomain);
+        $domainPrefix = isset($domainParts[0]) ? $domainParts[0] : '';
+        $domainLanguage = strlen($domainPrefix) > 0
+            ? strtolower(substr($domainPrefix, 0, 2))
+            : 'en'; // дефолт мова
+    
+        if ($domainLanguage === 'ua') {
+            $domainLanguage = 'uk';
+        }
+    
+        $supportedLanguages = ['es', 'uk', 'ru'];
+        $defaultLanguage = 'en';
+    
+        $language = in_array($domainLanguage, $supportedLanguages) ? $domainLanguage : $defaultLanguage;
+    
+        \App::setLocale($language);
+    
+        return $next($request);
     }
-
-    $supportedLanguages = ['es', 'uk', 'ru'];
-    $defaultLanguage = 'en';
-
-    $language = in_array($domainLanguage, $supportedLanguages) ? $domainLanguage : $defaultLanguage;
-
-    \App::setLocale($language);
-
-    return $next($request);
-    }
+    
 }
