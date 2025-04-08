@@ -18,3 +18,9 @@ permissions:
     mode: 644
     type:
       - file
+
+hooks:
+  AfterInstall:
+    - location: scripts/fetch-env.sh
+      timeout: 30
+      runas: root
