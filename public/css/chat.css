@@ -25,6 +25,7 @@ body {
   justify-content: space-between;
   position: relative;
   font-family: 'Lato';
+  width: 100%;
 }
 
 .chat-header {
