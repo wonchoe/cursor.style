@@ -1,34 +1,17 @@
 function isBot() {
     var userAgent = navigator.userAgent.toLowerCase();
     var botPatterns = [
-        'googlebot', // Googlebot
-        'bingbot', // Bingbot
-        'yandexbot', // YandexBot
-        'duckduckbot', // DuckDuckGo
-        'slurp', // Yahoo Slurp
-        'baiduspider', // Baidu
-        'sogou', // Sogou
-        'exabot', // Exabot
-        'facebot', // Facebook
-        'ia_archiver', // Alexa (Amazon)
-        'mj12bot', // Majestic-12
-        'seznambot', // Seznam
-        'gigabot', // Gigablast
-        'crawler', // Загальне "crawler"
-        'spider', // Загальне "spider"
-        'robot', // Загальне "robot"
-        'bot', // Загальне "bot"
-        'python-requests',
-        'pagespeedinsights', // Google PageSpeed Insights
-        'googleweblight',
-        'google'
+        'googlebot', 'bingbot', 'yandexbot', 'duckduckbot',
+        'slurp', 'baiduspider', 'sogou', 'exabot', 'facebot',
+        'ia_archiver', 'mj12bot', 'seznambot', 'gigabot',
+        'crawler', 'spider', 'robot', 'bot',
+        'python-requests', 'pagespeedinsights', 'googleweblight', 'google'
     ];
     
     return botPatterns.some(function (pattern) {
         return userAgent.indexOf(pattern) !== -1;
     });
 }
-
 
 function getBrowserLanguage() {
     return (navigator.language || navigator.userLanguage).split('-')[0].toLowerCase();
@@ -41,7 +24,7 @@ const localeDomains = {
 };
 
 function getPreferredDomain(browserLanguage) {
-    return localeDomains[browserLanguage] || 'cursor.style';
+    return localeDomains[browserLanguage] || null;
 }
 
 function checkAndRedirect() {
@@ -49,19 +32,12 @@ function checkAndRedirect() {
     const currentDomain = window.location.hostname;
     const preferredDomain = getPreferredDomain(browserLanguage);
 
-    if (preferredDomain === 'dev.cursor.style')
-        return;
-    if (window.location.hostname === 'localhost')
-        return;
-    if (window.location.hostname === '127.0.0.1')
-        return;
+    if (!preferredDomain) return; // не підтримується — не редиректимо
+    if (currentDomain === preferredDomain) return;
 
-
-    if (currentDomain !== preferredDomain) {
-        const newUrl = window.location.protocol + '//' + preferredDomain + window.location.pathname + window.location.search;
-        console.log('Redirecting to:', newUrl);
-        window.location.href = newUrl;
-    }
+    const newUrl = window.location.protocol + '//' + preferredDomain + window.location.pathname + window.location.search;
+    console.log('Redirecting to:', newUrl);
+    window.location.href = newUrl;
 }
 
 if (!isBot()) checkAndRedirect();
