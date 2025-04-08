@@ -31,7 +31,7 @@ Conditions:
 
 Resources:
 
-  VPCStack:
+  VPCStackDev:
     Type: AWS::CloudFormation::Stack
     Condition: IsDev
     Properties:
@@ -39,10 +39,10 @@ Resources:
       Parameters:
         EnvironmentName: !Ref EnvironmentName
 
-  EC2Stack:
+  EC2StackDev:
     Type: AWS::CloudFormation::Stack
     Condition: IsDev
-    DependsOn: VPCStack
+    DependsOn: VPCStackDev
     Properties:
       TemplateURL: https://s3.us-east-1.amazonaws.com/cursor.style/infrastructure/dev-ec2.yaml
       Parameters:
@@ -50,10 +50,10 @@ Resources:
         AmiId: !Ref AmiId
         KeyName: !Ref KeyName
         InstanceType: !Ref InstanceType
-        VpcId: !GetAtt VPCStack.Outputs.VpcId
-        SubnetId: !GetAtt VPCStack.Outputs.PublicSubnet1Id
+        VpcId: !GetAtt VPCStackDev.Outputs.VpcId
+        SubnetId: !GetAtt VPCStackDev.Outputs.PublicSubnet1Id
 
-  VPCStack:
+  VPCStackProd:
     Type: AWS::CloudFormation::Stack
     Condition: IsProd
     Properties:
@@ -61,10 +61,10 @@ Resources:
       Parameters:
         EnvironmentName: !Ref EnvironmentName
 
-  EC2Stack:
+  EC2StackProd:
     Type: AWS::CloudFormation::Stack
     Condition: IsProd
-    DependsOn: VPCStack
+    DependsOn: VPCStackProd
     Properties:
       TemplateURL: https://s3.us-east-1.amazonaws.com/cursor.style/infrastructure/prod-ec2.yaml
       Parameters:
@@ -72,14 +72,20 @@ Resources:
         AmiId: !Ref AmiId
         KeyName: !Ref KeyName
         InstanceType: !Ref InstanceType
-        VpcId: !GetAtt VPCStack.Outputs.VpcId
-        SubnetId: !GetAtt VPCStack.Outputs.PublicSubnet1Id
+        VpcId: !GetAtt VPCStackProd.Outputs.VpcId
+        SubnetId: !GetAtt VPCStackProd.Outputs.PublicSubnet1Id
 
 Outputs:
   VpcId:
     Description: Exported VPC ID
-    Value: !GetAtt VPCStack.Outputs.VpcId
+    Value: !If
+      - IsDev
+      - !GetAtt VPCStackDev.Outputs.VpcId
+      - !GetAtt VPCStackProd.Outputs.VpcId
 
   InstanceId:
     Description: Created EC2 instance
-    Value: !GetAtt EC2Stack.Outputs.InstanceId
+    Value: !If
+      - IsDev
+      - !GetAtt EC2StackDev.Outputs.InstanceId
+      - !GetAtt EC2StackProd.Outputs.InstanceId
