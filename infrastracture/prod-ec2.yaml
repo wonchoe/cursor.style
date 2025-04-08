@@ -56,7 +56,7 @@ Resources:
       Roles:
         - !Ref InstanceRole
 
-  DevInstance:
+  ProdInstance:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !Ref AmiId
@@ -89,6 +89,6 @@ Resources:
 Outputs:
   InstanceId:
     Description: Instance Id
-    Value: !Ref DevInstance
+    Value: !Ref ProdInstance
     Export:
       Name: !Sub "${EnvironmentName}-instance-id"
