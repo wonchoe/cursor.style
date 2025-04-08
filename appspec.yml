@@ -3,8 +3,3 @@ os: linux
 files:
   - source: /
     destination: /var/www/cursor.style
-hooks:
-  AfterInstall:
-    - location: scripts/restart_server.sh
-      timeout: 60
-      runas: ubuntu
