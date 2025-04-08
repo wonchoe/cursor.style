@@ -5,6 +5,8 @@ files:
     destination: /var/www/cursor.style
     overwrite: true
 
+file_exists_behavior: OVERWRITE
+
 permissions:
   - object: /var/www/cursor.style
     owner: www-data
