@@ -1,0 +1,85 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Root stack for Dev Infrastructure
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+    Description: Environment name (e.g., dev, test, prod)
+
+  AmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Description: AMI ID stored in SSM Parameter Store
+    Default: /cursor.style/dev/amiId
+
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: SSH Key Pair to access EC2
+    Default: cursor.style
+
+  InstanceType:
+    Type: String
+    Default: t3a.micro
+    Description: EC2 instance type
+
+Conditions:
+  IsDev: !Equals [!Ref EnvironmentName, dev]
+  IsProd: !Equals [!Ref EnvironmentName, prod]
+
+Resources:
+
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Condition: IsDev
+    Properties:
+      TemplateURL: https://s3.us-east-1.amazonaws.com/cursor.style/infrastructure/dev-vpc.yaml
+      Parameters:
+        EnvironmentName: !Ref EnvironmentName
+
+  EC2Stack:
+    Type: AWS::CloudFormation::Stack
+    Condition: IsDev
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: https://s3.us-east-1.amazonaws.com/cursor.style/infrastructure/dev-ec2.yaml
+      Parameters:
+        EnvironmentName: !Ref EnvironmentName
+        AmiId: !Ref AmiId
+        KeyName: !Ref KeyName
+        InstanceType: !Ref InstanceType
+        VpcId: !GetAtt VPCStack.Outputs.VpcId
+        SubnetId: !GetAtt VPCStack.Outputs.PublicSubnet1Id
+
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Condition: IsProd
+    Properties:
+      TemplateURL: https://s3.us-east-1.amazonaws.com/cursor.style/infrastructure/prod-vpc.yaml
+      Parameters:
+        EnvironmentName: !Ref EnvironmentName
+
+  EC2Stack:
+    Type: AWS::CloudFormation::Stack
+    Condition: IsProd
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: https://s3.us-east-1.amazonaws.com/cursor.style/infrastructure/prod-ec2.yaml
+      Parameters:
+        EnvironmentName: !Ref EnvironmentName
+        AmiId: !Ref AmiId
+        KeyName: !Ref KeyName
+        InstanceType: !Ref InstanceType
+        VpcId: !GetAtt VPCStack.Outputs.VpcId
+        SubnetId: !GetAtt VPCStack.Outputs.PublicSubnet1Id
+
+Outputs:
+  VpcId:
+    Description: Exported VPC ID
+    Value: !GetAtt VPCStack.Outputs.VpcId
+
+  InstanceId:
+    Description: Created EC2 instance
+    Value: !GetAtt EC2Stack.Outputs.InstanceId
