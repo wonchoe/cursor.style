@@ -4,3 +4,4 @@ files:
   - source: /
     destination: /var/www/cursor.style
     overwrite: true
+    type: directory
