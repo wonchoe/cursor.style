@@ -18,7 +18,10 @@ var preview_index = 0;
 var cur_base = 'top';
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 var ovf = (isChrome) ? 'overlay' : 'scroll';
-var isInstalled = (document.getElementsByTagName('html')[0].dataset.cursorStyle) ? true : false;
+
+var isInstalled = document.querySelector('[data-cursor-style]') ?? false;
+
+
 var editorExtensionId = document.documentElement.dataset.chromeId;
 
 
