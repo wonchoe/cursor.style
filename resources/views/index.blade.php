@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="{{ secure_asset('css/main.css') }}"/>
 <link rel="stylesheet" href="{{ secure_asset('css/ie.css') }}"/>
 <link rel="stylesheet" href="{{ secure_asset('css/loader.css') }}"/>
+<link rel="stylesheet" href="{{ secure_asset('css/chat.css') }}"/>
 
 <script src="/js/jquery.js"></script>
 <script src="{{ secure_asset('/js/newblock.js') }}"></script>  
@@ -58,13 +59,14 @@
 <div class="main">   
     <div class="container">
 
-        
+
+
         @include('layouts.testzone')
 
 
         @include('layouts.banner')
 
-
+        @include('layouts.chat')
 
         <div class="newblock" id="newblock"></div>
 
