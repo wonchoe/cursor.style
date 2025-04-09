@@ -62,9 +62,9 @@ if (!empty($response)) {
     {
         date_default_timezone_set("America/New_York");
         $str = Grubhub::first();  
-
+               
         if (date("w") == '6'){
-             //   $response = $this->checkSchedule($str);
+                // $response = $this->checkSchedule($str);
         }
 	$response = $this->checkDate($response);
 	

@@ -51,7 +51,7 @@ class grubhub_schedule_reverse_cmd extends Command
         $str = Grubhub::first();  
                 
         if (date("w") == '6'){
-             //   $this->checkSchedule($str);
+                // $this->checkSchedule($str);
         }
         return Command::SUCCESS;
     }
