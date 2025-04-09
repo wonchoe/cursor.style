@@ -71,12 +71,12 @@ function secondImg(e) {
         p_file_data: p_loaded
     }, function (response) {
         getBaseFromExtension();
-//        setTimeout(function () {
-//            checkEnabledButtons();
-//        }, 100);
+        //        setTimeout(function () {
+        //            checkEnabledButtons();
+        //        }, 100);
     });
 
-//    checkEnabledButtons();
+    //    checkEnabledButtons();
 }
 
 function firstImg(e) {
@@ -121,12 +121,12 @@ function addToCollection(e) {
         catAlt = e.dataset.cataltname;
         catBase = e.dataset.catbasename;
         catBaseEn = e.dataset.catbasename_en;
-        catBaseEs = e.dataset.catbasename_es;        
+        catBaseEs = e.dataset.catbasename_es;
     } else {
         catAlt = -1;
         catBase = -1;
         catBaseEn = -1;
-        catBaseEs = -1;        
+        catBaseEs = -1;
     }
 
 
@@ -135,74 +135,77 @@ function addToCollection(e) {
     p_data_file = e.dataset.p_file;
 
 
-        chrome.runtime.sendMessage(editorExtensionId, {
-            cursorType: e.dataset.type,
-            cursorCat: catId,
-            cursorBase: catBase,
-            cursorBaseEn: catBaseEn,
-            cursorBaseEs: catBaseEs,            
-            cursorAlt: catAlt,
-            cursorId: e.dataset.id,
-            cursorName: e.dataset.name,
-            offsetX: e.dataset.offsetX,
-            offsetX_p: e.dataset.offsetX_p,
-            offsetY: e.dataset.offsetY,
-            offsetY_p: e.dataset.offsetY_p,
-            c_file_data: window.location.origin+c_data_file,
-            p_file_data: window.location.origin+p_data_file
-        }, function (response) {
-            getBaseFromExtension();
-        });
-        
-//    if (isCursorUploaded(e)) {
-//        getBase64FromImage(c_data_file, firstImg, onError);
-//    } else {
-//        chrome.runtime.sendMessage(editorExtensionId, {
-//            cursorType: e.dataset.type,
-//            cursorCat: catId,
-//            cursorBase: catBase,
-//            cursorAlt: catAlt,
-//            cursorId: e.dataset.id,
-//            cursorName: e.dataset.name,
-//            offsetX: e.dataset.offsetX,
-//            offsetX_p: e.dataset.offsetX_p,
-//            offsetY: e.dataset.offsetY,
-//            offsetY_p: e.dataset.offsetY_p,
-//            c_file_data: c_loaded,
-//            p_file_data: p_loaded
-//        }, function (response) {
-//            getBaseFromExtension();
-//        });
-//    }
+    chrome.runtime.sendMessage(editorExtensionId, {
+        cursorType: e.dataset.type,
+        cursorCat: catId,
+        cursorBase: catBase,
+        cursorBaseEn: catBaseEn,
+        cursorBaseEs: catBaseEs,
+        cursorAlt: catAlt,
+        cursorId: e.dataset.id,
+        cursorName: e.dataset.name,
+        offsetX: e.dataset.offsetX,
+        offsetX_p: e.dataset.offsetX_p,
+        offsetY: e.dataset.offsetY,
+        offsetY_p: e.dataset.offsetY_p,
+        c_file_data: window.location.origin + c_data_file,
+        p_file_data: window.location.origin + p_data_file
+    }, function (response) {
+        getBaseFromExtension();
+    });
+
+    //    if (isCursorUploaded(e)) {
+    //        getBase64FromImage(c_data_file, firstImg, onError);
+    //    } else {
+    //        chrome.runtime.sendMessage(editorExtensionId, {
+    //            cursorType: e.dataset.type,
+    //            cursorCat: catId,
+    //            cursorBase: catBase,
+    //            cursorAlt: catAlt,
+    //            cursorId: e.dataset.id,
+    //            cursorName: e.dataset.name,
+    //            offsetX: e.dataset.offsetX,
+    //            offsetX_p: e.dataset.offsetX_p,
+    //            offsetY: e.dataset.offsetY,
+    //            offsetY_p: e.dataset.offsetY_p,
+    //            c_file_data: c_loaded,
+    //            p_file_data: p_loaded
+    //        }, function (response) {
+    //            getBaseFromExtension();
+    //        });
+    //    }
 }
 
-$(function () {
-    if (isInstalled) {
-        if (document.getElementById('banner_hidden')) {
-            document.getElementById('banner_hidden').style.display = 'block';
-        }
 
-        if ($('#should_install').length > 0) {
-            should_install.innerHTML = i18n.messages['test_area_hover_cursor'];
-            should_install.parentNode.style.marginTop = '45px';
-            should_install.style.color = '#4a8cf5';
-            should_install.style.padding = '8px';
-            should_install.style.border = '1px dashed #d0d0d0';
-            banner_cur_size.style.visibility = 'visible';
-        }
-
-        if ($('#banner_in_prev').length > 0) {
-            banner_in_prev.onmousemove = function (e) {
-                if (e.target.id == 'should_install') {
-                    cs_cursor_img.src = banner_in_prev.dataset.pointer;
-                } else {
-                    cs_cursor_img.src = banner_in_prev.dataset.cursor;
-                }
-
+setTimeout(() => {
+    $(function () {
+        if (isInstalled) {
+            if (document.getElementById('banner_hidden')) {
+                document.getElementById('banner_hidden').style.display = 'block';
             }
-        }
 
-        if ($('#arrow_for_install').length > 0)
-            arrow_for_install.remove();
-    }
-});
+            if ($('#should_install').length > 0) {
+                should_install.innerHTML = i18n.messages['test_area_hover_cursor'];
+                should_install.parentNode.style.marginTop = '45px';
+                should_install.style.color = '#4a8cf5';
+                should_install.style.padding = '8px';
+                should_install.style.border = '1px dashed #d0d0d0';
+                banner_cur_size.style.visibility = 'visible';
+            }
+
+            if ($('#banner_in_prev').length > 0) {
+                banner_in_prev.onmousemove = function (e) {
+                    if (e.target.id == 'should_install') {
+                        cs_cursor_img.src = banner_in_prev.dataset.pointer;
+                    } else {
+                        cs_cursor_img.src = banner_in_prev.dataset.cursor;
+                    }
+
+                }
+            }
+
+            if ($('#arrow_for_install').length > 0)
+                arrow_for_install.remove();
+        }
+    });
+}, 1500);

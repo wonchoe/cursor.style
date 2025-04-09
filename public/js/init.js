@@ -19,9 +19,19 @@ var cur_base = 'top';
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 var ovf = (isChrome) ? 'overlay' : 'scroll';
 
-setTimeout(() => {
-    var isInstalled = document.querySelector('[data-cursor-style]') ?? false;
+function checkInstall(){
+    const isInstalled = !!document.querySelector('[data-cursor-style]');
     console.log(isInstalled);
+    if ((isInstalled) && (install_container))
+        install_container.innerHTML = '';    
+
+    if (isInstalled) {
+        $('#ex1').css('display', 'none');
+    }    
+}
+
+setTimeout(() => {
+    checkInstall();
 }, 1000);
 
 var editorExtensionId = document.documentElement.dataset.chromeId;
@@ -96,16 +106,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    if ((isInstalled) && (install_container))
-        install_container.innerHTML = '';
+
 
 
 });
 
-
-if (isInstalled) {
-    $('#ex1').css('display', 'none');
-}
 
 function openModal() {
     $("#ex1").modal({
