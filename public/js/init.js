@@ -21,7 +21,7 @@ var ovf = (isChrome) ? 'overlay' : 'scroll';
 
 var isInstalled = document.querySelector('[data-cursor-style]') ?? false;
 
-
+console.log(isInstalled);
 var editorExtensionId = document.documentElement.dataset.chromeId;
 
 
