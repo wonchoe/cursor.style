@@ -92,5 +92,5 @@ $(document).keyup(function (e) {
 $(function () {
     setTimeout(function () {
         checkEnabledButtons();
-    }, 50);
+    }, 1500);
 })

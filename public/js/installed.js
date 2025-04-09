@@ -176,36 +176,35 @@ function addToCollection(e) {
     //    }
 }
 
-
-setTimeout(() => {
-    $(function () {
-        if (isInstalled) {
-            if (document.getElementById('banner_hidden')) {
-                document.getElementById('banner_hidden').style.display = 'block';
-            }
-
-            if ($('#should_install').length > 0) {
-                should_install.innerHTML = i18n.messages['test_area_hover_cursor'];
-                should_install.parentNode.style.marginTop = '45px';
-                should_install.style.color = '#4a8cf5';
-                should_install.style.padding = '8px';
-                should_install.style.border = '1px dashed #d0d0d0';
-                banner_cur_size.style.visibility = 'visible';
-            }
-
-            if ($('#banner_in_prev').length > 0) {
-                banner_in_prev.onmousemove = function (e) {
-                    if (e.target.id == 'should_install') {
-                        cs_cursor_img.src = banner_in_prev.dataset.pointer;
-                    } else {
-                        cs_cursor_img.src = banner_in_prev.dataset.cursor;
-                    }
-
-                }
-            }
-
-            if ($('#arrow_for_install').length > 0)
-                arrow_for_install.remove();
+function getInstalled(){
+    if (isInstalled) {
+        if (document.getElementById('banner_hidden')) {
+            document.getElementById('banner_hidden').style.display = 'block';
         }
-    });
-}, 1500);
+
+        if ($('#should_install').length > 0) {
+            should_install.innerHTML = i18n.messages['test_area_hover_cursor'];
+            should_install.parentNode.style.marginTop = '45px';
+            should_install.style.color = '#4a8cf5';
+            should_install.style.padding = '8px';
+            should_install.style.border = '1px dashed #d0d0d0';
+            banner_cur_size.style.visibility = 'visible';
+        }
+
+        if ($('#banner_in_prev').length > 0) {
+            banner_in_prev.onmousemove = function (e) {
+                if (e.target.id == 'should_install') {
+                    cs_cursor_img.src = banner_in_prev.dataset.pointer;
+                } else {
+                    cs_cursor_img.src = banner_in_prev.dataset.cursor;
+                }
+
+            }
+        }
+
+        if ($('#arrow_for_install').length > 0)
+            arrow_for_install.remove();
+    }
+}
+
+setTimeout(getInstalled, 1500);
