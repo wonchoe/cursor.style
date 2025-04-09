@@ -20,7 +20,7 @@ var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator
 var ovf = (isChrome) ? 'overlay' : 'scroll';
 
 function checkInstall(){
-    const isInstalled = !!document.querySelector('[data-cursor-style]');
+    isInstalled = !!document.querySelector('[data-cursor-style]');
     console.log(isInstalled);
     if ((isInstalled) && (install_container))
         install_container.innerHTML = '';    
@@ -202,6 +202,7 @@ function checkDisabledButtons() {
 }
 
 function checkEnabledButtons() {
+    isInstalled = !!document.querySelector('[data-cursor-style]');
     if (!isInstalled)
         return;
     r = Array.from(document.querySelectorAll('.hvr-shutter-out-horizontal-g'));

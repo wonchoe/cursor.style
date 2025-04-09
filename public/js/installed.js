@@ -177,6 +177,7 @@ function addToCollection(e) {
 }
 
 function getInstalled(){
+    isInstalled = !!document.querySelector('[data-cursor-style]');
     if (isInstalled) {
         if (document.getElementById('banner_hidden')) {
             document.getElementById('banner_hidden').style.display = 'block';
