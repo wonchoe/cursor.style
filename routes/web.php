@@ -18,6 +18,7 @@ Route::domain('reports.cursor.style')->group(function () {
     Route::get('/', [ReportsController::class, 'index']); // Assuming you have an index method
 });
 
+Route::view('/empty', 'other.empty');
 
 Route::prefix('/collections')->group(function() {
     Route::get('/', [IndexController::class,'showAllCat']);
@@ -53,6 +54,7 @@ Route::post('/contact', [IndexController::class, 'sendEmail']);
 Route::get('/feedback', [IndexController::class, 'showFeedback']);
 Route::post('/feedback', [IndexController::class, 'sendEmailFeedBack']);
 Route::view('/howto', 'howto');
+
 Route::view('/terms', 'other.terms');
 Route::view('/privacy', 'other.privacy');
 Route::view('/cookie-policy', 'other.cookiepolicy');
