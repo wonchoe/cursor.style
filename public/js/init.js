@@ -19,9 +19,11 @@ var cur_base = 'top';
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 var ovf = (isChrome) ? 'overlay' : 'scroll';
 
-var isInstalled = document.querySelector('[data-cursor-style]') ?? false;
+setTimeout(() => {
+    var isInstalled = document.querySelector('[data-cursor-style]') ?? false;
+    console.log(isInstalled);
+}, 1000);
 
-console.log(isInstalled);
 var editorExtensionId = document.documentElement.dataset.chromeId;
 
 
@@ -33,14 +35,14 @@ function hideLoader() {
 
 function setTop(type, id) {
     console.log('top');
-//    $.ajax('/settop', {
-//        method: 'post',
-//        data: {
-//            _token: $('[name=csrf-token]').attr('content'),
-//            type: type,
-//            id: id
-//        }
-//    });
+    //    $.ajax('/settop', {
+    //        method: 'post',
+    //        data: {
+    //            _token: $('[name=csrf-token]').attr('content'),
+    //            type: type,
+    //            id: id
+    //        }
+    //    });
 }
 
 window.addEventListener('load', function () {
@@ -392,21 +394,21 @@ function replaceInstallBtn(base, ind, type) {
 
 
 function getBaseFromExtension() {
-    try{
-    if (!editorExtensionId)
-        return;
-    chrome.runtime.sendMessage(editorExtensionId, {
-        task: 'getStatDB',
-    }, function (response) {
-        statbase_ext = response.result;
-    });
+    try {
+        if (!editorExtensionId)
+            return;
+        chrome.runtime.sendMessage(editorExtensionId, {
+            task: 'getStatDB',
+        }, function (response) {
+            statbase_ext = response.result;
+        });
 
-    chrome.runtime.sendMessage(editorExtensionId, {
-        task: 'getAniDB',
-    }, function (response) {
-        anibase_ext = response.result;
-    });
-} catch(e){console.log(e)}
+        chrome.runtime.sendMessage(editorExtensionId, {
+            task: 'getAniDB',
+        }, function (response) {
+            anibase_ext = response.result;
+        });
+    } catch (e) { console.log(e) }
 }
 
 function howtoScaleImg() {
