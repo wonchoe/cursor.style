@@ -64,7 +64,7 @@ if (!empty($response)) {
         $str = Grubhub::first();  
 
         if (date("w") == '6'){
-                $response = $this->checkSchedule($str);
+             //   $response = $this->checkSchedule($str);
         }
 	$response = $this->checkDate($response);
 	
