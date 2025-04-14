@@ -1,0 +1,1 @@
+docker-compose exec web bash -c "cd /var/www && exec bash"

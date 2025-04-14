@@ -1,0 +1,35 @@
+FROM ubuntu:24.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -yqq \
+    nginx-full \
+    php8.3-fpm \
+    php8.3-mysql \
+    php8.3-xml \
+    php8.3-mbstring \
+    php8.3-curl \
+    php8.3-zip \
+	php8.3-gd \
+	composer \
+    curl \
+	mc \
+	nano -yqq
+	
+COPY /docker/nginx /etc/nginx/
+COPY /docker/php /etc/php/8.3/fpm/
+RUN rm -rf /var/www/html
+
+COPY /docker/laravel_conf /tmp
+
+COPY /docker/start-services.sh /var/
+RUN chmod u+x /var/start-services.sh
+
+COPY /docker/env.sh /var/
+RUN chmod u+x /var/env.sh
+
+COPY /docker/prepare.sh /var/
+RUN chmod u+x /var/prepare.sh
+
+HEALTHCHECK --interval=10s CMD /var/env.sh
+
+ENTRYPOINT ["/bin/bash","/var/start-services.sh"]
