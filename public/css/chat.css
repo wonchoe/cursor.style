@@ -1,11 +1,18 @@
 body {
-  font-family: 'Product Sans';
   margin: 0;
   background: #f0f0f0;
 }
 
 .avatarh2 {
   font-family: 'Shantell Sans', sans-serif !important;
+}
+
+.chat-input-area input:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
 }
 
 .chat-container {
@@ -836,7 +843,8 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
 }
 
@@ -1465,4 +1473,18 @@ li:not(.cchat-self) .cchat-msg::before {
   font-size: 14px;
   font-family: monospace;
   text-align: center;
+}
+
+
+#pLoad{
+  text-align: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#pLoad img{
+  max-width: 70px;
 }

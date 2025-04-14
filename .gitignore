@@ -3,9 +3,21 @@
 /storage/debugbar/
 /storage/framework/
 /storage/logs/
-/nbproject/private/
-/nbproject
+/storage/*.key
+/bootstrap/cache/*.php
 /public/collection
 /public/cursors
 /public/pointers
 .env
+
+# IDE/OS Specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+npm-debug.log
+yarn-error.log
+*.lock
+*.log
