@@ -27,18 +27,6 @@
 
 
     <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
-<<<<<<< HEAD
-<link rel="stylesheet" href="{{ secure_asset('fonts/fonts.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/libscss.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/main.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/ie.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/loader.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/mycollection.css') }}"/>
-   
-    
-    
-=======
->>>>>>> 8f96918 (🔄 Update site to new version)
 @endsection
 
 @section('main')
@@ -52,14 +40,11 @@
 
         <div class="mycollection" id="mycollection">
 
-<<<<<<< HEAD
-=======
             <div class="chat-popup" id="chatPopup">
                 <input type="text" id="usernameInput" placeholder="Enter your nickname">
                 <button id="loginButton">Join Chat</button>
                 <div id="loginMessage" class="system-message"></div>
             </div>
->>>>>>> 8f96918 (🔄 Update site to new version)
 
             <div class="my-collection-header">
                 <div class="active-cursor">

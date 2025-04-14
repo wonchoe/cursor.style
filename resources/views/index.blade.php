@@ -23,48 +23,9 @@
 
 
 @section('lib_top')
-<<<<<<< HEAD
-
-
-<meta property="og:title" content="@lang('messages.og_title')" />
-<meta property="og:image:width" content="700" />
-<meta property="og:image:height" content="350" />
-<meta property="og:description" content="@lang('messages.main_page_descr')" />
-<meta property="og:image" content="https://en.cursor.style/images/img.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@cursor.style" />
-<meta name="twitter:title" content="@lang('messages.og_title')" />
-<meta name="twitter:description" content="@lang('messages.main_page_descr')" />
-<meta name="twitter:image" content="https://en.cursor.style/images/img.jpg"/>
-@yield('css')
-
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
-
-<link rel="stylesheet" href="{{ secure_asset('fonts/fonts.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/libscss.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/main.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/ie.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/loader.css') }}"/>
-<link rel="stylesheet" href="{{ secure_asset('css/chat.css') }}"/>
-
-<script src="/js/jquery.js"></script>
-<script src="{{ secure_asset('/js/newblock.js') }}"></script>  
-
-<!-- jQuery Modal -->
-<script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.js"></script>
-<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
-
-<link rel="icon" type="image/x-icon" href="{{ secure_asset('images/favicon.png') }}"/>
-
-   
-    
-=======
     @yield('css')
     <link rel="icon" type="image/x-icon" href="{{ secure_asset('images/favicon.png') }}" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
->>>>>>> 8f96918 (🔄 Update site to new version)
 @endsection
 
 
@@ -76,67 +37,6 @@
         <div class="container">
             <div class="newblock" id="newblock"></div>
 
-<<<<<<< HEAD
-
-
-<div class="main">   
-    <div class="container">
-
-
-
-        @include('layouts.testzone')
-
-
-        @include('layouts.banner')
-
-        @include('layouts.chat')
-
-        <div class="newblock" id="newblock"></div>
-
-        <div class="collection_top_text">
-            @lang('messages.main_text_1')
-        </div>   
-
-
-        <div class="tabs_menu">
-                <div class="wrapper">
-                    <nav class="tabs">
-                        <a href="/" class="cur_menu @if ($sort == 'id') active @endif" id="menu_new" cursorshover="true"><i class="material-icons-round cs_pointer" cursorshover="true">fiber_new</i>@lang('messages.main_page_menu_2')</a>                        
-                        <a href="/popular" class="cur_menu @if ($sort == 'top') active @endif" id="menu_top" cursorshover="true"><i class="material-icons-round">star</i>@lang('messages.main_page_menu_1')</a>                        
-                        <a href="/collections" class="cur_menu" id="menu_collections"><i class="material-icons-round">list_alt</i>@lang('messages.main_page_menu_4')</a>
-                    </nav>
-                        <form action="/" method="GET">
-                            <input type="text" name="q" id="cs_search" class="search" value="{{ $query }}" placeholder="@lang('messages.main_page_search')" aria-label="@lang('messages.main_page_search')">
-                        </form>                    
-                </div>                
-            </div>
-        
-
-          
-            <div class="main__list" id="main_list">
-
-                @forelse($cursors as $key => $cursor)
-                @if (($key % 16 == 0) && ( $key>0 ))
-                    
-                <div class="gads">
-                <!--GOOGLE ADSENCE-->         
-                    <div class="googleads">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-format="fluid"
-                             data-ad-layout-key="-fb+5w+4e-db+86"
-                             data-ad-client="ca-pub-2990484856526951"
-                             data-ad-slot="2703806348"></ins>
-                        <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>                    
-                    </div>
-                    <!--GOOGLE ADSENCE-->  
-                </div>    
-                @endif
-=======
->>>>>>> 8f96918 (🔄 Update site to new version)
             
             <div class="seo-block collapsed" id="seoBlock">
                 @include('layouts.banner')
