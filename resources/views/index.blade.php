@@ -80,7 +80,9 @@
                 @forelse($cursors as $key => $cursor)
                     @if ($key > 0 && $key % 16 === 0)
                         <div class="gads-wrapper">
-                           <!-- google ads here -->
+                        <!-- google ads here -->
+                            @include('other.google.infeed')
+                        <!-- google ads here -->
                         </div>
                     @endif
 
