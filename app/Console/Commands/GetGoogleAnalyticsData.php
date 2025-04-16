@@ -57,21 +57,16 @@ class GetGoogleAnalyticsData extends Command
         ];
         
         $rows = $response->getRows();
-        $currentRangeIndex = 0;
-        $lastEventName = null;
+        $rangeKeys = ['today', 'yesterday'];
         
-        foreach ($rows as $row) {
+        foreach ($rows as $index => $row) {
             $event = $row->getDimensionValues()[0]->getValue();
             $count = (int) $row->getMetricValues()[0]->getValue();
         
-            // Розрахунок: кожні 2 рядки — новий dateRange (бо 2 події: install, uninstall)
-            $rangeKey = $currentRangeIndex === 0 ? 'today' : 'yesterday';
+            $rangeIndex = intdiv($index, 2); // 0 → today, 1 → yesterday
+            $rangeKey = $rangeKeys[$rangeIndex];
         
             $results[$rangeKey][$event] = $count;
-        
-            if ($event === 'uninstall') {
-                $currentRangeIndex++;
-            }
         }
 
         $today = date('Y-m-d');
