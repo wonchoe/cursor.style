@@ -34,7 +34,7 @@
 
     <div class="mycollection-wrapper">
         <div class="left">
-        <div class="gads-wrapper google-sides" style="width:100%">
+        <div class="gads-wrapper google-sides">
                 <div class="googleads">
                     <!-- google ads here -->
                     @include('other.google.sides')
@@ -148,7 +148,7 @@
 
         </div>
         <div class="right">
-        <div class="gads-wrapper google-sides" style="width:100%">
+        <div class="gads-wrapper google-sides">
                 <div class="googleads">
                     <!-- google ads here -->
                     @include('other.google.sides')
