@@ -34,7 +34,9 @@
 
     <div class="mycollection-wrapper">
         <div class="left">
-
+                    <!-- google ads here -->
+                    @include('other.google.sides')
+                    <!-- google ads here -->
         </div>
 
 
@@ -139,10 +141,12 @@
                     <!-- google ads here -->
                 </div>
             </div>
-                        
+
         </div>
         <div class="right">
-
+                    <!-- google ads here -->
+                    @include('other.google.sides')
+                    <!-- google ads here -->
         </div>
 
 
