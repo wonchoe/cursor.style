@@ -37,7 +37,7 @@
         <div class="gads-wrapper google-sides">
                 <div class="googleads">
                     <!-- google ads here -->
-                    <!-- @include('other.google.sides') -->
+                   
                     <!-- google ads here -->
                 </div>
             </div>
@@ -151,7 +151,7 @@
             <div class="gads-wrapper google-sides">
                 <div class="googleads">
                     <!-- google ads here -->
-                    <!-- @include('other.google.sides') -->
+                    
                     <!-- google ads here -->
                 </div>
             </div>
