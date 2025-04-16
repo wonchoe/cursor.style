@@ -3,7 +3,7 @@
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-format="fluid"
-     data-ad-layout-key="-6s+eg+1g-3d+2z"
+     data-ad-layout-key="-fb+5w+4e-db+86"
      data-ad-client="ca-pub-2990484856526951"
      data-ad-slot="4245793340"></ins>
 <script>
