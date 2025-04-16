@@ -83,11 +83,29 @@
                     </div>
 
 
-
+                    <div class="gads-wrapper infeed" style="width:100%">
+                        <div class="googleads" style="width:100%">
+                            <!-- google ads here -->
+                            @include('other.google.infeed')
+                            <!-- google ads here -->
+                        </div>
+                    </div>
 
                     <div class="main__list">
-                        @forelse ($cursors as $cursor)
-                            <div class="main__item" onclick="handleItemClick(event, '/details/{{$cursor->id}}-{{$cursor->name_s}}')">                                
+                        @forelse($cursors as $key => $cursor)
+
+                            @if ($key > 0 && $key % 16 === 0)
+                                <div class="gads-wrapper infeed" style="width:100%">
+                                    <div class="googleads" style="width:100%">
+                                        <!-- google ads here -->
+                                        @include('other.google.infeed')
+                                        <!-- google ads here -->
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="main__item"
+                                onclick="handleItemClick(event, '/details/{{$cursor->id}}-{{$cursor->name_s}}')">
                                 <div class="div_ar_p">
                                     <p>@lang('cursors.c_' . $cursor->id) </p>
                                 </div>
@@ -153,5 +171,5 @@
 
 
 @section('lib_bottom')
-<script src="{{ secure_asset('/js/main.js') }}"></script>
+    <script src="{{ secure_asset('/js/main.js') }}"></script>
 @endsection
