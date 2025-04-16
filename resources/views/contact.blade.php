@@ -11,18 +11,13 @@
 @section('lib_top')
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
-
     <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
-
-
-
-
 @endsection
 
 @section('main')
     <div class="main">
         <div class="container">
-            
+
             <div class="gads-wrapper infeed" style="width:100%">
                 <div class="googleads" style="width:100%">
                     <!-- google ads here -->

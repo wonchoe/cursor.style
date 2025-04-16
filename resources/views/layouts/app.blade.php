@@ -46,6 +46,13 @@
 
 
     @if (request()->is('success') || request()->is('feedback'))
+    <script>
+    gtag('event', 'install', {
+        event_category: 'extension',
+        event_label: 'cursor_style_chrome'
+        });
+    </script>
+
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
             (function (m, e, t, r, i, k, a) {
