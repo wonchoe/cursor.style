@@ -416,6 +416,7 @@
     -ms-flex-direction: row; /* IE */
     flex-direction: row;
     margin-top: 30px;
+    justify-content: center;
 }
 
 .cursor-settings {
