@@ -13,6 +13,7 @@
     -webkit-justify-content: center; /* Safari */
     -ms-flex-pack: center; /* IE */
     justify-content: center;
+    min-width: 200px;
 }
 
 #customcursor:checked + .switcher-label::after {
