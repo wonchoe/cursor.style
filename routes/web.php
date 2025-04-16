@@ -9,10 +9,13 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\TraficController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\GA4AnalyticsController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ChatController;
 use Ably\AblyRest;
 
+
+Route::get('/admin/analytics/installs', [GA4AnalyticsController::class, 'getInstallCount']);
 
 Route::domain('reports.cursor.style')->group(function () {
     Route::get('/', [ReportsController::class, 'index']); // Assuming you have an index method
