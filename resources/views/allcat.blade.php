@@ -49,7 +49,9 @@
                     @if ($key % 18 == 0)
                         <div class="gads-wrapper">
                             <div class="googleads">
-                                <!--GOOGLE ADSENCE-->
+                                <!-- google ads here -->
+                                @include('other.google.infeed')
+                                <!-- google ads here -->
                             </div>
                         </div>
                     @endif
