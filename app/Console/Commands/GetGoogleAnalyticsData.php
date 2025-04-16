@@ -27,43 +27,64 @@ class GetGoogleAnalyticsData extends Command
 
         $analytics = new Google_Service_AnalyticsData($client);
 
-        // Отримуємо install + uninstall
-        $request = new Google_Service_AnalyticsData_RunReportRequest([
-            'dateRanges' => [['startDate' => 'today', 'endDate' => 'today']],
-            'dimensions' => [['name' => 'eventName']],
-            'metrics' => [['name' => 'activeUsers']],
+        $request = new \Google_Service_AnalyticsData_RunReportRequest([
+            'dateRanges' => [
+                ['startDate' => 'today', 'endDate' => 'today'],
+                ['startDate' => 'yesterday', 'endDate' => 'yesterday'],
+            ],
+            'dimensions' => [
+                ['name' => 'eventName']
+            ],
+            'metrics' => [
+                ['name' => 'activeUsers']
+            ],
             'dimensionFilter' => [
                 'orGroup' => [
                     'expressions' => [
-                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'install']]],
+                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'install']]],  
                         ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'uninstall']]],
-                    ],
-                ],
-            ]            
+                    ]
+                ]
+            ]
         ]);
-
+        
+        
         $response = $analytics->properties->runReport('properties/' . $ga4PropertyId, $request);
 
-        $installs = 0;
-        $uninstalls = 0;
-
-        foreach ($response->getRows() ?? [] as $row) {
-            $eventName = $row->getDimensionValues()[0]->getValue();
+        $results = [
+            'today' => ['install' => 0, 'uninstall' => 0],
+            'yesterday' => ['install' => 0, 'uninstall' => 0]
+        ];
+        
+        $rows = $response->getRows();
+        $currentRangeIndex = 0;
+        $lastEventName = null;
+        
+        foreach ($rows as $row) {
+            $event = $row->getDimensionValues()[0]->getValue();
             $count = (int) $row->getMetricValues()[0]->getValue();
-            if ($eventName === 'install') {
-                $installs = $count;
-            }
-            if ($eventName === 'uninstall') {
-                $uninstalls = $count;
+        
+            // Розрахунок: кожні 2 рядки — новий dateRange (бо 2 події: install, uninstall)
+            $rangeKey = $currentRangeIndex === 0 ? 'today' : 'yesterday';
+        
+            $results[$rangeKey][$event] = $count;
+        
+            if ($event === 'uninstall') {
+                $currentRangeIndex++;
             }
         }
 
         $today = date('Y-m-d');
         $reports = reports::firstOrNew(['date' => $today, 'project' => 'cursor_style']);
-        $reports->installs = $installs;
-        $reports->uninstalls = $uninstalls;
+        $reports->installs = $results['today']['install'];
+        $reports->uninstalls = $results['today']['uninstall'];
         $reports->save();
 
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $reports = reports::firstOrNew(['date' => $yesterday, 'project' => 'cursor_style']);
+        $reports->installs = $results['yesterday']['install'];
+        $reports->uninstalls = $results['yesterday']['uninstall'];
+        $reports->save();        
 
         $logFile = storage_path('logs/command_output.log');
         File::append($logFile, "[" . now() . "] installs=$installs, uninstalls=$uninstalls\n");
