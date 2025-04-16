@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use App\Models\Analytic;
+
+use App\Models\reports;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_AnalyticsData;
@@ -57,11 +58,11 @@ class GetGoogleAnalyticsData extends Command
             }
         }
 
-
-        $stat = Analytic::firstOrNew(['date' => Carbon::now()->format('Y-m-d')]);
-        $stat->installs_ya = $installs;
-        $stat->uninstalls_ya = $uninstalls;
-        $stat->save();
+        $today = date('Y-m-d');
+        $reports = reports::firstOrNew(['date' => $today, 'project' => 'youtube_skins_com']);
+        $reports->installs = $installs;
+        $reports->uninstalls = $uninstalls;
+        $reports->save();
 
 
         $logFile = storage_path('logs/command_output.log');

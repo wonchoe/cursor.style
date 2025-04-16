@@ -35,11 +35,6 @@ class ReportGetCommand extends Command {
             $reports->uninstalls = $response['totals'][1][0];
             $reports->save();
 
-            // CURSOR.STYLE
-            $reports = reports::firstOrNew(['date' => $today, 'project' => 'cursor_style']);
-            $reports->installs = $response['totals'][2][1];
-            $reports->uninstalls = $response['totals'][3][1];
-            $reports->save();
 
             $reports = reports::firstOrNew(['date' => $yesterday, 'project' => 'cursor_style']);
             $reports->installs = $response['totals'][2][0];
