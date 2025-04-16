@@ -34,9 +34,13 @@
 
     <div class="mycollection-wrapper">
         <div class="left">
+        <div class="gads-wrapper infeed" style="width:100%">
+                <div class="googleads" style="width:100%">
                     <!-- google ads here -->
-                    @include('other.google.sides')
+                    @include('other.google.infeed')
                     <!-- google ads here -->
+                </div>
+            </div>
         </div>
 
 
@@ -144,9 +148,13 @@
 
         </div>
         <div class="right">
+        <div class="gads-wrapper infeed" style="width:100%">
+                <div class="googleads" style="width:100%">
                     <!-- google ads here -->
-                    @include('other.google.sides')
+                    @include('other.google.infeed')
                     <!-- google ads here -->
+                </div>
+            </div>
         </div>
 
 
