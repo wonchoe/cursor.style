@@ -419,6 +419,14 @@
     justify-content: center;
 }
 
+.google-sides{
+    position: relative;
+}
+
+.google-sides .googleads{
+    position: fixed;
+}
+
 .cursor-settings {
     display: -ms-grid; /* IE */
     display: grid;
