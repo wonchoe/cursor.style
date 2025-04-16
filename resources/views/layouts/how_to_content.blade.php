@@ -20,16 +20,16 @@
 
     <div class="how__tabs">
       <div class="how__tab active">
-        @include('other.lang.' . app()->getLocale() . '.messages.tab_1')
+        @include('other.lang.' . app()->getLocale() . '.howto.tab_1')
       </div>
       <div class="how__tab">
-        @include('other.lang.' . app()->getLocale() . '.messages.tab_2')
+        @include('other.lang.' . app()->getLocale() . '.howto.tab_2')
       </div>
       <div class="how__tab">
-        @include('other.lang.' . app()->getLocale() . '.messages.tab_3')
+        @include('other.lang.' . app()->getLocale() . '.howto.tab_3')
       </div>
       <div class="how__tab">
-        @include('other.lang.' . app()->getLocale() . '.messages.tab_4')
+        @include('other.lang.' . app()->getLocale() . '.howto.tab_4')
       </div>
     </div>
   </div>
