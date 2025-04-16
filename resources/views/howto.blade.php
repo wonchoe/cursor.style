@@ -2,11 +2,11 @@
 
 
 @section('title')
-@lang('howto.title')
+@lang('messages.title')
 @endsection
 
 @section('descr')
-@lang('howto.descr')
+@lang('messages.descr')
 @endsection
 
 @section('lib_top')

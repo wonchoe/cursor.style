@@ -10,6 +10,16 @@ return [
     'cursor_style_logo_title' => 'Cursor style logo',
     'cursor_style_logo_link' => 'images/eng-logo.svg',    
     'install' => 'Install',
+
+    'title' => 'Cursor Style - Detailed instructions for working with the «Cursor Style» extension',
+    'descr' => 'Illustrated instructions for the «Cursor Style» extension. Here you will get acquainted with all its functions, learn how to install the extension, how to change the cursor image, change the cursor size, control the cursors in the extension menu, set your cursor and so on.',    
+    't_1' => 'How to use the extension',
+    't_2' => 'How to install the extension?',
+    't_3' => 'How to use the extension?',
+    't_4' => 'How to add cursors from the site?',
+    't_5' => 'How to upload your own cursors',
+    't_6' => 'How to use cursors inside extension?',
+    't_7' => 'Installing «Cursor Style» extension',    
 //    
     'og_title' => 'Free cursor kits for Chrome© browser - style your cursor!',
 //    
