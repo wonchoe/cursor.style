@@ -7,7 +7,13 @@
     </ol>
   </nav>
 
-
+  <div class="gads-wrapper infeed" style="width:100%">
+    <div class="googleads" style="width:100%">
+      <!-- google ads here -->
+      @include('other.google.infeed')
+      <!-- google ads here -->
+    </div>
+  </div>
 
 
   <div class="how__wrap">
