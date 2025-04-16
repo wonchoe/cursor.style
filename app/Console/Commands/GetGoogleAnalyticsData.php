@@ -16,6 +16,34 @@ class GetGoogleAnalyticsData extends Command
     protected $signature = 'GetGoogleAnalyticsData';
     protected $description = 'Get GA4 installs and uninstalls';
 
+    public function fetchStats($analytics, $propertyId, $date)
+    {
+        $request = new \Google_Service_AnalyticsData_RunReportRequest([
+            'dateRanges' => [['startDate' => $date, 'endDate' => $date]],
+            'dimensions' => [['name' => 'eventName']],
+            'metrics' => [['name' => 'activeUsers']],
+            'dimensionFilter' => [
+                'orGroup' => [
+                    'expressions' => [
+                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'install']]],
+                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'uninstall']]],
+                    ]
+                ]
+            ]
+        ]);
+    
+        $response = $analytics->properties->runReport('properties/' . $propertyId, $request);
+    
+        $stats = ['install' => 0, 'uninstall' => 0];
+        foreach ($response->getRows() ?? [] as $row) {
+            $event = $row->getDimensionValues()[0]->getValue();
+            $count = (int) $row->getMetricValues()[0]->getValue();
+            $stats[$event] = $count;
+        }
+    
+        return $stats;
+    }    
+
     public function handle()
     {
         $ga4PropertyId = '368458115'; 
@@ -27,63 +55,25 @@ class GetGoogleAnalyticsData extends Command
 
         $analytics = new Google_Service_AnalyticsData($client);
 
-        $request = new \Google_Service_AnalyticsData_RunReportRequest([
-            'dateRanges' => [
-                ['startDate' => 'today', 'endDate' => 'today'],
-                ['startDate' => 'yesterday', 'endDate' => 'yesterday'],
-            ],
-            'dimensions' => [
-                ['name' => 'eventName']
-            ],
-            'metrics' => [
-                ['name' => 'activeUsers']
-            ],
-            'dimensionFilter' => [
-                'orGroup' => [
-                    'expressions' => [
-                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'install']]],  
-                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'uninstall']]],
-                    ]
-                ]
-            ]
-        ]);
-        
-        
-        $response = $analytics->properties->runReport('properties/' . $ga4PropertyId, $request);
-
-        $results = [
-            'today' => ['install' => 0, 'uninstall' => 0],
-            'yesterday' => ['install' => 0, 'uninstall' => 0]
-        ];
-        
-        $rows = $response->getRows();
-        $rangeKeys = ['today', 'yesterday'];
-        
-        foreach ($rows as $index => $row) {
-            $event = $row->getDimensionValues()[0]->getValue();
-            $count = (int) $row->getMetricValues()[0]->getValue();
-        
-            $rangeIndex = intdiv($index, 2); // 0 → today, 1 → yesterday
-            $rangeKey = $rangeKeys[$rangeIndex];
-        
-            $results[$rangeKey][$event] = $count;
-        }
 
         $today = date('Y-m-d');
-        $reports = reports::firstOrNew(['date' => $today, 'project' => 'cursor_style']);
-        $reports->installs = $results['today']['install'];
-        $reports->uninstalls = $results['today']['uninstall'];
-        $reports->save();
-
         $yesterday = date('Y-m-d', strtotime('-1 day'));
-        $reports = reports::firstOrNew(['date' => $yesterday, 'project' => 'cursor_style']);
-        $reports->installs = $results['yesterday']['install'];
-        $reports->uninstalls = $results['yesterday']['uninstall'];
-        $reports->save();        
 
-        $installs = $results['today']['install'];
-        $uninstalls = $results['today']['uninstall'];
-        $this->info("GA4: installs=$installs, uninstalls=$uninstalls");
+        $todayStats = $this->fetchStats($analytics, $ga4PropertyId, $today);
+        $yesterdayStats = $this->fetchStats($analytics, $ga4PropertyId, $yesterday);
+        
+        reports::updateOrCreate(
+            ['date' => $today, 'project' => 'cursor_style'],
+            ['installs' => $todayStats['install'], 'uninstalls' => $todayStats['uninstall']]
+        );
+        
+        reports::updateOrCreate(
+            ['date' => $yesterday, 'project' => 'cursor_style'],
+            ['installs' => $yesterdayStats['install'], 'uninstalls' => $yesterdayStats['uninstall']]
+        );
+        
+        $this->info("GA4: installs={$todayStats['install']}, uninstalls={$todayStats['uninstall']}");        
+        
         return Command::SUCCESS;
     }
 }
