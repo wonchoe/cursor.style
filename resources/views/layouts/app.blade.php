@@ -44,8 +44,7 @@
     <script async src="{{ secure_asset('/js/lang.v1.js')}}"></script>
     <script src="{{ secure_asset('/js/init.js')}}"></script>
 
-
-    @if (request()->is('success') || request()->is('feedback'))
+    @if (request()->is('success'))
     <script>
     gtag('event', 'install', {
         event_category: 'extension',
@@ -53,28 +52,19 @@
         debug_mode: true
         });
     </script>
-
-        <!-- Yandex.Metrika counter -->
-        <script type="text/javascript">
-            (function (m, e, t, r, i, k, a) {
-                m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-                m[i].l = 1 * new Date();
-                for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-            })
-                (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-            ym(91861405, "init", {
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true
-            });
-        </script>
-        <noscript>
-            <div><img src="https://mc.yandex.ru/watch/91861405" style="position:absolute; left:-9999px;" alt="" /></div>
-        </noscript>
-        <!-- /Yandex.Metrika counter -->
     @endif
+
+    @if (request()->is('feedback'))
+    <script>
+    gtag('event', 'uninstall', {
+        event_category: 'extension',
+        event_label: 'cursor_style_chrome',
+        debug_mode: true
+        });
+    </script>
+    @endif
+
+
 
 
 
