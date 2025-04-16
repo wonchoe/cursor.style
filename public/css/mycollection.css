@@ -794,3 +794,7 @@ details {
     font-size: 15px;
     color: #333;
   }
+
+  .emoji-container{
+    width: 100%;
+  }

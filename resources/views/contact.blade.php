@@ -58,7 +58,7 @@ document.head.appendChild(recap);
                     </div>
 
                     <div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input1" type="text" name="email" id="email" placeholder="Email">
+                        <input class="input1" type="text" name="email" id="email" placeholder="@lang('feedback.email')">
                         <span class="shadow-input1"></span>
                     </div>
 

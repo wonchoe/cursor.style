@@ -41,8 +41,8 @@
         <div class="mycollection" id="mycollection">
 
             <div class="chat-popup" id="chatPopup">
-                <input type="text" id="usernameInput" placeholder="Enter your nickname">
-                <button id="loginButton">Join Chat</button>
+                <input type="text" id="usernameInput" data-lang-placeholder="enter_your_nickname" placeholder="@lang('messages.enter_your_nickname')">
+                <button id="loginButton" data-lang-tag="join_chat">@lang('messages.join_chat')</button>
                 <div id="loginMessage" class="system-message"></div>
             </div>
 
@@ -56,7 +56,7 @@
 
                 <div class="my-collection-switcher">
                     <div class="content">
-                        <div class="switcher-label">Custom cursor</div>
+                        <div class="switcher-label" data-lang-tag="custom_cursor">@lang('messages.custom_cursor')</div>
                         <div class="switcher-switch">
                             <input type="checkbox" id="customcursor" class="mycursoronoff">
                             <label for="customcursor" class="mycursoronoff-label">
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="content cursos-assistance">
-                        <div class="switcher-label">Cursor assistance</div>
+                        <div class="switcher-label" data-lang-tag="cursor_assistance">@lang('messages.cursor_assistance')</div>
                         <div class="switcher-switch">
                             <input type="checkbox" id="cursorassistance" class="mycursoronoff">
                             <label for="cursorassistance" class="mycursoronoff-label">
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="content">
-                        <div class="switcher-label line-effect">Cursor Effects
+                        <div class="switcher-label line-effect" data-lang-tag="cursor_effect">@lang('messages.cursor_trail')
                         </div>
                         <div class="switcher-switch">
                             <input type="checkbox" id="cursoreffect" class="mycursoronoff">
@@ -104,16 +104,16 @@
 
             <div class="params">
                 <div class="slider-container">
-                    <h2>Cursor size</h2>
+                    <h2 data-lang-tag="cursor_size">@lang('messages.cursor_size')</h2>
 
                     <input type="range" min="16" max="128" value="50" class="slider-1" id="slider1">
-                    <div class="value-display">Curent size: <span id="value1">72</span></div>
+                    <div class="value-display" data-lang-tag="cursor_size_value">@lang('messages.cursor_size_value') <span id="value1">72</span></div>
                 </div>
             </div>
 
 
             <div class="effects-container" id="effects-container">
-                <h2 class="default_cursor_cs">Trail effect</h2>
+                <h2 class="default_cursor_cs" data-lang-tag="trail_effect">@lang('messages.cursor_trail_effect')</h2>
             </div>
 
 

@@ -13,5 +13,6 @@ return [
     'feedback' => 'Feedback',
     'name' => 'Name',
     'subject' => 'Subject',
-    'message' => 'Message'    
+    'message' => 'Message',
+    'email' => 'E-mail'
 ];

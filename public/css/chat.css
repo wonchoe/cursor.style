@@ -15,6 +15,10 @@ body {
   box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
 }
 
+div.cchat-flag[data-title="undefined"] {
+  display: none;
+}
+
 .chat-container {
   resize: vertical;
   min-height: 385px;
@@ -1487,4 +1491,9 @@ li:not(.cchat-self) .cchat-msg::before {
 
 #pLoad img{
   max-width: 70px;
+}
+
+.chat-news-room-msg{
+  display: flex;
+  flex-direction: row;
 }

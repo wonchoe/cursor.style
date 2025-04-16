@@ -3,18 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
-use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use Illuminate\Pagination\Paginator;
-use Request;
-use Illuminate\Http\Request as rqst;
-use Redirect;
-use Cookie;
 use Illuminate\Support\Facades\File;
 
-use Illuminate\Support\Facades\Event;
-use Illuminate\Broadcasting\Events\BroadcastEvent;
-use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -41,14 +32,7 @@ class AppServiceProvider extends ServiceProvider {
         $this->createSymlinkIfNotExists(storage_path('app/public/collection'), public_path('collection'));
         $this->createSymlinkIfNotExists(storage_path('app/public/cursors'), public_path('cursors'));
         $this->createSymlinkIfNotExists(storage_path('app/public/pointers'), public_path('pointers'));
-
-    Event::listen(BroadcastEvent::class, function ($e) {
-        Log::channel('broadcast')->debug('Broadcasting event', [
-            'name' => $e->name,
-            'data' => $e->payload,
-            'channels' => $e->channels,
-        ]);
-    });
+             
     }
 
     private function createSymlinkIfNotExists($target, $link)

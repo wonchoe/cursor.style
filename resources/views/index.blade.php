@@ -40,11 +40,10 @@
             
             <div class="seo-block collapsed" id="seoBlock">
                 @include('layouts.banner')
-                <p class="seo-info">
-                    🎯 Discover the magic of custom cursors!
+                <p class="seo-info">                    
+                    @lang('messages.discover_the_magic')
                     <button class="seo-toggle"
-                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">Read
-                        more</button>
+                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">@lang('messages.read_more')</button>
                 </p>
                 <div class="seo-text">
                     <p> 
@@ -59,19 +58,19 @@
                 <div class="wrapper tabs-wrapper">
                     <nav class="tabs">
                         <a href="/" class="cur_menu {{ request()->is('/') ? 'active' : '' }}">
-                            <span class="tab-icon">🆕</span>New
+                            <span class="tab-icon">🆕</span>@lang('messages.main_page_menu_2')
                         </a>
                         <a href="/popular" class="cur_menu {{ request()->is('popular') ? 'active' : '' }}">
-                            <span class="tab-icon">🔥</span>Trending
+                            <span class="tab-icon">🔥</span>@lang('messages.main_page_menu_1')
                         </a>
                         <a href="/collections" class="cur_menu {{ request()->is('collections') ? 'active' : '' }}">
-                            <span class="tab-icon">🎨</span>Collections
+                            <span class="tab-icon">🎨</span>@lang('messages.main_page_menu_4')
                         </a>
                     </nav>
                     <div class="search-wrapper">
                         <form action="/" method="GET">
                             <span class="search-icon">🔍</span>
-                            <input type="text" name="q" id="cs_search" class="search" placeholder="Search"
+                            <input type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')"
                                 aria-label="Search">
                         </form>
                     </div>
@@ -81,19 +80,7 @@
                 @forelse($cursors as $key => $cursor)
                     @if ($key > 0 && $key % 16 === 0)
                         <div class="gads-wrapper">
-                            <div class="googleads">
-                                <!--GOOGLE ADSENCE-->
-                                <div class="googleads">
-                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid"
-                                        data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-2990484856526951"
-                                        data-ad-slot="2703806348"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                </div>
-                                <!--GOOGLE ADSENCE-->
-                            </div>
+                           <!-- google ads here -->
                         </div>
                     @endif
 
@@ -110,8 +97,8 @@
                                 src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                         </div>
                         <div class="main__btns">
-                            <button data-type="stat" class="cursor-button" data-label="ADD TO COLLECTION"
-                                data-disabled="✔ ADDED" data-cataltname="{{ $cursor->collection->alt_name }}"
+                            <button data-type="stat" class="cursor-button" data-label="@lang('messages.add_to_collection')"
+                                data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
                                 data-catbasename_en="{{ $cursor->collection->base_name_en }}"
                                 data-catbasename_es="{{ $cursor->collection->base_name_es }}"
                                 data-catbasename="{{ $cursor->collection->base_name }}" data-cat="{{ $cursor->cat }}"
@@ -134,10 +121,10 @@
 
             <div class="seo-block collapsed" id="seoBlock2">
                 <p class="seo-info">
-                    Customize your browser with unique pointers and make your clicks truly yours!
+                
+                    @lang('messages.customize_your_browser_with')
                     <button class="seo-toggle"
-                        onclick="document.getElementById('seoBlock2').classList.remove('collapsed'); this.remove()">Read
-                        more</button>
+                        onclick="document.getElementById('seoBlock2').classList.remove('collapsed'); this.remove()">@lang('messages.read_more') </button>
                 </p>
                 <div class="seo-text">
                     <p>

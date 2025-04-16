@@ -26,8 +26,7 @@
                 <p class="seo-info">
                     @lang('collections.text_title')
                     <button class="seo-toggle"
-                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">Read
-                        more</button>
+                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">@lang('messages.read_more')</button>
                 </p>
                 <div class="seo-text">
                     <p>
@@ -51,16 +50,6 @@
                         <div class="gads-wrapper">
                             <div class="googleads">
                                 <!--GOOGLE ADSENCE-->
-                                <div class="googleads">
-                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid"
-                                        data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-2990484856526951"
-                                        data-ad-slot="2703806348"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                </div>
-                                <!--GOOGLE ADSENCE-->
                             </div>
                         </div>
                     @endif
@@ -79,8 +68,7 @@
                 <p class="seo-info">
                     @lang('collections.text_allcat_title')
                     <button class="seo-toggle"
-                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">Read
-                        more</button>
+                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">@lang('messages.read_more')</button>
                 </p>
                 <div class="seo-text">
                     <p> 

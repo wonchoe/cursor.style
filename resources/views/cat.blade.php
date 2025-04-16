@@ -76,8 +76,7 @@
 
                                 @if(strlen($text) > 450)
                                     <a class="read-more-btn" href="#"
-                                        onclick="event.preventDefault(); this.parentElement.innerHTML = `{!! nl2br(e($text)) !!}`">Read
-                                        more</a>
+                                        onclick="event.preventDefault(); this.parentElement.innerHTML = `{!! nl2br(e($text)) !!}`">@lang('messages.read_more')</a>
                                 @endif
                             </div>
                         </div>

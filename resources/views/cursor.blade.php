@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="main__btns">
-                        <button class="cursor-button newbtn hvr-shutter-out-horizontal-g" data-label="ADD TO COLLECTION"
+                        <button class="cursor-button newbtn hvr-shutter-out-horizontal-g" data-label="@lang('messages.add_to_collection')"
                             data-disabled="✔ ADDED" data-type="stat"
                             data-cataltname="{{ optional($cursor->collection)->alt_name }}"
                             data-catbasename_en="{{ optional($cursor->collection)->base_name_en }}"

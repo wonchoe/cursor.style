@@ -9,13 +9,12 @@ const emojiPickersMap = new Map();
 function clearCheckBox() {
     checkbox.addEventListener("change", function () {
         if (!checkbox.checked) {
-            console.log('time to clean everything');
+
         }
     });
 }
 
 function initColorPicker() {
-    console.log("initColorPicker");
 
     let isInitializingFontPicker = false;
     let isInitializingEmojiPicker = false;
@@ -125,7 +124,6 @@ function initColorPicker() {
             picker.addEventListener("emoji-click", event => {
                 input.value += event.detail.unicode;
                 input.dispatchEvent(new Event('change', { bubbles: true }));
-                console.log(event.detail.unicode);
             });
 
             const handleFocusOut = (event) => {
@@ -155,19 +153,17 @@ function initColorPicker() {
 
     function cleanupPickersForNode(node) {
         if (colorPickersMap.has(node)) {
-            console.log("Destroying color picker for:", node);
+
             colorPickersMap.get(node).destroyAndRemove();
             colorPickersMap.delete(node);
         }
 
         if (fontPickersMap.has(node)) {
-            console.log("Destroying font picker for:", node);
             fontPickersMap.get(node).destroy?.(); // if destroy method exists
             fontPickersMap.delete(node);
         }
 
         if (emojiPickersMap.has(node)) {
-            console.log("Destroying emoji picker for:", node);
             const { picker, container } = emojiPickersMap.get(node);
             picker.remove();
             if (container && container.parentNode) {
@@ -234,7 +230,6 @@ function initEmojiPicker() {
 
         picker.addEventListener("emoji-click", event => {
             input.value += event.detail.unicode;
-            console.log(event.detail.unicode);
         });
 
         const handleFocusOut = (event) => {
