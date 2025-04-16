@@ -2,11 +2,9 @@
      crossorigin="anonymous"></script>
 <!-- cursor.style-sides -->
 <ins class="adsbygoogle"
-     style="display:block"
+     style="display:inline-block;width:180px;height:728px"
      data-ad-client="ca-pub-2990484856526951"
-     data-ad-slot="3839794778"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
+     data-ad-slot="3839794778"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
