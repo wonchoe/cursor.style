@@ -47,8 +47,8 @@
 
                 @foreach ($cats as $key => $item)
                     @if ($key % 18 == 0)
-                        <div class="gads-wrapper">
-                            <div class="googleads">
+                        <div class="gads-wrapper" style="width:100%">
+                            <div class="googleads" style="width:100%">
                                 <!-- google ads here -->
                                 @include('other.google.infeed')
                                 <!-- google ads here -->
