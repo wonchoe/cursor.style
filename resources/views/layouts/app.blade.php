@@ -48,8 +48,7 @@
     <script>
     gtag('event', 'install', {
         event_category: 'extension',
-        event_label: 'cursor_style_chrome',
-        debug_mode: true
+        event_label: 'cursor_style_chrome'
         });
     </script>
     @endif
@@ -58,8 +57,7 @@
     <script>
     gtag('event', 'uninstall', {
         event_category: 'extension',
-        event_label: 'cursor_style_chrome',
-        debug_mode: true
+        event_label: 'cursor_style_chrome'
         });
     </script>
     @endif
