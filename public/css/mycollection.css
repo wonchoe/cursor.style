@@ -425,6 +425,10 @@
     width: 100%;
 }
 
+[data-message-id="undefined"] {
+    display: none !important;
+  }
+  
 .google-sides .googleads{
     position: sticky;
     top: 0;
