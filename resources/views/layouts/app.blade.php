@@ -10,6 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     @yield('page_meta')
+
+    <!-- Google Analytics tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6S2NMJGYR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z6S2NMJGYR');
+    </script>
+        
     <link rel="alternate" hreflang="x-default" href="https://cursor.style/{{ltrim(Request::path(), '/')}}" />
     <link rel="alternate" hreflang="es" href="https://es.cursor.style/{{ltrim(Request::path(), '/')}}" />
     <link rel="alternate" hreflang="ru" href="https://ru.cursor.style/{{ltrim(Request::path(), '/')}}" />
@@ -23,11 +34,8 @@
     <link rel="stylesheet" href="{{ secure_asset('css/main_updated.css') }}" />
     <link rel="stylesheet" href="{{ secure_asset('/css/chat.css')}}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
-    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Color+Emoji&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Color+Emoji&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="canonical" href="https://{{ Request::host() }}{{ Request::getRequestUri() }}" />
@@ -35,18 +43,6 @@
     @yield('lib_top')
     <script async src="{{ secure_asset('/js/lang.v1.js')}}"></script>
     <script src="{{ secure_asset('/js/init.js')}}"></script>
-
-
-    <!-- Google Analytics tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6S2NMJGYR"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-Z6S2NMJGYR');
-    </script>
-
 
 
     @if (request()->is('success') || request()->is('feedback'))
@@ -72,7 +68,7 @@
         <!-- /Yandex.Metrika counter -->
     @endif
 
-    
+
 
 </head>
 
