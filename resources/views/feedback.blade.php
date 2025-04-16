@@ -4,27 +4,27 @@
     @lang('feedback.title')
 @endsection
 
-@section('lib_top')
+@section('descr')
+    @lang('feedback.descr')
+@endsection
 
+@section('lib_top')
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
-    <link rel="stylesheet" href="{{ secure_asset('css/hover-min.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('fonts/fonts.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/libscss.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/main.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/ie.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/loader.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/contact/main.css') }}" />
     <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
-
 @endsection
 
 @section('main')
-
     <div class="main">
         <div class="container">
 
-
+            <div class="gads-wrapper infeed" style="width:100%">
+                <div class="googleads" style="width:100%">
+                    <!-- google ads here -->
+                    @include('other.google.infeed')
+                    <!-- google ads here -->
+                </div>
+            </div>
 
             <div class="contact1">
                 <div class="feedback_img"><img style="border-radius: 4px;" src="@lang('feedback.img_1')"></div>
@@ -39,7 +39,7 @@
                         <!-- google ads here -->
                     </div>
                 </div>
-                
+
                 <div class="container-contact1" id="contact_form">
                     <form id="feedback" name="feedback" class="contact1-form validate-form" style="width: 100%;">
                         <span class="contact1-form-title" style="font-size:20px">
@@ -67,18 +67,26 @@
                     </form>
                 </div>
             </div>
-
-
         </div>
-    </div>
 
+    </div>
 
 
 @endsection
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/contact/feedback.js') }}"></script>
     <script src="{{ secure_asset('/js/main.js') }}"></script>
-
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
