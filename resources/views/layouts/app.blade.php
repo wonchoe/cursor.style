@@ -49,7 +49,8 @@
     <script>
     gtag('event', 'install', {
         event_category: 'extension',
-        event_label: 'cursor_style_chrome'
+        event_label: 'cursor_style_chrome',
+        debug_mode: true
         });
     </script>
 
