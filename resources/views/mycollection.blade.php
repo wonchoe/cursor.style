@@ -37,7 +37,7 @@
         <div class="gads-wrapper infeed" style="width:100%">
                 <div class="googleads" style="width:100%">
                     <!-- google ads here -->
-                    @include('other.google.infeed')
+                    @include('other.google.sides')
                     <!-- google ads here -->
                 </div>
             </div>
@@ -151,7 +151,7 @@
         <div class="gads-wrapper infeed" style="width:100%">
                 <div class="googleads" style="width:100%">
                     <!-- google ads here -->
-                    @include('other.google.infeed')
+                    @include('other.google.sides')
                     <!-- google ads here -->
                 </div>
             </div>
