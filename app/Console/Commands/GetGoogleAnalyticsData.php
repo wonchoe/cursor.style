@@ -87,7 +87,7 @@ class GetGoogleAnalyticsData extends Command
         $reports->save();        
 
         $installs = $results['today']['install'];
-        $uninstalls = $results['today']['uninstalls'];
+        $uninstalls = $results['today']['uninstall'];
         $this->info("GA4: installs=$installs, uninstalls=$uninstalls");
         return Command::SUCCESS;
     }
