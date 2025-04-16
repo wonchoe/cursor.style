@@ -1,4 +1,22 @@
-{
-    "current_datetime": "2025-03-14T09:40:03Z",
-    "last_updated_date": "2025-03-14T13:38:50.425Z"
-}
+
+   ErrorException 
+
+  Undefined variable $response
+
+  at app/Console/Commands/grubhub_schedule_cmd.php:69
+     65▕                
+     66▕         if (date("w") == '6'){
+     67▕                 // $response = $this->checkSchedule($str);
+     68▕         }
+  ➜  69▕ 	$response = $this->checkDate($response);
+     70▕ 	
+     71▕ 
+     72▕ 	$result = [
+     73▕ 	    "current_datetime" => date("Y-m-d\TH:i:s\Z"), // Поточна дата і час у форматі ISO 8601
+
+  1   app/Console/Commands/grubhub_schedule_cmd.php:69
+      Illuminate\Foundation\Bootstrap\HandleExceptions::Illuminate\Foundation\Bootstrap\{closure}()
+
+      [2m+13 vendor frames [22m
+  15  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle()
