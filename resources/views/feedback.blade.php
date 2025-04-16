@@ -18,14 +18,6 @@
     <div class="main">
         <div class="container">
 
-            <div class="gads-wrapper infeed" style="width:100%">
-                <div class="googleads" style="width:100%">
-                    <!-- google ads here -->
-                    @include('other.google.infeed')
-                    <!-- google ads here -->
-                </div>
-            </div>
-
             <div class="contact1">
                 <div class="feedback_img"><img style="border-radius: 4px;" src="@lang('feedback.img_1')"></div>
                 <div class="container-contact1" id="thanks_form" style="display:none">
