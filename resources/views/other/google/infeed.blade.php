@@ -7,5 +7,7 @@
      data-ad-client="ca-pub-2990484856526951"
      data-ad-slot="4245793340"></ins>
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+  setTimeout(() => {
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  }, 300); 
 </script>
