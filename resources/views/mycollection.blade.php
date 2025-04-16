@@ -34,14 +34,23 @@
 
     <div class="mycollection-wrapper">
         <div class="left">
-            
+
         </div>
 
 
         <div class="mycollection" id="mycollection">
 
+            <div class="gads-wrapper infeed" style="width:100%">
+                <div class="googleads" style="width:100%">
+                    <!-- google ads here -->
+                    @include('other.google.infeed')
+                    <!-- google ads here -->
+                </div>
+            </div>
+
             <div class="chat-popup" id="chatPopup">
-                <input type="text" id="usernameInput" data-lang-placeholder="enter_your_nickname" placeholder="@lang('messages.enter_your_nickname')">
+                <input type="text" id="usernameInput" data-lang-placeholder="enter_your_nickname"
+                    placeholder="@lang('messages.enter_your_nickname')">
                 <button id="loginButton" data-lang-tag="join_chat">@lang('messages.join_chat')</button>
                 <div id="loginMessage" class="system-message"></div>
             </div>
@@ -69,7 +78,8 @@
                     </div>
 
                     <div class="content cursos-assistance">
-                        <div class="switcher-label" data-lang-tag="cursor_assistance">@lang('messages.cursor_assistance')</div>
+                        <div class="switcher-label" data-lang-tag="cursor_assistance">@lang('messages.cursor_assistance')
+                        </div>
                         <div class="switcher-switch">
                             <input type="checkbox" id="cursorassistance" class="mycursoronoff">
                             <label for="cursorassistance" class="mycursoronoff-label">
@@ -107,7 +117,8 @@
                     <h2 data-lang-tag="cursor_size">@lang('messages.cursor_size')</h2>
 
                     <input type="range" min="16" max="128" value="50" class="slider-1" id="slider1">
-                    <div class="value-display" data-lang-tag="cursor_size_value">@lang('messages.cursor_size_value') <span id="value1">72</span></div>
+                    <div class="value-display" data-lang-tag="cursor_size_value">@lang('messages.cursor_size_value') <span
+                            id="value1">72</span></div>
                 </div>
             </div>
 
@@ -121,9 +132,17 @@
 
             </div>
 
+            <div class="gads-wrapper infeed" style="width:100%">
+                <div class="googleads" style="width:100%">
+                    <!-- google ads here -->
+                    @include('other.google.infeed')
+                    <!-- google ads here -->
+                </div>
+            </div>
+                        
         </div>
         <div class="right">
-            
+
         </div>
 
 
