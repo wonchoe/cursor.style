@@ -59,7 +59,7 @@ class GetGoogleAnalyticsData extends Command
         }
 
         $today = date('Y-m-d');
-        $reports = reports::firstOrNew(['date' => $today, 'project' => 'youtube_skins_com']);
+        $reports = reports::firstOrNew(['date' => $today, 'project' => 'cursor_style']);
         $reports->installs = $installs;
         $reports->uninstalls = $uninstalls;
         $reports->save();
