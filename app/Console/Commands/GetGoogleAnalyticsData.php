@@ -77,3 +77,4 @@ class GetGoogleAnalyticsData extends Command
         return Command::SUCCESS;
     }
 }
+// test
