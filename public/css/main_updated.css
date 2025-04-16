@@ -2361,7 +2361,7 @@ a {
     filter: contrast(1.2) brightness(1.05);
 }
 
-.infeed.adsbygoogle {
+.infeed .adsbygoogle {
   min-width: 100%;
 }
 
