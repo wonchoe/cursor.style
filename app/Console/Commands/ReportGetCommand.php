@@ -36,11 +36,6 @@ class ReportGetCommand extends Command {
             $reports->save();
 
 
-            $reports = reports::firstOrNew(['date' => $yesterday, 'project' => 'cursor_style']);
-            $reports->installs = $response['totals'][2][0];
-            $reports->uninstalls = $response['totals'][3][0];
-            $reports->save();
-
             // FB.ZONE
             $reports = reports::firstOrNew(['date' => $today, 'project' => 'fb_zone']);
             $reports->installs = $response['totals'][4][1];
