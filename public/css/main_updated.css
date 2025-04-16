@@ -2361,8 +2361,8 @@ a {
     filter: contrast(1.2) brightness(1.05);
 }
 
-.adsbygoogle {
-  min-width: 300px;
+.infeed.adsbygoogle {
+  min-width: 100%;
 }
 
 .success-wrapper {
