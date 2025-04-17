@@ -21,7 +21,7 @@ class GetGoogleAnalyticsData extends Command
         $request = new \Google_Service_AnalyticsData_RunReportRequest([
             'dateRanges' => [['startDate' => $date, 'endDate' => $date]],
             'dimensions' => [['name' => 'eventName']],
-            'metrics' => [['name' => 'activeUsers']],
+            'metrics' => [['name' => 'totalUsers']],
             'dimensionFilter' => [
                 'orGroup' => [
                     'expressions' => [
@@ -80,9 +80,9 @@ class GetGoogleAnalyticsData extends Command
             ['installs' => $yesterdayStats['install'], 'uninstalls' => $yesterdayStats['uninstall']]
         );
         
-        $this->info("GA4: installs={$todayStats['install']}, uninstalls={$todayStats['uninstall']}");        
+        $this->info("GA4 TODAY: installs={$todayStats['install']}, uninstalls={$todayStats['uninstall']}");        
 
-        $this->info("GA4: installs={$yesterdayStats['install']}, uninstalls={$yesterdayStats['uninstall']}");        
+        $this->info("GA4 YESTERDYA: installs={$yesterdayStats['install']}, uninstalls={$yesterdayStats['uninstall']}");        
         
         return Command::SUCCESS;
     }
