@@ -21,7 +21,7 @@ class GetGoogleAnalyticsData extends Command
         $request = new \Google_Service_AnalyticsData_RunReportRequest([
             'dateRanges' => [['startDate' => $date, 'endDate' => $date]],
             'dimensions' => [['name' => 'eventName']],
-            'metrics' => [['name' => 'eventCount']],
+            'metrics' => [['name' => 'activeUsers']],
             'dimensionFilter' => [
                 'orGroup' => [
                     'expressions' => [
