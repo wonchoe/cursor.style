@@ -39,6 +39,7 @@ class GetGoogleAnalyticsData extends Command
             'metrics' => [['name' => 'eventCount']]
         ]);
 
+        dd(request);
         $response = $analytics->properties->runReport('properties/' . $propertyId, $request);
     
         $stats = ['install' => 0, 'uninstall' => 0];
