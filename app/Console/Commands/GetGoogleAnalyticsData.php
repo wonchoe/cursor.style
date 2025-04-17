@@ -31,8 +31,7 @@ class GetGoogleAnalyticsData extends Command
                 ]
             ]
         ]);
-        dump(json_encode($request));
-
+       
 
         
         $response = $analytics->properties->runReport('properties/' . $propertyId, $request);
@@ -57,10 +56,10 @@ class GetGoogleAnalyticsData extends Command
         $client->setAuthConfig($credentialsPath);
         $client->addScope('https://www.googleapis.com/auth/analytics.readonly');
 
-        $client->fetchAccessTokenWithAssertion(); // <- генерує токен
-        $token = $client->getAccessToken()['access_token'];
+        // $client->fetchAccessTokenWithAssertion(); // <- генерує токен
+        // $token = $client->getAccessToken()['access_token'];
         
-        echo $token;        
+        // echo $token;        
 
         $analytics = new Google_Service_AnalyticsData($client);
 
