@@ -3,6 +3,7 @@
 
 <head>
     <title>@yield('title')</title>
+    <meta http-equiv="Content-Language" content="{{ app()->getLocale() }}" />
     <meta name="description" content="@yield('descr')" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +36,7 @@
     <link rel="alternate" hreflang="et" href="https://et.cursor.style/{{ ltrim(Request::path(), '/') }}" />
     <link rel="alternate" hreflang="fa" href="https://fa.cursor.style/{{ ltrim(Request::path(), '/') }}" />
     <link rel="alternate" hreflang="fi" href="https://fi.cursor.style/{{ ltrim(Request::path(), '/') }}" />
-    <link rel="alternate" hreflang="fil" href="https://fil.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="tl" href="https://fil.cursor.style/{{ ltrim(Request::path(), '/') }}" />
     <link rel="alternate" hreflang="fr" href="https://fr.cursor.style/{{ ltrim(Request::path(), '/') }}" />
     <link rel="alternate" hreflang="gu" href="https://gu.cursor.style/{{ ltrim(Request::path(), '/') }}" />
     <link rel="alternate" hreflang="he" href="https://he.cursor.style/{{ ltrim(Request::path(), '/') }}" />
