@@ -22,9 +22,55 @@
     </script>
         
     <link rel="alternate" hreflang="x-default" href="https://cursor.style/{{ltrim(Request::path(), '/')}}" />
-    <link rel="alternate" hreflang="es" href="https://es.cursor.style/{{ltrim(Request::path(), '/')}}" />
-    <link rel="alternate" hreflang="ru" href="https://ru.cursor.style/{{ltrim(Request::path(), '/')}}" />
-    <link rel="alternate" hreflang="uk" href="https://ua.cursor.style/{{ltrim(Request::path(), '/')}}" />
+    <link rel="alternate" hreflang="am" href="https://am.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ar" href="https://ar.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="bg" href="https://bg.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="bn" href="https://bn.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ca" href="https://ca.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="cs" href="https://cs.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="da" href="https://da.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="de" href="https://de.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="el" href="https://el.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="es" href="https://es.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="et" href="https://et.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="fa" href="https://fa.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="fi" href="https://fi.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="fil" href="https://fil.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="fr" href="https://fr.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="gu" href="https://gu.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="he" href="https://he.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="hi" href="https://hi.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="hr" href="https://hr.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="hu" href="https://hu.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="id" href="https://id.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="it" href="https://it.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ja" href="https://ja.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="kn" href="https://kn.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ko" href="https://ko.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="lt" href="https://lt.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="lv" href="https://lv.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ml" href="https://ml.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="mr" href="https://mr.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ms" href="https://ms.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="nl" href="https://nl.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="no" href="https://no.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="pl" href="https://pl.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="pt" href="https://pt.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ro" href="https://ro.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ru" href="https://ru.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="sk" href="https://sk.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="sl" href="https://sl.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="sr" href="https://sr.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="sv" href="https://sv.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="sw" href="https://sw.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="ta" href="https://ta.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="te" href="https://te.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="th" href="https://th.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="tr" href="https://tr.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="uk" href="https://uk.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="vi" href="https://vi.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+    <link rel="alternate" hreflang="zh" href="https://zh.cursor.style/{{ ltrim(Request::path(), '/') }}" />
+
 
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
