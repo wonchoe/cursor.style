@@ -19,6 +19,13 @@ class SetLocaleBySubdomain
             App::setLocale($localeFolder);
         }
 
-        return $next($request);
+        $response = $next($request);
+
+        if (str_contains($response->headers->get('Content-Type'), 'text/html')) {
+            $response->headers->set('Content-Language', App::getLocale());
+        }
+
+        return $response;
+
     }
 }
