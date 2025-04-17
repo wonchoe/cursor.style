@@ -73,6 +73,7 @@ class GetGoogleAnalyticsData extends Command
         );
         
         $this->info("GA4: installs={$todayStats['install']}, uninstalls={$todayStats['uninstall']}");        
+        
         $this->info("GA4: installs={$yesterdayStats['install']}, uninstalls={$yesterdayStats['uninstall']}");        
         
         return Command::SUCCESS;
