@@ -18,20 +18,27 @@ class GetGoogleAnalyticsData extends Command
 
     public function fetchStats($analytics, $propertyId, $date)
     {
+        // $request = new \Google_Service_AnalyticsData_RunReportRequest([
+        //     'dateRanges' => [['startDate' => $date, 'endDate' => $date]],
+        //     'dimensions' => [['name' => 'eventName']],
+        //     'metrics' => [['name' => 'eventCount']],
+        //     'dimensionFilter' => [
+        //         'orGroup' => [
+        //             'expressions' => [
+        //                 ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'install']]],
+        //                 ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'uninstall']]],
+        //             ]
+        //         ]
+        //     ]
+        // ]);
+    
+
         $request = new \Google_Service_AnalyticsData_RunReportRequest([
             'dateRanges' => [['startDate' => $date, 'endDate' => $date]],
             'dimensions' => [['name' => 'eventName']],
-            'metrics' => [['name' => 'eventCount']],
-            'dimensionFilter' => [
-                'orGroup' => [
-                    'expressions' => [
-                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'install']]],
-                        ['filter' => ['fieldName' => 'eventName', 'stringFilter' => ['value' => 'uninstall']]],
-                    ]
-                ]
-            ]
+            'metrics' => [['name' => 'eventCount']]
         ]);
-    
+
         $response = $analytics->properties->runReport('properties/' . $propertyId, $request);
     
         $stats = ['install' => 0, 'uninstall' => 0];
