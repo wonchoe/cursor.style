@@ -41,7 +41,7 @@ class GetGoogleAnalyticsData extends Command
 
         
         $response = $analytics->properties->runReport('properties/' . $propertyId, $request);
-        dd($response);
+
 
         $stats = ['install' => 0, 'uninstall' => 0];
         foreach ($response->getRows() ?? [] as $row) {
@@ -61,6 +61,11 @@ class GetGoogleAnalyticsData extends Command
         $client = new Google_Client();
         $client->setAuthConfig($credentialsPath);
         $client->addScope('https://www.googleapis.com/auth/analytics.readonly');
+
+        $client->fetchAccessTokenWithAssertion(); // <- генерує токен
+        $token = $client->getAccessToken()['access_token'];
+        
+        echo $token;        
 
         $analytics = new Google_Service_AnalyticsData($client);
 
