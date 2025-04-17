@@ -24,19 +24,21 @@
       <div class="how__btn" style="margin-bottom: 10px;">@lang('messages.t_6')</div>
     </div>
 
+    @php
+    $locale = app()->getLocale();
+    @endphp
+
     <div class="how__tabs">
-      <div class="how__tab active">
-        @include('other.lang.' . app()->getLocale() . '.howto.tab_1')
+      @foreach ([1, 2, 3, 4] as $i)
+      <div class="how__tab {{ $i === 1 ? 'active' : '' }}">
+      @if(View::exists("other.lang.$locale.howto.tab_$i"))
+      @include("other.lang.$locale.howto.tab_$i")
+    @else
+      @include("other.lang.en_gb.howto.tab_$i")
+    @endif
       </div>
-      <div class="how__tab">
-        @include('other.lang.' . app()->getLocale() . '.howto.tab_2')
-      </div>
-      <div class="how__tab">
-        @include('other.lang.' . app()->getLocale() . '.howto.tab_3')
-      </div>
-      <div class="how__tab">
-        @include('other.lang.' . app()->getLocale() . '.howto.tab_4')
-      </div>
+    @endforeach
     </div>
+
   </div>
 </div>
