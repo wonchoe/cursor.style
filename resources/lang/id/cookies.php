@@ -1,0 +1,40 @@
+<?php
+
+return [
+    'title' => 'Cursor Style - Kebijakan Cookie',
+    'descr' => 'Kebijakan cookie saat Anda mengunjungi situs web kami cursor.style atau ekstensi “Cursor Style”. Beberapa aturan yang harus Anda pertimbangkan saat menggunakan produk kami.',
+    'text' => '<h2> Kebijakan Cookie </h2>
+<p> Ketika Anda mengunjungi situs web kami cursor.style atau ekstensi "Cursor Style" di panel peramban Anda, atau ketika Anda berinteraksi dengan perwakilan kami ("Layanan"), kami akan menggunakan (dan mengizinkan pihak ketiga untuk menggunakan) suar web, cookie, tag piksel, skrip, tag, API, dan teknologi lainnya ("Teknologi Pelacakan"). Hal ini dijelaskan dalam kebijakan ini ("Kebijakan Cookie"), yang merupakan bagian dari <a href="/privacy"> Kebijakan Privasi </a> kami. </p>
+<p> Teknologi pelacakan memungkinkan kami mengumpulkan informasi secara otomatis tentang Anda dan perilaku Anda di Internet untuk meningkatkan navigasi Anda di Layanan kami, meningkatkan kinerja Layanan kami, dan memfasilitasi pengalaman Anda di Layanan kami. Kami juga menggunakan informasi ini untuk mengumpulkan statistik tentang penggunaan Layanan kami, melakukan analitik, mengirimkan konten yang sesuai dengan minat Anda, dan mengelola layanan untuk Pengguna, pelanggan, dan mitra kami. Kami juga mengizinkan pihak ketiga untuk mengumpulkan informasi tentang Anda menggunakan teknologi pelacakan. </p>
+<p> Apa itu cookie? Cookie adalah file teks kecil (terdiri dari huruf dan angka saja) yang ditempatkan server web di komputer atau perangkat seluler Anda ketika Anda mengunjungi halaman web. Menggunakan cookie dapat membantu membuat Layanan kami lebih mudah digunakan, misalnya, mengingat preferensi dan pengaturan bahasa Anda. Anda dapat menemukan informasi lebih lanjut tentang cookie di <a href="http://www.allaboutcookies.org"> allaboutcookies.org </a>. </p>
+<p> Cookie banyak digunakan untuk kinerja situs web. Menggunakan cookie memungkinkan Anda untuk menavigasi antar halaman secara efisien. Cookie mengingat preferensi Anda dan membuat interaksi antara Anda dan Layanan lebih lancar dan efisien. </p>
+<p> Kami menggunakan teknologi pelacakan saat Anda mengunjungi atau mengakses Layanan kami (biasanya saat Anda mengunjungi situs web kami) - mereka disebut “Teknologi Pelacakan Pihak Pertama”. Selain itu, teknologi pelacakan disimpan oleh organisasi pihak ketiga lainnya (misalnya, penyedia layanan analitik kami, mitra bisnis, dan pengiklan) yang memposting konten di Layanan kami - mereka disebut “Teknologi Pelacakan Pihak Ketiga”. Kedua jenis teknologi pelacakan dapat disimpan baik selama kunjungan Anda ke Layanan kami, atau untuk kunjungan berulang. </p>
+<h3> Jenis teknologi pelacakan apa yang kami gunakan? Ada lima jenis utama teknologi pelacakan: </h3>
+<ul>
+<li> <b> Teknologi pelacakan yang sangat diperlukan </b> <br> <p> Teknologi pelacakan ini diperlukan agar Anda dapat masuk, menavigasi, dan menggunakan fungsi Layanan kami atau menyediakan layanan yang Anda minta (misalnya, nama pengguna Anda). Kami tidak memerlukan persetujuan Anda untuk menggunakan teknologi pelacakan ini. Teknologi pelacakan ini dapat digunakan untuk tujuan keamanan dan integritas, misalnya, untuk mengidentifikasi pelanggaran terhadap kebijakan kami, serta untuk fitur dukungan atau keamanan. </p> </li>
+<li> <b> Teknologi Pelacakan Fungsionalitas </b> <br> <p>
+Teknologi pelacakan ini memungkinkan layanan kami untuk mengingat pilihan Anda (seperti bahasa) dan menyediakan fitur canggih dan personalisasi. Misalnya, teknologi pelacakan ini digunakan untuk otentikasi (untuk mengingat kapan Anda masuk) dan mendukung fungsi lain dari Layanan kami. </p> </li>
+<li> <b> Teknologi Pelacakan Kinerja </b> <br> <p>
+Teknologi pelacakan ini mengumpulkan informasi tentang aktivitas online Anda (misalnya, durasi kunjungan Anda ke Layanan kami), termasuk data perilaku dan indikator keterlibatan konten. Teknologi pelacakan ini digunakan untuk analitik, penelitian, dan statistik (berdasarkan informasi agregat). </p> </li>
+<li> <b> Teknologi pelacakan pemasaran atau periklanan </b> <br> <p>
+Teknologi pelacakan ini digunakan untuk memberi Anda penawaran khusus dan periklanan berdasarkan minat Anda, serta untuk melakukan kampanye pemasaran email. Mereka juga dapat digunakan untuk membatasi jumlah kali iklan dilihat, serta untuk mengukur efektivitas kampanye periklanan. Mereka biasanya di-host oleh pengiklan kami (misalnya, jaringan iklan) dan memberi mereka gambaran tentang orang-orang yang melihat dan berinteraksi dengan iklan mereka, mengunjungi situs web mereka, atau menggunakan aplikasi mereka. </p> </li>
+<li> <b> Teknologi Pelacakan Media Sosial </b> <br> <p>
+Situs web kami mencakup fungsi jaringan sosial, seperti tombol Suka atau Bagikan di Facebook dan Vkontakte, atau layanan login pihak ketiga. Fungsi-fungsi ini diposting oleh pihak ketiga atau diposting langsung ke Layanan kami. Interaksi Anda dengan fitur-fitur ini diatur oleh pernyataan privasi dari perusahaan yang menyediakan fitur-fitur ini. </p> </li>
+</ul>
+<h3> Berikut adalah cookie yang dapat Anda temukan di Layanan kami: </h3>
+<ul>
+<li> <b> Cookie Analitik </b> <br> <p> Teknologi pelacakan ini digunakan untuk mengumpulkan informasi tentang bagaimana Anda berinteraksi dengan konten di Layanan kami, tujuan atribusi (misalnya, URL rujukan), dll. Kami menggunakan informasi ini untuk menyusun laporan, menghitung pendapatan yang jatuh tempo kepada kami, dan membantu kami meningkatkan Layanan dan menawarkan produk dan konten yang dipersonalisasi. </p> </li>
+<li> <b> Google Analytics </b> <br> <p> Cookie ini digunakan untuk mengumpulkan informasi tentang bagaimana pengunjung menggunakan Platform kami. Kami menggunakan informasi ini untuk menyusun laporan dan meningkatkan Platform. Cookie mengumpulkan informasi dalam bentuk anonim, termasuk jumlah pengunjung Platform, dari mana pengunjung datang ke Platform, dan halaman yang mereka kunjungi. <br> <a href = "https://policies.google.com/privacy?hl=en" > Kebijakan Privasi </a> </p> </li>
+<li> <b> Google Tag Manager </b> <br> <p> Cookie ini dikaitkan dengan Google Tag Manager, yang kami gunakan untuk memuat skrip di halaman situs web kami. <br> <a href = "https: / /policies.google.com/privacy?hl=en">Kebijakan Privasi </a> </p> </li>
+</ul>
+<p> Harap dicatat bahwa kami tidak mengenali atau menanggapi peringatan browser otomatis mengenai teknologi pelacakan, termasuk permintaan Jangan Lacak. Namun, ada berbagai cara untuk mengelola dan mengelola pengaturan cookie Anda. Ingatlah bahwa saat menghapus atau memblokir cookie, beberapa fungsi Layanan mungkin tidak berfungsi dengan benar atau tidak begitu efisien. </p>
+<p> Sebagian besar browser web memberi Anda beberapa informasi umum tentang cookie, memungkinkan Anda untuk melihat cookie apa yang disimpan di perangkat Anda, memungkinkan Anda untuk menghapusnya semua atau secara individual, dan juga memungkinkan Anda untuk memblokir atau mengizinkan penggunaan cookie untuk semua situs web atau situs yang dipilih secara individual. Anda juga dapat menonaktifkan cookie pihak ketiga secara terpisah. Harap dicatat bahwa pengaturan yang ditawarkan oleh browser atau perangkat sering kali hanya berlaku untuk browser atau perangkat tertentu itu. </p>
+<h3> Informasi cookie biasanya ditemukan di bagian Bantuan browser web. </h3>
+<p> Berikut adalah tautan ke beberapa browser web yang umum digunakan: </p>
+<p><a href="https://support.google.com/chrome/answer/95647?hl=en"> Chrome </a> <br>
+<a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies"> Internet Explorer dan Microsoft Edge </a> <br>
+<a href="https://support.mozilla.org/en/kb/kuki-informaciya-kotoruyu-veb-sajty-hranyat-na-vas"> Mozilla Firefox </a> <br>
+<a href="https://support.apple.com/ru-ru/guide/safari/sfri11471/mac"> Safari </a> </p>
+<p> Anda dapat menonaktifkan beberapa cookie pihak ketiga untuk penargetan / periklanan dengan mengklik tautan berikut: <a href="http://optout.networkadvertising.org/?c=1"> Pilih keluar dari iklan berbasis minat </a>. </p>
+				',
+];

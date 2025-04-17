@@ -1,0 +1,39 @@
+<?php
+
+return [
+    'title' => 'Cursor Style - Politika kolačića',
+    'descr' => 'Pravila o kolačićima kada posetite našu veb stranicu cursor.style ili ekstenziju „Cursor Style”. Neka pravila koja biste trebali uzeti u obzir prilikom korišćenja našeg proizvoda.',
+    'text' => '<h2> Politika o kolačićima </h2>
+<p> Kada posetite našu veb stranicu cursor.style ili ekstenziju "Cursor Style" u panelu vašeg pretraživača, ili kada komunicirate sa našim predstavnicima ("Usluga"), koristićemo (i dozvoliti trećim stranama da koriste) veb svetionike, kolačiće, piksel oznake, skripte, oznake, API-je i druge tehnologije ("Tehnologije praćenja"). Ovo je objašnjeno u ovoj politici ("Politika o kolačićima"), koja je deo naše <a href="/privacy"> Politike privatnosti </a>. </p>
+<p> Tehnologije praćenja nam omogućavaju da automatski prikupljamo informacije o vama i vašem ponašanju na Internetu kako bismo poboljšali vašu navigaciju na našoj Usluzi, poboljšali performanse naše Usluge i olakšali vaše iskustvo u našoj Usluzi. Takođe koristimo ove informacije da prikupimo statistike o korišćenju naše Usluge, sprovodimo analitiku, isporučujemo sadržaj koji odgovara vašim interesovanjima i administriramo usluge za naše Korisnike, kupce i partnere. Takođe dozvoljavamo trećim stranama da prikupljaju informacije o vama koristeći tehnologije praćenja. </p>
+<p> Šta su kolačići? Kolačići su male tekstualne datoteke (koje se sastoje samo od slova i brojeva) koje veb server postavlja na vaš računar ili mobilni uređaj kada posetite veb stranicu. Korišćenje kolačića može pomoći da naše Usluge budu jednostavnije za korisnike, na primer, pamćenjem vaših jezičkih preferencija i podešavanja. Više informacija o kolačićima možete pronaći na <a href="http://www.allaboutcookies.org"> allaboutcookies.org </a>. </p>
+<p> Kolačići se široko koriste za performanse veb stranice. Korišćenje kolačića vam omogućava da efikasno navigirate između stranica. Kolačići pamte vaše preferencije i čine interakciju između vas i Usluga glatkijom i efikasnijom. </p>
+<p> Koristimo tehnologije praćenja kada posetite ili pristupite našim Uslugama (obično kada posetite naše veb stranice) - nazivaju se “Tehnologije praćenja prve strane”. Pored toga, tehnologije praćenja čuvaju druge organizacije trećih strana (na primer, naši pružaoci analitičkih usluga, poslovni partneri i oglašivači) koji objavljuju sadržaj na našim Uslugama - nazivaju se “Tehnologije praćenja trećih strana”. Obe vrste tehnologija praćenja mogu se čuvati ili za vreme vaše posete našim Uslugama, ili za ponovljene posete. </p>
+<h3> Koje vrste tehnologija praćenja koristimo? Postoji pet glavnih tipova tehnologija praćenja: </h3>
+<ul>
+<li> <b> Strogo neophodne tehnologije praćenja </b> <br> <p> Ove tehnologije praćenja su neophodne kako biste se mogli prijaviti, navigirati i koristiti funkcije naših Usluga ili pružiti uslugu koju zahtevate (na primer, vaše korisničko ime). Ne treba nam vaša saglasnost da koristimo ove tehnologije praćenja. Ove tehnologije praćenja mogu se koristiti u svrhu bezbednosti i integriteta, na primer, za identifikaciju kršenja naših politika, kao i za podršku ili bezbednosne funkcije. </p> </li>
+<li> <b> Tehnologije praćenja funkcionalnosti </b> <br> <p>
+Ove tehnologije praćenja omogućavaju našim uslugama da pamte vaše izbore (kao što je jezik) i pružaju napredne i personalizovane funkcije. Na primer, ove tehnologije praćenja se koriste za autentifikaciju (da zapamtite kada ste prijavljeni) i podržavaju druge funkcije naših Usluga. </p> </li>
+<li> <b> Tehnologije praćenja performansi </b> <br> <p>
+Ove tehnologije praćenja prikupljaju informacije o vašoj onlajn aktivnosti (na primer, trajanje vaše posete našim Uslugama), uključujući podatke o ponašanju i indikatore angažmana sadržaja. Ove tehnologije praćenja se koriste za analitiku, istraživanje i statistiku (na osnovu agregiranih informacija). </p> </li>
+<li> <b> Tehnologije praćenja marketinga ili oglašavanja </b> <br> <p>
+Ove tehnologije praćenja se koriste za pružanje posebnih ponuda i oglašavanja na osnovu vaših interesovanja, kao i za sprovođenje marketinških kampanja putem e-pošte. Takođe se mogu koristiti za ograničavanje broja puta kada se oglas prikazuje, kao i za merenje efikasnosti reklamne kampanje. Obično ih hostuju naši oglašivači (na primer, oglasne mreže) i pružaju im uvid u ljude koji vide i komuniciraju sa njihovim oglasima, posećuju njihove veb stranice ili koriste njihovu aplikaciju. </p> </li>
+<li> <b> Tehnologije praćenja društvenih medija </b> <br> <p>
+Naša veb stranica uključuje funkcije društvenih mreža, kao što su dugmad Like ili Share na Facebooku i Vkontakte, ili usluge prijave trećih strana. Ove funkcije objavljuje treća strana ili ih objavljuje direktno na naše Usluge. Vašu interakciju sa ovim funkcijama reguliše izjava o privatnosti kompanije koja pruža ove funkcije. </p> </li> </ul>
+<h3> U nastavku su kolačići koje možete pronaći u našim Uslugama: </h3>
+<ul>
+<li> <b> Kolačići analitike </b> <br> <p> Ove tehnologije praćenja se koriste za prikupljanje informacija o tome kako komunicirate sa sadržajem u našim Uslugama, u svrhu atribucije (na primer, URL-ovi upućivanja), itd. Koristimo ove informacije za sastavljanje izveštaja, izračunavanje prihoda koji nam pripadaju i za pomoć u poboljšanju Usluga i nuđenje personalizovanih proizvoda i sadržaja. </p> </li>
+<li> <b> Google Analytics </b> <br> <p> Ovaj kolačić se koristi za prikupljanje informacija o tome kako posetioci koriste našu Platformu. Ove informacije koristimo za sastavljanje izveštaja i za poboljšanje Platforme. Kolačići prikupljaju informacije u anonimnom obliku, uključujući broj posetilaca Platforme, odakle su posetioci došli na Platformu i stranice koje su posetili. <br> <a href = "https://policies.google.com/privacy?hl=en" > Politika privatnosti </a> </p> </li>
+<li> <b> Google Tag Manager </b> <br> <p> Ovaj kolačić je povezan sa Google Tag Manager-om, koji koristimo za učitavanje skripti na stranicama naše veb stranice. <br> <a href = "https: / /policies.google.com/privacy?hl=en">Politika privatnosti </a> </p> </li>
+</ul>
+<p> Imajte na umu da ne prepoznajemo niti reagujemo na automatska upozorenja pretraživača u vezi sa tehnologijama praćenja, uključujući zahteve Do Not Track. Međutim, postoje različiti načini za upravljanje i upravljanje postavkama kolačića. Zapamtite da kada izbrišete ili blokirate kolačiće, neke funkcije Usluga možda neće raditi ispravno ili ne tako efikasno. </p>
+<p> Većina veb pretraživača vam pruža neke opšte informacije o kolačićima, omogućava vam da vidite koji su kolačići pohranjeni na vašem uređaju, da ih sve ili pojedinačno izbrišete, a takođe vam omogućava da blokirate ili dozvolite upotrebu kolačića za sve veb stranice ili pojedinačno odabrane sajtove. Takođe možete zasebno onemogućiti kolačiće trećih strana. Imajte na umu da se podešavanja koja nudi pretraživač ili uređaj često primenjuju samo na taj određeni pretraživač ili uređaj. </p>
+<h3> Informacije o kolačićima se obično nalaze u odeljku Pomoć veb pretraživača. </h3>
+<p> U nastavku su linkovi do nekih često korišćenih veb pretraživača: </p>
+<p><a href="https://support.google.com/chrome/answer/95647?hl=en"> Chrome </a> <br>
+<a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies"> Internet Explorer i Microsoft Edge </a> <br>
+<a href="https://support.mozilla.org/en/kb/kuki-informaciya-kotoruyu-veb-sajty-hranyat-na-vas"> Mozilla Firefox </a> <br>
+<a href="https://support.apple.com/ru-ru/guide/safari/sfri11471/mac"> Safari </a> </p>
+<p> Možete isključiti neke kolačiće trećih strana za ciljanje / oglašavanje klikom na sledeći link: <a href="http://optout.networkadvertising.org/?c=1"> Isključenje iz oglašavanja zasnovanog na interesovanjima </a>. </p>
+				',
+];

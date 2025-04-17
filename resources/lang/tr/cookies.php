@@ -1,0 +1,40 @@
+<?php
+
+return [
+    'title' => 'Cursor Style - Çerez Politikası',
+    'descr' => 'Web sitemiz olan cursor.style veya “Cursor Style” uzantısını ziyaret ettiğinizde bir çerez politikası. Ürünümüzü kullanırken dikkate almanız gereken bazı kurallar.',
+    'text' => '<h2> Çerez Politikası </h2>
+<p> Web sitemizi cursor.style veya tarayıcı panelinizdeki "Cursor Style" uzantısını ziyaret ettiğinizde veya temsilcilerimizle ("Hizmet") etkileşimde bulunduğunuzda, web işaretçileri, çerezler, piksel etiketleri, komut dosyaları, etiketler, API\'ler ve diğer teknolojileri ("İzleme Teknolojileri") kullanacağız (ve üçüncü tarafların kullanmasına izin vereceğiz). Bu, <a href="/privacy"> Gizlilik Politikamızın </a> bir parçası olan bu politikada ("Çerez Politikası") açıklanmaktadır. </p>
+<p> İzleme teknolojileri, Sitemizdeki gezinmenizi iyileştirmek, Hizmetimizin performansını iyileştirmek ve Hizmetimizdeki deneyiminizi kolaylaştırmak için sizin ve İnternet\'teki davranışlarınız hakkında otomatik olarak bilgi toplamamızı sağlar. Ayrıca bu bilgileri, Hizmetimizin kullanımıyla ilgili istatistik toplamak, analiz yapmak, ilgi alanlarınıza uygun içerik sunmak ve Kullanıcılarımız, müşterilerimiz ve ortaklarımız için hizmetler yönetmek için de kullanırız. Ayrıca üçüncü tarafların izleme teknolojilerini kullanarak sizinle ilgili bilgi toplamaslarına izin veririz. </p>
+<p> Çerezler nedir? Çerezler, bir web sayfasını ziyaret ettiğinizde web sunucusunun bilgisayarınıza veya mobil cihazınıza yerleştirdiği küçük metin dosyalarıdır (yalnızca harfler ve sayılardan oluşur). Çerez kullanmak, örneğin dil tercihlerinizi ve ayarlarınızı hatırlamak gibi, Hizmetlerimizi daha kullanıcı dostu hale getirmeye yardımcı olabilir. Çerezler hakkında daha fazla bilgiyi <a href="http://www.allaboutcookies.org"> allaboutcookies.org </a> adresinde bulabilirsiniz. </p>
+<p> Çerezler web sitesi performansı için yaygın olarak kullanılır. Çerezleri kullanmak, sayfalar arasında verimli bir şekilde gezinmenizi sağlar. Çerezler tercihlerinizi hatırlar ve sizinle Hizmetler arasındaki etkileşimi daha sorunsuz ve verimli hale getirir. </p>
+<p> Hizmetlerimizi ziyaret ettiğinizde veya bunlara eriştiğinizde (genellikle web sitelerimizi ziyaret ettiğinizde) izleme teknolojilerini kullanırız - bunlara “Birinci Taraf İzleme Teknolojileri” denir. Ek olarak, izleme teknolojileri, Hizmetlerimizde içerik yayınlayan diğer üçüncü taraf kuruluşlar (örneğin, analitik hizmet sağlayıcılarımız, iş ortaklarımız ve reklamverenlerimiz) tarafından saklanır - bunlara “Üçüncü taraf izleme teknolojileri” denir. Her iki izleme teknolojisi türü de Hizmetlerimizi ziyaretiniz sırasında veya tekrarlanan ziyaretler için saklanabilir. </p>
+<h3> Ne tür izleme teknolojileri kullanıyoruz? Beş ana izleme teknolojisi türü vardır: </h3>
+<ul>
+<li> <b> Kesinlikle gerekli izleme teknolojileri </b> <br> <p> Bu izleme teknolojileri, oturum açabilmeniz, gezinebilmeniz ve Hizmetlerimizin işlevlerini kullanabilmeniz veya talep ettiğiniz hizmeti sağlamanız için gereklidir (örneğin, adınız kullanıcı). Bu izleme teknolojilerini kullanmak için onayınıza ihtiyacımız yoktur. Bu izleme teknolojileri, örneğin politikalarımızın ihlallerini belirlemek için olduğu gibi, güvenlik ve bütünlük amaçları için ve ayrıca destek veya güvenlik özellikleri için kullanılabilir. </p> </li>
+<li> <b> İşlevsellik İzleme Teknolojileri </b> <br> <p>
+Bu izleme teknolojileri, hizmetlerimizin seçimlerinizi (dil gibi) hatırlamasını ve gelişmiş ve kişiselleştirilmiş özellikler sağlamasını sağlar. Örneğin, bu izleme teknolojileri kimlik doğrulama (ne zaman oturum açtığınızı hatırlamak için) ve Hizmetlerimizin diğer işlevlerini desteklemek için kullanılır. </p> </li>
+<li> <b> Performans İzleme Teknolojileri </b> <br> <p>
+Bu izleme teknolojileri, davranışsal veriler ve içerik etkileşiminin göstergeleri dahil olmak üzere, çevrimiçi etkinliğiniz (örneğin, Hizmetlerimizi ziyaretinizin süresi) hakkında bilgi toplar. Bu izleme teknolojileri, analiz, araştırma ve istatistik (toplu bilgilere dayalı) için kullanılır. </p> </li>
+<li> <b> Pazarlama veya reklam izleme teknolojileri </b> <br> <p>
+Bu izleme teknolojileri, ilgi alanlarınıza dayalı olarak size özel teklifler ve reklamlar sunmak ve ayrıca e-posta pazarlama kampanyaları yürütmek için kullanılır. Ayrıca, bir reklamın görüntülenme sayısını sınırlamak ve bir reklam kampanyasının etkinliğini ölçmek için de kullanılabilirler. Genellikle reklamverenlerimiz (örneğin, reklam ağları) tarafından barındırılır ve onlara reklamlarını gören ve onlarla etkileşimde bulunan, web sitelerini ziyaret eden veya uygulamalarını kullanan kişiler hakkında bir fikir verir. </p> </li>
+<li> <b> Sosyal Medya İzleme Teknolojileri </b> <br> <p>
+Web sitemiz, Facebook ve Vkontakte\'deki Beğen veya Paylaş düğmeleri veya üçüncü taraf oturum açma hizmetleri gibi sosyal ağların işlevlerini içerir. Bu işlevler ya bir üçüncü taraf tarafından yayınlanır ya da doğrudan Hizmetlerimize gönderilir. Bu özelliklerle etkileşiminiz, bu özellikleri sağlayan şirketin gizlilik bildirimi tarafından yönetilir. </p> </li>
+</ul>
+<h3> Hizmetlerimizde bulabileceğiniz çerezler şunlardır: </h3>
+<ul>
+<li> <b> Çerez Analizi </b> <br> <p> Bu izleme teknolojileri, Hizmetlerimizdeki içerikle nasıl etkileşimde bulunduğunuz, atıf amaçları (örneğin, yönlendirme URL\'leri) vb. hakkında bilgi toplamak için kullanılır. Bu bilgileri raporlar hazırlamak, bize ait geliri hesaplamak ve Hizmetleri iyileştirmemize ve kişiselleştirilmiş ürünler ve içerik sunmamıza yardımcı olmak için kullanırız. </p> </li>
+<li> <b> Google Analytics </b> <br> <p> Bu çerez, ziyaretçilerin Platformumuzu nasıl kullandığına dair bilgi toplamak için kullanılır. Bu bilgileri raporlar hazırlamak ve Platformu iyileştirmek için kullanırız. Çerezler, Platform ziyaretçilerinin sayısı, ziyaretçilerin Platforma nereden geldiği ve ziyaret ettikleri sayfalar dahil olmak üzere bilgileri anonim olarak toplar. <br> <a href = "https://policies.google.com/privacy?hl=en" > Gizlilik Politikası </a> </p> </li>
+<li> <b> Google Etiket Yöneticisi </b> <br> <p> Bu çerez, web sitemizin sayfalarına komut dosyaları yüklemek için kullandığımız Google Etiket Yöneticisi ile ilişkilidir. <br> <a href = "https: / /policies.google.com/privacy?hl=en">Gizlilik Politikası </a> </p> </li>
+</ul>
+<p> İzleme teknolojileri ile ilgili olarak Do Not Track istekleri dahil olmak üzere otomatik tarayıcı uyarılarını tanımadığımızı veya bunlara yanıt vermediğimizi lütfen unutmayın. Ancak, çerez ayarlarınızı yönetmenin ve yönetmenin çeşitli yolları vardır. Çerezleri silerken veya engellerken, Hizmetlerin bazı işlevlerinin düzgün çalışmayabileceğini veya o kadar verimli çalışmayabileceğini unutmayın. </p>
+<p> Çoğu web tarayıcısı, çerezler hakkında bazı genel bilgiler sağlar, cihazınızda hangi çerezlerin saklandığını görmenize, hepsini veya ayrı ayrı silmenize ve ayrıca tüm web siteleri veya ayrı ayrı seçilen siteler için çerezlerin kullanımını engellemenize veya izin vermenize olanak tanır. Ayrıca üçüncü taraf çerezlerini ayrı olarak devre dışı bırakabilirsiniz. Tarayıcı veya cihaz tarafından sunulan ayarların genellikle yalnızca o belirli tarayıcı veya cihaz için geçerli olduğunu lütfen unutmayın. </p>
+<h3> Çerez bilgileri genellikle bir web tarayıcısının Yardım bölümünde bulunur. </h3>
+<p> Aşağıdakiler, yaygın olarak kullanılan bazı web tarayıcılarına bağlantılardır: </p>
+<p><a href="https://support.google.com/chrome/answer/95647?hl=en"> Chrome </a> <br>
+<a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies"> Internet Explorer ve Microsoft Edge </a> <br>
+<a href="https://support.mozilla.org/en/kb/kuki-informaciya-kotoruyu-veb-sajty-hranyat-na-vas"> Mozilla Firefox </a> <br>
+<a href="https://support.apple.com/ru-ru/guide/safari/sfri11471/mac"> Safari </a> </p>
+<p> Aşağıdaki bağlantıya tıklayarak hedefleme / reklamcılık için bazı üçüncü taraf çerezlerini kapatabilirsiniz: <a href="http://optout.networkadvertising.org/?c=1"> İlgi alanına dayalı reklamcılıktan vazgeçme </a>. </p>
+				',
+];
