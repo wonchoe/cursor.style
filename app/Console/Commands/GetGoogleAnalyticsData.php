@@ -31,7 +31,7 @@ class GetGoogleAnalyticsData extends Command
                 ]
             ]
         ]);
-    
+        dump(json_encode($request));
 
 
         
