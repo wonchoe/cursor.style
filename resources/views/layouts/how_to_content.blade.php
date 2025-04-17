@@ -34,11 +34,12 @@
       @if(View::exists("other.lang.$locale.howto.tab_$i"))
       @include("other.lang.$locale.howto.tab_$i")
     @else
-      @include("other.lang.en_gb.howto.tab_$i")
+      @include("other.lang.en.howto.tab_$i")
     @endif
       </div>
     @endforeach
     </div>
+
 
   </div>
 </div>
