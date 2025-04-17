@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ChatController;
 use Ably\AblyRest;
 
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 Route::get('/admin/analytics/installs', [GA4AnalyticsController::class, 'getInstallCount']);
 
