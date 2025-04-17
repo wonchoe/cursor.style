@@ -1,1 +1,1 @@
-docker-compose exec web bash -c "cd /var/www && exec bash"
+docker-compose exec web bash -c "cd /var/www/cursor.style && exec bash"
