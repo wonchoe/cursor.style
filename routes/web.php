@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\TraficController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\GA4AnalyticsController;
+use App\Http\Controllers\SitemapController;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\ChatController;
 use Ably\AblyRest;
