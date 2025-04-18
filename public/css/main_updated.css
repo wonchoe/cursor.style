@@ -2488,3 +2488,24 @@ html:not([data-cursor-style="true"]) textarea {
     transform: translate(-50%, -50%) scale(1) rotate(var(--angle));
   }
 }
+
+
+
+.trail-lock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(240, 240, 240, 0.8); /* напівпрозорий */
+  color: #555;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none; /* щоб не блокував мишку, якщо треба — став pointer-events: auto */
+  z-index: 2;
+  border-radius: 8px;
+}

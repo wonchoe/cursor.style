@@ -130,6 +130,7 @@
 
 
             <div class="effects-container" id="effects-container">
+            <div class="trail-lock-overlay"><div class="emoji" style="font-size:40px">🔒 </div><img width="60px" src="/images/switch2.gif"></div>
                 <h2 class="default_cursor_cs" data-lang-tag="trail_effect">@lang('messages.cursor_trail_effect')</h2>
             </div>
 
