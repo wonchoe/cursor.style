@@ -1,43 +1,32 @@
-function isBot() {
-    var userAgent = navigator.userAgent.toLowerCase();
-    var botPatterns = [
-        'googlebot', 'bingbot', 'yandexbot', 'duckduckbot',
-        'slurp', 'baiduspider', 'sogou', 'exabot', 'facebot',
-        'ia_archiver', 'mj12bot', 'seznambot', 'gigabot',
-        'crawler', 'spider', 'robot', 'bot',
-        'python-requests', 'pagespeedinsights', 'googleweblight', 'google'
+(function () {
+    const cookieName = "lang_redirect_disabled";
+
+    function getCookie(name) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    function setCookie(name, value, seconds) {
+        const expires = new Date(Date.now() + seconds * 1000).toUTCString();
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+    }
+
+    const lang = navigator.language || navigator.userLanguage;
+    const shortLang = lang.slice(0, 2).toLowerCase();
+    const host = window.location.hostname;
+
+    const supportedLangs = [
+        "am", "ar", "bg", "bn", "ca", "cs", "da", "de", "el", "en", "es", "et", "fa", "fi", "fil",
+        "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn", "ko", "lt", "lv", "ml", "mr",
+        "ms", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sl", "sr", "sv", "sw", "ta", "te", "th", "tr",
+        "uk", "vi", "zh"
     ];
-    
-    return botPatterns.some(function (pattern) {
-        return userAgent.indexOf(pattern) !== -1;
-    });
-}
 
-function getBrowserLanguage() {
-    return (navigator.language || navigator.userLanguage).split('-')[0].toLowerCase();
-}
-
-const localeDomains = {
-    'ru': 'ru.cursor.style',
-    'es': 'es.cursor.style',
-    'uk': 'ua.cursor.style'
-};
-
-function getPreferredDomain(browserLanguage) {
-    return localeDomains[browserLanguage] || null;
-}
-
-function checkAndRedirect() {
-    const browserLanguage = getBrowserLanguage();
-    const currentDomain = window.location.hostname;
-    const preferredDomain = getPreferredDomain(browserLanguage);
-
-    if (!preferredDomain) return; // не підтримується — не редиректимо
-    if (currentDomain === preferredDomain) return;
-
-    const newUrl = window.location.protocol + '//' + preferredDomain + window.location.pathname + window.location.search;
-    console.log('Redirecting to:', newUrl);
-    window.location.href = newUrl;
-}
-
-if (!isBot()) checkAndRedirect();
+    if (host === 'cursor.style' && !getCookie(cookieName)) {
+        if (supportedLangs.includes(shortLang)) {
+            setCookie(cookieName, '1', 60 * 60);
+            const targetHost = `${shortLang}.cursor.style`;
+            window.location.href = `https://${targetHost}${window.location.pathname}`;
+        }
+    }
+})();
