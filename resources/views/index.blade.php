@@ -1,3 +1,9 @@
+@php
+    function build_version() {
+        return '?v=5'; // ← тут змінюй версію вручну
+    }
+@endphp
+
 @extends('layouts.app')
 
 @section('title')
@@ -154,6 +160,6 @@
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/pagination.js') }}"></script>
-    <script src="{{ secure_asset('/js/main.js') }}"></script>
+    <script src="{{ secure_asset('/js/pagination.js') }}{{ build_version() }}"></script>
+    <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
 @endsection

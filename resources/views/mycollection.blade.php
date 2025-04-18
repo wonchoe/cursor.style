@@ -1,3 +1,8 @@
+@php
+    function build_version() {
+        return '?v=5'; // ← тут змінюй версію вручну
+    }
+@endphp
 @extends('layouts.app')
 
 @section('title')
@@ -12,9 +17,9 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
 
-    <link rel="stylesheet" href="{{ secure_asset('css/switcher.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/switcher.css') }}{{ build_version() }}">
 
-    <script type="text/javascript" src="js/mycollection.js"></script>
+    <script type="text/javascript" src="js/mycollection.js{{ build_version() }}"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" />

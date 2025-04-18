@@ -77,9 +77,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="{{ secure_asset('css/mycollection.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/main_updated.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('/css/chat.css')}}" />
+    <link rel="stylesheet" href="{{ secure_asset('css/mycollection.css') }}{{ build_version() }}" />
+    <link rel="stylesheet" href="{{ secure_asset('css/main_updated.css') }}{{ build_version() }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/css/chat.css')}}{{ build_version() }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
     <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -88,8 +88,8 @@
     <link rel="canonical" href="https://{{ Request::host() }}{{ Request::getRequestUri() }}" />
 
     @yield('lib_top')
-    <script async src="{{ secure_asset('/js/lang.v2.js')}}"></script>
-    <script src="{{ secure_asset('/js/init.js')}}"></script>
+    <script async src="{{ secure_asset('/js/lang.v2.js')}}{{ build_version() }}"></script>
+    <script src="{{ secure_asset('/js/init.js')}}{{ build_version() }}"></script>
 
     @if (request()->is('success'))
     <script>
@@ -214,8 +214,8 @@
 
     @yield('lib_bottom')
     @yield('js')
-    <script src="/js/chat.js"></script>
-    <script src="/js/vote.js"></script>
+    <script src="/js/chat.js{{ build_version() }}"></script>
+    <script src="/js/vote.js{{ build_version() }}"></script>
 </body>
 
 </html>
