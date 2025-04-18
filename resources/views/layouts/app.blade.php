@@ -1,3 +1,8 @@
+@php
+    function build_version() {
+        return '?v=5'; // ← тут змінюй версію вручну
+    }
+@endphp
 <!DOCTYPE html>
 <html lang="{{ Config::get('app.locale') }}">
 
