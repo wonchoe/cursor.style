@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
             $table->unique(['lang', 'cursor_id']);
+            $table->string('name')->index(); // або: $table->index('name');
         });
         
     }
