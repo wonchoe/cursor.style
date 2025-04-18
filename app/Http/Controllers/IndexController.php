@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\cursor;
 use App\Models\categories;
 use App\Models\Analytic;
+use App\Models\CursorTranslation;
 use App;
 
 class IndexController extends Controller {
