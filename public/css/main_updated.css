@@ -2468,7 +2468,7 @@ html:not([data-cursor-style="true"]) textarea {
 }
 
 .emoji-anim {
-  animation: growFade 0.5s ease-out forwards;
+  animation: growFade 0.3s ease-out forwards;
 }
 
 @keyframes growFade {

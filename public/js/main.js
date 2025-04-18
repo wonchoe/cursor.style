@@ -78,7 +78,7 @@ function setUpEffect(){
     if (!shouldRun) return;
 
     const now = performance.now();
-    if (now - lastSpawn < 20) return;
+    if (now - lastSpawn < 30) return;
     lastSpawn = now;
 
     spawnEmoji(e.clientX, e.clientY);
