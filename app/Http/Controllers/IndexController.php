@@ -9,7 +9,7 @@ use Validator;
 use Illuminate\Support\Facades\Mail;
 use App\uninstalled;
 use Carbon\Carbon;
-use App\Models\Cursor;
+use App\Models\сursor;
 use App\Models\CursorTranslation;
 use App\Models\categories;
 use App\Models\Analytic;
