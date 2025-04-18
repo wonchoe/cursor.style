@@ -1,8 +1,4 @@
-@php
-    function build_version() {
-        return '?v=5'; // ← тут змінюй версію вручну
-    }
-@endphp
+@include('other.build')
 @extends('layouts.app')
 
 @section('title')
