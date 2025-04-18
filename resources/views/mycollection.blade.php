@@ -72,43 +72,31 @@
                 <div class="my-collection-switcher">
                     <div class="content">
                         <div class="switcher-label" data-lang-tag="custom_cursor">@lang('messages.custom_cursor')</div>
-                        <div class="switcher-switch">
-                            <input type="checkbox" id="customcursor" class="mycursoronoff">
-                            <label for="customcursor" class="mycursoronoff-label">
-                                <span class="track">
-                                    <span class="txt"></span>
-                                </span>
-                                <span class="thumb">|||</span>
-                            </label>
-                        </div>
+                       
+                        <label class="ui-toggle-switch">
+                            <input type="checkbox" class="mycursoronoff" id="customcursor">
+                            <span class="ui-toggle-slider"></span>
+                        </label>
+
+
                     </div>
 
                     <div class="content cursos-assistance">
                         <div class="switcher-label" data-lang-tag="cursor_assistance">@lang('messages.cursor_assistance')
                         </div>
-                        <div class="switcher-switch">
-                            <input type="checkbox" id="cursorassistance" class="mycursoronoff">
-                            <label for="cursorassistance" class="mycursoronoff-label">
-                                <span class="track">
-                                    <span class="txt"></span>
-                                </span>
-                                <span class="thumb">|||</span>
-                            </label>
-                        </div>
+                        <label class="ui-toggle-switch">
+                            <input type="checkbox" class="mycursoronoff" id="cursorassistance" >
+                            <span class="ui-toggle-slider"></span>
+                        </label>
                     </div>
 
                     <div class="content">
                         <div class="switcher-label line-effect" data-lang-tag="cursor_effect">@lang('messages.cursor_trail')
                         </div>
-                        <div class="switcher-switch">
-                            <input type="checkbox" id="cursoreffect" class="mycursoronoff">
-                            <label for="cursoreffect" class="mycursoronoff-label">
-                                <span class="track">
-                                    <span class="txt"></span>
-                                </span>
-                                <span class="thumb">|||</span>
-                            </label>
-                        </div>
+                        <label class="ui-toggle-switch">
+                            <input type="checkbox" class="mycursoronoff" id="cursoreffect" >
+                            <span class="ui-toggle-slider"></span>
+                        </label>
                     </div>
 
                 </div>

@@ -434,6 +434,7 @@ input[type="range"] {
 
 .slider-1::-webkit-slider-thumb {
   -webkit-appearance: none;
+  transform: rotate(45deg);
   padding: 10px;
   width: 55px;
   height: 55px;
@@ -443,7 +444,7 @@ input[type="range"] {
   background-position: center;
   position: relative;
   transition: transform 0.2s ease;
-  transform: scale(var(--thumb-scale, 1));
+  transform: rotate(20deg) scale(calc(var(--thumb-scale, 1) * 0.7));
 }
 
 
