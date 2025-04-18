@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 
 class SitemapController extends Controller
 {
-    public function index(): Response
+    public function index()
     {
         $host = request()->getHost();
         $prefix = explode('.', $host)[0];
@@ -45,7 +45,9 @@ class SitemapController extends Controller
             $sitemap
         );
         
-        return response($sitemap, 200)->header('Content-Type', 'application/xml');
+        return response($sitemap, 200)
+        ->header('Content-Type', 'application/xml')
+        ->header('X-Robots-Tag', 'index, follow');
         
     }
 }
