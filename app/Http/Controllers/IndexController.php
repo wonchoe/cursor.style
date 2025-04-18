@@ -270,6 +270,79 @@ class IndexController extends Controller
     }
 
 
+    public function sendEmail(Request $request) {
+        //        $validation = Validator::make($request->all(), [
+        //                    'name' => 'required|min:2|max:100',
+        //                    'email' => 'required|email',
+        //                    'subject' => 'required|min:2|max:100',
+        //                    'message' => 'required|min:10|max:500',
+        //                    'g-recaptcha-response' => 'recaptcha',
+        //        ]);
+        //        if ($validation->passes()) {
+        //
+        //            $data['name'] = $request->name;
+        //            $data['subject'] = $request->subject;
+        //            $data['email'] = $request->email;
+        //            $data['message'] = $request->message;
+        //
+        //            try {
+        //                Mail::send('mail', ['data' => $data], function ($message) use ($data) {
+        //                    $message->to('cursorstylemail@gmail.com', 'Cursor.Style')->subject($data['subject']);
+        //                    $message->from($data['email'], $data['name']);
+        //                });
+        //            } catch (\Throwable $e) {
+        //                return ['result' => $e->getMessage()];
+        //            }
+        //
+        //            if (count(Mail::failures()) > 0) {
+        //                return ['result' => Mail::failures()];
+        //            } else
+        //                return ['result' => true];
+        //        } else {
+        //            return $validation->errors();
+        //        }
+                return view('contact', ['success' => 'true']);
+            }
+        
+            public function setTopCursor(Request $request) {
+        //        if ($request->type == 'stat') {
+        //            $db = cursor::find($request->id);
+        //            $db->top = $db->top + 1;
+        //            $db->save();
+        //        }
+            }
+        
+            public function successInstall(Request $request) {
+        //        if ($request->session()->has('installed')) {
+        //        } else {
+        //            $request->session()->put('installed', date("Ymd"));
+        //            $stat = Analytic::firstOrNew(['date' => date_format(\Carbon\Carbon::now(), 'Y-m-d')]);
+        //            $stat->date = \Carbon\Carbon::now();
+        //            $stat->increment('installs');
+        //            $stat->save();
+        //        }
+                return view('other.success');
+            }
+        
+            public function update() {
+        //        $stat = Analytic::firstOrNew(['date' => date_format(\Carbon\Carbon::now(), 'Y-m-d')]);
+        //        $stat->date = \Carbon\Carbon::now();
+        //        $stat->increment('response');
+        //        $stat->save();
+                return ['result' => true];
+            }
+        
+            public function showFeedback(Request $request) {
+        //        if (!$request->session()->has('installed')) {
+        //            $request->session()->put('installed', 'value');
+        //            $stat = Analytic::firstOrNew(['date' => date_format(\Carbon\Carbon::now(), 'Y-m-d')]);
+        //            $stat->date = \Carbon\Carbon::now();
+        //            $stat->increment('uninstalls');
+        //            $stat->save();
+        //        }
+                return view('feedback');
+            }    
+
     public function mycollection(Request $request)
     {
         return view('mycollection');
