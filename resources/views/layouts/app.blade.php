@@ -88,7 +88,7 @@
     <link rel="canonical" href="https://{{ Request::host() }}{{ Request::getRequestUri() }}" />
 
     @yield('lib_top')
-    <script async src="{{ secure_asset('/js/lang.v1.js')}}"></script>
+    <script async src="{{ secure_asset('/js/lang.v2.js')}}"></script>
     <script src="{{ secure_asset('/js/init.js')}}"></script>
 
     @if (request()->is('success'))
