@@ -67,45 +67,48 @@ class IndexController extends Controller {
     }
 
     public function show(Request $r) {
-        if (request()->getHost() == 'cursor.style') {
-            $is_ru = true;
-        } else {
-            $is_ru = false;
-        }
-
         $order = 'asc';
-        if ($r->type == 'popular') {
+        $sort = 'id';
+    
+        if ($r->type === 'popular') {
             $sort = 'top';
             $order = 'desc';
-        } else if ($r->type == 'new') {
+        } elseif ($r->type === 'new') {
             $sort = 'id';
             $order = 'desc';
+        }
+    
+        $query = $r->q;
+    
+        if ($query) {
+            $ids = CursorTranslation::where('name', 'LIKE', "%{$query}%")
+                ->pluck('cursor_id')
+                ->unique();
+    
+            $cursors = cursor::whereIn('id', $ids)
+                ->whereDate('schedule', '<=', Carbon::today())
+                ->orderBy($sort, $order)
+                ->paginate(32);
         } else {
-            $sort = 'id';
-            $order = 'desc';
+            $cursors = cursor::whereDate('schedule', '<=', Carbon::today())
+                ->orderBy($sort, $order)
+                ->paginate(32);
         }
-
-        $search = $r->q;
-//        $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->orWhere('name', 'LIKE', "%{$r->q}%")->orWhere('name_en', 'LIKE', "%{$r->q}%")->orWhere('name_es', 'LIKE', "%{$r->q}%")->orderBy($sort, $order)->paginate(32);
-        if (!$search)
-            $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->orderBy($sort, $order)->paginate(32);
-        if (($search) && (App::currentLocale() == 'en'))
-            $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->orderBy($sort, $order)->where('name_en', 'LIKE', "%{$r->q}%")->paginate(32);
-        if (($search) && (App::currentLocale() == 'ru'))
-            $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->orderBy($sort, $order)->where('name', 'LIKE', "%{$r->q}%")->paginate(32);
-        if (($search) && (App::currentLocale() == 'es'))
-            $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->orderBy($sort, $order)->where('name_es', 'LIKE', "%{$r->q}%")->paginate(32);
-
-        
+    
         $collections = categories::all();
-        
-        forEach ($cursors as $key => $cursor) {
-            $this->cat_id = $cursors[$key]->cat;
-            $cursors[$key]->name_s = $this->cleanStr($cursors[$key]->name_en);
-            $cursors[$key]->collection = $collections->first(function($item) {return $item->id == $this->cat_id;});
+    
+        foreach ($cursors as $cursorItem) {
+            $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
+            $cursorItem->collection = $collections->first(
+                fn($item) => $item->id == $cursorItem->cat
+            );
         }
-        
-        return view('index', ['cursors' => $cursors, 'is_ru' => $is_ru, 'query' => $r->q, 'sort' => $sort]);
+    
+        return view('index', [
+            'cursors' => $cursors,
+            'query' => $query,
+            'sort' => $sort
+        ]);
     }
 
     public function showJsLang() {
