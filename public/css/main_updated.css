@@ -2440,3 +2440,51 @@ a {
   background: #f0f0f0;
   color: #333;
 }
+
+
+html:not([data-cursor-style="true"]) {
+  cursor: url('/cursors/0001-cursor.svg') 10 0, auto;
+}
+
+html:not([data-cursor-style="true"]) a,
+html:not([data-cursor-style="true"]) button,
+html:not([data-cursor-style="true"]) input,
+html:not([data-cursor-style="true"]) textarea {
+  cursor: url('/pointers/0001-pointer.svg') 10 0, pointer;
+}
+
+
+
+
+.emoji-temp {
+  position: fixed;
+  font-size: 5px;
+  opacity: 0;
+  pointer-events: none;
+  font-family: 'Noto Color Emoji';
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(0.2);
+  will-change: transform, opacity;
+}
+
+.emoji-anim {
+  animation: growFade 0.5s ease-out forwards;
+}
+
+@keyframes growFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(var(--angle));
+  }
+  30% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--angle));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--angle));
+  }
+}
