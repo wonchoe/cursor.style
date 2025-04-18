@@ -1,4 +1,4 @@
-let shouldRun = true;
+let shouldRun = false;
 const emojis = ['🔥', '✨', '⭐', '🥳', '💥', '🙂','🧡','👻','🦄','🔥','💛'];
 const poolSize = 150;
 const pool = [];
@@ -62,6 +62,7 @@ document.querySelector('.banner__tab_2 .banner__text')?.addEventListener('mousel
 
 
 function setUpEffect(){
+  if (document.querySelector('[data-cursor-style]')) shouldRun = false;
   for (let i = 0; i < poolSize; i++) {
     const el = document.createElement('div');
     el.className = 'emoji-temp';
@@ -108,7 +109,9 @@ function setUpEffect(){
 setUpEffect();
 
 
-
+setTimeout(()=>{
+  if (!document.querySelector('[data-cursor-style]')) shouldRun = true;
+},2000);
 
 const observer = new MutationObserver((mutations) => {
   for (const mutation of mutations) {
@@ -120,11 +123,13 @@ const observer = new MutationObserver((mutations) => {
       ) {
         if (node.id === 'cursor-style-objects') {
           shouldRun = false;
+          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
           return;
         }
 
         if (node.querySelector && node.querySelector('#cursor-style-objects')) {
           shouldRun = false;
+          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
           return;
         }
       }
@@ -137,11 +142,13 @@ const observer = new MutationObserver((mutations) => {
       ) {
         if (node.id === 'cursor-style-objects') {
           shouldRun = true;
+          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
           return;
         }
 
         if (node.querySelector && node.querySelector('#cursor-style-objects')) {
           shouldRun = true;
+          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
           return;
         }
       }
