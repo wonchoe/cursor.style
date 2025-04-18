@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grubhubs', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('at');
-            $table->string('rt'); 
-            $table->datetime('updated'); 
+        Schema::create('cursor_translations', function (Blueprint $table) {
+            $table->id();
+            $table->string('lang', 5);
+            $table->unsignedBigInteger('cursor_id');
+            $table->string('name');
+            $table->timestamps();
+            $table->unique(['lang', 'cursor_id']);
         });
+        
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grubhubs');
+        Schema::dropIfExists('cursor_translations');
     }
 };
