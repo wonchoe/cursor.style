@@ -56,12 +56,12 @@
             <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-12">
                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
                     <div class="rounded-t mb-0 px-4 py-3 border-0">
-                        <div class="flex flex-wrap items-center">
-                        <div id="tableContainer" class="custom-feedback-container">
-                            <!-- The table will be dynamically inserted here -->
-                        </div>
+                        <div class="flex flex-wrap items-center feedbacktable">
+                            <div id="tableContainer" class="custom-feedback-container">
+                                <!-- The table will be dynamically inserted here -->
+                            </div>
 
-                        <button id="loadBtn">Load Feedback</button>
+                            <button id="loadBtn">Load Feedback</button>
                         </div>
                     </div>
                 </div>
@@ -253,6 +253,13 @@
 #loadBtn{
     background: #d5d5d5;
     padding: 9px 15px;
+}
+
+.feedbacktable{
+    display: flex
+;
+    flex-direction: column;
+    gap: 30px;
 }
 </style>
 
