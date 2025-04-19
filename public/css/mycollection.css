@@ -817,3 +817,11 @@ details {
   .emoji-container{
     width: 100%;
   }
+
+body:not(:has(#cursoreffect:checked)) #effects-container {
+    display: none;
+}
+
+body:has(#cursoreffect:checked) #effects-container {
+    display: block;
+}
