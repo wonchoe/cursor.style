@@ -250,7 +250,7 @@
     font-weight: bold;
 }
 
-.loadBtn{
+#loadBtn{
     background: #d5d5d5;
     padding: 9px 15px;
 }
