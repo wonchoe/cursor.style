@@ -194,9 +194,9 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    max-width: 800px;
+
 }
 
 .custom-feedback-table {
@@ -231,6 +231,7 @@
 .custom-feedback-table .timestamp {
     font-size: 14px;
     color: #888;
+    width: 222px;
 }
 
 .custom-feedback-container p {
@@ -256,10 +257,10 @@
 }
 
 .feedbacktable{
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     gap: 30px;
+    margin: 20px;
 }
 </style>
 
