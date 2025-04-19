@@ -296,14 +296,9 @@ class IndexController extends Controller
             }
         
             public function showFeedback(Request $request) {
-        //        if (!$request->session()->has('installed')) {
-        //            $request->session()->put('installed', 'value');
-        //            $stat = Analytic::firstOrNew(['date' => date_format(\Carbon\Carbon::now(), 'Y-m-d')]);
-        //            $stat->date = \Carbon\Carbon::now();
-        //            $stat->increment('uninstalls');
-        //            $stat->save();
-        //        }
-                return view('feedback');
+                return response()
+                ->view('feedback')
+                ->header('Cache-Tag', 'feedback');
             }    
 
     public function mycollection(Request $request)
