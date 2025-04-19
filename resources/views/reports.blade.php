@@ -50,8 +50,25 @@
         </section>          
 
 
-        <button id="loadBtn">Load Feedback</button>
-        <div id="tableContainer"></div>
+
+
+        <section class="py-1 bg-blueGray-50">
+            <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-12">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
+                    <div class="rounded-t mb-0 px-4 py-3 border-0">
+                        <div class="flex flex-wrap items-center">
+                        <div id="tableContainer" class="custom-feedback-container">
+                            <!-- The table will be dynamically inserted here -->
+                        </div>
+
+                        <button id="loadBtn">Load Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         
         
         @foreach($projects as $project => $data)
@@ -169,61 +186,125 @@
 
 
 
+        <style>
+/* Unique Class Names for Styling */
+.custom-feedback-container {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.custom-feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.custom-feedback-table th,
+.custom-feedback-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-feedback-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+}
+
+.custom-feedback-table td {
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+}
+
+.custom-feedback-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-feedback-table .timestamp {
+    font-size: 14px;
+    color: #888;
+}
+
+.custom-feedback-container p {
+    font-size: 18px;
+    color: #333;
+}
+
+.custom-feedback-container .loading-text {
+    color: #777;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.custom-feedback-container .error-message {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}
+</style>
 
 
         <script>
-    document.getElementById('loadBtn').addEventListener('click', async () => {
-      const container = document.getElementById('tableContainer');
-      container.innerHTML = 'Loading...';
+        document.getElementById('loadBtn').addEventListener('click', async () => {
+        const container = document.getElementById('tableContainer');
+        container.innerHTML = 'Loading...';
 
-      try {
-        const response = await fetch('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
+        try {
+            const response = await fetch('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
 
-        if (!data.feedbacks || data.feedbacks.length === 0) {
-          container.innerHTML = '<p>No feedback available.</p>';
-          return;
+            if (!data.feedbacks || data.feedbacks.length === 0) {
+            container.innerHTML = '<p>No feedback available.</p>';
+            return;
+            }
+
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+
+            ['Message', 'Created At'].forEach(text => {
+            const th = document.createElement('th');
+            th.textContent = text;
+            headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            data.feedbacks.forEach(item => {
+            const row = document.createElement('tr');
+
+            const messageCell = document.createElement('td');
+            messageCell.textContent = item.message;
+            row.appendChild(messageCell);
+
+            const dateCell = document.createElement('td');
+            const date = new Date(parseInt(item.createdAt));
+            dateCell.textContent = date.toLocaleString();
+            dateCell.classList.add('timestamp');
+            row.appendChild(dateCell);
+
+            tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+            container.innerHTML = '';
+            container.appendChild(table);
+        } catch (error) {
+            container.innerHTML = `<p style="color: red;">Error loading feedback: ${error.message}</p>`;
         }
-
-        const table = document.createElement('table');
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-
-        ['Message', 'Created At'].forEach(text => {
-          const th = document.createElement('th');
-          th.textContent = text;
-          headerRow.appendChild(th);
         });
-
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
-
-        const tbody = document.createElement('tbody');
-        data.feedbacks.forEach(item => {
-          const row = document.createElement('tr');
-
-          const messageCell = document.createElement('td');
-          messageCell.textContent = item.message;
-          row.appendChild(messageCell);
-
-          const dateCell = document.createElement('td');
-          const date = new Date(parseInt(item.createdAt));
-          dateCell.textContent = date.toLocaleString();
-          dateCell.classList.add('timestamp');
-          row.appendChild(dateCell);
-
-          tbody.appendChild(row);
-        });
-
-        table.appendChild(tbody);
-        container.innerHTML = '';
-        container.appendChild(table);
-      } catch (error) {
-        container.innerHTML = `<p style="color: red;">Error loading feedback: ${error.message}</p>`;
-      }
-    });
-  </script>
+        </script>
 
 
 
