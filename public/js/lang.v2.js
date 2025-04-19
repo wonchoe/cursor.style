@@ -24,7 +24,7 @@
 
     if (host === 'cursor.style' && !getCookie(cookieName)) {
         if (supportedLangs.includes(shortLang)) {
-            setCookie(cookieName, '1', 60 * 60);
+            setCookie(cookieName, '1', 60);
             const targetHost = `${shortLang}.cursor.style`;
             window.location.href = `https://${targetHost}${window.location.pathname}`;
         }
