@@ -23,7 +23,7 @@
     ];
 
     if (host === 'cursor.style' && !getCookie(cookieName)) {
-        if (supportedLangs.includes(shortLang)) {
+        if (supportedLangs.includes(shortLang) && shortLang !== 'en') {
             setCookie(cookieName, '1', 60);
             const targetHost = `${shortLang}.cursor.style`;
             window.location.href = `https://${targetHost}${window.location.pathname}`;
