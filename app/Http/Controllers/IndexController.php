@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use \Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http; 
 use DB;
 use Validator;
-use Illuminate\Support\Facades\Mail;
 use App\uninstalled;
 use Carbon\Carbon;
 use App\Models\cursor;
 use App\Models\categories;
 use App\Models\Analytic;
 use App\Models\CursorTranslation;
+
 use App;
 
 class IndexController extends Controller
@@ -138,32 +139,28 @@ class IndexController extends Controller
 
     public function sendEmailFeedback(Request $request)
     {
-        ini_set('memory_limit', '256M');
-        $validation = Validator::make($request->all(), [
-            'message' => 'required|min:10|max:500',
-            'g-recaptcha-response' => 'recaptcha',
+        $request->validate([
+            'message' => 'required|string|max:100',
         ]);
 
-        if ($validation->passes()) {
-            $data['message'] = $request->header('User-Agent') . '<br>' . $request->message;
-            $msg = '<b>' . $request->header('User-Agent') . '</b><hr><br>' . $request->message;
-            try {
-                Mail::send([], [], function ($message) use ($msg) {
-                    $message->to('cursorstylemail@gmail.com', 'Cursor.Style')
-                        ->subject('Uninstall')
-                        ->setBody($msg, 'text/html');
-                });
-            } catch (\Throwable $e) {
-                return ['result' => $e->getMessage()];
-            }
+        $message = $request->input('message');
 
-            if (count(Mail::failures()) > 0) {
-                return ['result' => Mail::failures()];
-            } else
-                return ['result' => true];
-        } else {
-            return $validation->errors();
-        }
+        // Асинхронно відправляємо запит до Lambda
+        Http::async()->post('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws', [
+            'message' => $message,
+        ])->then(
+            // Callback для успішного виконання
+            function ($response) {
+                \Log::info('Response from AWS:', $response->json());
+            },
+            // Callback для помилок
+            function ($exception) {
+                \Log::error('Error sending to AWS:', ['error' => $exception->getMessage()]);
+            }
+        );
+
+        // Одразу повертаємо відповідь користувачу
+        return redirect()->back()->with('success', true);
     }
 
     public function getAll()
@@ -269,40 +266,6 @@ class IndexController extends Controller
         return view('allcat', compact('cats', 'success'));
     }
 
-
-    public function sendEmail(Request $request) {
-        //        $validation = Validator::make($request->all(), [
-        //                    'name' => 'required|min:2|max:100',
-        //                    'email' => 'required|email',
-        //                    'subject' => 'required|min:2|max:100',
-        //                    'message' => 'required|min:10|max:500',
-        //                    'g-recaptcha-response' => 'recaptcha',
-        //        ]);
-        //        if ($validation->passes()) {
-        //
-        //            $data['name'] = $request->name;
-        //            $data['subject'] = $request->subject;
-        //            $data['email'] = $request->email;
-        //            $data['message'] = $request->message;
-        //
-        //            try {
-        //                Mail::send('mail', ['data' => $data], function ($message) use ($data) {
-        //                    $message->to('cursorstylemail@gmail.com', 'Cursor.Style')->subject($data['subject']);
-        //                    $message->from($data['email'], $data['name']);
-        //                });
-        //            } catch (\Throwable $e) {
-        //                return ['result' => $e->getMessage()];
-        //            }
-        //
-        //            if (count(Mail::failures()) > 0) {
-        //                return ['result' => Mail::failures()];
-        //            } else
-        //                return ['result' => true];
-        //        } else {
-        //            return $validation->errors();
-        //        }
-                return view('contact', ['success' => 'true']);
-            }
         
             public function setTopCursor(Request $request) {
         //        if ($request->type == 'stat') {
