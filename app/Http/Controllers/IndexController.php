@@ -146,18 +146,9 @@ class IndexController extends Controller
         $message = $request->input('message');
 
         // Асинхронно відправляємо запит до Lambda
-        Http::async()->post('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws', [
+        $response = Http::post('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws', [
             'message' => $message,
-        ])->then(
-            // Callback для успішного виконання
-            function ($response) {
-                \Log::info('Response from AWS:', $response->json());
-            },
-            // Callback для помилок
-            function ($exception) {
-                \Log::error('Error sending to AWS:', ['error' => $exception->getMessage()]);
-            }
-        );
+        ]);
 
         // Одразу повертаємо відповідь користувачу
         return redirect()->back()->with('success', true);
