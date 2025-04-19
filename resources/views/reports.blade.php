@@ -249,61 +249,68 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.loadBtn{
+    background: #d5d5d5;
+    padding: 9px 15px;
+}
 </style>
 
 
         <script>
         document.getElementById('loadBtn').addEventListener('click', async () => {
-        const container = document.getElementById('tableContainer');
-        container.innerHTML = 'Loading...';
+            const container = document.getElementById('tableContainer');
+            container.innerHTML = '<p class="loading-text">Loading...</p>';
 
-        try {
-            const response = await fetch('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws');
-            if (!response.ok) throw new Error('Network response was not ok');
-            const data = await response.json();
+            try {
+                const response = await fetch('https://i6bnl4iutvwekmi6ziw5vi7bxi0hwclp.lambda-url.us-east-1.on.aws');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
 
-            if (!data.feedbacks || data.feedbacks.length === 0) {
-            container.innerHTML = '<p>No feedback available.</p>';
-            return;
+                if (!data.feedbacks || data.feedbacks.length === 0) {
+                    container.innerHTML = '<p>No feedback available.</p>';
+                    return;
+                }
+
+                const table = document.createElement('table');
+                table.classList.add('custom-feedback-table');
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+
+                ['Message', 'Created At'].forEach(text => {
+                    const th = document.createElement('th');
+                    th.textContent = text;
+                    headerRow.appendChild(th);
+                });
+
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+                data.feedbacks.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    const messageCell = document.createElement('td');
+                    messageCell.textContent = item.message;
+                    row.appendChild(messageCell);
+
+                    const dateCell = document.createElement('td');
+                    const date = new Date(parseInt(item.createdAt));
+                    dateCell.textContent = date.toLocaleString();
+                    dateCell.classList.add('timestamp');
+                    row.appendChild(dateCell);
+
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(tbody);
+                container.innerHTML = '';
+                container.appendChild(table);
+            } catch (error) {
+                container.innerHTML = `<p class="error-message">Error loading feedback: ${error.message}</p>`;
             }
-
-            const table = document.createElement('table');
-            const thead = document.createElement('thead');
-            const headerRow = document.createElement('tr');
-
-            ['Message', 'Created At'].forEach(text => {
-            const th = document.createElement('th');
-            th.textContent = text;
-            headerRow.appendChild(th);
-            });
-
-            thead.appendChild(headerRow);
-            table.appendChild(thead);
-
-            const tbody = document.createElement('tbody');
-            data.feedbacks.forEach(item => {
-            const row = document.createElement('tr');
-
-            const messageCell = document.createElement('td');
-            messageCell.textContent = item.message;
-            row.appendChild(messageCell);
-
-            const dateCell = document.createElement('td');
-            const date = new Date(parseInt(item.createdAt));
-            dateCell.textContent = date.toLocaleString();
-            dateCell.classList.add('timestamp');
-            row.appendChild(dateCell);
-
-            tbody.appendChild(row);
-            });
-
-            table.appendChild(tbody);
-            container.innerHTML = '';
-            container.appendChild(table);
-        } catch (error) {
-            container.innerHTML = `<p style="color: red;">Error loading feedback: ${error.message}</p>`;
-        }
         });
+
         </script>
 
 
