@@ -143,7 +143,7 @@
 
         <div class="header">
             <div class="container">
-                <a class="logo" href="/"><img src="/images/logo.png" alt="@lang('messages.cursor_style')"
+                <a class="logo" href="/"><img src="/images/logo.webp" alt="@lang('messages.cursor_style')"
                         title="@lang('messages.cursor_style_logo_title')" /></a>
 
                 <div class="nav">
