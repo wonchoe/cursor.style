@@ -37,7 +37,7 @@ class grubhub_schedule_cmd extends Command
             if (($item['type'] == 'OPEN') && (intval($item['couriers_needed']) > 0)){  
                 $datetime = intval(date('G', strtotime($item["start"])));
                 if (($datetime>=11) && ($datetime<=19)){
-                    $this->setSchedule($str, $item);
+                  //  $this->setSchedule($str, $item);
                 }
             }
         }
@@ -64,7 +64,7 @@ if (!empty($response)) {
         $str = Grubhub::first();  
                
         if (date("w") == '6'){
-                // $response = $this->checkSchedule($str);
+                $response = $this->checkSchedule($str);
         }
 	$response = $this->checkDate($response);
 	

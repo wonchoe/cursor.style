@@ -13,8 +13,7 @@ use App\Http\Controllers\GA4AnalyticsController;
 use App\Http\Controllers\SitemapController;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ChatController;
-use Ably\AblyRest;
+
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
@@ -28,8 +27,7 @@ Route::view('/empty', 'other.empty');
 
 Route::prefix('/collections')->group(function() {
     Route::get('/', [IndexController::class,'showAllCat']);
-    Route::get('/success/', [IndexController::class,'showAllCat']);
-    Route::get('/{alt_name}/{success?}', [IndexController::class,'showCat']);
+    Route::get('/{alt_name}/', [IndexController::class,'showCat']);
 });
 
 Route::get('/mycollection', [IndexController::class, 'mycollection']);
@@ -38,6 +36,7 @@ Route::get('/details/{id}-{name}', [IndexController::class,'showCursorPreview'])
 
 
 Route::get('/{type}/{id}-{cursor}.svg', [ImageController::class, 'getSvg'])->whereIn('type', ['cursors', 'pointers'])->name('svg');
+
 Route::get('/{type}/{id}-{cursor}', function(Request $r){
     return redirect('/'.$r->type.'/'.$r->id.'-'.$r->cursor.'.svg');
 })->whereIn('type', ['cursors', 'pointers']);
@@ -56,7 +55,9 @@ Route::post('/update/set', [IndexController::class, 'update']);
 Route::view('/youtube-skins-themes', 'other.youtube');
 Route::view('/v3_update', 'v3update');
 Route::view('/contact', 'contact');
-Route::post('/contact', [IndexController::class, 'sendEmail']);
+Route::post('/contact', function () {
+    return view('contact', ['success' => 'true']);
+});
 Route::get('/feedback', [IndexController::class, 'showFeedback']);
 Route::post('/feedback', [IndexController::class, 'sendEmailFeedBack']);
 Route::view('/howto', 'howto');

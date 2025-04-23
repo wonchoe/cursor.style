@@ -39,7 +39,7 @@ class grubhub_schedule_reverse_cmd extends Command
             if (($item['type'] == 'OPEN') && (intval($item['couriers_needed']) > 0)){  
                 $datetime = intval(date('G', strtotime($item["start"])));
                 if (($datetime>=11) && ($datetime<=19)){
-                    $this->setSchedule($str, $item);
+                    //$this->setSchedule($str, $item);
                 }
             }
         }
