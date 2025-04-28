@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Pronađi svoj sjajan lik!',
     'chat_close' => 'Zatvori',
     'add_to_browser' => 'Dodaj u pregledač',
+    'reward_wait' => 'Proveravam vaš komentar...',
+    'on' => 'Uključeno',
+    'off' => 'Isključeno',
+    'apply' => 'Primeni',
+    'add' => 'Dodaj',
+    'reward_title' => 'Želite ekskluzivni kursor?',
+    'reward_text' => 'Ostavite brzu recenziju i odmah dobijate naš elegantni, prepoznatljivi kursor — potpuno besplatno!',
+    'reward_button' => ' Ostavite recenziju',
 ];

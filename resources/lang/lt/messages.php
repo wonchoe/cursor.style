@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Raskite savo nuostabų personažą!',
     'chat_close' => 'Uždaryti',
     'add_to_browser' => 'Pridėti į naršyklę',
+    'reward_wait' => 'Tikrinamas jūsų komentaras...',
+    'on' => 'Įjungta',
+    'off' => 'Išjungta',
+    'apply' => 'Pritaikyti',
+    'add' => 'Pridėti',
+    'reward_title' => 'Norite gauti išskirtinį žymeklį?',
+    'reward_text' => 'Palikite trumpą atsiliepimą ir iškart gaukite mūsų stilingą firminį žymeklį — visiškai nemokamai!',
+    'reward_button' => ' Palikti atsiliepimą',
 ];

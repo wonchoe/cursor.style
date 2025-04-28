@@ -40,12 +40,29 @@
             <div class="newblock" id="newblock"></div>
 
             
+            <div class="cursor-reward-banner" id="rewardBanner">
+                <div id="rewardBlock">
+                    <div class="cursor-images">
+                        <img src="/cursors/2082-cursor-style-cursor.svg" alt="Cursor" class="cursor-img">
+                        <img src="/pointers/2082-cursor-style-pointer.svg" alt="Pointer" class="cursor-img">
+                    </div>
+                    <div class="cursor-text" id="rewardText">
+                        <h2><img class="gift" src="/images/gift.svg">@lang('messages.reward_title')</h2>
+                        <p>@lang('messages.reward_text')</p>
+                        <button onclick="startLoading()" class="cursor-btn">@lang('messages.reward_button')</button>
+                    </div>
+                </div>
+                <div class="cursor-loader" id="loader" style="display: none;">
+                    <img src="images/loader.svg" alt="Loading...">
+                    <p>⏳ @lang('messages.reward_wait')</p>
+                </div>
+            </div>
+
             <div class="seo-block collapsed" id="seoBlock">
                 @include('layouts.banner')
                 <p class="seo-info">                    
                     @lang('messages.discover_the_magic')
-                    <button class="seo-toggle"
-                        onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">@lang('messages.read_more')</button>
+                    <button class="seo-toggle" onclick="document.getElementById('seoBlock').classList.remove('collapsed'); this.remove()">@lang('messages.read_more')</button>
                 </p>
                 <div class="seo-text">
                     <p> 
@@ -60,24 +77,24 @@
                 <div class="wrapper tabs-wrapper">
                     <nav class="tabs">
                         <a href="/" class="cur_menu {{ request()->is('/') ? 'active' : '' }}">
-                            <span class="tab-icon">🆕</span>@lang('messages.main_page_menu_2')
+                            <span class="icon-new"></span>@lang('messages.main_page_menu_2')
                         </a>
                         <a href="/popular" class="cur_menu {{ request()->is('popular') ? 'active' : '' }}">
-                            <span class="tab-icon">🔥</span>@lang('messages.main_page_menu_1')
+                            <span class="icon-top"></span>@lang('messages.main_page_menu_1')
                         </a>
                         <a href="/collections" class="cur_menu {{ request()->is('collections') ? 'active' : '' }}">
-                            <span class="tab-icon">🎨</span>@lang('messages.main_page_menu_4')
+                            <span class="icon-collection"></span>@lang('messages.main_page_menu_4')
                         </a>
                     </nav>
                     <div class="search-wrapper">
                         <form action="/" method="GET">
-                            <span class="search-icon">🔍</span>
-                            <input type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')"
-                                aria-label="Search">
+                            <span class="icon-search"></span>
+                            <input type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')" aria-label="Search">
                         </form>
                     </div>
                 </div>
             </div>
+            
             <div class="main__list" id="main_list">
                 @forelse($cursors as $key => $cursor)
                     @if ($key > 0 && $key % 16 === 0)
@@ -88,29 +105,49 @@
                         </div>
                     @endif
 
-                    <div class="main__item" onclick="handleItemClick(event, '/details/{{$cursor->id}}-{{$cursor->name_s}}')">          
+                    <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{$cursor->id}}-{{$cursor->name_s}}')">          
                         <div class="div_ar_p">
                             <p>@lang('cursors.c_' . $cursor->id) </p>
                         </div>
                         <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                            <img class="cursorimg"
-                                style="cursor: url(/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
+                            <img class="cursorimg" style="cursor: url(/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
                                 src="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg">
-                            <img class="cursorimg"
-                                style="cursor: url(/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
+                            <img class="cursorimg"  style="cursor: url(/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
                                 src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                         </div>
+
                         <div class="main__btns">
-                            <button data-type="stat" class="cursor-button" data-label="@lang('messages.add_to_collection')"
-                                data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
-                                data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
-                                data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
-                                data-catbasename="@lang('collections.' . $cursor->collection->alt_name)" data-cat="{{ $cursor->cat }}"
-                                data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
-                                data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
-                                data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
-                                data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg"></button>
+                                <div class="btn-container">                                    
+                                    <span class="pointerevent">
+                                        <button class="img-btn" data-action="apply" data-type="stat" data-label="@lang('messages.add_to_collection')"
+                                        data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
+                                        data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename="@lang('collections.' . $cursor->collection->alt_name)" data-cat="{{ $cursor->cat }}"
+                                        data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
+                                        data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                        data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                        data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                        data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                            <img title="Apply" src="/images/apply.svg">
+                                        </button>
+                                    </span>
+
+                                    <span class="pointerevent">
+                                        <button class="img-btn" data-action="add" data-type="stat" data-label="@lang('messages.add_to_collection')"
+                                        data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
+                                        data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename="@lang('collections.' . $cursor->collection->alt_name)" data-cat="{{ $cursor->cat }}"
+                                        data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
+                                        data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                        data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                        data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                        data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                            <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
+                                        </button>
+                                    </span>
+                                </div>
                         </div>
                     </div>
                 @empty
@@ -140,7 +177,7 @@
 
     @include('layouts.install')
 
-    </div>
+
 
     @if ($cursors->lastPage() > 1)
 

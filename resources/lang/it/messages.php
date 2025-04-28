@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Trova il tuo fantastico personaggio!',
     'chat_close' => 'Chiudi',
     'add_to_browser' => 'Aggiungi al browser',
+    'reward_wait' => 'Verifica del tuo commento...',
+    'on' => 'Attiva',
+    'off' => 'Disattiva',
+    'apply' => 'Applica',
+    'add' => 'Aggiungi',
+    'reward_title' => 'Vuoi ottenere un cursore esclusivo?',
+    'reward_text' => 'Lascia una rapida recensione e ricevi subito il nostro elegante cursore esclusivo, assolutamente gratis!',
+    'reward_button' => ' Lascia una recensione',
 ];

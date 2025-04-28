@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Löydä mahtava hahmosi!',
     'chat_close' => 'Sulje',
     'add_to_browser' => 'Lisää selaimeen',
+    'reward_wait' => 'Tarkistetaan kommenttiasi...',
+    'on' => 'Päällä',
+    'off' => 'Pois päältä',
+    'apply' => 'Käytä',
+    'add' => 'Lisää',
+    'reward_title' => 'Haluatko eksklusiivisen kursorin?',
+    'reward_text' => 'Jätä nopea arvostelu ja saat heti tyylikkään tunnusomaisen kursorimme — täysin ilmaiseksi!',
+    'reward_button' => ' Jätä arvostelu',
 ];

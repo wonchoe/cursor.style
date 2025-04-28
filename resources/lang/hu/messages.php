@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Találd meg a klassz karaktered!',
     'chat_close' => 'Bezárás',
     'add_to_browser' => 'Hozzáadás a böngészőhöz',
+    'reward_wait' => 'A hozzászólásod ellenőrzése...',
+    'on' => 'Be',
+    'off' => 'Ki',
+    'apply' => 'Alkalmaz',
+    'add' => 'Hozzáadás',
+    'reward_title' => 'Szeretnél egy exkluzív kurzort?',
+    'reward_text' => 'Hagyj egy gyors véleményt, és azonnal megkapod stílusos, jellegzetes kurzorunkat – teljesen ingyen!',
+    'reward_button' => ' Véleményezés',
 ];

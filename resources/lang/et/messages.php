@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Leia oma vinge tegelane!',
     'chat_close' => 'Sulge',
     'add_to_browser' => 'Lisa brauserisse',
+    'reward_wait' => 'Kommentaari kinnitamine...',
+    'on' => 'Sees',
+    'off' => 'Väljas',
+    'apply' => 'Rakenda',
+    'add' => 'Lisa',
+    'reward_title' => 'Kas soovite saada eksklusiivset kursorit?',
+    'reward_text' => 'Jätke kiire arvustus ja saate koheselt meie stiilse signatuurkursori — täiesti tasuta!',
+    'reward_button' => ' Jäta arvustus',
 ];

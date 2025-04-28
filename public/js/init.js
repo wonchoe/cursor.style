@@ -139,5 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function handleItemClick(event, url) {
   if (event.target.closest('.cursor-button')) return;
+  if (event.target.closest('.pointerevent')) return;
   window.location.href = url;
 }

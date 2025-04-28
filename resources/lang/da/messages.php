@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Find din fantastiske karakter!',
     'chat_close' => 'Luk',
     'add_to_browser' => 'Føj til browser',
+    'reward_wait' => 'Verificerer din kommentar...',
+    'on' => 'Til',
+    'off' => 'Fra',
+    'apply' => 'Anvend',
+    'add' => 'Tilføj',
+    'reward_title' => 'Vil du have en eksklusiv markør?',
+    'reward_text' => 'Skriv en hurtig anmeldelse og modtag øjeblikkeligt vores stilfulde signaturmarkør – helt gratis!',
+    'reward_button' => 'Skriv en anmeldelse',
 ];

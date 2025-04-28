@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Vind je geweldige karakter!',
     'chat_close' => 'Sluiten',
     'add_to_browser' => 'Aan browser toevoegen',
+    'reward_wait' => 'Je reactie wordt gecontroleerd...',
+    'on' => 'Aan',
+    'off' => 'Uit',
+    'apply' => 'Toepassen',
+    'add' => 'Toevoegen',
+    'reward_title' => 'Wilt u een exclusieve cursor?',
+    'reward_text' => 'Plaats een snelle review en ontvang direct onze stijlvolle kenmerkende cursor - helemaal gratis!',
+    'reward_button' => 'Plaats een review',
 ];

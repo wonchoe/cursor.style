@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'c_2082' => 'Cursor Style',
     'c_2081' => 'Watermelon',
     'c_2080' => 'Glove',
     'c_2079' => 'White triangle',

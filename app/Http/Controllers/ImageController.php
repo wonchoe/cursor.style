@@ -58,7 +58,7 @@ class ImageController extends Controller {
         if ($find) {
             $part_one = substr($file, 0, $find);
             $part_two = substr($file, $find, strlen($file) - $find);
-            $copyright = '<desc>cursor-land.com</desc>';
+            $copyright = '<desc>cursor-style.com</desc>';
             $full_str = $part_one . $copyright . $part_two;
         }
         $cursors_folder = $this->createCursorsImagesFolders();

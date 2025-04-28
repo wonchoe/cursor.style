@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Trouvez votre personnage génial !',
     'chat_close' => 'Fermer',
     'add_to_browser' => 'Ajouter au navigateur',
+    'reward_wait' => 'Vérification de votre commentaire...',
+    'on' => 'Activé',
+    'off' => 'Désactivé',
+    'apply' => 'Appliquer',
+    'add' => 'Ajouter',
+    'reward_title' => 'Vous voulez obtenir un curseur exclusif ?',
+    'reward_text' => 'Laissez un avis rapide et recevez instantanément notre élégant curseur signature — absolument gratuit !',
+    'reward_button' => ' Laisser un avis',
 ];

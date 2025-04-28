@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Atrasti savu lielisko tēlu!',
     'chat_close' => 'Aizvērt',
     'add_to_browser' => 'Pievienot pārlūkam',
+    'reward_wait' => 'Notiek komentāra pārbaude...',
+    'on' => 'Ieslēgts',
+    'off' => 'Izslēgts',
+    'apply' => 'Piemērot',
+    'add' => 'Pievienot',
+    'reward_title' => 'Vēlies iegūt ekskluzīvu kursoru?',
+    'reward_text' => 'Atstājiet ātru atsauksmi un nekavējoties saņemiet mūsu stilīgo paraksta kursoru — pilnīgi bez maksas!',
+    'reward_button' => 'Atstāt atsauksmi',
 ];

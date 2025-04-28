@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Hitta din fantastiska karaktär!',
     'chat_close' => 'Stäng',
     'add_to_browser' => 'Lägg till i webbläsaren',
+    'reward_wait' => 'Verifierar din kommentar...',
+    'on' => 'På',
+    'off' => 'Av',
+    'apply' => 'Använd',
+    'add' => 'Lägg till',
+    'reward_title' => 'Vill du ha en exklusiv markör?',
+    'reward_text' => 'Lämna en snabb recension och få omedelbart vår snygga signaturmarkör – helt gratis!',
+    'reward_button' => ' Lämna en recension',
 ];

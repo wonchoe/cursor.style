@@ -44,8 +44,28 @@ class IndexController extends Controller
             abort(404);
         }
 
-        $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->where('id', '>=', $r->id)->orderBy('id', 'ASC')->limit(2);
-        $cursors2 = cursor::whereDate('schedule', '<=', Carbon::today())->where('id', '<', $r->id)->orderBy('id', 'DESC')->limit(1)->union($cursors)->get();
+        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
+
+        $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->where('id', '<>', $excludeId)->where('id', '>=', $r->id)->orderBy('id', 'ASC')->limit(2);
+        $cursors2 = cursor::whereDate('schedule', '<=', Carbon::today())->where('id', '<>', $excludeId)->where('id', '<', $r->id)->orderBy('id', 'DESC')->limit(1)->union($cursors)->get();
+
+
+        $collections = categories::all();
+
+        foreach ($cursors as $cursorItem) {
+            $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
+            $cursorItem->collection = $collections->first(
+                fn($item) => $item->id == $cursorItem->cat
+            );
+        }
+
+        foreach ($cursors2 as $cursorItem) {
+            $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
+            $cursorItem->collection = $collections->first(
+                fn($item) => $item->id == $cursorItem->cat
+            );
+        }        
+
 
         foreach ($cursors2 as $key => $cursor) {
             $cursors2[$key]->name_s = $this->cleanStr($cursors2[$key]->name_en);
@@ -64,18 +84,22 @@ class IndexController extends Controller
         if (!isset($id_next))
             $id_next = null;
 
-        $collections = categories::all();
-
         //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
         $random_cat = $collections->random(3);
 
 
-        return view('cursor', ['random_cat' => $random_cat, 'all_cursors' => $cursors2, 'cursor' => $cursors2[1] ?? null, 'id_prev' => $id_prev, 'id_next' => $id_next]);
+        return response()
+            ->view('cursor', [
+            'random_cat' => $random_cat, 
+            'all_cursors' => $cursors2, 
+            'cursor' => $cursors2[1] ?? null, 
+            'id_prev' => $id_prev, 
+            'id_next' => $id_next])->header('Cache-Tag', 'details');;
     }
 
     public function show(Request $r)
     {
-        $order = 'asc';
+        $order = 'desc';
         $sort = 'id';
 
         if ($r->type === 'popular') {
@@ -87,19 +111,21 @@ class IndexController extends Controller
         }
 
         $query = $r->q;
-
+        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
+        
         if ($query) {
             $ids = CursorTranslation::where('name', 'LIKE', "%{$query}%")
                 ->pluck('cursor_id')
                 ->unique();
-
             $cursors = cursor::whereIn('id', $ids)
                 ->whereDate('schedule', '<=', Carbon::today())
+                ->where('id', '<>', $excludeId)
                 ->orderBy($sort, $order)
                 ->paginate(32);
         } else {
             $cursors = cursor::whereDate('schedule', '<=', Carbon::today())
                 ->orderBy($sort, $order)
+                ->where('id', '<>', $excludeId)
                 ->paginate(32);
         }
 
@@ -112,11 +138,11 @@ class IndexController extends Controller
             );
         }
 
-        return view('index', [
+        return response()->view('index', [
             'cursors' => $cursors,
             'query' => $query,
             'sort' => $sort
-        ]);
+        ])->header('Cache-Tag', 'index');
     }
 
     public function showJsLang()
@@ -209,7 +235,7 @@ class IndexController extends Controller
         return $value;
     }
 
-    public function showCat($alt_name, $success = false)
+    public function showCat($alt_name, Request $r)
     {
 
         $this->alt_name = $alt_name;
@@ -220,7 +246,13 @@ class IndexController extends Controller
         if (!$collection)
             abort(404);
 
-        $items = cursor::whereDate('schedule', '<=', Carbon::today())->where('cat', '=', $collection->id)->orderBy('id')->get();
+
+        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
+
+        $items = cursor::whereDate('schedule', '<=', Carbon::today())->
+        where('cat', '=', $collection->id)->
+        where('id', '<>', $excludeId)->
+        orderBy('id')->get();
 
         for ($i = 0; $i < count($items); $i++) {
             $items[$i]->seo_link = $items[$i]->id . '/' . strtolower($alt_name) . '/' . strtolower(transliterator_transliterate('Russian-Latin/BGN', str_replace(' ', '_', $items[$i]->name)));
@@ -238,7 +270,7 @@ class IndexController extends Controller
         //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
         $random_cat = $collections->random(3);
 
-        return view('cat', ['alt_name' => $alt_name, 'cursors' => $items, 'collection' => $collection, 'random_cat' => $random_cat]);
+        return response()->view('cat', ['alt_name' => $alt_name, 'cursors' => $items, 'collection' => $collection, 'random_cat' => $random_cat])->header('Cache-Tag', 'collection');;
     }
 
     public function showAllCat2(Request $r)
@@ -254,7 +286,7 @@ class IndexController extends Controller
         $url = $_SERVER['REQUEST_URI'];
         $success = (strpos($url, 'success') > 0) ? true : false;
         $cats = $this->getAllCategories()['data_cat'];
-        return view('allcat', compact('cats', 'success'));
+        return response()->view('allcat', compact('cats', 'success'))->header('Cache-Tag', 'collections');
     }
 
         

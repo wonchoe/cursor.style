@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Temukan karaktermu yang luar biasa!',
     'chat_close' => 'Tutup',
     'add_to_browser' => 'Tambahkan ke peramban',
+    'reward_wait' => 'Memverifikasi komentar Anda...',
+    'on' => 'Aktif',
+    'off' => 'Nonaktif',
+    'apply' => 'Terapkan',
+    'add' => 'Tambah',
+    'reward_title' => 'Ingin mendapatkan kursor eksklusif?',
+    'reward_text' => 'Berikan ulasan singkat dan langsung dapatkan kursor khas bergaya kami — benar-benar gratis!',
+    'reward_button' => 'Berikan ulasan',
 ];

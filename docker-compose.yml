@@ -10,7 +10,7 @@ services:
     hostname: mysqlhost
     volumes:
       - type: bind
-        source: "/docker/database"
+        source: "./docker/database"
         target: /var/lib/mysql/
 
   web:

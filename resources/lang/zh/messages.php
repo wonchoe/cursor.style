@@ -75,4 +75,12 @@ return [
     'chat_message' => '消息',
     'chat_type_your_message' => '输入你的消息',
     'chat_edit_profile' => '编辑资料',
+    'reward_wait' => '正在验证您的评论...',
+    'on' => '开',
+    'off' => '关',
+    'apply' => '应用',
+    'add' => '添加',
+    'reward_title' => '想要获得独家光标吗？',
+    'reward_text' => '留下快速评论，即可 instant 获得我们时尚的标志性光标——完全免费！',
+    'reward_button' => ' 留下评论',
 ];

@@ -75,4 +75,12 @@ return [
     'cursor_assistance' => '커서 지원',
     'chat_cancel' => '취소',
     'chat_register' => '등록',
+    'reward_wait' => '댓글을 확인하는 중...',
+    'on' => '켜기',
+    'off' => '끄기',
+    'apply' => '적용',
+    'add' => '추가',
+    'reward_title' => '독점 커서를 원하시나요?',
+    'reward_text' => '빠른 리뷰를 남기시면 저희의 세련된 시그니처 커서를 즉시 받으실 수 있습니다 — 완전 무료로!',
+    'reward_button' => ' 리뷰 남기기',
 ];

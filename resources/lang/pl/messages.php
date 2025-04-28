@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Znajdź swoją niesamowitą postać!',
     'chat_close' => 'Zamknij',
     'add_to_browser' => 'Dodaj do przeglądarki',
+    'reward_wait' => 'Sprawdzanie Twojego komentarza...',
+    'on' => 'Włączone',
+    'off' => 'Wyłączone',
+    'apply' => 'Zastosuj',
+    'add' => 'Dodaj',
+    'reward_title' => 'Chcesz zdobyć ekskluzywny kursor?',
+    'reward_text' => 'Zostaw szybką recenzję i natychmiast otrzymaj nasz stylowy, sygnowany kursor — zupełnie za darmo!',
+    'reward_button' => ' Zostaw recenzję',
 ];

@@ -1,19 +1,34 @@
 #!/bin/bash
 set -e
+set -x
 
-echo "▶ Running prepare.sh..."
-if [[ -f /var/prepare.sh ]]; then
-    /var/prepare.sh
-else
-    echo "❌ prepare.sh not found"
+function deploy_composer {
+    cd "$1" || exit 1
+
+    if [ ! -d "vendor" ]; then
+        echo "▶ Installing composer dependencies in /var/www/cursor.style"
+        composer install --no-dev --no-interaction --prefer-dist -vvv
+    else
+        echo "▶ Vendor directory already exists, skipping composer install."
+    fi
+
+    echo "▶ Linking storage..."
+    rm -f public/storage public/collection public/cursors public/pointers
+    php artisan storage:link --force
+}
+
+deploy_composer /var/www/cursor.style
+
+
+echo "▶ Starting PHP-FPM..."
+php-fpm8.3 -F &
+PHP_PID=$!
+
+sleep 2
+if ! ps -p $PHP_PID > /dev/null; then
+    echo "❌ PHP-FPM не запустився"
     exit 1
 fi
 
-echo "▶ Starting PHP-FPM..."
-service php8.3-fpm start
-
-echo "▶ Testing NGINX config..."
-nginx -t
-
 echo "▶ Starting NGINX..."
-nginx -g 'daemon off;'
+exec nginx -g 'daemon off;'

@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Harika karakterinizi bulun!',
     'chat_close' => 'Kapat',
     'add_to_browser' => 'Tarayıcıya ekle',
+    'reward_wait' => 'Yorumunuz doğrulanıyor...',
+    'on' => 'Açık',
+    'off' => 'Kapalı',
+    'apply' => 'Uygula',
+    'add' => 'Ekle',
+    'reward_title' => 'Özel bir imleç mi istiyorsunuz?',
+    'reward_text' => 'Hızlı bir yorum bırakın ve anında şık özel imlecimizi alın — tamamen ücretsiz!',
+    'reward_button' => ' Bir yorum bırakın',
 ];

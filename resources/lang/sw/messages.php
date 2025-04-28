@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Pata mhusika wako mzuri!',
     'chat_close' => 'Funga',
     'add_to_browser' => 'Ongeza kwenye kivinjari',
+    'reward_wait' => 'Inathibitisha maoni yako...',
+    'on' => 'Washa',
+    'off' => 'Zima',
+    'apply' => 'Tumia',
+    'add' => 'Ongeza',
+    'reward_title' => 'Unataka kupata kishale cha kipekee?',
+    'reward_text' => 'Acha hakiki ya haraka na upate mara moja kishale chetu cha saini maridadi — bila malipo kabisa!',
+    'reward_button' => ' Acha hakiki',
 ];

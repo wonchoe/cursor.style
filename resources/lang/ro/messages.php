@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Găsește-ți personajul uimitor!',
     'chat_close' => 'Închide',
     'add_to_browser' => 'Adaugă în browser',
+    'reward_wait' => 'Verificarea comentariului...',
+    'on' => 'Activat',
+    'off' => 'Dezactivat',
+    'apply' => 'Aplică',
+    'add' => 'Adaugă',
+    'reward_title' => 'Vrei să obții un cursor exclusiv?',
+    'reward_text' => 'Lasă un scurt comentariu și primești instantaneu cursorul nostru distinctiv și elegant — complet gratuit!',
+    'reward_button' => ' Lasă un comentariu',
 ];

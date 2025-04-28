@@ -75,4 +75,12 @@ return [
     'footer_term_of_use' => '利用規約',
     'main_page_search' => '検索',
     'chat_register' => '登録',
+    'reward_wait' => 'コメントを検証しています...',
+    'on' => 'オン',
+    'off' => 'オフ',
+    'apply' => '適用',
+    'add' => '追加',
+    'reward_title' => '限定カーソルを手に入れませんか？',
+    'reward_text' => '簡単なレビューを書いて、すぐに私たちのスタイリッシュなシグネチャーカーソルを無料で受け取りましょう！',
+    'reward_button' => ' レビューを書く',
 ];

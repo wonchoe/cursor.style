@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Find your awesome character!',
     'chat_close' => 'Close',
     'add_to_browser' => 'Add to browser',
+    'reward_wait' => 'Verifying your comment...',
+    'on' => 'On',
+    'off' => 'Off',
+    'apply' => 'Apply',
+    'add' => 'Add',
+    'reward_title' => 'Want to get an exclusive cursor?',
+    'reward_text' => 'Leave a quick review and instantly receive our stylish signature cursor — absolutely free!',
+    'reward_button' => ' Leave a review',
 ];

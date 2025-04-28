@@ -2,7 +2,7 @@
      crossorigin="anonymous"></script>
 <!-- cursor.style-sides -->
 <ins class="adsbygoogle"
-     style="display:inline-block;width:180px;height:728px"
+     style="display:inline-block;width:250px;height:728px"
      data-ad-client="ca-pub-2990484856526951"
      data-ad-slot="3839794778"></ins>
 <script>

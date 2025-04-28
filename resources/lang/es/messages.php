@@ -75,4 +75,12 @@ return [
     'chat_choose_avatar' => 'Elegir avatar',
     'chat_find_your_character' => '¡Encuentra tu personaje increíble!',
     'chat_close' => 'Cerrar',
+    'reward_title' => '¿Quieres obtener un cursor exclusivo?',
+    'reward_text' => 'Deja una reseña rápida y recibe al instante nuestro elegante cursor exclusivo, ¡completamente gratis!',
+    'reward_button' => 'Dejar una reseña',
+    'reward_wait' => 'Verificando tu comentario...',
+    'on' => 'Encendido',
+    'off' => 'Apagado',
+    'apply' => 'Aplicar',
+    'add' => 'Añadir',
 ];

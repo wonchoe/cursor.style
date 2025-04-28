@@ -118,17 +118,38 @@
                                         src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                                 </div>
                                 <div class="main__btns">
-                                    <button data-type="stat" class="cursor-button" data-label="@lang('messages.add_to_collection')"
-                                    data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
-                                    data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
-                                    data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
-                                    data-catbasename="@lang('collections.' . $cursor->collection->alt_name)" data-cat="{{ $cursor->cat }}"
-                                    data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
-                                    data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
-                                    data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                    data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
-                                    data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg"></button>
+                                <div class="btn-container">                                    
+                                    <span class="pointerevent">
+                                        <button class="img-btn" data-action="apply" data-type="stat" data-label="@lang('messages.add_to_collection')"
+                                        data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
+                                        data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename="@lang('collections.' . $cursor->collection->alt_name)" data-cat="{{ $cursor->cat }}"
+                                        data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
+                                        data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                        data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                        data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                        data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                            <img title="Apply" src="/images/apply.svg">
+                                        </button>
+                                    </span>
+
+                                    <span class="pointerevent">
+                                        <button class="img-btn" data-action="add" data-type="stat" data-label="@lang('messages.add_to_collection')"
+                                        data-disabled="@lang('messages.add_to_collection_added')" data-cataltname="{{ $cursor->collection->alt_name }}"
+                                        data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
+                                        data-catbasename="@lang('collections.' . $cursor->collection->alt_name)" data-cat="{{ $cursor->cat }}"
+                                        data-id="{{ $cursor->id }}" data-name="@lang('cursors.c_' . $cursor->id)"
+                                        data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                        data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                        data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                        data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                            <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
+                                        </button>
+                                    </span>
                                 </div>
+                        </div>
                             </div>
                         @empty
                             @include('other.nocursors')
@@ -161,7 +182,6 @@
     </div>
 
 
-    </div>
 
 
     @include('layouts.install')

@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Tìm nhân vật tuyệt vời của bạn!',
     'chat_close' => 'Đóng',
     'add_to_browser' => 'Thêm vào trình duyệt',
+    'reward_wait' => 'Đang xác minh bình luận của bạn...',
+    'on' => 'Bật',
+    'off' => 'Tắt',
+    'apply' => 'Áp dụng',
+    'add' => 'Thêm',
+    'reward_title' => 'Bạn muốn có một con trỏ độc quyền?',
+    'reward_text' => 'Để lại một đánh giá nhanh và nhận ngay con trỏ đặc trưng sành điệu của chúng tôi — hoàn toàn miễn phí!',
+    'reward_button' => 'Để lại đánh giá',
 ];

@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Troba el teu personatge impressionant!',
     'chat_close' => 'Tancar',
     'add_to_browser' => 'Afegeix al navegador',
+    'reward_wait' => 'Verificant el teu comentari...',
+    'on' => 'Activat',
+    'off' => 'Desactivat',
+    'apply' => 'Aplica',
+    'add' => 'Afegeix',
+    'reward_title' => 'Vols aconseguir un cursor exclusiu?',
+    'reward_text' => 'Deixa una ressenya ràpida i rep a l\'instant el nostre elegant cursor insígnia: totalment gratis!',
+    'reward_button' => ' Deixa una ressenya',
 ];

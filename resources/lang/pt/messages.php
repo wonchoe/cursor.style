@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Encontre a sua personagem fantástica!',
     'chat_close' => 'Fechar',
     'add_to_browser' => 'Adicionar ao navegador',
+    'reward_wait' => 'A verificar o seu comentário...',
+    'on' => 'Ligado',
+    'off' => 'Desligado',
+    'apply' => 'Aplicar',
+    'add' => 'Adicionar',
+    'reward_title' => 'Quer obter um cursor exclusivo?',
+    'reward_text' => 'Deixe uma avaliação rápida e receba instantaneamente o nosso elegante cursor de assinatura — totalmente grátis!',
+    'reward_button' => ' Deixar uma avaliação',
 ];

@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Poiščite svojega odličnega lika!',
     'chat_close' => 'Zapri',
     'add_to_browser' => 'Dodaj v brskalnik',
+    'reward_wait' => 'Preverjanje vašega komentarja...',
+    'on' => 'Vklopljeno',
+    'off' => 'Izklopljeno',
+    'apply' => 'Uporabi',
+    'add' => 'Dodaj',
+    'reward_title' => 'Želite prejeti ekskluzivni kazalec miške?',
+    'reward_text' => 'Pustite hitro oceno in takoj prejmite naš eleganten, prepoznavni kazalec miške – popolnoma brezplačno!',
+    'reward_button' => 'Pustite oceno',
 ];

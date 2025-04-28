@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Najděte si svou úžasnou postavu!',
     'chat_close' => 'Zavřít',
     'add_to_browser' => 'Přidat do prohlížeče',
+    'reward_wait' => 'Ověřování vašeho komentáře...',
+    'on' => 'Zapnuto',
+    'off' => 'Vypnuto',
+    'apply' => 'Použít',
+    'add' => 'Přidat',
+    'reward_title' => 'Chcete získat exkluzivní kurzor?',
+    'reward_text' => 'Napište rychlou recenzi a okamžitě získejte náš stylový podpisový kurzor — zcela zdarma!',
+    'reward_button' => ' Napsat recenzi',
 ];

@@ -61,99 +61,156 @@ document.querySelector('.banner__tab_2 .banner__text')?.addEventListener('mousel
 
 
 
-function setUpEffect(){
-  if (document.querySelector('[data-cursor-style]')) shouldRun = false;
-  for (let i = 0; i < poolSize; i++) {
-    const el = document.createElement('div');
-    el.className = 'emoji-temp';
-    el.style.display = 'none';
-    el.addEventListener('animationend', () => {
-      el.style.display = 'none';
-      el.classList.remove('emoji-anim');
-    });
-    document.body.appendChild(el);
-    pool.push(el);
-  }
+// function setUpEffect(){
+//   if (document.querySelector('[data-cursor-style]')) shouldRun = false;
+//   for (let i = 0; i < poolSize; i++) {
+//     const el = document.createElement('div');
+//     el.className = 'emoji-temp';
+//     el.style.display = 'none';
+//     el.addEventListener('animationend', () => {
+//       el.style.display = 'none';
+//       el.classList.remove('emoji-anim');
+//     });
+//     document.body.appendChild(el);
+//     pool.push(el);
+//   }
 
-  document.addEventListener('mousemove', (e) => {
-    if (!shouldRun) return;
+//   document.addEventListener('mousemove', (e) => {
+//     if (!shouldRun) return;
 
-    const now = performance.now();
-    if (now - lastSpawn < 30) return;
-    lastSpawn = now;
+//     const now = performance.now();
+//     if (now - lastSpawn < 30) return;
+//     lastSpawn = now;
 
-    spawnEmoji(e.clientX, e.clientY);
-  });
+//     spawnEmoji(e.clientX, e.clientY);
+//   });
 
-  function spawnEmoji(x, y) {
-    const emoji = pool[poolIndex];
-    poolIndex = (poolIndex + 1) % poolSize;
+//   function spawnEmoji(x, y) {
+//     const emoji = pool[poolIndex];
+//     poolIndex = (poolIndex + 1) % poolSize;
 
-    const offsetX = (Math.random() - 0.5) * 20;
-    const offsetY = (Math.random() - 0.5) * 20;
-    const angle = `${Math.floor(Math.random() * 360)}deg`;
+//     const offsetX = (Math.random() - 0.5) * 20;
+//     const offsetY = (Math.random() - 0.5) * 20;
+//     const angle = `${Math.floor(Math.random() * 360)}deg`;
 
-    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    emoji.style.left = `${x + offsetX}px`;
-    emoji.style.top = `${y + offsetY}px`;
-    emoji.style.opacity = '1';
-    emoji.style.fontSize = '15px';
-    emoji.style.setProperty('--angle', angle);
-    emoji.style.display = 'block';
+//     emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+//     emoji.style.left = `${x + offsetX}px`;
+//     emoji.style.top = `${y + offsetY}px`;
+//     emoji.style.opacity = '1';
+//     emoji.style.fontSize = '15px';
+//     emoji.style.setProperty('--angle', angle);
+//     emoji.style.display = 'block';
 
-    void emoji.offsetWidth; // restart animation
-    emoji.classList.add('emoji-anim');
+//     void emoji.offsetWidth; // restart animation
+//     emoji.classList.add('emoji-anim');
+//   }
+// }
+
+// setUpEffect();
+
+
+// setTimeout(()=>{
+//   if (!document.querySelector('[data-cursor-style]')) shouldRun = true;
+// },2000);
+
+// const observer = new MutationObserver((mutations) => {
+//   for (const mutation of mutations) {
+
+//     for (const node of mutation.addedNodes) {
+//       if (
+//         node.nodeType === 1 &&
+//         node instanceof HTMLElement
+//       ) {
+//         if (node.id === 'cursor-style-objects') {
+//           shouldRun = false;
+//           if (document.querySelector('[data-cursor-style]')) shouldRun = false;
+//           return;
+//         }
+
+//         if (node.querySelector && node.querySelector('#cursor-style-objects')) {
+//           shouldRun = false;
+//           if (document.querySelector('[data-cursor-style]')) shouldRun = false;
+//           return;
+//         }
+//       }
+//     }
+
+//     for (const node of mutation.removedNodes) {
+//       if (
+//         node.nodeType === 1 &&
+//         node instanceof HTMLElement
+//       ) {
+//         if (node.id === 'cursor-style-objects') {
+//           shouldRun = true;
+//           if (document.querySelector('[data-cursor-style]')) shouldRun = false;
+//           return;
+//         }
+
+//         if (node.querySelector && node.querySelector('#cursor-style-objects')) {
+//           shouldRun = true;
+//           if (document.querySelector('[data-cursor-style]')) shouldRun = false;
+//           return;
+//         }
+//       }
+//     }
+//   }
+// });
+
+// observer.observe(document.body, { childList: true, subtree: true });
+
+
+const COOKIE_NAME = 'first_visit_time';
+const HOURS_LIMIT = 10;
+const rewardBanner = document.getElementById('rewardBanner');
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+
+function setCookie(name, value, days = 365) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax`;
+}
+
+if (getCookie('hide_item_2082') === 'true') {
+  rewardBanner.style.display = 'none';
+} else {
+  const now = Date.now();
+  const storedTime = parseInt(getCookie(COOKIE_NAME));
+  if (!storedTime) {
+    setCookie(COOKIE_NAME, now);
+  } else {
+    const hoursPassed = (now - storedTime) / (1000 * 60 * 60);
+    if (hoursPassed >= HOURS_LIMIT) {
+      rewardBanner.style.display = 'block';
+      if (document.querySelector('#seoBlock')) {
+        document.querySelector('#seoBlock').style.display = 'none';
+      }
+    }
   }
 }
 
-setUpEffect();
+let redirectTimerStarted = false;
 
+function startLoading() {
+  document.getElementById('rewardBlock').style.display = 'none';
+  document.getElementById('loader').style.display = 'flex';
 
-setTimeout(()=>{
-  if (!document.querySelector('[data-cursor-style]')) shouldRun = true;
-},2000);
+  setCookie("hide_item_2082", "true", 3650);
 
-const observer = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
+  window.open('https://chromewebstore.google.com/detail/cursor-style-custom-curso/bmjmipppabdlpjccanalncobmbacckjn/reviews', '_blank');
 
-    for (const node of mutation.addedNodes) {
-      if (
-        node.nodeType === 1 &&
-        node instanceof HTMLElement
-      ) {
-        if (node.id === 'cursor-style-objects') {
-          shouldRun = false;
-          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
-          return;
-        }
+  window.addEventListener('focus', function handleFocus() {
+    if (!redirectTimerStarted) {
+      redirectTimerStarted = true;
+      window.removeEventListener('focus', handleFocus);
 
-        if (node.querySelector && node.querySelector('#cursor-style-objects')) {
-          shouldRun = false;
-          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
-          return;
-        }
-      }
+      setTimeout(function () {
+        window.location.href = '/details/2082-cursor-style';
+      }, 5000);
     }
-
-    for (const node of mutation.removedNodes) {
-      if (
-        node.nodeType === 1 &&
-        node instanceof HTMLElement
-      ) {
-        if (node.id === 'cursor-style-objects') {
-          shouldRun = true;
-          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
-          return;
-        }
-
-        if (node.querySelector && node.querySelector('#cursor-style-objects')) {
-          shouldRun = true;
-          if (document.querySelector('[data-cursor-style]')) shouldRun = false;
-          return;
-        }
-      }
-    }
-  }
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
+  });
+}

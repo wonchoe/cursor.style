@@ -74,6 +74,7 @@ img {
   width: 100%;
   margin-top: 40px;
   border-radius: 5px;
+  padding-right: 20px;
 }
 
 .nav ul,
@@ -114,7 +115,7 @@ img {
 
 .nav li a:hover::before,
 .nav li a:hover::after {
-  width: 50%;
+
 }
 
 
@@ -365,34 +366,32 @@ img {
   width: 200px;
   box-sizing: border-box;
   border: none;
-  padding: 7px 33px;
+  padding: 10px 0px 0px 11px;
   margin-top: 0px;
 }
 
 .tabs {
-  font-size: 16px;
-  padding: 0px;
-  list-style: none;
-  background: #ffffff;
-  position: relative;
+  text-decoration: none;
+  color: #666;
   display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex: 0 1 auto;
-  /* важливо */
+  position: relative;
+  z-index: 1;
   align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .tabs a {
   text-decoration: none;
   color: #666;
-  padding: 14px 20px;
-  display: inline-block;
+  padding: 10px 20px;
+  display: flex;
   position: relative;
   z-index: 1;
-  /* font-family: 'Noto Color Emoji'; */
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
 }
 
 .tabs_menu .wrapper {
@@ -459,6 +458,12 @@ img {
 .copyright {
   font-size: 15px;
   color: #6c6c6c;
+  flex-wrap: wrap;
+  display: flex;  
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;  
 }
 
 .footer {
@@ -476,6 +481,9 @@ img {
   -ms-flex-pack: justify;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;  
 }
 
 .install-panel__logo img {
@@ -500,11 +508,9 @@ img {
 }
 
 .tabs a.active {
-  color: #fff;
+  /* color: #fff;
   background: #5e77ff;
-  font-family: "Noto Color Emoji";
-  border-radius: 5px;
-  padding: 14px;
+  border-radius: 5px; */
 }
 
 
@@ -1027,6 +1033,7 @@ a.page-numbers-js.next:hover {
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
+  padding: 10px;
 }
 
 .seo-toggle {
@@ -1231,41 +1238,31 @@ input:-webkit-autofill {
 
 .main-container {
   padding: 5px 20px;
+  flex-grow: 1;
 }
 
 
 .top_menu_link[href="/mycollection"] {
-  font-weight: bold;
-  margin-left: 10px;
-  --b: 1px;
-  --s: .45em;
-  --color: #4D4D4D;
-  padding: calc(.1em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background: conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p) / calc(100% - var(--b) - 2* var(--_p)) calc(100% - var(--b) - 2* var(--_p));
-  transition: .6s cubic-bezier(0.25, 1, 0.5, 1), color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 14px;
-  border: 0;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  z-index: 1111;
+  margin-right: 17px;
+  background: #a4d1f8;
+  padding: 10px 25px;
+  border-radius: 4px;
 }
 
 
-.top_menu_link[href="/mycollection"]:hover {
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
-}
-
-
-.top_menu_link[href="/mycollection"]::before,
 .top_menu_link[href="/mycollection"]::after {
-  all: unset !important;
+  content: "";
+  background-image: url(/images/icons/collection.svg);
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: center;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  top: 0;
+  margin-top: -2px;
+  margin-left: 5px;
 }
 
 .no_result {
@@ -2549,3 +2546,270 @@ html:not([data-cursor-style="true"]) textarea {
 }
 
 
+.btn-container{
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  height: 50px;
+  align-content: center;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.img-btn{
+  height: 50px;
+  width: 50px;
+  background: transparent;
+  border: 0;
+}
+
+.img-btn img:hover{
+  transform: scale(1.2);
+}
+
+
+button.img-btn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(1);  
+}
+
+.icon-new{
+  background-image: url(/images/cursoranim.svg);
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: center;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.icon-top{
+  background-image: url(/images/icons/top.svg);
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: center;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.icon-collection{
+  background-image: url(/images/icons/collection.svg);
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: center;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.icon-search{
+  background-image: url(/images/icons/search.svg);
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: center;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+
+[data-arrow="right"] {
+  font-size: 0;
+  display: inline-block;
+  width: 16px;
+  background-image: url('/images/icons/next.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+
+[data-arrow="left"] {
+  font-size: 0;
+  display: inline-block;
+  width: 16px;
+  background-image: url('/images/icons/prev.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+
+
+
+.cursor-reward-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #f0fff0, #e6f9ff);
+  border: 2px solid #9cf;
+  border-radius: 16px;
+  padding: 20px 30px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 20px auto;
+  min-height: 160px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.cursor-images {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.cursor-img {
+  width: 80px;
+  height: 80px;
+}
+
+.cursor-text {
+  flex: 1;
+  padding-left: 30px;
+}
+
+.cursor-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+  display: flex
+;
+  gap: 10px;
+  align-items: center;
+  align-content: center;
+}
+
+.cursor-text p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.cursor-btn {
+  background: linear-gradient(90deg, #3fc1c9, #fc5185);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cursor-btn:hover {
+  background: linear-gradient(90deg, #fc5185, #3fc1c9);
+}
+
+.cursor-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.cursor-loader img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.cursor-loader p {
+  font-size: 1.1rem;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#rewardBlock {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+
+#rewardBlock .gift{
+  width:34px;
+}
+
+#rewardBanner{
+  display: none;
+}
+
+.master-container{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      justify-content: center;
+      align-items: flex-start;
+      
+}
+
+.main-container{
+  max-width: 1000px;
+}
+
+.sidebar-left, .sidebar-right {
+  max-width: 300px;
+  width: 100%;
+  flex-shrink: 1; 
+  min-height: 800px;
+}
+
+.sidebar-left{
+  overflow: visible;
+  position: sticky;
+  left: 0;
+  top: 0;
+  margin-top: 100px;
+  height: 100%;
+}
+
+.sidebar-right{
+  overflow: visible;
+    position: sticky;
+    left: 0;
+    top: 0;
+    margin-top: 100px;
+    height: 100%;
+}
+
+@media (max-width: 1599px) {
+  .sidebar-left,
+  .sidebar-right {
+    display: none;
+  }
+}

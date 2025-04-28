@@ -1,1 +1,9 @@
-empty page
+<html>
+
+<head>
+</head>
+
+<body>
+</body>
+
+</html>

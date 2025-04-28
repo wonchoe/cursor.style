@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Cari watak hebat anda!',
     'chat_close' => 'Tutup',
     'add_to_browser' => 'Tambah ke pelayar',
+    'reward_wait' => 'Mengesahkan komen anda...',
+    'on' => 'Hidup',
+    'off' => 'Mati',
+    'apply' => 'Guna',
+    'add' => 'Tambah',
+    'reward_title' => 'Mahu mendapatkan kursor eksklusif?',
+    'reward_text' => 'Tinggalkan ulasan ringkas dan serta-merta menerima kursor ciri khas bergaya kami — percuma sepenuhnya!',
+    'reward_button' => ' Tinggalkan ulasan',
 ];

@@ -75,4 +75,12 @@ return [
     'chat_find_your_character' => 'Hanapin ang iyong kahanga-hangang karakter!',
     'chat_close' => 'Isara',
     'add_to_browser' => 'Idagdag sa browser',
+    'reward_wait' => 'Bine-verify ang iyong komento...',
+    'on' => 'Naka-on',
+    'off' => 'Naka-off',
+    'apply' => 'Ilapat',
+    'add' => 'Idagdag',
+    'reward_title' => 'Gusto mo bang makakuha ng eksklusibong cursor?',
+    'reward_text' => 'Mag-iwan ng maikling pagsusuri at agad na matatanggap ang aming istilong signature cursor — libre!',
+    'reward_button' => ' Mag-iwan ng pagsusuri',
 ];
