@@ -87,6 +87,9 @@ class IndexController extends Controller
         //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
         $random_cat = $collections->random(3);
 
+        if ($cursors2->isEmpty() || !isset($cursors2[1])) {
+            abort(404);
+        }
 
         return response()
             ->view('cursor', [
