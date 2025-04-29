@@ -10,19 +10,24 @@ body {
 
 #notfound {
     position: relative;
-    height: 500px;
     background: #fff;
     border-radius: 4px;
     margin-bottom: 20px;
+    display: flex
+;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin-top: 20px;
 }
 
 #notfound .notfound {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .notfound {
@@ -33,7 +38,6 @@ body {
 }
 
 .notfound .notfound-404 {
-    height: 190px;
 }
 
 .notfound .notfound-404 h1 {

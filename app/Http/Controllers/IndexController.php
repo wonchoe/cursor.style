@@ -97,7 +97,7 @@ class IndexController extends Controller
             'all_cursors' => $cursors2, 
             'cursor' => $cursors2[1] ?? null, 
             'id_prev' => $id_prev, 
-            'id_next' => $id_next])->header('Cache-Tag', 'details');;
+            'id_next' => $id_next])->header('Cache-Tag', 'details');
     }
 
     public function show(Request $r)

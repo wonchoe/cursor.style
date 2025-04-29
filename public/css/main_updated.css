@@ -2798,6 +2798,10 @@ button.img-btn:disabled {
   height: 100%;
 }
 
+.n404{
+  width: 100%;
+}
+
 .sidebar-right{
   overflow: visible;
     position: sticky;
