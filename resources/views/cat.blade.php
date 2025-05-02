@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@include('other.build')
 @section('title')
     @lang('collections.' . $alt_name) @lang('collections.mouse_cursors') |
     @lang('collections.' . $alt_name . '_short_descr')}

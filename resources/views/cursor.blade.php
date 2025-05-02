@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@include('other.build')
 @section('title')
     Cursor {{$cursor->name_en}}
 @endsection

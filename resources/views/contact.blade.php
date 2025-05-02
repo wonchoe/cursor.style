@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('other.build')
 
 @section('title')
     @lang('feedback.title')
