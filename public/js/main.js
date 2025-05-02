@@ -59,6 +59,30 @@ document.querySelector('.banner__tab_2 .banner__text')?.addEventListener('mousel
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const btnContainers = document.querySelectorAll('.btn-container');
+
+  btnContainers.forEach(function (container) {
+      const statButtons = container.querySelectorAll('button[data-type="stat"]');
+
+      statButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+              const isAnyDisabled = Array.from(statButtons).some(b => b.disabled);
+
+              if (isAnyDisabled) return;
+              const mainBtn = statButtons[0];
+              const cursorId = mainBtn.dataset.id;
+              const category = mainBtn.dataset.catbasename;
+              gtag('event', 'cursor_click', {
+                  cursor_id: cursorId,
+                  cursor_category: category
+              });
+
+              console.log('Tracked click for cursor:', cursorId);
+          });
+      });
+  });
+});
 
 
 // function setUpEffect(){
