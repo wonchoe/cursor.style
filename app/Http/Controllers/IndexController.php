@@ -141,11 +141,13 @@ class IndexController extends Controller
             );
         }
 
-        return response()->view('index', [
+        $response = response()->view('index', [
             'cursors' => $cursors,
             'query' => $query,
             'sort' => $sort
         ])->header('Cache-Tag', 'index');
+        $response->headers->remove('Cache-Control');
+        return $response;
     }
 
     public function showJsLang()
