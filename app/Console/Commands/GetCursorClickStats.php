@@ -6,14 +6,25 @@ use Illuminate\Console\Command;
 use Google_Client;
 use Google_Service_AnalyticsData;
 use Google_Service_AnalyticsData_RunReportRequest;
+use Illuminate\Support\Facades\DB;
 
 class GetCursorClickStats extends Command
 {
-    protected $signature = 'GetCursorClickStats';
+    protected $signature = 'GetCursorClickStats {--mode=today : today or yesterday}';
     protected $description = 'Fetch GA4 cursor_click stats grouped by cursor_id';
 
     public function handle()
     {
+        $mode = $this->option('mode');
+        $date = now()->toDateString();
+        
+        if ($mode === 'yesterday') {
+            $date = now()->subDay()->toDateString();
+            $this->info("🔁 Running in YESTERDAY mode for $date");
+        } else {
+            $this->info("📊 Running in TODAY mode for $date");
+        }
+
         $ga4PropertyId = '368458115'; // заміни на свій GA4 ID
         $credentialsPath = storage_path('../google.json'); // шлях до JSON ключа
 
@@ -23,8 +34,6 @@ class GetCursorClickStats extends Command
 
         $analytics = new Google_Service_AnalyticsData($client);
 
-        $date = date('Y-m-d'); // або обчисли минулі години вручну
-
         $request = new \Google_Service_AnalyticsData_RunReportRequest([
             'dateRanges' => [[
                 'startDate' => $date,
@@ -32,9 +41,10 @@ class GetCursorClickStats extends Command
             ]],
             'dimensions' => [
                 ['name' => 'customEvent:cursor_id'],
+                ['name' => 'customEvent:cursor_category'], // <-- додаємо це
             ],
             'metrics' => [
-                ['name' => 'totalUsers'] // або totalUsers, якщо тобі треба унікальні юзери
+                ['name' => 'eventCount']
             ],
             'dimensionFilter' => [
                 'filter' => [
@@ -47,13 +57,43 @@ class GetCursorClickStats extends Command
             ],
         ]);
 
+        
         $response = $analytics->properties->runReport('properties/' . $ga4PropertyId, $request);
 
+
+        $clicksMap = [];
+
         foreach ($response->getRows() ?? [] as $row) {
-            $cursorId = $row->getDimensionValues()[0]->getValue();
-            $clickCount = $row->getMetricValues()[0]->getValue();
-            $this->info("Cursor ID: $cursorId — Clicks: $clickCount");
+            $cursorId = (int) $row->getDimensionValues()[0]->getValue();
+            $clicks = (int) $row->getMetricValues()[0]->getValue();
+        
+            if ($cursorId) {
+                $clicksMap[$cursorId] = $clicks;
+            }
         }
+
+        foreach (array_chunk($clicksMap, 100, true) as $batch) {
+            DB::beginTransaction();
+        
+            try {
+                foreach ($batch as $cursorId => $clicks) {
+                    if ($mode === 'yesterday') {
+                        DB::table('cursors')->where('id', $cursorId)->increment('totalClick', $clicks);
+                    } else {
+                        DB::table('cursors')->where('id', $cursorId)->update(['todayClick' => $clicks]);
+                    }
+                }
+        
+                DB::commit();
+                $this->info("✅ Transaction committed");
+        
+            } catch (\Throwable $e) {
+                DB::rollBack();
+                $this->error("❌ Batch failed: " . $e->getMessage());
+            }
+        }
+        
+        
 
         return Command::SUCCESS;
     }

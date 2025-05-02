@@ -121,6 +121,7 @@ function hoverMenu() {
 }
 
 function attachEtagToCountClicks(){
+  if (!document.documentElement.dataset.cursorstyle) return;
   const btnContainers = document.querySelectorAll('.btn-container');
 
   btnContainers.forEach(function (container) {

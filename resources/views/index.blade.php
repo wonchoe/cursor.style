@@ -116,6 +116,8 @@
                                 src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                         </div>
 
+                        <span class="downloads-badge"><img src="/images/icons/download.png" style="width: 10px;">{{ number_format($cursor->totalClick) }}</span>                        
+
                         <div class="main__btns">
                                 <div class="btn-container">                                    
                                     <span class="pointerevent">

@@ -106,7 +106,7 @@ class IndexController extends Controller
         $sort = 'id';
 
         if ($r->type === 'popular') {
-            $sort = 'top';
+            $sort = 'todayClick';
             $order = 'desc';
         } elseif ($r->type === 'new') {
             $sort = 'id';

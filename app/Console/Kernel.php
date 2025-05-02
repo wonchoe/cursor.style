@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel {
         Commands\getExtensionData::class,
         Commands\ReportGetCommand::class,
 	    Commands\GetGoogleAnalyticsData::class,
+        Commands\GetCursorClickStats::class
     ];
 
     protected function schedule(Schedule $schedule) {
@@ -25,6 +26,9 @@ class Kernel extends ConsoleKernel {
         $schedule->command('randomTop')->daily();
 	    $schedule->command('GetGoogleAnalyticsData')->everyMinute();
         $schedule->command('yandex:report')->everyFiveMinutes();
+        
+        $schedule->command('GetCursorClickStats --mode=today')->everyTwoHours();
+        $schedule->command('GetCursorClickStats --mode=yesterday')->dailyAt('00:30');        
     }
 
     protected function commands() {

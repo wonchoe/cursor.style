@@ -619,22 +619,15 @@ img {
 
 
 .main__btns {
-  /* display: -webkit-box; */
-  /* display: -webkit-flex; */
   display: -ms-flexbox;
-  /* display: none; */
   opacity: 0;
   -ms-flex-pack: justify;
   width: 100%;
-  /* top: 74%; */
-  /* left: 0; */
-  /* position: absolute; */
   transition: opacity 0.2s ease-in-out;
   display: flex;
   align-content: center;
   align-items: center;
   justify-content: center;
-  padding-top: 10px;
   padding-bottom: 2px;
 }
 
@@ -2553,7 +2546,6 @@ html:not([data-cursor-style="true"]) textarea {
   height: 50px;
   align-content: center;
   justify-content: center;
-  margin-top: 8px;
 }
 
 .img-btn{
@@ -2800,6 +2792,27 @@ button.img-btn:disabled {
 
 .n404{
   width: 100%;
+}
+
+.downloads-badge{
+    background-color: #f3f4f6;
+    color: #111;
+    font-size: 10px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-top: 4px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+}
+
+.main__item:hover .downloads-badge {
+  opacity: 1;
+}
+
+
+.downloads-badge img{
+  width: 10px;
 }
 
 .sidebar-right{
