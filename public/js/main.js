@@ -173,19 +173,21 @@ function setCookie(name, value, days = 365) {
   document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax`;
 }
 
-if (getCookie('hide_item_2082') === 'true') {
-  rewardBanner.style.display = 'none';
-} else {
-  const now = Date.now();
-  const storedTime = parseInt(getCookie(COOKIE_NAME));
-  if (!storedTime) {
-    setCookie(COOKIE_NAME, now);
+if (rewardBanner) {
+  if (getCookie('hide_item_2082') === 'true') {
+    rewardBanner.style.display = 'none';
   } else {
-    const hoursPassed = (now - storedTime) / (1000 * 60 * 60);
-    if (hoursPassed >= HOURS_LIMIT) {
-      rewardBanner.style.display = 'block';
-      if (document.querySelector('#seoBlock')) {
-        document.querySelector('#seoBlock').style.display = 'none';
+    const now = Date.now();
+    const storedTime = parseInt(getCookie(COOKIE_NAME));
+    if (!storedTime) {
+      setCookie(COOKIE_NAME, now);
+    } else {
+      const hoursPassed = (now - storedTime) / (1000 * 60 * 60);
+      if (hoursPassed >= HOURS_LIMIT) {
+        rewardBanner.style.display = 'block';
+        if (document.querySelector('#seoBlock')) {
+          document.querySelector('#seoBlock').style.display = 'none';
+        }
       }
     }
   }
