@@ -273,7 +273,7 @@ class IndexController extends Controller
         //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
         $random_cat = $collections->random(3);
 
-        return response()->view('cat', ['alt_name' => $alt_name, 'cursors' => $items, 'collection' => $collection, 'random_cat' => $random_cat])->header('Cache-Tag', 'collection');;
+        return response()->view('cat', ['alt_name' => $alt_name, 'cursors' => $items, 'collection' => $collection, 'random_cat' => $random_cat])->header('Cache-Tag', 'collection');
     }
 
     public function showAllCat2(Request $r)
