@@ -108,5 +108,5 @@
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/main.js') }}"></script>
+    <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
 @endsection
