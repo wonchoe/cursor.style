@@ -157,7 +157,7 @@
                         @endforelse
                     </div>
 
-                    @if($cursors->isEmpty())
+                    @if(empty($cursors))
                         @include('other.nocursors')
                     @endif
 
