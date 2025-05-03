@@ -6,7 +6,7 @@ use Hash;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Validation\ValidationException;
 class CustomAuthController extends Controller
 {
 
@@ -42,6 +42,11 @@ class CustomAuthController extends Controller
 
     public function customRegistration(Request $request)
     {  
+        if ($request->input('access_code') !== '451585') {
+            throw ValidationException::withMessages([
+                'access_code' => 'Access code is invalid.',
+            ]);
+        }        
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
