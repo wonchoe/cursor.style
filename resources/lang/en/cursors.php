@@ -2090,5 +2090,6 @@ return array (
   'a_21' => 'Fortnight',
   'a_22' => 'Rocket and astronaut',
   'a_23' => 'Alien',
-  'a_24' => 'Lipstick and lips'
+  'a_24' => 'Lipstick and lips',
+  'c_2086' => 'Skateboarder'
 );
