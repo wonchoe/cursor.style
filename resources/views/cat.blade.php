@@ -2,7 +2,7 @@
 @include('other.build')
 @section('title')
     @lang('collections.' . $alt_name) @lang('collections.mouse_cursors') |
-    @lang('collections.' . $alt_name . '_short_descr')}
+    @lang('collections.' . $alt_name . '_short_descr')
 @endsection
 
 @section('descr')
@@ -159,6 +159,7 @@
 
                     @if(empty($cursors))
                         @include('other.nocursors')
+                    @endif
 
                     <div class="random_cat">
                         @foreach($random_cat as $item)
