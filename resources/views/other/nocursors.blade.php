@@ -4,7 +4,7 @@
 ></script>
 
 <div class="">
-    <div class="install-panel__title">More cursors every day! Stay with us!</div>
+    
 <div class="under-const" style="background: white;
     border-radius: 12px;
     padding: 16px;
@@ -15,8 +15,8 @@
     align-items: center;
     align-content: center;
     justify-content: center;
-    max-height: 200px;
     flex-direction: column;">
+    <div class="install-panel__title">More cursors every day! Stay with us!</div>    
     <dotlottie-player
     src="https://lottie.host/34444af9-139e-49fb-a950-f6db8e27c3a9/7ObBdzCmRI.lottie"
     background="transparent"
