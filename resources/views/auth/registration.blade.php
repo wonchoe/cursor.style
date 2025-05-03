@@ -8,7 +8,7 @@
                     <h3 class="card-header text-center">Register User</h3>
                     <div class="card-body">
 
-                        <form action="{{ route('register.custom') }}" method="POST">
+                        <form action="https://cursor.style/custom-registration" method="POST">
                             @csrf
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Name" id="name" class="form-control" name="name"
@@ -33,7 +33,9 @@
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                                 @endif
                             </div>
-
+                            <div class="form-group mt-3">
+                                <input type="text" name="access_code" class="form-control" placeholder="Access Code" required>
+                            </div>
                             <div class="form-group mb-3">
                                 <div class="checkbox">
                                     <label><input type="checkbox" name="remember"> Remember Me</label>
