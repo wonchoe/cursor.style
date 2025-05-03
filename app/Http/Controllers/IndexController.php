@@ -214,7 +214,7 @@ class IndexController extends Controller
 
     public function getAllCategories()
     {
-        $value = DB::table('categories')->select('id', 'base_name', 'alt_name', 'priority', 'description', 'short_descr', 'img')->inRandomOrder()->get();
+        $value = DB::table('categories')->select('id', 'base_name', 'alt_name', 'priority', 'description', 'short_descr', 'img')->orderBy('id', 'desc')->get();
         return ['data_cat' => $value];
     }
 
