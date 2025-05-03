@@ -43,34 +43,51 @@ class ImageController extends Controller {
 
     public function getSvg(Request $r) {
         $cur_cursor = cursor::findOrFail($r->id);
+    
         if (($r->type !== 'cursors') && ($r->type !== 'pointers'))
             abort(404);
+    
         if ($r->type == 'cursors') {
             $get = $cur_cursor->c_file;
         } else {
             $get = $cur_cursor->p_file;
         }
-        $file = file_get_contents(public_path() . '/resources/' . $r->type . '/' . $get);
-
+    
+        $basePath = public_path("resources/{$r->type}/{$get}");
+    
+        // Якщо не існує, пробуємо зі storage
+        if (!file_exists($basePath)) {
+            $basePath = storage_path("app/public/{$r->type}_new/{$get}");
+            if (!file_exists($basePath)) {
+                abort(404, 'SVG file not found.');
+            }
+        }
+    
+        $file = file_get_contents($basePath);
+    
         $search_from = round(strlen($file) / 2);
         $find = intval(strpos($file, '<path', $search_from));
         $full_str = $file;
+    
         if ($find) {
             $part_one = substr($file, 0, $find);
-            $part_two = substr($file, $find, strlen($file) - $find);
+            $part_two = substr($file, $find);
             $copyright = '<desc>cursor-style.com</desc>';
             $full_str = $part_one . $copyright . $part_two;
         }
+    
         $cursors_folder = $this->createCursorsImagesFolders();
         $pointers_folder = $this->createPointersImagesFolders();
+    
         if ($r->type == 'cursors') {
-            file_put_contents($cursors_folder . '/' . $r->id . '-' . $r->cursor.'.svg', $full_str);
-        } else if ($r->type == 'pointers') {
-            file_put_contents($pointers_folder . '/' . $r->id . '-' . $r->cursor.'.svg', $full_str);
+            file_put_contents("{$cursors_folder}/{$r->id}-{$r->cursor}.svg", $full_str);
+        } else {
+            file_put_contents("{$pointers_folder}/{$r->id}-{$r->cursor}.svg", $full_str);
         }
-
+    
         return response($full_str, 200)->header('Content-Type', 'image/svg+xml');
     }
+    
 
     public function show($id) {
         $p = explode('-', $id);
@@ -95,12 +112,27 @@ class ImageController extends Controller {
         echo $cursor;
     }
 
-    public function showCollection($name) {
+    public function showCollection($name)
+    {
+        
         $cat = categories::where('alt_name', '=', $name)->firstOrFail();
-        $r = file_get_contents('resources/categories/' . $cat->img);
-        $collections_folder = $this->createCollectionsImagesFolders();        
-        file_put_contents($collections_folder.'/'.$name.'.png', $r);  
+   
+        $localPath = base_path('resources/categories/' . $cat->img);
+        $storagePath = storage_path('app/public/' . $cat->img);
+
+        if (file_exists($localPath)) {
+            $r = file_get_contents($localPath);
+        } elseif (file_exists($storagePath)) {
+            $r = file_get_contents($storagePath);
+        } else {
+            abort(404, 'Image not found in resources or storage.');
+        }
+    
+        $collections_folder = $this->createCollectionsImagesFolders();
+        file_put_contents($collections_folder . '/' . $name . '.png', $r);
+    
         return response($r, 200)->header('Content-Type', 'image/png');
     }
+    
 
 }

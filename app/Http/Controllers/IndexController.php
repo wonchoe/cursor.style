@@ -267,7 +267,7 @@ class IndexController extends Controller
 
         foreach ($items as $key => $cursor) {
             $this->cat_id = $items[$key]->cat;
-            $items[$key]->name_s = $this->cleanStr($items[$key]->name_en);
+            $items[$key]->name_s = $this->cleanStr(string: $items[$key]->name_en);
             $items[$key]->collection = $collections->first(function ($item) {
                 return $item->id == $this->cat_id; });
         }

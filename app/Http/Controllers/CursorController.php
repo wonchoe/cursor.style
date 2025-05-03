@@ -17,6 +17,54 @@ use Illuminate\Support\Facades\Storage;
 
 class CursorController extends Controller {
 
+    public function create()
+    {
+        $categories = categories::orderBy('id', 'DESC')->get();
+        return view('admin.cursors.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'cat_select' => 'required|exists:categories,id',
+            'c_file' => 'required|image',
+            'p_file' => 'required|image',
+            'offsetX' => 'required|integer|min:0',
+            'offsetY' => 'required|integer|min:0',
+            'offsetX_p' => 'required|integer|min:0',
+            'offsetY_p' => 'required|integer|min:0',
+            'schedule' => 'required|date',
+        ]);
+        
+
+        $cFilePath = $request->file('c_file')->store('public/cursors_new');
+        $pFilePath = $request->file('p_file')->store('public/pointers_new');
+
+        $cursor = new cursor();
+        $cursor->name = $request->input('name');
+        $cursor->name_en = $request->input('name');
+        $cursor->name_es = $request->input('name');
+        $cursor->cat = $request->input('cat_select');
+        $cursor->c_file = basename($cFilePath);
+        $cursor->p_file = basename($pFilePath);
+        $cursor->offsetX = $request->input('offsetX');
+        $cursor->offsetY = $request->input('offsetY');
+        $cursor->offsetX_p = $request->input('offsetX_p');
+        $cursor->offsetY_p = $request->input('offsetY_p');
+        $cursor->schedule = $request->input('schedule');
+        $cursor->save();
+
+        // Додаємо переклад в resources/lang/en/cursors.php
+        $langPath = resource_path('lang/en/cursors.php');
+        $translations = File::exists($langPath) ? include($langPath) : [];
+        $translations['c_' . $cursor->id] = $cursor->name;
+        $output = "<?php\n\nreturn " . var_export($translations, true) . ";\n";
+        File::put($langPath, $output);
+
+        return redirect()->route('cursors.create')->with('success', 'Cursor created successfully.');
+    }
+        
     public function setBgUser() {
         $r = bg::firstOrCreate(['date' => date('Y-m-d')]);
         $r->count = $r->count + 1;
