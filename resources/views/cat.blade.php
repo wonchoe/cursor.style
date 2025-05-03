@@ -157,9 +157,7 @@
                         @endforelse
                     </div>
 
-                    @if(empty($cursors))
-                        @include('other.nocursors')
-                    @endif
+
 
                     <div class="random_cat">
                         @foreach($random_cat as $item)
