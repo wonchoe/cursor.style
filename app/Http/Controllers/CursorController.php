@@ -23,6 +23,77 @@ class CursorController extends Controller {
         return view('admin.cursors.create', compact('categories'));
     }
 
+    public function reinitCursorLang()
+    {
+        $cursors = cursor::select('id', 'name_en')->get();
+        $path = resource_path('lang/en/cursors.php');
+    
+        $translations = File::exists($path) ? include $path : [];
+    
+        foreach ($cursors as $c) {
+            $key = 'c_' . $c->id;
+    
+            if (!isset($translations[$key])) {
+                $translations[$key] = $c->name_en;
+            }
+        }
+    
+        // (Опційно) сортувати ключі
+        ksort($translations);
+    
+        // Запис у файл
+        $output = "<?php\n\nreturn [\n";
+        foreach ($translations as $k => $v) {
+            $escaped = addslashes($v);
+            $output .= "    '$k' => '$escaped',\n";
+        }
+        $output .= "];\n";
+    
+        File::put($path, $output);
+    
+        return '✅ cursors.php updated successfully.';
+    }
+
+    public function reinitDb()
+    {
+        $categories = categories::select('alt_name', 'base_name_en', 'description', 'short_descr')->get();
+        $path = resource_path('lang/en/collections.php');
+    
+        // Завантажити існуючий словник
+        $translations = File::exists($path) ? include $path : [];
+    
+        foreach ($categories as $cat) {
+            $key = $cat->alt_name;
+    
+            if (!isset($translations[$key])) {
+                $translations[$key] = $cat->base_name_en;
+            }
+    
+            if (!isset($translations["{$key}_descr"])) {
+                $translations["{$key}_descr"] = $cat->description;
+            }
+    
+            if (!isset($translations["{$key}_short_descr"])) {
+                $translations["{$key}_short_descr"] = $cat->short_descr;
+            }
+        }
+    
+        // Побудувати новий PHP-файл
+        $output = "<?php\n\nreturn [\n";
+        foreach ($translations as $k => $v) {
+            $escaped = addslashes($v);
+            $output .= "    '$k' => '$escaped',\n";
+        }
+        $output .= "];\n";
+    
+        // Записати назад у файл
+        File::put($path, $output);
+    
+        $this->reinitCursorLang();
+        return '✅ New keys added to collections.php (existing kept unchanged).';
+    }
+    
+    
     public function store(Request $request)
     {
         $request->validate([

@@ -85,6 +85,7 @@ Route::prefix('/admin')->group(function() {
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store')->middleware('auth');
     Route::get('/cursors/create', [CursorController::class, 'create'])->name('cursors.create')->middleware('auth');
     Route::post('/cursors', [CursorController::class, 'store'])->name('cursors.store')->middleware('auth');
+    Route::get('/reinitDb', [CursorController::class, 'reinitDb'])->name('cursors.reinitDb')->middleware('auth');
 
     // Route::get('/', [DashboardController::class,'show'])->middleware('auth');
     // Route::get('/setCursorLang', [CursorController::class, 'setCursorLang'])->middleware('auth');
