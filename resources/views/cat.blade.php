@@ -91,8 +91,8 @@
                         </div>
                     </div>
 
-                    <div class="main__list">
                         @if($cursors->isNotEmpty())
+                            <div class="main__list">                        
                             @foreach($cursors as $key => $cursor)
                                 @if ($key > 0 && $key % 16 === 0)
                                     <div class="gads-wrapper infeed" style="width:100%">
@@ -166,10 +166,10 @@
                                     </div>
                                 </div>
                             @endforeach
+                            </div>                            
                         @else
                             @include('other.nocursors')
                         @endif
-                    </div>
 
 
 
