@@ -154,11 +154,12 @@
                                 </div>
                         </div>
                             </div>
-                        @empty
-                            @include('other.nocursors')
                         @endforelse
                     </div>
 
+                    @if($cursors->isEmpty())
+                        @include('other.nocursors')
+                    @endif
 
                     <div class="random_cat">
                         @foreach($random_cat as $item)
