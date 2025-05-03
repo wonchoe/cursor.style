@@ -119,7 +119,7 @@ class ImageController extends Controller {
    
         $localPath = base_path('resources/categories/' . $cat->img);
         $storagePath = storage_path('app/public/' . $cat->img);
-
+dd($storagePath);
         if (file_exists($localPath)) {
             $r = file_get_contents($localPath);
         } elseif (file_exists($storagePath)) {

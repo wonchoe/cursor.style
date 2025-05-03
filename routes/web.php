@@ -12,7 +12,6 @@ use App\Http\Controllers\TraficController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\GA4AnalyticsController;
 use App\Http\Controllers\SitemapController;
-
 use Illuminate\Http\Request;
 
 

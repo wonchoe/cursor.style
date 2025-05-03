@@ -34,9 +34,7 @@ class AppServiceProvider extends ServiceProvider {
         $this->createSymlinkIfNotExists(storage_path('app/public/cursors'), public_path('cursors'));
         $this->createSymlinkIfNotExists(storage_path('app/public/pointers'), public_path('pointers'));
 
-        if (app()->environment('remote')) {
-            URL::forceScheme('https');
-        }
+         URL::forceScheme('https');
     }
 
     private function createSymlinkIfNotExists($target, $link)
