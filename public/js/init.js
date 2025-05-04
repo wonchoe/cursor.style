@@ -121,8 +121,10 @@ function hoverMenu() {
 }
 
 function attachEtagToCountClicks(){
+  console.log('attachEtagToCountClicks');
   if (!document.documentElement.dataset.cursorstyle) return;
   const btnContainers = document.querySelectorAll('.btn-container');
+  console.log('T');
 
   btnContainers.forEach(function (container) {
       const statButtons = container.querySelectorAll('button[data-type="stat"]');
@@ -147,22 +149,22 @@ function attachEtagToCountClicks(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(() => {
+    attachEtagToCountClicks();  
+  }, 1000);
+  
   hoverMenu();
   injectButtonHandler();
   injectCloseModalInstaller();
 
   if (location.pathname.search('howto') > 0)
     howtoScaleImg();
-
   links = document.getElementsByClassName('top_menu_link');
   [].forEach.call(links, function (cl) {
     cl.className = 'top_menu_link';
     if (location.href == cl.href)
       cl.classList.add('active');
   });
-
-  attachEtagToCountClicks();
-
 });
 
 function handleItemClick(event, url) {
