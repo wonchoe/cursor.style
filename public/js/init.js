@@ -121,10 +121,8 @@ function hoverMenu() {
 }
 
 function attachEtagToCountClicks(){
-  console.log('attachEtagToCountClicks');
   if (!document.documentElement.dataset.cursorstyle) return;
   const btnContainers = document.querySelectorAll('.btn-container');
-  console.log('T');
 
   btnContainers.forEach(function (container) {
       const statButtons = container.querySelectorAll('button[data-type="stat"]');
@@ -140,7 +138,7 @@ function attachEtagToCountClicks(){
               gtag('event', 'cursor_click', {
                   cursor_id: cursorId,
                   cursor_category: category
-              }, 'debug_mode', true);
+              });
 
               console.log('Tracked click for cursor:', cursorId);
           });
