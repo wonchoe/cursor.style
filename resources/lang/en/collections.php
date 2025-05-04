@@ -318,11 +318,4 @@ Are you interested in baseball or even root for one of the teams? Then pay tribu
     'cute_cartoon_animal' => 'Funny Animals',
     'cute_cartoon_animal_descr' => 'This pack features charming cartoon animals acting as cursors, including a puppy, raccoon, skateboarding turtle, giraffe, goat, rabbit, cat in a box, and fox. Each character is playfully pointing or gesturing, ideal for children’s websites, educational tools, or playful UI designs.',
     'cute_cartoon_animal_short_descr' => 'A collection of cartoon-style animal cursors pointing or gesturing. Perfect for fun or educational themes.',
-    'playful_animal_icons' => 'Playful Animals',
-    'playful_animal_icons_descr' => 'This fun-filled collection features adorable animals in playful poses: a dog pointing the way, a snack-loving raccoon, a turtle on a skateboard, a cheeky fox, a curious cat, and more.
-
-With their cartoonish charm and expressive hands, these animals bring energy and emotion to any interface. Use them in children’s games, learning platforms, storytelling apps, or cheerful UI design.
-
-All assets are high-resolution PNGs with transparent backgrounds, ready to use in your next project.',
-    'playful_animal_icons_short_descr' => 'A joyful set of playful animal characters with expressive gestures — ideal for kids\' games and educational apps.',
 ];
