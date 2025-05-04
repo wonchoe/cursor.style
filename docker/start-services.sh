@@ -6,8 +6,10 @@ function deploy_composer {
     cd "$1" || exit 1
 
     if [ ! -d "vendor" ]; then
+		composer config --global process-timeout 3600
+		
         echo "▶ Installing composer dependencies in /var/www/cursor.style"
-        composer install --no-dev --no-interaction --prefer-dist -vvv
+        timeout 3600 composer install --no-dev --no-interaction --prefer-dist -vvv
     else
         echo "▶ Vendor directory already exists, skipping composer install."
     fi
