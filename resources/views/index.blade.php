@@ -110,9 +110,9 @@
                             <p>@lang('cursors.c_' . $cursor->id) </p>
                         </div>
                         <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                            <img class="cursorimg"
+                            <img class="cursorimg" style="cursor: url(/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
                                 src="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg">
-                            <img class="cursorimg"
+                            <img class="cursorimg"  style="cursor: url(/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
                                 src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                         </div>
 
