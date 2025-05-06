@@ -6,7 +6,7 @@
   at app/Console/Commands/grubhub_schedule_cmd.php:69
      65▕                
      66▕         if (date("w") == '6'){
-     67▕                 // $response = $this->checkSchedule($str);
+     67▕                 $response = $this->checkSchedule($str);
      68▕         }
   ➜  69▕ 	$response = $this->checkDate($response);
      70▕ 	
