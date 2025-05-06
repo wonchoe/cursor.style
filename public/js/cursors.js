@@ -44,6 +44,16 @@ function setupImageDrop(dropId, inputId, offsetXId, offsetYId, crossXId, crossYI
                 drop.style.backgroundImage = `url('${event.target.result}')`;
                 drop.textContent = '';
                 imageLoaded = true;
+            
+                if (inputId === 'c_file') {
+                    const nameField = document.getElementById('name');
+                    const fileName = file.name.split('.')[0]; // без розширення
+                    const prefix = 'cursor-';
+                    if (fileName.startsWith(prefix)) {
+                        const stripped = fileName.slice(prefix.length);
+                        nameField.value = stripped;
+                    }
+                }
             };
             reader.readAsDataURL(file);
         }
