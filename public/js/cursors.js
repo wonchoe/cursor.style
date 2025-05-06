@@ -47,11 +47,10 @@ function setupImageDrop(dropId, inputId, offsetXId, offsetYId, crossXId, crossYI
             
                 if (inputId === 'c_file') {
                     const nameField = document.getElementById('name');
-                    const fileName = file.name.split('.')[0]; // без розширення
-                    const prefix = 'cursor-';
-                    if (fileName.startsWith(prefix)) {
-                        const stripped = fileName.slice(prefix.length);
-                        nameField.value = stripped;
+                    const fileName = file.name.split('.')[0]; // видалити .png
+                    const match = fileName.match(/cursor-(.+)$/i);
+                    if (match && match[1]) {
+                        nameField.value = match[1];
                     }
                 }
             };
