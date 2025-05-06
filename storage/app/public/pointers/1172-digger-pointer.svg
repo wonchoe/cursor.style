@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 350 350" preserveAspectRatio="xMidYMid meet">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 350 350" preserveAspectRatio="xMidYMid meet">
  <g fill="#f7f889">
   <path d="M82.3 141.2 c-28.4 -0.1 -44.3 -0.6 -44.3 -1.2 0 -0.6 0.5 -1 1 -1 0.6 0 1 -12.8 1 -36.4 0 -20 0.3 -37.1 0.6 -38 0.5 -1.4 5.3 -1.6 43.5 -1.6 l42.9 0 0 -5 0 -5 48 0 48 0 0 5 0 5 42.9 0 c38.2 0 43 0.2 43.5 1.6 0.3 0.9 0.6 17.9 0.6 37.9 0 28.2 0.3 36.4 1.3 36.8 0.6 0.2 0.9 0.7 0.6 1 -0.6 0.7 -160.3 1.3 -229.6 0.9z m44.7 -38.7 l0 -31.5 -41 0 -41 0 0 31.5 0 31.5 41 0 41 0 0 -31.5z m87.8 -5.7 l0.2 -36.8 -40 0 -40 0 0 36.3 c0 20 0.3 36.7 0.7 37 0.4 0.4 18.2 0.6 39.7 0.5 l39.1 -0.3 0.3 -36.7z m90.2 5.7 l0 -31.5 -41 0 -41 0 0 31.5 0 31.5 41 0 41 0 0 -31.5z"/>
  </g>
