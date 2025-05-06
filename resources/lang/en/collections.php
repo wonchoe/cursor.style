@@ -333,4 +333,7 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'glitter' => 'Glitter',
   'glitter_short_descr' => 'Shiny and sparkly cursors with glitter style ✨🌟',
   'glitter_descr' => 'A glamorous collection of cursors inspired by glittery textures and glowing visuals. Perfect for those who love a sparkling aesthetic on their screen. These cursors bring shimmer, elegance, and a bit of magic to every click.',
+  'roblox-2025' => 'Roblox 2025',
+  'roblox-2025_short_descr' => 'Characters from the latest Roblox wave 🕹️🚀',
+  'roblox-2025_descr' => 'A brand-new 2025 collection featuring iconic and modern Roblox characters. Includes classic noobs, horror legends, and fan-favorite avatars from popular games. Designed in a fun and colorful style perfect for kids and Roblox fans of all ages.',
 );
