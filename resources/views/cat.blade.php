@@ -109,11 +109,12 @@
                                     </div>
                                     <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
                                         <img class="cursorimg"
-                                            style="cursor: url(/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
-                                            src="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg">
+                                            style="cursor: url(/cursors/{{ $cursor->id }}-{{ $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
+                                            src="{{ $cursor->c_file_prev ? asset('assets/' . $cursor->c_file_prev) : asset('cursors/' . $cursor->id . '-' . $cursor->name_s . '-cursor.svg') }}">
+
                                         <img class="cursorimg"
-                                            style="cursor: url(/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
-                                            src="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                            style="cursor: url(/pointers/{{ $cursor->id }}-{{ $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
+                                            src="{{ $cursor->p_file_prev ? asset('assets/' . $cursor->p_file_prev) : asset('pointers/' . $cursor->id . '-' . $cursor->name_s . '-pointer.svg') }}">
                                     </div>
 
                                     <span class="downloads-badge">

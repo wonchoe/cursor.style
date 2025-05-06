@@ -7,12 +7,55 @@ use App\Models\categories;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\File;
+
 
 class CategoryController extends Controller
 {
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = categories::orderBy('id', 'desc')->get();
+        return view('admin.categories.create', ['categories'=>$categories]);
+    }
+
+    public function destroy($id)
+    {
+        $category = categories::findOrFail($id);
+
+        if ($category->img) {
+            $publicPath = public_path($category->img);
+            if (File::exists($publicPath)) {
+                File::delete($publicPath);
+            }
+        
+            $storagePath = storage_path('app/public/categories/' . $category->img);
+            if (File::exists($storagePath)) {
+                File::delete($storagePath);
+            }
+        }
+        
+
+        $path = resource_path('lang/en/collections.php');
+        if (File::exists($path)) {
+            $translations = include $path;
+            if ($category->alt_name) {
+                unset($translations[$category->alt_name]);
+                unset($translations[$category->alt_name . '_short_descr']);
+                unset($translations[$category->alt_name . '_descr']);
+            }
+            ksort($translations);
+            $output = "<?php\n\nreturn [\n";
+            foreach ($translations as $k => $v) {
+                $output .= "    '$k' => '" . addslashes($v) . "',\n";
+            }
+            $output .= "];\n";
+            File::put($path, $output);
+        }
+        
+
+        $category->delete();
+
+        return response()->json(['success' => true]);
     }
 
     public function store(Request $request)

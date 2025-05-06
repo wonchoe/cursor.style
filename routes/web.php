@@ -82,6 +82,8 @@ Route::get('/getUpdates', [CursorController::class, 'getCode']);
 
 Route::prefix('/admin')->group(function() {
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create')->middleware('auth');
+    Route::delete('/categories/delete/{id}', [CategoryController::class, 'destroy'])->middleware('auth');
+    Route::delete('/cursors/delete/{id}', [CursorController::class, 'destroy'])->middleware('auth');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store')->middleware('auth');
     Route::get('/cursors/create', [CursorController::class, 'create'])->name('cursors.create')->middleware('auth');
     Route::post('/cursors', [CursorController::class, 'store'])->name('cursors.store')->middleware('auth');

@@ -20,9 +20,36 @@ class CursorController extends Controller {
     public function create()
     {
         $categories = categories::orderBy('id', 'DESC')->get();
-        return view('admin.cursors.create', compact('categories'));
+        $cursors = cursor::orderBy('id', 'DESC')->take(50)->get();
+    
+        return view('admin.cursors.create', compact('categories', 'cursors'));
     }
 
+
+    public function destroy($id)
+    {
+        $cursor = cursor::findOrFail($id);
+    
+        // Видаляємо SVG файли (зберігались у storage)
+        $svgCursor = storage_path('app/public/cursors_new/' . $cursor->c_file);
+        $svgPointer = storage_path('app/public/pointers_new/' . $cursor->p_file);
+        if (File::exists($svgCursor)) File::delete($svgCursor);
+        if (File::exists($svgPointer)) File::delete($svgPointer);
+    
+        // Видалення з мовного файлу
+        $langPath = resource_path('lang/en/cursors.php');
+        if (File::exists($langPath)) {
+            $translations = include $langPath;
+            unset($translations['c_' . $cursor->id]);
+            File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
+        }
+    
+        $cursor->delete();
+    
+        return response()->json(['success' => true]);
+    }
+
+    
     public function reinitCursorLang()
     {
         $cursors = cursor::select('id', 'name_en')->get();
