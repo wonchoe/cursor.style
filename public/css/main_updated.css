@@ -960,7 +960,7 @@ a.page-numbers-js.next:hover {
 
 .main__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(307px, 1fr));
   gap: 16px;
   width: 100%;
 }
@@ -976,7 +976,7 @@ a.page-numbers-js.next:hover {
   align-items: center;
   align-content: center;
   justify-content: center;
-  max-height: 225px;
+  max-height: 270px;
   flex-direction: column;
 }
 
@@ -1090,9 +1090,9 @@ a.page-numbers-js.next:hover {
 }
 
 .cursorimg {
-  max-width: 92px;
-  max-height: 92px;
-  min-width: 92px;
+  max-width: 128px;
+  max-height: 128px;
+  min-width: 128px;
   min-height: 40px;
   height: auto;
   display: block;
