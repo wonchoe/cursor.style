@@ -1060,6 +1060,24 @@ a.page-numbers-js.next:hover {
   border-radius: 5px;
 }
 
+.review-container{
+  background: white;
+    border-radius: 5px;
+    padding: 0px 30px;
+    display: flex
+;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+
+
+.review-text{
+  font-family: math;
+    font-size: 17px;
+    padding: 58px;
+    color: black;
+}
 
 .cur_menu.active.hidden-by-hover {
   background-color: transparent !important;

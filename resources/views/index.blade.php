@@ -58,6 +58,8 @@
                 </div>
             </div>
 
+
+
             <div class="seo-block collapsed" id="seoBlock">
                 @include('layouts.banner')
                 <p class="seo-info">                    
@@ -73,6 +75,8 @@
 
             @include('layouts.chat')
 
+            @include('layouts.review')
+                        
             <div class="tabs_menu">
                 <div class="wrapper tabs-wrapper">
                     <nav class="tabs">

@@ -1,6 +1,7 @@
-        <div class="banner__tabs">
-<a href="https://chrome.google.com/webstore/detail/skins-for-youtube-player/imomahaddnhnhfggpmpbphdiobpmahof" target="_blank"> <img src="/images/skins_banner/@php echo rand(1,12); @endphp.webp" alt=""></a>
-</div>
+<!-- <div class="banner__tabs">
+<a href="https://chrome.google.com/webstore/detail/skins-for-youtube-player/imomahaddnhnhfggpmpbphdiobpmahof" target="_blank"> 
+    <img src="/images/skins_banner/@php echo rand(1,12); @endphp.webp" alt=""></a>
+</div> -->
 
 
 @if(isset($is_ru))

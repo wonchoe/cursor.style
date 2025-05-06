@@ -1,3 +1,5 @@
+
+
 <div id="ex1" class="modal">
     <div class="modal-header">
         <h5 class="modal-title">@lang('messages.m_1')</h5>
