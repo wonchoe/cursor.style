@@ -182,7 +182,7 @@ class CursorController extends Controller {
                 File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
     
             } catch (\Throwable $e) {
-                Log::error('Cursor save failed: ' . $e->getMessage());
+               
             }
         }
     
