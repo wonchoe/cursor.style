@@ -104,5 +104,8 @@ return [
     'apply' => 'Apply',
     'add' => 'Add',
     'leave_review' => 'Leave a review on Google 🌟 — it really helps us make even more fun and unique cursors just for you! 
-Got a cool idea for a cursor? Drop it in your review ✍️ and we’ll do our best to bring it to life!'
+Got a cool idea for a cursor? Drop it in your review ✍️ and we’ll do our best to bring it to life!',
+    'mycollection' => 'My Collection',
+    'rateus' => 'RATE US',
+    'allcollections' => 'all collections'
 ];

@@ -85,4 +85,6 @@ return [
     'reward_button' => 'Pustite oceno',
     'leave_review' => 'Pustite oceno na Googlu 🌟 — res nam pomaga ustvarjati še bolj zabavne in edinstvene kurzorje samo za vas! 
 Imate kul idejo za kurzor? Zapišite jo v svojo oceno ✍️ in potrudili se bomo, da jo uresničimo!',
+    'rateus' => 'OCENITE NAS',
+    'allcollections' => 'vse zbirke',
 ];

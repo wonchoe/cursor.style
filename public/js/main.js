@@ -214,3 +214,13 @@ function startLoading() {
     }
   });
 }
+
+
+function showMyCollection(){
+  if (!document.documentElement.dataset.cursorstyle) return;
+  if (document.querySelector('#mycollection_menu')){
+    document.querySelector('#mycollection_menu').style.display = 'block';
+  }
+}
+
+showMyCollection();

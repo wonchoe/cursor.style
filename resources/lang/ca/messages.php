@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Deixa una ressenya',
     'leave_review' => 'Deixa una ressenya a Google 🌟 — realment ens ajuda a crear cursos encara més divertits i únics només per a tu! 
 Tens una idea genial per a un cursor? Posa-la a la teva ressenya ✍️ i farem tot el possible per fer-la realitat!',
+    'rateus' => 'VALORA\'NS',
+    'allcollections' => 'totes les col·leccions',
 ];

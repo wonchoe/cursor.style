@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Legg igjen en anmeldelse',
     'leave_review' => 'Legg igjen en anmeldelse på Google 🌟 — det hjelper oss virkelig å lage enda flere morsomme og unike markører bare for deg! 
 Har du en kul idé til en markør? Slipp den i anmeldelsen din ✍️ så skal vi gjøre vårt beste for å få den til live!',
+    'rateus' => 'VURDER OSS',
+    'allcollections' => 'alle samlinger',
 ];

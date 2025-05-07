@@ -85,4 +85,6 @@ return [
     'reward_button' => 'Để lại đánh giá',
     'leave_review' => 'Để lại đánh giá trên Google 🌟 — nó thực sự giúp chúng tôi tạo ra những con trỏ thú vị và độc đáo hơn nữa chỉ dành cho bạn! 
 Có một ý tưởng hay ho cho con trỏ không? Hãy viết nó trong đánh giá của bạn ✍️ và chúng tôi sẽ cố gắng hết sức để hiện thực hóa nó!',
+    'rateus' => 'ĐÁNH GIÁ CHÚNG TÔI',
+    'allcollections' => 'tất cả các bộ sưu tập',
 ];

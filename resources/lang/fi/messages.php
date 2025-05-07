@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Jätä arvostelu',
     'leave_review' => 'Jätä arvostelu Googleen 🌟 — se todella auttaa meitä luomaan vieläkin hauskempia ja ainutlaatuisempia kursoreita juuri sinulle! 
 Onko sinulla hieno idea kursorista? Laita se arvosteluusi ✍️ ja teemme parhaamme saadaksemme sen todeksi!',
+    'rateus' => 'ARVOSTELE MEIDÄT',
+    'allcollections' => 'kaikki kokoelmat',
 ];

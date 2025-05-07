@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Napsat recenzi',
     'leave_review' => 'Zanechte recenzi na Google 🌟 — opravdu nám pomáhá vytvořit ještě více zábavných a unikátních kurzorů právě pro vás! 
 Máte skvělý nápad na kurzor? Zahrňte ho do své recenze ✍️ a my uděláme vše pro to, abychom jej oživili!',
+    'rateus' => 'OHODNOŤTE NÁS',
+    'allcollections' => 'všechny kolekce',
 ];

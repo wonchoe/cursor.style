@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Lascia una recensione',
     'leave_review' => 'Lascia una recensione su Google 🌟 — ci aiuta davvero a creare ancora più cursori divertenti e unici per te! 
 Hai una bella idea per un cursore? Scrivila nella tua recensione ✍️ e faremo del nostro meglio per realizzarla!',
+    'rateus' => 'VOTA L\'ESTENSIONE',
+    'allcollections' => 'tutte le raccolte',
 ];

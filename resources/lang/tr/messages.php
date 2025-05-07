@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Bir yorum bırakın',
     'leave_review' => 'Google\'da bir inceleme bırakın 🌟 — bu, sizin için daha eğlenceli ve benzersiz imleçler oluşturmamıza gerçekten yardımcı oluyor! 
 Harika bir imleç fikriniz mi var? İncelemenize ekleyin ✍️ ve onu hayata geçirmek için elimizden geleni yapacağız!',
+    'rateus' => 'BİZE OY VER',
+    'allcollections' => 'tüm koleksiyonlar',
 ];

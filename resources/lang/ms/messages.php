@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Tinggalkan ulasan',
     'leave_review' => 'Tinggalkan ulasan di Google 🌟 — ia benar-benar membantu kami menghasilkan kursor yang lebih menyeronokkan dan unik khusus untuk anda! 
 Punya idea hebat untuk kursor? Letakkannya dalam ulasan anda ✍️ dan kami akan melakukan yang terbaik untuk menghidupkannya!',
+    'rateus' => 'NILAI KAMI',
+    'allcollections' => 'semua koleksi',
 ];

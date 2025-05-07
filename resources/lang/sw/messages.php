@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Acha hakiki',
     'leave_review' => 'Acha ukaguzi kwenye Google 🌟 — inatusaidia sana kutengeneza vishiriki vya panya vya kufurahisha na vya kipekee zaidi kwa ajili yako! 
 Je, una wazo zuri la kishiriki cha panya? Kiweke kwenye ukaguzi wako ✍️ na tutafanya tuwezavyo ili kukileta maishani!',
+    'rateus' => 'TUPENI UKADIRIFU',
+    'allcollections' => 'makusanyo yote',
 ];

@@ -85,4 +85,6 @@ return [
     'reward_button' => 'Skriv en anmeldelse',
     'leave_review' => 'Skriv en anmeldelse på Google 🌟 — det hjælper os virkelig med at lave endnu sjovere og unikke cursors lige præcis til dig!
 Har du en fed idé til en cursor? Smid den i din anmeldelse ✍️, og vi vil gøre vores bedste for at føre den ud i livet!',
+    'rateus' => 'BEDØM OS',
+    'allcollections' => 'alle samlinger',
 ];

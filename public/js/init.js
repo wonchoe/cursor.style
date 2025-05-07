@@ -146,11 +146,19 @@ function attachEtagToCountClicks(){
   });  
 }
 
+
+function showMyCollection(){
+  if (!document.documentElement.dataset.cursorstyle) return;
+  if (document.querySelector('#mycollection_menu')){
+    document.querySelector('#mycollection_menu').style.display = 'block';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(() => {
     attachEtagToCountClicks();  
-  }, 1000);
-  
+    showMyCollection();
+  }, 500);  
   hoverMenu();
   injectButtonHandler();
   injectCloseModalInstaller();

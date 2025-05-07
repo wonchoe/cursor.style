@@ -85,4 +85,6 @@ return [
     'reward_button' => 'Plaats een review',
     'leave_review' => 'Laat een beoordeling achter op Google 🌟 — het helpt ons enorm om nog leukere en uniekere cursors speciaal voor jou te maken! 
 Heb je een leuk idee voor een cursor? Laat het achter in je beoordeling ✍️ en we zullen ons best doen om het tot leven te brengen!',
+    'rateus' => 'BEOORDEEL ONS',
+    'allcollections' => 'alle collecties',
 ];

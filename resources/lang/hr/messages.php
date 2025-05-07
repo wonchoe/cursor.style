@@ -84,4 +84,6 @@ return [
     'reward_text' => 'Ostavite brzu recenziju i odmah primite naš elegantni signature kursor — potpuno besplatno!',
     'reward_button' => ' Ostavite recenziju',
     'leave_review' => 'Ostavite recenziju na Googleu 🌟 — to nam zaista pomaže da napravimo još zabavnije i jedinstvene kursore samo za vas! Imate cool ideju za kursor? Ubacite je u svoju recenziju ✍️ i dat ćemo sve od sebe da je oživimo!',
+    'rateus' => 'OCJENITE NAS',
+    'allcollections' => 'sve kolekcije',
 ];

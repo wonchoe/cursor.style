@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Ostavite recenziju',
     'leave_review' => 'Ostavite recenziju na Google-u 🌟 — to nam zaista pomaže da napravimo još zabavnijih i jedinstvenih kursora samo za vas! 
 Imate kul ideju za kursor? Upišite je u vašu recenziju ✍️ i mi ćemo se potruditi da je oživimo!',
+    'rateus' => 'OCENITE NAS',
+    'allcollections' => 'sve kolekcije',
 ];

@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Jäta arvustus',
     'leave_review' => 'Jäta Google\'is arvustus 🌟 – see aitab meil luua veelgi lõbusamaid ja unikaalsemaid kursorid just sinu jaoks! 
 Kas sul on äge idee kursori jaoks? Jäta see oma arvustusse ✍️ ja me teeme kõik, et see ellu viia!',
+    'rateus' => 'HINDA MEID',
+    'allcollections' => 'kõik kogud',
 ];

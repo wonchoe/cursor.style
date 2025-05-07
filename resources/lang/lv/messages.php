@@ -85,4 +85,6 @@ return [
     'reward_button' => 'Atstāt atsauksmi',
     'leave_review' => 'Atstājiet atsauksmi Google 🌟 — tas tiešām palīdz mums radīt vēl jautrākus un unikālākus kursorus tieši jums! 
 Vai jums ir forša ideja par kursoru? Iemetiet to savā atsauksmē ✍️, un mēs darīsim visu iespējamo, lai to īstenotu!',
+    'rateus' => 'NOVĒRTĒT MUMS',
+    'allcollections' => 'visas kolekcijas',
 ];

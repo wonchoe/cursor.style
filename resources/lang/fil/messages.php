@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Mag-iwan ng pagsusuri',
     'leave_review' => 'Mag-iwan ng review sa Google 🌟 — talagang malaki ang tulong nito para makagawa pa kami ng mas masaya at kakaibang mga cursor para lamang sa iyo! 
 May cool na ideya para sa isang cursor? I-drop ito sa iyong review ✍️ at gagawin namin ang aming makakaya upang mabigyan ito ng buhay!',
+    'rateus' => 'I-RATE KAMI',
+    'allcollections' => 'lahat ng koleksyon',
 ];

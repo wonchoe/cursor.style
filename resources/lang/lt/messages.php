@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Palikti atsiliepimą',
     'leave_review' => 'Palikite atsiliepimą Google 🌟 — tai tikrai padeda mums sukurti dar daugiau linksmų ir unikalių kursorų būtent jums! 
 Turite įdomią idėją kursoriui? Įmeskite ją į savo atsiliepimą ✍️ ir mes padarysime viską, kad ją įgyvendintume!',
+    'rateus' => 'ĮVERTINKITE MUS',
+    'allcollections' => 'Visos kolekcijos',
 ];

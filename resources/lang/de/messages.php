@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Bewertung schreiben',
     'leave_review' => 'Hinterlassen Sie eine Bewertung auf Google 🌟 – es hilft uns wirklich, noch mehr lustige und einzigartige Cursor nur für Sie zu erstellen! 
 Haben Sie eine coole Idee für einen Cursor? Schreiben Sie sie in Ihre Bewertung ✍️ und wir werden unser Bestes tun, um sie zu verwirklichen!',
+    'rateus' => 'BEWERTEN',
+    'allcollections' => 'Alle Sammlungen',
 ];

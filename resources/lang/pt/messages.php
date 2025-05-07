@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Deixar uma avaliação',
     'leave_review' => 'Deixe um comentário no Google 🌟 — isso realmente nos ajuda a criar cursores ainda mais divertidos e exclusivos para você! 
 Tem uma ideia legal para um cursor? Deixe-a no seu comentário ✍️ e faremos o nosso melhor para torná-la realidade!',
+    'rateus' => 'AVALIE-NOS',
+    'allcollections' => 'Todas as coleções',
 ];

@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Zostaw recenzję',
     'leave_review' => 'Zostaw recenzję w Google 🌟 — to naprawdę pomaga nam tworzyć jeszcze więcej zabawnych i unikalnych kursorów specjalnie dla Ciebie! 
 Masz fajny pomysł na kursor? Zapisz go w swojej recenzji ✍️ a my dołożymy wszelkich starań, aby go zrealizować!',
+    'rateus' => 'OCEŃ NAS',
+    'allcollections' => 'wszystkie kolekcje',
 ];

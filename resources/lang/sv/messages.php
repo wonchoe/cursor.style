@@ -85,4 +85,6 @@ return [
     'reward_button' => ' Lämna en recension',
     'leave_review' => 'Lämna en recension på Google 🌟 — det hjälper oss verkligen att skapa ännu roligare och unika markörer just för dig! 
 Har du en cool idé för en markör? Släpp den i din recension ✍️ så ska vi göra vårt bästa för att förverkliga den!',
+    'rateus' => 'BETYGSÄTT OSS',
+    'allcollections' => 'alla samlingar',
 ];

@@ -158,10 +158,10 @@
 
                     <div class="nav">
                         <ul>
-                            <li><a class="top_menu_link" href="/">@lang('messages.menu_main')</a></li>
-                            <li><a class="top_menu_link" href="/howto">@lang('messages.menu_how_to_use')</a></li>
-                            <li><a class="top_menu_link" href="/collections">@lang('messages.menu_collection')</a></li>
-                            <li><a class="top_menu_link" href="/contact">@lang('messages.menu_contact')</a></li>
+                            <li><a class="top_menu_link" href="/">@lang('messages.menu_main')</a></li>                            
+                            <li><a class="top_menu_link" href="/collections">@lang('messages.allcollections')</a></li>
+                            <li><a class="top_menu_link" id="mycollection_menu" href="/mycollection">@lang('messages.mycollection')</a></li>
+                            <li><a class="top_menu_link" data-class="rate" target="_blank" href="https://chromewebstore.google.com/detail/bmjmipppabdlpjccanalncobmbacckjn/reviews">@lang('messages.rateus')</a></li>
                         </ul>
                     </div>
 
@@ -177,9 +177,9 @@
                 <div class="mobile__nav__panel">
                     <div class="close"></div>
                     <a class="nav__link active" href="/">@lang('messages.menu_main')</a>
-                    <a class="nav__link" href="/howto">@lang('messages.menu_how_to_use')</a>
-                    <a class="nav__link" href="/collections">@lang('messages.menu_collection')</a>
+                    <a class="nav__link" href="/collections">@lang('messages.allcollections')</a>
                     <a class="nav__link" href="/contact">@lang('messages.menu_contact')</a>
+                    <a class="nav__link" href="/rateus">@lang('messages.menu_contact')</a>
                 </div>
             </div>
             @yield('main')
@@ -201,9 +201,11 @@
                     target="_blank">Oleksii Semeniuk</a>
             </div>
             <div class="footer__links">
+                <div><a class="downlink" href="/howto">@lang('messages.menu_how_to_use')</a></div>
                 <div><a class="downlink" href="/terms">@lang('messages.footer_term_of_use')</a></div>
                 <div><a class="downlink" href="/privacy">@lang('messages.footer_policy')</a></div>
                 <div><a class="downlink" href="/cookie-policy">@lang('messages.footer_cookies_policy')</a></div>
+                <div><a class="downlink" href="/contact">@lang('messages.menu_contact')</a>
             </div>
         </div>
     </div>
