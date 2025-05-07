@@ -124,44 +124,71 @@ class CursorController extends Controller {
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'cat_select' => 'required|exists:categories,id',
-            'c_file' => 'required|image',
-            'p_file' => 'required|image',
-            'offsetX' => 'required|integer|min:0',
-            'offsetY' => 'required|integer|min:0',
-            'offsetX_p' => 'required|integer|min:0',
-            'offsetY_p' => 'required|integer|min:0',
+            'name' => 'required|array',
+            'name.*' => 'required|string|max:255',
+    
+            'cat_id' => 'required|array',
+            'cat_id.*' => 'required|exists:categories,id',
+    
+            'c_file' => 'required|array',
+            'c_file.*' => 'required|file|mimes:png,jpg,jpeg,svg',
+    
+            'p_file' => 'required|array',
+            'p_file.*' => 'required|file|mimes:png,jpg,jpeg,svg',
+    
+            'offsetX' => 'required|array',
+            'offsetX.*' => 'required|integer|min:0',
+    
+            'offsetY' => 'required|array',
+            'offsetY.*' => 'required|integer|min:0',
+    
+            'offsetX_p' => 'required|array',
+            'offsetX_p.*' => 'required|integer|min:0',
+    
+            'offsetY_p' => 'required|array',
+            'offsetY_p.*' => 'required|integer|min:0',
+    
             'schedule' => 'required|date',
         ]);
-        
-
-        $cFilePath = $request->file('c_file')->store('public/cursors_new');
-        $pFilePath = $request->file('p_file')->store('public/pointers_new');
-
-        $cursor = new cursor();
-        $cursor->name = $request->input('name');
-        $cursor->name_en = $request->input('name');
-        $cursor->name_es = $request->input('name');
-        $cursor->cat = $request->input('cat_select');
-        $cursor->c_file = basename($cFilePath);
-        $cursor->p_file = basename($pFilePath);
-        $cursor->offsetX = $request->input('offsetX');
-        $cursor->offsetY = $request->input('offsetY');
-        $cursor->offsetX_p = $request->input('offsetX_p');
-        $cursor->offsetY_p = $request->input('offsetY_p');
-        $cursor->schedule = $request->input('schedule');
-        $cursor->save();
-
-        // Додаємо переклад в resources/lang/en/cursors.php
-        $langPath = resource_path('lang/en/cursors.php');
-        $translations = File::exists($langPath) ? include($langPath) : [];
-        $translations['c_' . $cursor->id] = $cursor->name;
-        $output = "<?php\n\nreturn " . var_export($translations, true) . ";\n";
-        File::put($langPath, $output);
-
-        return redirect()->route('cursors.create')->with('success', 'Cursor created successfully.');
+    
+        $count = count($request->input('name'));
+    
+        for ($i = 0; $i < $count; $i++) {
+            try {
+                $cursorFile = $request->file('c_file')[$i];
+                $pointerFile = $request->file('p_file')[$i];
+    
+                $cFilePath = $cursorFile->store('public/cursors_new');
+                $pFilePath = $pointerFile->store('public/pointers_new');
+    
+                $cursor = new Cursor();
+                $cursor->name = $request->input('name')[$i];
+                $cursor->name_en = $cursor->name;
+                $cursor->name_es = $cursor->name;
+                $cursor->cat = $request->input('cat_id')[$i];
+                $cursor->c_file = basename($cFilePath);
+                $cursor->p_file = basename($pFilePath);
+                $cursor->offsetX = $request->input('offsetX')[$i];
+                $cursor->offsetY = $request->input('offsetY')[$i];
+                $cursor->offsetX_p = $request->input('offsetX_p')[$i];
+                $cursor->offsetY_p = $request->input('offsetY_p')[$i];
+                $cursor->schedule = $request->input('schedule');
+                $cursor->save();
+    
+                // 💬 Update translations
+                $langPath = resource_path('lang/en/cursors.php');
+                $translations = File::exists($langPath) ? include($langPath) : [];
+                $translations['c_' . $cursor->id] = $cursor->name;
+                File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
+    
+            } catch (\Throwable $e) {
+                Log::error('Cursor save failed: ' . $e->getMessage());
+            }
+        }
+    
+        return redirect()->route('cursors.create')->with('success', 'Cursors created successfully.');
     }
+    
         
     public function setBgUser() {
         $r = bg::firstOrCreate(['date' => date('Y-m-d')]);
