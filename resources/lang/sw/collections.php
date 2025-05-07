@@ -311,4 +311,22 @@ Bila shaka, linapokuja suala la ulinzi, utakuwa na matatizo fulani na kuna rasil
 Mwaka mmoja baadaye, paka huyo alipata ukurasa wake kwenye Tumblr.com na katika wiki chache alipata jeshi lote la mashabiki - takriban watu 10,000. Mnamo mwaka wa 2013, Facebook alikuwa akitamani kujumuisha picha kutoka Pushin katika makusanyo pamoja na hisia zingine. Baada ya mazungumzo na muundaji, wazo hili lilitumika na \'kulipua\' mtandao! Picha kutoka kwa paka wa Pusheen hutumiwa katika mawasiliano zaidi ya mara milioni 10 kwa siku!
 Mnamo 2014, mmoja wa watengenezaji wakubwa wa vifaa vya kuchezea nchini Merika alielekeza umakini wake kwa mhusika huyu. GUND (ilikuwa yeye ambaye alibuni vinyago vya teddy) alizindua jozi ya mifano ya Pushin. Kwa kuwa mafanikio yalikuwa makubwa, baada ya miezi michache mkusanyiko kamili wa vinyago kwa namna ya paka huyu uliundwa.
 Unaweza kukutana na paka wa Pusheen wapi pengine? Katika seti za zawadi kutoka kwa Isaac Morris Ltd, katika marshmallow kutoka Boomf na, kwa kweli, katika mkusanyiko wetu wa kiteuzi cha Pusheen!',
+    'astrology-signs-zodiac' => 'Ishara za Zodiac',
+    'sports-cars_short_descr' => 'Magari yenye nguvu na maridadi yaliyoundwa kwa kasi na wepesi',
+    'spider-man' => 'Spider-Man',
+    'astrology-signs-zodiac_short_descr' => 'Seti ya alama 12 za unajimu zinazowakilisha sifa za utu, nguvu za ulimwengu, na mifumo ya maisha.',
+    'sports-cars' => 'Magari ya Michezo',
+    'sports-cars_descr' => 'Magari ya michezo ni magari yenye utendaji wa hali ya juu yaliyoundwa kwa ajili ya kuongeza kasi ya haraka, utunzaji mkali, na uzoefu wa kuendesha gari wa kusisimua. Kutoka kwa magari maridadi ya coupe hadi magari ya roadster ya agile, kategoria hii ina mashine kadhaa za kipekee zilizojengwa kwa furaha ya barabara au wimbo. Bora kwa wapenzi wanaopenda kasi, muundo, na nguvu. 🏎️🔥',
+    'spider-man_short_descr' => 'Mashujaa kutoka ulimwengu wa Spider-Man',
+    'starwars' => 'Star Wars',
+    'astrology-signs-zodiac_descr' => 'Alama za Zodiac ♈♉♊♋♌♍♎♏♐♑♒♓ ni mgawanyiko kumi na mbili wa mfumo wa anga unaotumika katika unajimu. Kila alama inahusishwa na tarehe maalum, vipengele (🌍 Dunia, 🔥 Moto, 🌊 Maji, 💨 Hewa), sayari zinazotawala, na sifa za kipekee za utu. Wanajimu hutumia alama za zodiac kufasiri tabia, kutabiri upatanifu, na kuchunguza njia za maisha. Ikiwa wewe ni Leo 🔥 mwenye shauku au Pisces 🌊 mwenye mawazo, alama yako inatoa ufahamu katika ulimwengu wako wa ndani. Kategoria hii inajumuisha alama zote 12, maana zake, na uwakilishi wa taswira.',
+    'spider-man_descr' => 'Mkusanyiko wa wahusika na mashujaa kutoka kwa ulimwengu wa Spider-Man. Inajumuisha matoleo mbalimbali ya Spider-Man, washirika, na mitindo ya kipekee kutoka kwa katuni, michezo, na mfululizo wa uhuishaji. Kila muundo unaonyesha wepesi, ujasiri, na utambulisho wa kuonekana unaoelezea ulimwengu wa Spider-Man.',
+    'starwars_descr' => 'Jitumbukize kwenye galaksi mbali sana, mbali sana na mkusanyiko huu unaoonyesha mashujaa wa hadithi, mabwana wenye nguvu wa Sith, droids, waasi, na zaidi. Kuanzia Jedi Knights hadi stormtroopers, kila ikoni huleta roho ya Star Wars katika umbo la kishale. Ni kamili kwa mashabiki wa kila trilogy. 🌌',
+    'starwars_short_descr' => 'Wahusika na alama kutoka ulimwengu wa Star Wars',
+    'glitter' => 'Mng\'ao',
+    'glitter_short_descr' => 'Vionyeshi vyenye kung\'aa na mng\'ao na mtindo wa mng\'ao ✨🌟',
+    'roblox-2025' => 'Roblox 2025',
+    'roblox-2025_short_descr' => 'Wahusika kutoka wimbi jipya zaidi la Roblox 🕹️🚀',
+    'glitter_descr' => 'Mkusanyiko wa kupendeza wa kielekezi kilichoongozwa na maumbo ya kung\'aa na taswira zinazong\'aa. Ni kamili kwa wale wanaopenda urembo unaometa kwenye skrini zao. Vielekezi hivi huleta kung\'aa, umaridadi, na uchawi kidogo kwa kila mbofyo.',
+    'roblox-2025_descr' => 'Mkusanyiko mpya kabisa wa 2025 unaojumuisha wahusika wa Roblox mashuhuri na wa kisasa. Inajumuisha wageni wa zamani, hadithi za kutisha, na avatari zinazopendwa na mashabiki kutoka michezo maarufu. Imeundwa kwa mtindo wa kufurahisha na wa kupendeza kamili kwa watoto na mashabiki wa Roblox wa rika zote.',
 ];

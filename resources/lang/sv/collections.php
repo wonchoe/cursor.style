@@ -311,4 +311,22 @@ Handlingen utspelar sig i Paris, där Marinette och Adrian är gymnasieelever i 
 Marinette kan förvandlas till en nyckelpiga, och Adrian - till en Cat Noir, men överraskande nog, arbetar de tillsammans, de känner inte igen varandra under superhjältarnas masker.
 
 Hjälp Cat Noir och Ladybug att rädda Paris med våra markörer med dina favoritkaraktärer. Vilken karaktär ska du välja för markören? Kommer det att vara en Miraculous Ladybug-markör, eller kanske Tikki\'s bedårande lilla Ladybug eller Cat Noir-markör? Eller kanske Queen Bee med Rena Rouge-markörer? Valet är ditt!',
+    'astrology-signs-zodiac_short_descr' => 'En uppsättning av 12 astrologiska symboler som representerar personlighetsdrag, kosmiska energier och livsmönster.',
+    'sports-cars' => 'Sportbilar',
+    'sports-cars_short_descr' => 'Kraftfulla och snygga bilar byggda för fart och smidighet',
+    'spider-man' => 'Spider-Man',
+    'astrology-signs-zodiac' => 'Stjärntecken',
+    'sports-cars_descr' => 'Sportbilar är högpresterande fordon designade för snabb acceleration, skarp hantering och en spännande körupplevelse. Från eleganta coupéer till smidiga roadsters, denna kategori innehåller några av de mest ikoniska maskinerna byggda för spänningen på vägen eller banan. Idealisk för entusiaster som älskar hastighet, design och kraft. 🏎️🔥',
+    'spider-man_short_descr' => 'Hjältar från Spider-Man-universumet',
+    'starwars' => 'Star Wars',
+    'spider-man_descr' => 'En samling karaktärer och hjältar från Spider-Man-universumet. Inkluderar olika versioner av Spider-Man, allierade och unika stilar från serietidningar, spel och animerade serier. Varje design återspeglar smidigheten, modet och den visuella identiteten som definierar Spider-Man-världen.',
+    'astrology-signs-zodiac_descr' => 'Zodiakens stjärntecken ♈♉♊♋♌♍♎♏♐♑♒♓ är tolv symboliska indelningar av det himmelska bältet som används i astrologin. Varje tecken är associerat med specifika datum, element (🌍 Jord, 🔥 Eld, 🌊 Vatten, 💨 Luft), härskande planeter och unika personlighetsdrag. Astrologer använder zodiaktecken för att tolka beteenden, förutsäga kompatibilitet och utforska livsvägar. Oavsett om du är en passionerad Lejon 🔥 eller en tankfull Fisk 🌊, erbjuder ditt tecken insikt i din inre värld. Denna kategori inkluderar alla 12 tecken, deras betydelser och visuella representationer.',
+    'starwars_short_descr' => 'Karaktärer och symboler från Star Wars-universumet',
+    'glitter' => 'Glitter',
+    'glitter_short_descr' => 'Glänsande och gnistrande markörer med glitterstil ✨🌟',
+    'glitter_descr' => 'En glamorös samling av markörer inspirerade av glittriga texturer och lysande visuella effekter. Perfekt för dem som älskar en gnistrande estetik på sin skärm. Dessa markörer ger skimmer, elegans och lite magi till varje klick.',
+    'roblox-2025' => 'Roblox 2025',
+    'roblox-2025_short_descr' => 'Karaktärer från den senaste Roblox-vågen 🕹️🚀',
+    'starwars_descr' => 'Dyk ner i galaxen långt, långt borta med den här samlingen med legendariska hjältar, mäktiga Sith-lords, droider, rebeller och mer. Från Jedi Knights till stormtrupper, varje ikon väcker Star Wars ande till liv i markörform. Perfekt för fans av varje trilogi. 🌌',
+    'roblox-2025_descr' => 'En helt ny 2025-kollektion med ikoniska och moderna Roblox-karaktärer. Inkluderar klassiska noobs, skräcklegender och favoritavatarer från populära spel. Designad i en rolig och färgstark stil perfekt för barn och Roblox-fans i alla åldrar.',
 ];

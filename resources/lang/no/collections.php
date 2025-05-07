@@ -311,4 +311,22 @@ Er du interessert i baseball eller heier du til og med på et av lagene? Så hyl
 Hovedkarakteren i Kirby er den eponymiske rosa skapningen. Den lever på en planet som heter Pop Star, og beskytter den periodisk fra forskjellige farer. Kirby kan puste inn noen objekter og fiender for å lære deres evner: nærkamp, besittelse av et sverd, pusting av ild, etc. Men den rosa pufferen ikke bare kjemper med fiender, men løser også forskjellige gåter, reiser til andre land og kan til og med fly i nivå.
 Du kan spille dette videospillet på Nintendo eller Game Boy konsoller. I alle serier er det søte helter, god grafikk og morsomme lydspor. Forresten, i nesten 30 år siden utgivelsen av den første versjonen, klarte verden å se 20 Kirby-serier. Denne indikatoren, kombinert med det multimillionsstore volumet av solgte eksemplarer, hjalp spillet med å være i TOP 50 av de mest suksessrike og ettertraktede videospillene i spillindustrien.
 Elsker du Kirby så mye at du ønsker å se denne karakteren hvor som helst? Bruk deretter Kirby-samlingen og gjør den vanlige musepekeren om til hovedpersonen i ditt favoritt videospill! Vi er sikre på at du vil like det nye utseendet på markøren.',
+    'sports-cars_short_descr' => 'Kraftige og stilige biler bygget for fart og smidighet',
+    'spider-man' => 'Spider-Man',
+    'astrology-signs-zodiac_short_descr' => 'Et sett med 12 astrologiske symboler som representerer personlighetstrekk, kosmiske energier og livsmønstre.',
+    'sports-cars' => 'Sportsbiler',
+    'astrology-signs-zodiac' => 'Stjernetegn',
+    'sports-cars_descr' => 'Sportsbiler er høyytelsesbiler designet for rask akselerasjon, skarp håndtering og en spennende kjøreopplevelse. Fra elegante kupeer til smidige roadstere, denne kategorien inneholder noen av de mest ikoniske maskinene bygget for spenningen på veien eller banen. Ideell for entusiaster som elsker fart, design og kraft. 🏎️🔥',
+    'spider-man_short_descr' => 'Helter fra Spider-Man-universet',
+    'starwars' => 'Star Wars',
+    'spider-man_descr' => 'En samling av karakterer og helter fra Spider-Man-universet. Inkluderer forskjellige versjoner av Spider-Man, allierte og unike stiler fra tegneserier, spill og animerte serier. Hvert design reflekterer smidigheten, motet og den visuelle identiteten som definerer Spider-Man-verdenen.',
+    'astrology-signs-zodiac_descr' => 'Dyrekretsens tegn ♈♉♊♋♌♍♎♏♐♑♒♓ er tolv symbolsk inndelinger av det himmelske beltet som brukes i astrologi. Hvert tegn er assosiert med spesifikke datoer, elementer (🌍 Jord, 🔥 Ild, 🌊 Vann, 💨 Luft), herskende planeter og unike personlighetstrekk. Astrologer bruker dyrekretstegn for å tolke atferd, forutsi kompatibilitet og utforske livsveier. Enten du er en lidenskapelig Leo 🔥 eller en ettertenksom Fisk 🌊, gir ditt tegn innsikt i din indre verden. Denne kategorien inkluderer alle 12 tegn, deres betydninger og visuelle representasjoner.',
+    'starwars_short_descr' => 'Karakterer og symboler fra Star Wars-universet',
+    'glitter' => 'Glitter',
+    'glitter_short_descr' => 'Skinnende og glitrende markører med glitterstil ✨🌟',
+    'starwars_descr' => 'Dykk ned i galaksen langt, langt borte med denne samlingen som inneholder legendariske helter, mektige Sith-herrer, droider, rebeller og mer. Fra Jedi-riddere til stormtrooper, hvert ikon bringer ånden fra Star Wars til live i markørform. Perfekt for fans av enhver trilogi. 🌌',
+    'glitter_descr' => 'En glamorøs samling av markører inspirert av glitrende teksturer og glødende bilder. Perfekt for de som elsker en glitrende estetikk på skjermen. Disse markørene bringer glans, eleganse og litt magi til hvert klikk.',
+    'roblox-2025' => 'Roblox 2025',
+    'roblox-2025_short_descr' => 'Karakterer fra den nyeste Roblox-bølgen 🕹️🚀',
+    'roblox-2025_descr' => 'En splitter ny 2025-kolleksjon med ikoniske og moderne Roblox-karakterer. Inkluderer klassiske noober, skrekklegender og fan-favoritt avatarer fra populære spill. Designet i en morsom og fargerik stil, perfekt for barn og Roblox-fans i alle aldre.',
 ];

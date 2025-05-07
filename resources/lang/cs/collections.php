@@ -311,4 +311,22 @@ Máte zájem o baseball nebo dokonce fandíte jednomu z týmů? Poté uctěte sv
 Starší lidé často sedí na sociální síti jako Facebook nebo VK. Také často komunikují se svými dětmi a vnoučaty na Skype . To je zvláště výhodné, pokud děti a rodiče žijí v různých městech nebo dokonce zemích.
 Mladí lidé dávají přednost komunikaci prostřednictvím Viber nebo Telegram, nahrávají fotografie na Instagram, smějí se FB memům. YouTube videa s reakcemi lidí získávají miliony zhlédnutí, stejně jako různé žerty nebo sociální experimenty. V Tik-Tok tančí, ukazují triky a vyjadřují se stovky tisíc lidí.
 Máte zájem nebo často používáte nějaký druh zdroje ze sféry webových médií? Chcete se zbavit nudné šipky myši ve vašem prohlížeči? Poté nainstalujte rozšíření a změňte výchozí kurzor na náš kreativní! Může to být kurzor YouTube, kurzor Viber, kurzor Google Chrome nebo jiné zdroje.',
+    'astrology-signs-zodiac' => 'Znamení zvěrokruhu',
+    'sports-cars_short_descr' => 'Výkonná a stylová auta stvořená pro rychlost a obratnost',
+    'spider-man' => 'Spider-Man',
+    'astrology-signs-zodiac_short_descr' => 'Sada 12 astrologických symbolů představujících osobnostní rysy, kosmické energie a životní vzorce.',
+    'sports-cars' => 'Sportovní auta',
+    'sports-cars_descr' => 'Sportovní auta jsou vysoce výkonná vozidla navržená pro rychlou akceleraci, ostré ovládání a vzrušující zážitek z jízdy. Od elegantních kupé po svižné roadstery, tato kategorie představuje některé z nejikoničtějších strojů postavených pro vzrušení z cesty nebo okruhu. Ideální pro nadšence, kteří milují rychlost, design a výkon. 🏎️🔥',
+    'spider-man_short_descr' => 'Hrdinové z univerza Spider-Man',
+    'starwars' => 'Star Wars',
+    'spider-man_descr' => 'Kolekce postav a hrdinů z pavoučího světa Spider-Mana. Zahrnuje různé verze Spider-Mana, spojence a jedinečné styly z komiksů, her a animovaných seriálů. Každý design odráží obratnost, odvahu a vizuální identitu, která definuje svět Spider-Mana.',
+    'astrology-signs-zodiac_descr' => 'Znamení zvěrokruhu ♈♉♊♋♌♍♎♏♐♑♒♓ je dvanáct symbolických dělení nebeského pásu používaných v astrologii. Každé znamení je spojeno se specifickými daty, živly (🌍 Země, 🔥 Oheň, 🌊 Voda, 💨 Vzduch), vládnoucími planetami a jedinečnými charakteristikami osobnosti. Astrologové používají znamení zvěrokruhu k interpretaci chování, předpovídání kompatibility a zkoumání životních cest. Ať už jste vášnivý Lev 🔥 nebo zamyšlený Ryba 🌊, vaše znamení nabízí vhled do vašeho vnitřního světa. Tato kategorie zahrnuje všech 12 znamení, jejich významy a vizuální reprezentace.',
+    'starwars_descr' => 'Ponořte se do předaleké galaxie s touto kolekcí, která obsahuje legendární hrdiny, mocné Sithské lordy, droidy, rebely a mnoho dalšího. Od rytířů Jedi po stormtroopery, každá ikona přivádí ducha Star Wars k životu ve formě kurzoru. Ideální pro fanoušky každé trilogie. 🌌',
+    'starwars_short_descr' => 'Postavy a symboly z vesmíru Star Wars',
+    'glitter' => 'Třpytky',
+    'glitter_short_descr' => 'Lesklé a třpytivé kurzory ve stylu třpytek ✨🌟',
+    'roblox-2025' => 'Roblox 2025',
+    'roblox-2025_short_descr' => 'Postavy z nejnovější Roblox vlny 🕹️🚀',
+    'glitter_descr' => 'Okouzlující kolekce kurzorů inspirovaná třpytivými texturami a zářivým vizuálem. Ideální pro ty, kteří milují jiskřivou estetiku na své obrazovce. Tyto kurzory přinášají třpyt, eleganci a trochu magie ke každému kliknutí.',
+    'roblox-2025_descr' => 'Zcela nová kolekce z roku 2025 s ikonickými a moderními postavami z Robloxu. Zahrnuje klasické nooby, hororové legendy a oblíbené avatary z populárních her. Navrženo v zábavném a barevném stylu, který je ideální pro děti a fanoušky Robloxu všech věkových kategorií.',
 ];

@@ -311,4 +311,22 @@ Vas zanima baseball ali celo navijate za eno od ekip? Potem počastite svojo naj
 Leto kasneje je mačka dobila svojo stran na Tumblr.com in v nekaj tednih pridobila celo vojsko oboževalcev - približno 10.000 ljudi. Leta 2013 je bil Facebook zelo rad vključil slike iz Pushina v zbirke z drugimi emotikoni. Po pogajanjih z ustvarjalcem je bila ta ideja uresničena in »raznesla« internet! Slike iz mačke Pusheen se v korespondenci uporabljajo več kot 10 milijonkrat na dan!
 Leta 2014 je eden največjih proizvajalcev igrač v Združenih državah Amerike posvetil svojo pozornost temu liku. GUND (ona je izumila medvedke) je lansiral par modelov Pushin. Ker je bil uspeh ogromen, je bila čez nekaj mesecev ustvarjena celotna zbirka igrač v obliki te mačke.
 Kje drugje lahko srečate mačko Pusheen? V darilnih kompletih od podjetja Isaac Morris Ltd, v penastih bombonih iz Boomf in, seveda, v naši zbirki kazalcev Pusheen!',
+    'sports-cars_short_descr' => 'Zmogljivi in ​​stilski avtomobili, izdelani za hitrost in okretnost',
+    'spider-man' => 'Spider-Man',
+    'astrology-signs-zodiac' => 'Znamenja zodiaka',
+    'astrology-signs-zodiac_short_descr' => 'Nabor 12 astroloških simbolov, ki predstavljajo osebnostne lastnosti, kozmične energije in življenjske vzorce.',
+    'sports-cars' => 'Športni avtomobili',
+    'spider-man_short_descr' => 'Junaki iz Spider-Manovega vesolja',
+    'starwars' => 'Star Wars',
+    'sports-cars_descr' => 'Športni avtomobili so visokozmogljiva vozila, zasnovana za hitro pospeševanje, ostro vodljivost in vznemirljivo vozno izkušnjo. Od elegantnih kupejev do okretnih roadsterjev, ta kategorija predstavlja nekatere izmed najbolj ikoničnih strojev, zgrajenih za vznemirjenje na cesti ali stezi. Idealen za navdušence, ki ljubijo hitrost, dizajn in moč. 🏎️🔥',
+    'spider-man_descr' => 'Zbirka likov in junakov iz vesolja Pajkovega moža. Vključuje različne različice Pajkovega moža, zaveznike in edinstvene sloge iz stripov, iger in animiranih serij. Vsak dizajn odraža okretnost, pogum in vizualno identiteto, ki opredeljuje svet Pajkovega moža.',
+    'astrology-signs-zodiac_descr' => 'Zodiakalna znamenja ♈♉♊♋♌♍♎♏♐♑♒♓ so dvanajst simboličnih delitev nebesnega pasu, ki se uporabljajo v astrologiji. Vsako znamenje je povezano z določenimi datumi, elementi (🌍 Zemlja, 🔥 Ogenj, 🌊 Voda, 💨 Zrak), vladajočimi planeti in edinstvenimi značajskimi lastnostmi. Astrologi uporabljajo zodiakalna znamenja za interpretacijo vedenja, napovedovanje združljivosti in raziskovanje življenjskih poti. Ne glede na to, ali ste strasten Lev 🔥 ali zamišljen Ribi 🌊, vaše znamenje ponuja vpogled v vaš notranji svet. Ta kategorija vključuje vseh 12 znamenj, njihove pomene in vizualne upodobitve.',
+    'starwars_short_descr' => 'Znaki in simboli iz vesolja Vojne zvezd',
+    'glitter' => 'Bleščice',
+    'glitter_short_descr' => 'Sijoči in bleščeči kurzorji v stilu bleščic ✨🌟',
+    'starwars_descr' => 'Potopite se v galaksijo daleč, daleč stran s to zbirko legendarnih junakov, mogočnih Sith lordov, droidov, upornikov in še več. Od vitezov Jedi do jurišnikov, vsaka ikona oživi duh Vojne zvezd v obliki kurzorja. Popolno za oboževalce vseh trilogij. 🌌',
+    'roblox-2025' => 'Roblox 2025',
+    'roblox-2025_short_descr' => 'Znakci iz najnovejšega vala Robloxa 🕹️🚀',
+    'glitter_descr' => 'Očarljiva zbirka kazalcev, ki jih navdihujejo bleščeče teksture in žareče podobe. Popolno za tiste, ki imajo radi bleščečo estetiko na zaslonu. Ti kazalci prinašajo lesk, eleganco in malo čarovnije vsakemu kliku.',
+    'roblox-2025_descr' => 'Popolnoma nova kolekcija 2025 z ikoničnimi in sodobnimi Roblox liki. Vključuje klasične noobe, grozljive legende in avatarje, ki so jih oboževalci iz popularnih iger. Zasnovano v zabavnem in barvitem slogu, popolnem za otroke in oboževalce Robloxa vseh starosti.',
 ];

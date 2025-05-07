@@ -311,4 +311,22 @@ Oletko kiinnostunut baseballista tai kannustatko jopa jotakin joukkuetta? Osoita
 Tanjiro Kamado on perheen vanhin poika, joka menetti isänsä ja huolehti perheestään. Eräänä päivänä hän menee läheiseen kaupunkiin myymään puuhiiltä. Palattuaan aamulla kaveri löytää edestään kauhean kuvan: kaikki sukulaiset oli murhattu raa\'asti, ja ainoa selviytyjä on Nezuko, nuorempi sisko, joka on muuttunut demoniksi, mutta joka ei ole vielä menettänyt kaikkea inhimillisyyttään.
 
 Tästä hetkestä alkaen Tanjiro ja Nezuko aloittavat pitkän ja vaarallisen matkan, jossa poika aikoo löytää tappajan ja löytää keinon parantaa sisarensa. Mutta pystyvätkö lapset selviytymään kaikista vaikeuksista ja palaamaan kotiin? Tiedät jo vastauksen, ja jos et - aseta pikaisesti Demon Slayer -kursorit, jotka sisältävät hahmoja yhdestä suosituimmista mangasarjoista.',
+    'astrology-signs-zodiac' => 'Horoskooppimerkit',
+    'astrology-signs-zodiac_short_descr' => 'Sarja 12 astrologisesta symbolista, jotka edustavat persoonallisuuden piirteitä, kosmisia energioita ja elämän malleja.',
+    'sports-cars' => 'Urheiluautot',
+    'sports-cars_short_descr' => 'Tehokkaita ja tyylikkäitä autoja, jotka on rakennettu nopeuteen ja ketteryyteen',
+    'spider-man' => 'Hämähäkkimies',
+    'sports-cars_descr' => 'Urheiluautot ovat huippusuorituskykyisiä ajoneuvoja, jotka on suunniteltu nopeaan kiihtyvyyteen, terävään käsittelyyn ja jännittävään ajokokemukseen. Tyylikkäistä coupeista ketteriin roadstereihin, tämä kategoria sisältää joitain ikonisimmista koneista, jotka on rakennettu tien tai radan jännitystä varten. Ihanteellinen harrastajille, jotka rakastavat nopeutta, muotoilua ja voimaa. 🏎️🔥',
+    'spider-man_descr' => 'Kokoelma hahmoja ja sankareita Spider-Man-universumista. Sisältää eri versioita Spider-Manista, liittolaisia ja ainutlaatuisia tyylejä sarjakuvista, peleistä ja animaatiosarjoista. Jokainen muotoilu heijastaa ketteryyttä, rohkeutta ja visuaalista identiteettiä, joka määrittelee Spider-Manin maailman.',
+    'spider-man_short_descr' => 'Sankareita Hämähäkkimies-universumista',
+    'starwars' => 'Star Wars',
+    'astrology-signs-zodiac_descr' => 'Zodiakin merkit ♈♉♊♋♌♍♎♏♐♑♒♓ ovat kaksitoista symbolista jakoa taivaallisesta vyöstä, joita käytetään astrologiassa. Jokainen merkki liitetään tiettyihin päivämääriin, elementteihin (🌍 Maa, 🔥 Tuli, 🌊 Vesi, 💨 Ilma), hallitseviin planeettoihin ja ainutlaatuisiin persoonallisuuspiirteisiin. Astrologit käyttävät zodiakin merkkejä tulkitsemaan käyttäytymistä, ennustamaan yhteensopivuutta ja tutkimaan elämänpolkuja. Olitpa intohimoinen Leijona 🔥 tai ajatteleva Kala 🌊, merkki tarjoaa näkemystä sisäiseen maailmaasi. Tämä kategoria sisältää kaikki 12 merkkiä, niiden merkitykset ja visuaaliset esitykset.',
+    'starwars_descr' => 'Sukella kaukaiseen galaksiin tämän kokoelman kanssa, jossa on legendaarisia sankareita, voimakkaita Sith-lordejä, droideja, kapinallisia ja paljon muuta. Jedi-ritareista Stormtroopereihin, jokainen kuvake herättää Star Warsin hengen eloon kursori-muodossa. Täydellinen kaikkien trilogioiden faneille. 🌌',
+    'roblox-2025' => 'Roblox 2025',
+    'roblox-2025_short_descr' => 'Hahmoja uusimmasta Roblox -aallosta 🕹️🚀',
+    'starwars_short_descr' => 'Hahmoja ja symboleja Tähtien Sota -universumista',
+    'glitter' => 'Kimalle',
+    'glitter_short_descr' => 'Kiiltäviä ja kimaltelevia kursoreita glitter-tyyliin ✨🌟',
+    'glitter_descr' => 'Glamouröinen kokoelma kursoreita, jotka ovat saaneet inspiraationsa kimaltelevista tekstuureista ja hehkuvista visuaaleista. Täydellinen niille, jotka rakastavat kimaltelevaa estetiikkaa näytöllään. Nämä kursorit tuovat hohtoa, eleganssia ja ripauksen taikaa jokaiseen klikkaukseen.',
+    'roblox-2025_descr' => 'Upouusi 2025 mallisto, jossa on ikonisia ja moderneja Roblox-hahmoja. Sisältää klassiset noobit, kauhulegendat ja fanien suosikkihahmot suosituista peleistä. Suunniteltu hauskalla ja värikkäällä tyylillä, joka sopii täydellisesti lapsille ja kaikenikäisille Roblox-faneille.',
 ];
