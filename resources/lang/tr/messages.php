@@ -87,4 +87,5 @@ return [
 Harika bir imleç fikriniz mi var? İncelemenize ekleyin ✍️ ve onu hayata geçirmek için elimizden geleni yapacağız!',
     'rateus' => 'BİZE OY VER',
     'allcollections' => 'tüm koleksiyonlar',
+    'mycollection' => 'Kendi Koleksiyonum',
 ];

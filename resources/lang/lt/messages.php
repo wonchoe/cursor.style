@@ -87,4 +87,5 @@ return [
 Turite įdomią idėją kursoriui? Įmeskite ją į savo atsiliepimą ✍️ ir mes padarysime viską, kad ją įgyvendintume!',
     'rateus' => 'ĮVERTINKITE MUS',
     'allcollections' => 'Visos kolekcijos',
+    'mycollection' => 'Mano kolekcija',
 ];

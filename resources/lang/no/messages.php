@@ -87,4 +87,5 @@ return [
 Har du en kul idé til en markør? Slipp den i anmeldelsen din ✍️ så skal vi gjøre vårt beste for å få den til live!',
     'rateus' => 'VURDER OSS',
     'allcollections' => 'alle samlinger',
+    'mycollection' => 'Min samling',
 ];

@@ -87,4 +87,5 @@ return [
 Có một ý tưởng hay ho cho con trỏ không? Hãy viết nó trong đánh giá của bạn ✍️ và chúng tôi sẽ cố gắng hết sức để hiện thực hóa nó!',
     'rateus' => 'ĐÁNH GIÁ CHÚNG TÔI',
     'allcollections' => 'tất cả các bộ sưu tập',
+    'mycollection' => 'Bộ sưu tập của tôi',
 ];

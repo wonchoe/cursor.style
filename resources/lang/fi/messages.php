@@ -87,4 +87,5 @@ return [
 Onko sinulla hieno idea kursorista? Laita se arvosteluusi ✍️ ja teemme parhaamme saadaksemme sen todeksi!',
     'rateus' => 'ARVOSTELE MEIDÄT',
     'allcollections' => 'kaikki kokoelmat',
+    'mycollection' => 'Oma kokoelma',
 ];

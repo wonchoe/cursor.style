@@ -87,4 +87,5 @@ return [
 Kas sul on äge idee kursori jaoks? Jäta see oma arvustusse ✍️ ja me teeme kõik, et see ellu viia!',
     'rateus' => 'HINDA MEID',
     'allcollections' => 'kõik kogud',
+    'mycollection' => 'Minu kollektsioon',
 ];

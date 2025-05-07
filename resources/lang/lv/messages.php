@@ -87,4 +87,5 @@ return [
 Vai jums ir forša ideja par kursoru? Iemetiet to savā atsauksmē ✍️, un mēs darīsim visu iespējamo, lai to īstenotu!',
     'rateus' => 'NOVĒRTĒT MUMS',
     'allcollections' => 'visas kolekcijas',
+    'mycollection' => 'Mana kolekcija',
 ];

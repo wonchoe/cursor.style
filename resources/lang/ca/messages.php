@@ -87,4 +87,5 @@ return [
 Tens una idea genial per a un cursor? Posa-la a la teva ressenya ✍️ i farem tot el possible per fer-la realitat!',
     'rateus' => 'VALORA\'NS',
     'allcollections' => 'totes les col·leccions',
+    'mycollection' => 'La meva col·lecció',
 ];

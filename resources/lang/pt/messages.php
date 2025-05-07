@@ -87,4 +87,5 @@ return [
 Tem uma ideia legal para um cursor? Deixe-a no seu comentário ✍️ e faremos o nosso melhor para torná-la realidade!',
     'rateus' => 'AVALIE-NOS',
     'allcollections' => 'Todas as coleções',
+    'mycollection' => 'Minha Coleção',
 ];

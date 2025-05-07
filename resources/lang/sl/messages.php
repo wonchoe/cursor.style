@@ -87,4 +87,5 @@ return [
 Imate kul idejo za kurzor? Zapišite jo v svojo oceno ✍️ in potrudili se bomo, da jo uresničimo!',
     'rateus' => 'OCENITE NAS',
     'allcollections' => 'vse zbirke',
+    'mycollection' => 'Moja zbirka',
 ];

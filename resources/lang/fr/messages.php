@@ -87,4 +87,5 @@ return [
 Vous avez une idée géniale pour un curseur ? Déposez-la dans votre avis ✍️ et nous ferons de notre mieux pour lui donner vie !',
     'rateus' => 'ÉVALUEZ-NOUS',
     'allcollections' => 'toutes les collections',
+    'mycollection' => 'Ma collection',
 ];

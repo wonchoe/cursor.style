@@ -87,4 +87,5 @@ return [
 Haben Sie eine coole Idee für einen Cursor? Schreiben Sie sie in Ihre Bewertung ✍️ und wir werden unser Bestes tun, um sie zu verwirklichen!',
     'rateus' => 'BEWERTEN',
     'allcollections' => 'Alle Sammlungen',
+    'mycollection' => 'Meine Sammlung',
 ];

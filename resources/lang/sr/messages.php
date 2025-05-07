@@ -87,4 +87,5 @@ return [
 Imate kul ideju za kursor? Upišite je u vašu recenziju ✍️ i mi ćemo se potruditi da je oživimo!',
     'rateus' => 'OCENITE NAS',
     'allcollections' => 'sve kolekcije',
+    'mycollection' => 'Moja kolekcija',
 ];

@@ -87,4 +87,5 @@ return [
 Masz fajny pomysł na kursor? Zapisz go w swojej recenzji ✍️ a my dołożymy wszelkich starań, aby go zrealizować!',
     'rateus' => 'OCEŃ NAS',
     'allcollections' => 'wszystkie kolekcje',
+    'mycollection' => 'Moja Kolekcja',
 ];

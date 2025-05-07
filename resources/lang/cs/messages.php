@@ -87,4 +87,5 @@ return [
 Máte skvělý nápad na kurzor? Zahrňte ho do své recenze ✍️ a my uděláme vše pro to, abychom jej oživili!',
     'rateus' => 'OHODNOŤTE NÁS',
     'allcollections' => 'všechny kolekce',
+    'mycollection' => 'Moje sbírka',
 ];

@@ -87,4 +87,5 @@ return [
 Punya idea hebat untuk kursor? Letakkannya dalam ulasan anda ✍️ dan kami akan melakukan yang terbaik untuk menghidupkannya!',
     'rateus' => 'NILAI KAMI',
     'allcollections' => 'semua koleksi',
+    'mycollection' => 'Koleksi Saya',
 ];

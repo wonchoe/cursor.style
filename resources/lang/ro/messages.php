@@ -87,4 +87,5 @@ return [
 Ai o idee grozavă pentru un cursor? Scrie-o în recenzia ta ✍️ și vom face tot posibilul să o aducem la viață!',
     'rateus' => 'EVALUEAZĂ-NE',
     'allcollections' => 'toate colecțiile',
+    'mycollection' => 'Colecția mea',
 ];

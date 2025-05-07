@@ -87,4 +87,5 @@ return [
 ¿Tienes una idea genial para un cursor? Déjala en tu reseña ✍️ ¡y haremos todo lo posible para darle vida!',
     'rateus' => 'VALÓRANOS',
     'allcollections' => 'todas las colecciones',
+    'mycollection' => 'Mi colección',
 ];

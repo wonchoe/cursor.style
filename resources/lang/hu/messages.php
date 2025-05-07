@@ -87,4 +87,5 @@ return [
 Van egy klassz ötleted a kurzorhoz? Dobd be az értékelésedbe ✍️, és mi mindent megteszünk, hogy életre keltsük!',
     'rateus' => 'ÉRTÉKELJ MINKET',
     'allcollections' => 'összes kollekció',
+    'mycollection' => 'Saját gyűjtemény',
 ];

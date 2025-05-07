@@ -87,4 +87,5 @@ return [
 Je, una wazo zuri la kishiriki cha panya? Kiweke kwenye ukaguzi wako ✍️ na tutafanya tuwezavyo ili kukileta maishani!',
     'rateus' => 'TUPENI UKADIRIFU',
     'allcollections' => 'makusanyo yote',
+    'mycollection' => 'Mkusanyiko Wangu',
 ];

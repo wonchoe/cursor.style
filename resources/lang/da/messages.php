@@ -87,4 +87,5 @@ return [
 Har du en fed idé til en cursor? Smid den i din anmeldelse ✍️, og vi vil gøre vores bedste for at føre den ud i livet!',
     'rateus' => 'BEDØM OS',
     'allcollections' => 'alle samlinger',
+    'mycollection' => 'Min samling',
 ];

@@ -87,4 +87,5 @@ return [
 Hai una bella idea per un cursore? Scrivila nella tua recensione ✍️ e faremo del nostro meglio per realizzarla!',
     'rateus' => 'VOTA L\'ESTENSIONE',
     'allcollections' => 'tutte le raccolte',
+    'mycollection' => 'La mia collezione',
 ];
