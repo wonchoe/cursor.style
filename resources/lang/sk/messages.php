@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Chcete získať exkluzívny kurzor?',
     'reward_text' => 'Zanechajte rýchlu recenziu a okamžite získajte náš štýlový signatúrny kurzor – úplne zadarmo!',
     'reward_button' => ' Zanechať recenziu',
+    'leave_review' => 'Zanechajte recenziu na Google 🌟 — veľmi nám to pomáha vytvárať ešte zábavnejšie a jedinečnejšie kurzory práve pre vás! 
+Máte skvelý nápad na kurzor? Napíšte ho do svojej recenzie ✍️ a my sa budeme snažiť, aby sme ho zrealizovali!',
 ];

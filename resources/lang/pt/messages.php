@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Quer obter um cursor exclusivo?',
     'reward_text' => 'Deixe uma avaliação rápida e receba instantaneamente o nosso elegante cursor de assinatura — totalmente grátis!',
     'reward_button' => ' Deixar uma avaliação',
+    'leave_review' => 'Deixe um comentário no Google 🌟 — isso realmente nos ajuda a criar cursores ainda mais divertidos e exclusivos para você! 
+Tem uma ideia legal para um cursor? Deixe-a no seu comentário ✍️ e faremos o nosso melhor para torná-la realidade!',
 ];

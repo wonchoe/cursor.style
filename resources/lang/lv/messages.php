@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Vēlies iegūt ekskluzīvu kursoru?',
     'reward_text' => 'Atstājiet ātru atsauksmi un nekavējoties saņemiet mūsu stilīgo paraksta kursoru — pilnīgi bez maksas!',
     'reward_button' => 'Atstāt atsauksmi',
+    'leave_review' => 'Atstājiet atsauksmi Google 🌟 — tas tiešām palīdz mums radīt vēl jautrākus un unikālākus kursorus tieši jums! 
+Vai jums ir forša ideja par kursoru? Iemetiet to savā atsauksmē ✍️, un mēs darīsim visu iespējamo, lai to īstenotu!',
 ];

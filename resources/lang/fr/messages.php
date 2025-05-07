@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Vous voulez obtenir un curseur exclusif ?',
     'reward_text' => 'Laissez un avis rapide et recevez instantanément notre élégant curseur signature — absolument gratuit !',
     'reward_button' => ' Laisser un avis',
+    'leave_review' => 'Laissez un avis sur Google 🌟 — cela nous aide vraiment à créer des curseurs encore plus amusants et uniques juste pour vous ! 
+Vous avez une idée géniale pour un curseur ? Déposez-la dans votre avis ✍️ et nous ferons de notre mieux pour lui donner vie !',
 ];

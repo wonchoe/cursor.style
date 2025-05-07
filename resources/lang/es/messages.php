@@ -83,4 +83,6 @@ return [
     'off' => 'Apagado',
     'apply' => 'Aplicar',
     'add' => 'Añadir',
+    'leave_review' => 'Deja una reseña en Google 🌟 — ¡realmente nos ayuda a crear cursores aún más divertidos y únicos solo para ti! 
+¿Tienes una idea genial para un cursor? Déjala en tu reseña ✍️ ¡y haremos todo lo posible para darle vida!',
 ];

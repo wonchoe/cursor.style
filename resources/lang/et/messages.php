@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Kas soovite saada eksklusiivset kursorit?',
     'reward_text' => 'Jätke kiire arvustus ja saate koheselt meie stiilse signatuurkursori — täiesti tasuta!',
     'reward_button' => ' Jäta arvustus',
+    'leave_review' => 'Jäta Google\'is arvustus 🌟 – see aitab meil luua veelgi lõbusamaid ja unikaalsemaid kursorid just sinu jaoks! 
+Kas sul on äge idee kursori jaoks? Jäta see oma arvustusse ✍️ ja me teeme kõik, et see ellu viia!',
 ];

@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Haluatko eksklusiivisen kursorin?',
     'reward_text' => 'Jätä nopea arvostelu ja saat heti tyylikkään tunnusomaisen kursorimme — täysin ilmaiseksi!',
     'reward_button' => ' Jätä arvostelu',
+    'leave_review' => 'Jätä arvostelu Googleen 🌟 — se todella auttaa meitä luomaan vieläkin hauskempia ja ainutlaatuisempia kursoreita juuri sinulle! 
+Onko sinulla hieno idea kursorista? Laita se arvosteluusi ✍️ ja teemme parhaamme saadaksemme sen todeksi!',
 ];

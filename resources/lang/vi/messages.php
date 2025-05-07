@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Bạn muốn có một con trỏ độc quyền?',
     'reward_text' => 'Để lại một đánh giá nhanh và nhận ngay con trỏ đặc trưng sành điệu của chúng tôi — hoàn toàn miễn phí!',
     'reward_button' => 'Để lại đánh giá',
+    'leave_review' => 'Để lại đánh giá trên Google 🌟 — nó thực sự giúp chúng tôi tạo ra những con trỏ thú vị và độc đáo hơn nữa chỉ dành cho bạn! 
+Có một ý tưởng hay ho cho con trỏ không? Hãy viết nó trong đánh giá của bạn ✍️ và chúng tôi sẽ cố gắng hết sức để hiện thực hóa nó!',
 ];

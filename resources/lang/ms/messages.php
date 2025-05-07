@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Mahu mendapatkan kursor eksklusif?',
     'reward_text' => 'Tinggalkan ulasan ringkas dan serta-merta menerima kursor ciri khas bergaya kami — percuma sepenuhnya!',
     'reward_button' => ' Tinggalkan ulasan',
+    'leave_review' => 'Tinggalkan ulasan di Google 🌟 — ia benar-benar membantu kami menghasilkan kursor yang lebih menyeronokkan dan unik khusus untuk anda! 
+Punya idea hebat untuk kursor? Letakkannya dalam ulasan anda ✍️ dan kami akan melakukan yang terbaik untuk menghidupkannya!',
 ];

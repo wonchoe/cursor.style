@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Vols aconseguir un cursor exclusiu?',
     'reward_text' => 'Deixa una ressenya ràpida i rep a l\'instant el nostre elegant cursor insígnia: totalment gratis!',
     'reward_button' => ' Deixa una ressenya',
+    'leave_review' => 'Deixa una ressenya a Google 🌟 — realment ens ajuda a crear cursos encara més divertits i únics només per a tu! 
+Tens una idea genial per a un cursor? Posa-la a la teva ressenya ✍️ i farem tot el possible per fer-la realitat!',
 ];

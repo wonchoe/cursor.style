@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Szeretnél egy exkluzív kurzort?',
     'reward_text' => 'Hagyj egy gyors véleményt, és azonnal megkapod stílusos, jellegzetes kurzorunkat – teljesen ingyen!',
     'reward_button' => ' Véleményezés',
+    'leave_review' => 'Hagyj egy értékelést a Google-on 🌟 — ez valóban segít, hogy még több szórakoztató és egyedi kurzort készítsünk csak neked!
+Van egy klassz ötleted a kurzorhoz? Dobd be az értékelésedbe ✍️, és mi mindent megteszünk, hogy életre keltsük!',
 ];

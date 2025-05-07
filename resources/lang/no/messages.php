@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Vil du ha en eksklusiv markør?',
     'reward_text' => 'Legg igjen en rask anmeldelse og motta umiddelbart vår stilige signaturmarkør — helt gratis!',
     'reward_button' => ' Legg igjen en anmeldelse',
+    'leave_review' => 'Legg igjen en anmeldelse på Google 🌟 — det hjelper oss virkelig å lage enda flere morsomme og unike markører bare for deg! 
+Har du en kul idé til en markør? Slipp den i anmeldelsen din ✍️ så skal vi gjøre vårt beste for å få den til live!',
 ];

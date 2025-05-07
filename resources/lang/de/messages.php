@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Möchten Sie einen exklusiven Cursor erhalten?',
     'reward_text' => 'Hinterlassen Sie eine kurze Bewertung und erhalten Sie sofort unseren stilvollen Signature-Cursor – absolut kostenlos!',
     'reward_button' => ' Bewertung schreiben',
+    'leave_review' => 'Hinterlassen Sie eine Bewertung auf Google 🌟 – es hilft uns wirklich, noch mehr lustige und einzigartige Cursor nur für Sie zu erstellen! 
+Haben Sie eine coole Idee für einen Cursor? Schreiben Sie sie in Ihre Bewertung ✍️ und wir werden unser Bestes tun, um sie zu verwirklichen!',
 ];

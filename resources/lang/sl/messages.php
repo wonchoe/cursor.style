@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Želite prejeti ekskluzivni kazalec miške?',
     'reward_text' => 'Pustite hitro oceno in takoj prejmite naš eleganten, prepoznavni kazalec miške – popolnoma brezplačno!',
     'reward_button' => 'Pustite oceno',
+    'leave_review' => 'Pustite oceno na Googlu 🌟 — res nam pomaga ustvarjati še bolj zabavne in edinstvene kurzorje samo za vas! 
+Imate kul idejo za kurzor? Zapišite jo v svojo oceno ✍️ in potrudili se bomo, da jo uresničimo!',
 ];

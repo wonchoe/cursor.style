@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Želite ekskluzivni kursor?',
     'reward_text' => 'Ostavite brzu recenziju i odmah dobijate naš elegantni, prepoznatljivi kursor — potpuno besplatno!',
     'reward_button' => ' Ostavite recenziju',
+    'leave_review' => 'Ostavite recenziju na Google-u 🌟 — to nam zaista pomaže da napravimo još zabavnijih i jedinstvenih kursora samo za vas! 
+Imate kul ideju za kursor? Upišite je u vašu recenziju ✍️ i mi ćemo se potruditi da je oživimo!',
 ];

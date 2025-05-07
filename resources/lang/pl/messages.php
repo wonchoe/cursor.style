@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Chcesz zdobyć ekskluzywny kursor?',
     'reward_text' => 'Zostaw szybką recenzję i natychmiast otrzymaj nasz stylowy, sygnowany kursor — zupełnie za darmo!',
     'reward_button' => ' Zostaw recenzję',
+    'leave_review' => 'Zostaw recenzję w Google 🌟 — to naprawdę pomaga nam tworzyć jeszcze więcej zabawnych i unikalnych kursorów specjalnie dla Ciebie! 
+Masz fajny pomysł na kursor? Zapisz go w swojej recenzji ✍️ a my dołożymy wszelkich starań, aby go zrealizować!',
 ];

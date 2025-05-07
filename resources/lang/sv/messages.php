@@ -83,4 +83,6 @@ return [
     'reward_title' => 'Vill du ha en exklusiv markör?',
     'reward_text' => 'Lämna en snabb recension och få omedelbart vår snygga signaturmarkör – helt gratis!',
     'reward_button' => ' Lämna en recension',
+    'leave_review' => 'Lämna en recension på Google 🌟 — det hjälper oss verkligen att skapa ännu roligare och unika markörer just för dig! 
+Har du en cool idé för en markör? Släpp den i din recension ✍️ så ska vi göra vårt bästa för att förverkliga den!',
 ];
