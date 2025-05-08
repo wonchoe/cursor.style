@@ -65,6 +65,17 @@
             </div>
 
 
+            <div class="pagination-wrapper">
+                <div class="pagination"></div>
+            </div>
+
+            @if ($cats->lastPage() > 1)
+            <script>
+                let currentPage = {{ $cats->currentPage() }};
+                let totalPages = {{ $cats->lastPage() }};
+            </script>
+            @endif
+            
 
             <div class="seo-block collapsed" id="seoBlock">
                 <p class="seo-info">
@@ -79,15 +90,18 @@
                 </div>
             </div>
 
+
+
         </div>
     </div>
 
-    @if (!$success)
+
         @include('layouts.install')
-    @endif
+
 @endsection
 
 
 @section('lib_bottom')
+    <script src="{{ secure_asset('/js/pagination.js') }}{{ build_version() }}"></script>
     <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
 @endsection

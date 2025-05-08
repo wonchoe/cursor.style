@@ -278,20 +278,27 @@ class IndexController extends Controller
         return response()->view('cat', ['alt_name' => $alt_name, 'cursors' => $items, 'collection' => $collection, 'random_cat' => $random_cat])->header('Cache-Tag', 'collection');
     }
 
-    public function showAllCat2(Request $r)
+    public function showAllCat2()
     {
-        $url = $_SERVER['REQUEST_URI'];
-        $success = (strpos($url, 'success') > 0) ? true : false;
-        $cats = $this->getAllCategories()['data_cat'];
-        return view('allcat', compact('cats', 'success'));
+        $cats = DB::table('categories')
+            ->select('id', 'base_name', 'alt_name', 'priority', 'description', 'short_descr', 'img')
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+    
+        return view('allcat', compact('cats'));
     }
+    
 
-    public function showAllCat(Request $r)
+    public function showAllCat()
     {
-        $url = $_SERVER['REQUEST_URI'];
-        $success = (strpos($url, 'success') > 0) ? true : false;
-        $cats = $this->getAllCategories()['data_cat'];
-        return response()->view('allcat', compact('cats', 'success'))->header('Cache-Tag', 'collections');
+        $cats = DB::table('categories')
+            ->select('id', 'base_name', 'alt_name', 'priority', 'description', 'short_descr', 'img')
+            ->orderBy('id', 'desc')
+            ->paginate(20); // пагінація
+    
+        return response()
+            ->view('allcat', compact('cats'))
+            ->header('Cache-Tag', 'collections');
     }
 
         
