@@ -230,7 +230,7 @@ class CreateTags extends Command
 
                 if (!$result) {
                     $this->error("❌ Помилка запиту [$lang]");
-                    break;
+                    continue;
                 }
 
                 // 5. Збереження
