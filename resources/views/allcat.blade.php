@@ -38,7 +38,7 @@
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <ol>
                     <li><a href="/">@lang('messages.menu_main')</a></li>
-                    <li class="active">@lang('messages.menu_collection')</li>
+                    <li class="active">@lang('messages.allcollections')</li>
                 </ol>
             </nav>
 
@@ -75,7 +75,7 @@
                 let totalPages = {{ $cats->lastPage() }};
             </script>
             @endif
-            
+
 
             <div class="seo-block collapsed" id="seoBlock">
                 <p class="seo-info">

@@ -194,7 +194,6 @@
             let currentPage = {{ $cursors->currentPage() }};
             let totalPages = {{ $cursors->lastPage() }};
         </script>
-
     @endif
 
 @endsection
