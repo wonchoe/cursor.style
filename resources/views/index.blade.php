@@ -91,7 +91,7 @@
                         </a>
                     </nav>
                     <div class="search-wrapper">
-                        <form action="/" method="GET">
+                        <form action="/search" method="GET">
                             <span class="icon-search"></span>
                             <input type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')" aria-label="Search">
                         </form>
