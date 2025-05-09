@@ -163,7 +163,8 @@ class CreateTags extends Command
     public function handle()
     {
         $this->info("🚀 Старт повного циклу: мова → курсори → запит...");
-
+        $totalCursors = cursor::count();
+        $this->info("Загальна кількість курсорів: $totalCursors");
         $batchSize = 50;
 
         foreach ($this->languages as $lang) {
@@ -178,6 +179,7 @@ class CreateTags extends Command
                     ->offset($offset)
                     ->limit($batchSize)
                     ->get();
+                $this->info("Отримано курсорів: " . $cursors->count() . " зі зміщенням $offset");
 
                 if ($cursors->isEmpty()) {
                     $this->info("✅ Курсори закінчились для мови $lang");
