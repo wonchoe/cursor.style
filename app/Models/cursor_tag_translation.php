@@ -11,4 +11,10 @@ class cursor_tag_translation extends Model
         'lang',
         'tags',
     ];
+
+    public function cursor()
+    {
+        return $this->belongsTo(cursor::class, 'cursor_id');
+    }
+        
 }
