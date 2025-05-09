@@ -22,7 +22,14 @@ var isInstalled = !!document.documentElement.dataset.cursorStyle;
 
 var editorExtensionId = document.documentElement.dataset.chromeId;
 
-
+function redirectToSearch(event) {
+  event.preventDefault();
+  const input = document.getElementById('cs_search');
+  const query = encodeURIComponent(input.value.trim());
+  if (query.length > 0) {
+      window.location.href = '/search/' + query;
+  }
+}
 
 function injectButtonHandler() {
   const containers = document.querySelectorAll(".main__list, .main__list_cursor");
