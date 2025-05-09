@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\cursor_tag_translation;
 
 class cursor extends Model {
 
@@ -27,4 +28,8 @@ class cursor extends Model {
         return $this->belongsTo('App\Models\categories', 'cat');
     }
 
+    public function tagsEn()
+    {
+        return $this->hasOne(cursor_tag_translation::class, 'cursor_id')->where('lang', 'en');
+    }
 }
