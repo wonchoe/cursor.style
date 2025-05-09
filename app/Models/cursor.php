@@ -30,7 +30,7 @@ class cursor extends Model {
 
     public function tags()
     {
-        return $this->hasMany(\App\Models\cursor_tag_translation::class, 'cursor_id');
+        return $this->hasMany(cursor_tag_translation::class, 'cursor_id');
     }
 
 }
