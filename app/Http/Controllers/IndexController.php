@@ -100,6 +100,98 @@ class IndexController extends Controller
             'id_next' => $id_next])->header('Cache-Tag', 'details');
     }
 
+    private function searchFallback(string $query, string $lang = 'en'): \Illuminate\Support\Collection
+    {
+        // Спрощуємо тег — прибираємо всі зайві символи
+        $normalized = strtolower(preg_replace('/[^a-z0-9\s]/iu', '', $query));
+    
+        // Пошук по тегам
+        $ids = DB::table('cursor_tag_translations')
+            ->where('lang', $lang)
+            ->where('tags', 'LIKE', '%' . $normalized . '%')
+            ->pluck('cursor_id')
+            ->unique();
+    
+        return cursor::whereIn('id', $ids)
+            ->whereDate('schedule', '<=', now())
+            ->get();
+    }
+
+    
+    public function search(Request $request)
+    {
+        $lang = app()->getLocale(); // 'en' за замовчуванням
+        $query = $request->input('q');
+        $limit = 100;
+    
+        if (!$query) return redirect('/');
+    
+        // 👉 Пошук через Meilisearch
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer masterKey123',
+            'Content-Type' => 'application/json',
+        ])->post("http://localhost:7700/indexes/cursors_{$lang}/search", [
+            'q' => $query,
+            'limit' => $limit,
+        ]);
+    
+        if ($response->failed()) {
+            $this->warn("⚠️ Meilisearch недоступний, fallback на базу...");
+        
+            $cursors = $this->searchFallback($query, $lang);
+        
+            $collections = categories::all();
+        
+            foreach ($cursors as $cursorItem) {
+                $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
+                $cursorItem->collection = $collections->first(
+                    fn($item) => $item->id == $cursorItem->cat
+                );
+            }
+        
+            return response()->view('index', [
+                'cursors' => $cursors,
+                'query' => $query,
+                'sort' => 'fallback'
+            ])->header('Cache-Tag', 'index');
+        }
+    
+        $ids = collect($response->json()['hits'])->pluck('id')->toArray();
+    
+        if (empty($ids)) {
+            $cursors = collect();
+        } else {
+            $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
+    
+            $cursorModels = cursor::whereIn('id', $ids)
+                ->whereDate('schedule', '<=', now())
+                ->where('id', '<>', $excludeId)
+                ->get();
+    
+            // 👉 Повертаємо в тому ж порядку, як у Meilisearch
+            $collections = categories::all();
+    
+            $cursors = collect($ids)->map(function ($id) use ($cursorModels, $collections) {
+                $cursor = $cursorModels->firstWhere('id', $id);
+                if ($cursor) {
+                    $cursor->name_s = $this->cleanStr($cursor->name_en);
+                    $cursor->collection = $collections->first(fn($item) => $item->id == $cursor->cat);
+                }
+                return $cursor;
+            })->filter();
+        }
+    
+        // 🔁 Використовуємо ту ж логіку що і на головній
+        $response = response()->view('index', [
+            'cursors' => $cursors,
+            'query' => $query,
+            'sort' => 'search'
+        ])->header('Cache-Tag', 'index');
+    
+        $response->headers->remove('Cache-Control');
+        return $response;
+    }
+        
     public function show(Request $r)
     {
         $order = 'desc';

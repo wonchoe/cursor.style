@@ -14,6 +14,7 @@ use App\Http\Controllers\GA4AnalyticsController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Http\Request;
 
+Route::get('/search', [IndexController::class, 'search']);
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
