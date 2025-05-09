@@ -90,15 +90,16 @@
                             <span class="icon-collection"></span>@lang('messages.main_page_menu_4')
                         </a>
                     </nav>
-                    <div class="search-wrapper">
-                        <form method="GET" onsubmit="return redirectToSearch(event)">
-                            <span class="icon-search"></span>
-                            <input type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')" aria-label="Search">
-                        </form>
-                    </div>
                 </div>
             </div>
             
+            <div class="search-wrapper">
+                        <form method="GET" onsubmit="return redirectToSearch(event)">
+                            <span class="icon-search"></span>
+                            <input  value="{{ $query ?? '' }}" type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')" aria-label="Search">
+                        </form>
+            </div>
+
             <div class="main__list" id="main_list">
                 @forelse($cursors as $key => $cursor)
                     @if ($key > 0 && $key % 16 === 0)

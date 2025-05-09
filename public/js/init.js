@@ -31,6 +31,15 @@ function redirectToSearch(event) {
   }
 }
 
+function handleSearchEnter(e) {
+  if (e.key === 'Enter') {
+      const query = e.target.value.trim();
+      if (query) {
+          window.location.href = '/search/' + encodeURIComponent(query);
+      }
+  }
+}
+
 function injectButtonHandler() {
   const containers = document.querySelectorAll(".main__list, .main__list_cursor");
 

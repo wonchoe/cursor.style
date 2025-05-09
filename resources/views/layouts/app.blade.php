@@ -152,16 +152,31 @@
                 <div class="star_close" id="star_close_btn"></div>
             </div>
             <div class="header">
+                <a class="logo" href="/"><img src="/images/logo.webp" alt="@lang('messages.cursor_style')"
+                        title="@lang('messages.cursor_style_logo_title')" /></a>
                 <div class="container">
-                    <a class="logo" href="/"><img src="/images/logo.webp" alt="@lang('messages.cursor_style')"
-                            title="@lang('messages.cursor_style_logo_title')" /></a>
-
                     <div class="nav">
                         <ul>
-                            <li><a class="top_menu_link" href="/">@lang('messages.menu_main')</a></li>                            
+                            <li><a class="top_menu_link" href="/">@lang('messages.menu_main')</a></li>
                             <li><a class="top_menu_link" href="/collections">@lang('messages.allcollections')</a></li>
-                            <li><a class="top_menu_link" id="mycollection_menu" href="/mycollection">@lang('messages.mycollection')</a></li>
-                            <li><a class="top_menu_link" data-class="rate" target="_blank" href="https://chromewebstore.google.com/detail/bmjmipppabdlpjccanalncobmbacckjn/reviews">@lang('messages.rateus')</a></li>
+                            <li><a class="top_menu_link" data-class="rate" target="_blank"
+                                    href="https://chromewebstore.google.com/detail/bmjmipppabdlpjccanalncobmbacckjn/reviews">@lang('messages.rateus')</a>
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li>
+                            <li>
+                            <div class="nav-icon-search">
+                                <input type="text" class="nav-icon-search-input" placeholder="@lang('messages.main_page_search')"  value="{{ $query ?? '' }}" onkeypress="handleSearchEnter(event)">
+                                <span class="icon-search-top"></span>
+                            </div>
+
+
+    </li>
+                            </li>
+                            <li><a class="top_menu_link" id="mycollection_menu"
+                                    href="/mycollection">@lang('messages.mycollection')</a></li>
                         </ul>
                     </div>
 
@@ -206,14 +221,14 @@
                 <div><a class="downlink" href="/privacy">@lang('messages.footer_policy')</a></div>
                 <div><a class="downlink" href="/cookie-policy">@lang('messages.footer_cookies_policy')</a></div>
                 <div><a class="downlink" href="/contact">@lang('messages.menu_contact')</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="wrapfabtest">
-        <div class="adBanner">
+        <div id="wrapfabtest">
+            <div class="adBanner">
+            </div>
         </div>
-    </div>
 
     </div>
 

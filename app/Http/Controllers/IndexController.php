@@ -125,71 +125,70 @@ class IndexController extends Controller
     
         if (!$query) return redirect('/');
     
-        // 👉 Пошук через Meilisearch
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer masterKey123',
-            'Content-Type' => 'application/json',
-        ])->post("http://localhost:7700/indexes/cursors_{$lang}/search", [
-            'q' => $query,
-            'limit' => $limit,
-        ]);
+        try {
+            // 🔍 Пошук через Meilisearch
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer masterKey123',
+                'Content-Type' => 'application/json',
+            ])->post("http://localhost:7700/indexes/cursors_{$lang}/search", [
+                'q' => $query,
+                'limit' => $limit,
+            ]);
     
-        if ($response->failed()) {
-            $this->warn("⚠️ Meilisearch недоступний, fallback на базу...");
-        
+            if ($response->failed()) {
+                throw new \Exception("Meilisearch request failed");
+            }
+    
+            $ids = collect($response->json()['hits'])->pluck('id')->toArray();
+    
+            if (empty($ids)) {
+                $cursors = collect();
+            } else {
+                $excludeId = ($_COOKIE['hide_item_2082'] ?? null) === 'true' ? 100000000 : 2082;
+    
+                $cursorModels = cursor::whereIn('id', $ids)
+                    ->whereDate('schedule', '<=', now())
+                    ->where('id', '<>', $excludeId)
+                    ->get();
+    
+                $collections = categories::all();
+    
+                $cursors = collect($ids)->map(function ($id) use ($cursorModels, $collections) {
+                    $cursor = $cursorModels->firstWhere('id', $id);
+                    if ($cursor) {
+                        $cursor->name_s = $this->cleanStr($cursor->name_en);
+                        $cursor->collection = $collections->first(fn($item) => $item->id == $cursor->cat);
+                    }
+                    return $cursor;
+                })->filter();
+            }
+    
+            $sort = 'search';
+        } catch (\Throwable $e) {
+            // ⛔ Meilisearch впав — fallback на базу
+            logger()->warning('Meilisearch error: ' . $e->getMessage());
+    
             $cursors = $this->searchFallback($query, $lang);
-        
             $collections = categories::all();
-        
+    
             foreach ($cursors as $cursorItem) {
                 $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
-                $cursorItem->collection = $collections->first(
-                    fn($item) => $item->id == $cursorItem->cat
-                );
+                $cursorItem->collection = $collections->first(fn($item) => $item->id == $cursorItem->cat);
             }
-        
-            return response()->view('index', [
-                'cursors' => $cursors,
-                'query' => $query,
-                'sort' => 'fallback'
-            ])->header('Cache-Tag', 'index');
+    
+            $sort = 'fallback';
         }
     
-        $ids = collect($response->json()['hits'])->pluck('id')->toArray();
-    
-        if (empty($ids)) {
-            $cursors = collect();
-        } else {
-            $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
-    
-            $cursorModels = cursor::whereIn('id', $ids)
-                ->whereDate('schedule', '<=', now())
-                ->where('id', '<>', $excludeId)
-                ->get();
-    
-            // 👉 Повертаємо в тому ж порядку, як у Meilisearch
-            $collections = categories::all();
-    
-            $cursors = collect($ids)->map(function ($id) use ($cursorModels, $collections) {
-                $cursor = $cursorModels->firstWhere('id', $id);
-                if ($cursor) {
-                    $cursor->name_s = $this->cleanStr($cursor->name_en);
-                    $cursor->collection = $collections->first(fn($item) => $item->id == $cursor->cat);
-                }
-                return $cursor;
-            })->filter();
-        }
-    
-        // 🔁 Використовуємо ту ж логіку що і на головній
         $response = response()->view('index', [
             'cursors' => $cursors,
             'query' => $query,
-            'sort' => 'search'
+            'sort' => $sort,
         ])->header('Cache-Tag', 'index');
     
         $response->headers->remove('Cache-Control');
         return $response;
     }
+    
         
     public function show(Request $r)
     {
