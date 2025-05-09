@@ -11,7 +11,9 @@
         protected $signature = 'tags:create {--limit=50}';
         protected $description = 'Генерує англомовні теги для курсорів через OpenRouter API';
         protected $languages = [
-            'en', 'am', 'ar'
+            'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he',
+            'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru',
+            'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh'
         ];    
     
         private function requestTagsFromOpenRouter(array $items, string $lang, string $languageName): ?array
@@ -115,12 +117,11 @@
                 while (true) {
                     // 1. Отримуємо 50 курсорів
                     $cursors = cursor::with('categories')
-                    ->whereIn('id', [1076, 1077, 1078]) // спочатку фільтр
-                    ->orderBy('id')
-                    ->offset($offset)
-                    ->limit($batchSize)
-                    ->get();
-                
+                        ->orderBy('id')
+                        ->offset($offset)
+                        ->limit($batchSize)
+                        ->get();
+    
                     if ($cursors->isEmpty()) {
                         $this->info("✅ Курсори закінчились для мови $lang");
                         break;
