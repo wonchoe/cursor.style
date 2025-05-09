@@ -164,9 +164,11 @@
                 @endforelse
             </div>
 
-            <div class="pagination-wrapper">
-                <div class="pagination"></div>
-            </div>
+            @if (isset($cursors) && method_exists($cursors, 'lastPage') && $cursors->lastPage() > 1)
+                <div class="pagination-wrapper">
+                    <div class="pagination"></div>
+                </div>
+            @endif
 
             <div class="seo-block collapsed" id="seoBlock2">
                 <p class="seo-info">
@@ -188,13 +190,12 @@
 
 
 
-    @if ($cursors->lastPage() > 1)
-
-        <script>
-            let currentPage = {{ $cursors->currentPage() }};
-            let totalPages = {{ $cursors->lastPage() }};
-        </script>
-    @endif
+    @if (isset($cursors) && method_exists($cursors, 'lastPage') && $cursors->lastPage() > 1)
+    <script>
+        let currentPage = {{ $cursors->currentPage() }};
+        let totalPages = {{ $cursors->lastPage() }};
+    </script>
+@endif
 
 @endsection
 
