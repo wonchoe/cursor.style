@@ -117,11 +117,10 @@ class IndexController extends Controller
             ->get();
     }
 
-    
-    public function search(Request $request)
+    public function search($q, Request $request)
     {
-        $lang = app()->getLocale(); // 'en' за замовчуванням
-        $query = $request->input('q');
+        $lang = app()->getLocale();
+        $query = $q;
         $limit = 100;
     
         if (!$query) return redirect('/');
