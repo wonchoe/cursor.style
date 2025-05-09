@@ -28,8 +28,9 @@ class cursor extends Model {
         return $this->belongsTo('App\Models\categories', 'cat');
     }
 
-    public function tagsEn()
+    public function tags()
     {
-        return $this->hasOne(cursor_tag_translation::class, 'cursor_id')->where('lang', 'en');
+        return $this->hasMany(\App\Models\cursor_tag_translation::class, 'cursor_id');
     }
+
 }
