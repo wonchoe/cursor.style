@@ -24,7 +24,7 @@ class AddCursorsToMeilisearch extends Command
         foreach ($this->languages as $lang) {
             $this->info("🌍 Мова: $lang");
 
-            $tagged = cursor_tag_translation::with('cursor.category')
+            $tagged = cursor_tag_translation::with('cursor.categories')
                 ->where('lang', $lang)
                 ->get();
 
