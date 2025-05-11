@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('translations_cursor', function (Blueprint $table) {
+        Schema::create('translations_cursors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cursor_id');
             $table->string('lang', 5);
@@ -22,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('translations_cursor');
+        Schema::dropIfExists('translations_cursors');
     }
 };
