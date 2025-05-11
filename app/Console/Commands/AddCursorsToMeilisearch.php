@@ -42,15 +42,19 @@ class AddCursorsToMeilisearch extends Command
                 $name = trans("cursors.c_{$item->cursor_id}", [], $lang);
                 if ($name === "cursors.c_{$item->cursor_id}") {
                     $name = $item->cursor->name_en;
-                }
-                
+                }                          
+
                 $catAlt = optional($item->cursor->categories)->alt_name;
                 $catKey = "collections.{$catAlt}";
-                $catName = trans($catKey, [], $lang);
+                $catTranslated = trans($catKey, [], $lang);
                 
-                if ($catName === $catKey) {
+                if ($catTranslated === $catKey) {
                     $catName = optional($item->cursor->categories)->base_name_en;
+                } else {
+                    $catName = $catTranslated;
                 }
+
+                $this->info("🌍 Категорія: $catName");
                 
 
                 $documents[] = [
