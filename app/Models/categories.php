@@ -16,8 +16,15 @@ class categories extends Model
         'description',
         'short_descr',
         'img',
-    ];    
-   public function cursor() {
-            return $this->hasMany('App\Models\cursor');
-        }
+    ];
+    public function cursor()
+    {
+        return $this->hasMany('App\Models\cursor');
+    }
+    
+    public function translations()
+    {
+        return $this->hasMany(CollectionTranslation::class, 'collection_id');
+    }
+
 }
