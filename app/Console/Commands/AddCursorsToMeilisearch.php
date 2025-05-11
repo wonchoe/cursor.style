@@ -38,21 +38,24 @@ class AddCursorsToMeilisearch extends Command
             foreach ($tagged as $item) {
                 if (!$item->cursor) continue;
 
-                $cursorTranslationKey = 'cursors.c_' . $item->cursor_id;
-                $name = __($cursorTranslationKey);
-
-                $catTranslationKey = 'collections.c_' . optional($item->cursor->categories)->id;
-                $catName = __($catTranslationKey);
+                $name = trans("cursors.c_{$item->cursor_id}", [], $lang);
+                if ($name === "cursors.c_{$item->cursor_id}") {
+                    $name = $item->cursor->name_en;
+                }
+                
+                $catId = optional($item->cursor->categories)->id;
+                $catName = trans("collections.c_{$catId}", [], $lang);
+                if ($catName === "collections.c_{$catId}") {
+                    $catName = optional($item->cursor->categories)->base_name_en;
+                }
 
                 $documents[] = [
                     'id' => $item->cursor_id,
-                    'name' => $name !== $cursorTranslationKey ? $name : $item->cursor->name_en,
+                    'name' => $name,
                     'tags' => $item->tags,
                     'lang' => $lang,
                     'cat' => optional($item->cursor->categories)->alt_name,
-                    'cat_name' => $catName !== $catTranslationKey
-                        ? $catName
-                        : optional($item->cursor->categories)->base_name_en,
+                    'cat_name' => $catName,
                     'cat_img' => optional($item->cursor->categories)->img,
                     'c_file' => $item->cursor->c_file,
                     'p_file' => $item->cursor->p_file,
