@@ -125,7 +125,8 @@ class IndexController extends Controller
     public function miliRequest($lang, $query, $limit)
     {
         $hosts = [
-            'http://meilisearch:7700',
+            'http://localhost:7700',
+            'http://meilisearch:7700'            
         ];
     
         // Завжди гарантуємо, що q — це рядок
