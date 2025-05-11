@@ -102,7 +102,7 @@
                 </form>
             </div>
 
-                <hr class="search-hr"/>
+                <hr class="search-hr hidden"/>
                 
                 <div id="search-results" class="search-dropdown hidden"></div>
             </div>
