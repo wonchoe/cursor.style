@@ -99,16 +99,19 @@ class ImageController extends Controller {
             abort(404);
         }
     
+        $folder = "{$cursor->cat}-" . \Str::slug($cursor->name); // Формуємо папку типу 80-glitter
+        $base = $type === 'c' ? 'cursors' : 'pointers';
+    
         $paths = [
-            resource_path(($type === 'c' ? 'cursors/' : 'pointers/') . $filename),
-            storage_path('app/public/' . $filename),
-            storage_path('app/public/' . ($type === 'c' ? 'cursors' : 'pointers') . "/{$cursor->cat}-{$cursor->name}/{$filename}"),
+            resource_path("{$base}/{$filename}"),
+            storage_path("app/public/{$filename}"),
+            storage_path("app/public/{$base}/{$folder}/{$filename}"),
         ];
     
         foreach ($paths as $path) {
             if (file_exists($path)) {
                 return response(file_get_contents($path), 200)
-                    ->header('Content-Type', 'image/png')
+                    ->header('Content-Type', mime_content_type($path))
                     ->header('Pragma', 'public')
                     ->header('Cache-Control', 'max-age=86400, public')
                     ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
@@ -117,6 +120,7 @@ class ImageController extends Controller {
     
         abort(404, 'Image not found in any path.');
     }
+    
     
 
     public function showCollection($name)
