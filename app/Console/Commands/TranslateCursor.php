@@ -1,56 +1,50 @@
 <?php
 namespace App\Console\Commands;
 use App\Models\cursor;
+use App\Models\CursorTranslation;
 use App\Models\categories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Console\Command;
 
-class CreateTags extends Command
+class TranslateCursor extends Command
 {
-    protected $signature = 'custom:tagsCreate {--limit=50}';
+    protected $signature = 'custom:TranslateCursor {--limit=50}';
     protected $description = 'Генерує англомовні теги для курсорів через OpenRouter API';
     protected $languages = [ 'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh' ];
 
     private function requestTagsFromOpenRouter(array $items, string $lang, string $languageName): ?array
     {
-        $prompt = "You are an assistant that generates relevant tags (1 to 10 short keywords or phrases) for UI items in a Chrome extension called \"Cursor Style\". Each item represents a unique mouse cursor inspired by games, cartoons, anime, or pop culture.
-        
-        Your task is to generate tags **in the following language**: \"$languageName\".
-        
-        Generate 3 to 8 relevant tags (short keywords or phrases) that best describe the theme, style, category, or origin of the cursor.
-        
-        Only include tags that are meaningful and contextually related. It's OK to include stylistic or descriptive words if they reasonably match the cursor's theme.
-        
-        Do not generate generic or unrelated words just to reach 8.
+        $prompt = "You are an assistant that translates UI item names into high-quality, natural-sounding equivalents for multilingual software.
+
+        Translate the following list of cursor names from English into the target language: \"$languageName\".
         
         ### Input format:
         You will receive a list of cursor objects in JSON format. Each object includes:
         - \"id\": the unique cursor ID (you must return this ID unchanged),
-        - \"cursor\": the name of the cursor (in English),
-        - \"cat\": the category the cursor belongs to.
+        - \"name\": the original English name of the cursor
         
         ### Output format:
         Respond ONLY with valid JSON. For each item, return:
         - \"id\": same ID from input,
         - \"lang\": \"$lang\"
-        - \"tags\": a single string of 1 to 10 space-separated keywords translated into $languageName
+        - \"name\": translated cursor name in $languageName
         
         Example output:
         [
-          { \"id\": 1, \"lang\": \"$lang\", \"tags\": \"герой бетмен дс темний\" },
-          { \"id\": 2, \"lang\": \"$lang\", \"tags\": \"марио нінтендо водопровідник червоний\" }
+          { \"id\": 1, \"lang\": \"$lang\", \"name\": \"Темний Лицар\" },
+          { \"id\": 2, \"lang\": \"$lang\", \"name\": \"Сердитий Маріо\" }
         ]
         
         Important rules:
-        - Generate the tags directly in $languageName
+        - Translate ONLY the name field
         - Return exactly \"$lang\" in the \"lang\" field
-        - Do NOT include explanations, comments, or formatting like Markdown
-        - Do NOT translate brand names or the name \"Cursor Style\"
+        - Do NOT include explanations, comments, or extra formatting like Markdown
+        - Avoid literal translations for proper names unless they have a common local version
         
-        Now generate tags for the following input:
+        Now translate the following:
+        " . json_encode($items, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         
-        " . json_encode($items, JSON_PRETTY_PRINT);
 
         try {
             $response = Http::withHeaders([
@@ -92,7 +86,7 @@ class CreateTags extends Command
 
             // 🔎 Перевірка кожного елемента
             $valid = array_filter($parsed, function ($item) {
-                return isset($item['id'], $item['tags'], $item['lang']) && is_string($item['tags']) && trim($item['tags']) !== '';
+                return isset($item['id'], $item['name'], $item['lang']) && is_string($item['name']) && trim($item['name']) !== '';
             });
 
             $skipped = count($parsed) - count($valid);
@@ -140,31 +134,17 @@ class CreateTags extends Command
 
                 // 2. Перевіряємо кожен курсор на наявність перекладу
                 foreach ($cursors as $cursor) {
-                    $exists = DB::table('cursor_tag_translations')
+                    $exists = DB::table('cursor_translations')
                         ->where('cursor_id', $cursor->id)
                         ->where('lang', $lang)
                         ->exists();
 
-                    if (!$exists) {
-                        // Якщо перекладу нема — додаємо в батч
-                        $enTags = DB::table('cursor_tag_translations')
-                            ->where('cursor_id', $cursor->id)
-                            ->where('lang', 'en')
-                            ->value('tags');
-
-                        if ($lang === 'en') {
+                        if (!$exists && $cursor->name_en) {
                             $batch[] = [
                                 'id' => $cursor->id,
-                                'cursor' => $cursor->name_en,
-                                'cat' => $cursor->categories->base_name_en ?? ''
-                            ];
-                        } elseif ($enTags) {
-                            $batch[] = [
-                                'id' => $cursor->id,
-                                'tags' => $enTags
+                                'name' => $cursor->name_en,
                             ];
                         }
-                    }
                 }
 
                 // 3. Якщо нема чого обробляти — далі
@@ -185,15 +165,19 @@ class CreateTags extends Command
 
                 // 5. Збереження
                 foreach ($result as $item) {
-                    if (!isset($item['id'], $item['tags']))
+                    if (!isset($item['id'], $item['name']) || trim($item['name']) === '') {
+                        $this->warn("⏭️ Пропущено ID {$item['id']} — відсутнє або порожнє ім’я.");
                         continue;
-
-                    DB::table('cursor_tag_translations')->updateOrInsert(
+                    }
+                
+                    DB::table('cursor_translations')->updateOrInsert(
                         ['cursor_id' => $item['id'], 'lang' => $lang],
-                        ['tags' => $item['tags'], 'updated_at' => now(), 'created_at' => now()]
+                        ['name' => $item['name'], 'updated_at' => now(), 'created_at' => now()]
                     );
-                    $this->info("[$lang] ✔ ID {$item['id']} → {$item['tags']}");
+                
+                    $this->info("[$lang] ✔ ID {$item['id']} → {$item['name']}");
                 }
+                
 
                 $offset += $batchSize;
                 sleep(1); // throttle
