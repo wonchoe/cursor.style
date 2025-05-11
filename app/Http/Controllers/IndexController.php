@@ -14,6 +14,8 @@ use App\Models\categories;
 use App\Models\Analytic;
 use App\Models\CursorTranslation;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+
 
 use App;
 
@@ -234,13 +236,13 @@ class IndexController extends Controller
         $response->headers->remove('Cache-Control');
         return $response;
     }
-    
         
+    
     public function show(Request $r)
     {
         $order = 'desc';
         $sort = 'id';
-
+    
         if ($r->type === 'popular') {
             $sort = 'todayClick';
             $order = 'desc';
@@ -248,14 +250,15 @@ class IndexController extends Controller
             $sort = 'id';
             $order = 'desc';
         }
-
+    
         $query = $r->q;
         $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
-        
+    
         if ($query) {
             $ids = CursorTranslation::where('name', 'LIKE', "%{$query}%")
                 ->pluck('cursor_id')
                 ->unique();
+    
             $cursors = cursor::whereIn('id', $ids)
                 ->whereDate('schedule', '<=', Carbon::today())
                 ->where('id', '<>', $excludeId)
@@ -267,25 +270,40 @@ class IndexController extends Controller
                 ->where('id', '<>', $excludeId)
                 ->paginate(32);
         }
-
+    
         $collections = categories::all();
 
         foreach ($cursors as $cursorItem) {
-            $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
-            $cursorItem->collection = $collections->first(
+            // Просто додаємо колекцію як тимчасову властивість (не для збереження)
+            $cursorItem->setRelation('collection', $collections->first(
                 fn($item) => $item->id == $cursorItem->cat
-            );
+            ));
+        
+            // Генерація SEO-шляху
+            $seoCategory = Str::slug($cursorItem->collection->base_name_en);
+            $seoCursor = Str::slug($cursorItem->name_en);
+            $fullSlug = "collections/{$seoCategory}/{$seoCursor}";
+        
+            if (empty($cursorItem->slug_url)) {
+                $cursorItem->slug_url = $fullSlug;
+                $cursorItem->save();
+            }
+        
+            $cursorItem->slug_url_final = $fullSlug;
+            $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
+            $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
         }
-
+        
+    
         $response = response()->view('index', [
             'cursors' => $cursors,
             'query' => $query,
             'sort' => $sort
         ])->header('Cache-Tag', 'index');
+    
         $response->headers->remove('Cache-Control');
         return $response;
     }
-
     public function showJsLang()
     {
         $lang = config('app.locale');

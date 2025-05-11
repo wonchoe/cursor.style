@@ -14,6 +14,10 @@ use App\Http\Controllers\GA4AnalyticsController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Http\Request;
 
+Route::get('/collections/{collection_slug}/{cursor_slug}', [ImageController::class, 'serveSvg'])
+    ->name('cursor.file');
+
+
 Route::post('/search', [IndexController::class, 'searchProxy']);
 
 Route::get('/search/{q}', [IndexController::class, 'search']);

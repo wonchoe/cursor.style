@@ -3,10 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\cursor;
 use App\Models\categories;
 
 class ImageController extends Controller {
+
+    public function serveSvg($category_slug, $cursor_slug)
+    {
+        $normalizedSlug = preg_replace('/-(cursor|pointer)$/', '', $cursor_slug);
+        $url = "collections/{$category_slug}/{$normalizedSlug}";
+        $cursor = Cursor::where('slug_url', $url)->firstOrFail();
+        
+        $parts = explode('-', $cursor_slug);
+        $type = array_pop($parts); // cursor або pointer
+
+        switch ($type) {
+            case 'cursor':
+                $filePath = 'public/' .$cursor->c_file;
+                break;
+        
+            case 'pointer':
+                $filePath = 'public/' .$cursor->p_file;
+                break;
+        
+            default:
+                abort(404);
+        }
+
+        $full_path = Storage::path($filePath);
+        
+        if (!file_exists($full_path)) {
+            abort(404);
+        }
+    
+        $response = response()->file($full_path, [
+            'Content-Type' => 'image/svg+xml',
+        ]);
+        $response->headers->remove('Cache-Control');
+        $response->headers->remove('cache-control');        
+        $response->headers->remove('Set-Cookie');            
+        $response->headers->set('Cache-Tag', 'svg');
+        $response->headers->set('X-Cache-SVG', 'true');
+        return $response;
+    }
 
     public function createCursorsImagesFolders() {
         if (!is_dir(base_path() . '/storage/app/public/cursors')) {
