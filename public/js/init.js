@@ -209,7 +209,7 @@ function setupMiliSearch() {
   const input = document.getElementById('cs_search');
   const resultsBox = document.getElementById('search-results');
 
-  input.addEventListener.addEventListener('keypress', function (e) {
+  input.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         e.preventDefault(); // optional, stops form submit if inside a form
         const query = this.value.trim();
