@@ -261,7 +261,7 @@ function setupMiliSearch() {
   input.addEventListener('focus', () => {
     if (resultsBox.innerHTML.trim()) {
       resultsBox.classList.remove('hidden');
-      document.querySelector('.search-hr').classList.remove('hidden');
+      document.querySelector('.search-hr').classList.add('hidden');
     }
   });
 
