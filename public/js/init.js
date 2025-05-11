@@ -204,10 +204,20 @@ function cleanStr(string) {
 }
 
 function setupMiliSearch() {
-  console.log('miliset');
+
   let timeout = null;
   const input = document.getElementById('cs_search');
   const resultsBox = document.getElementById('search-results');
+
+  input.addEventListener.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // optional, stops form submit if inside a form
+        const query = this.value.trim();
+        if (query) {
+            window.location.href = '/search/' + encodeURIComponent(query);
+        }
+    }
+});
 
   input.addEventListener('input', function () {
     clearTimeout(timeout);
