@@ -277,8 +277,8 @@ function setupMiliSearch() {
           </div>
           <ul style="list-style:none;padding-left:10px;margin:0;">
             ${group.items.map(cursor => `
-              <li onclick="window.location='/cursor/${cursor.id}'" style="cursor:pointer;display:flex;align-items:center;">
-                <img src="/cursors/${cursor.id}-${cleanStr(cursor.name)}-cursor.svg" width="32" height="32" style="margin-right:10px;">
+              <li onclick="window.location='/collections/${group.alt}/${cursor.id}'-'${cursor.name}'" style="cursor:pointer;display:flex;align-items:center;">
+                <img src="'/collections/${group.alt}/${cursor.id}'-'${cursor.name}'" width="32" height="32" style="margin-right:10px;">
                 ${cursor.name}
               </li>
             `).join('')}
