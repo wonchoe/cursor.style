@@ -122,14 +122,14 @@ class IndexController extends Controller
 
     public function searchProxy(Request $request)
     {
-        $lang = $request->input('lang', 'en');
+        $lang = app()->getLocale();
         $query = $request->input('query'); // 👈 не q
         $limit = $request->input('limit', 100);
     
         $response = $this->miliRequest($lang, $query, $limit);
         return response()->json($response->json());
     }
-    
+
     public function miliRequest($lang, $query, $limit)
     {
         $hosts = [
