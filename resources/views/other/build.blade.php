@@ -1,7 +1,7 @@
 @php
     if (!function_exists('build_version')) {
         function build_version() {
-            return '?v=20';
+            return '?v=21';
         }
     }
 @endphp
