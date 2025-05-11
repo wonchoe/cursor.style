@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -97,3 +97,10 @@ class RestructureCursorsFromFiles extends Command
         $this->info("✅ Copied and renamed: {$originalFileName} → $relativePath");
     }
 }
+*/
+
+
+
+
+
+/* для рестуризакції курсорів, разова задача */
