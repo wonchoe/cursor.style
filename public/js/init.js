@@ -254,7 +254,10 @@ function setupMiliSearch() {
     }, 100);
   });
 
-  input.addEventListener('blur', () => setTimeout(() => resultsBox.classList.add('hidden'), 1200));
+  input.addEventListener('blur', () => setTimeout(() => {
+    resultsBox.classList.add('hidden');
+    document.querySelector('.search-hr').classList.remove('hidden');
+  }, 500));
   input.addEventListener('focus', () => {
     if (resultsBox.innerHTML.trim()) {
       resultsBox.classList.remove('hidden');
