@@ -346,6 +346,10 @@ img {
   width: 180px;
 }
 
+.search-input{
+  display: flex;
+}
+
 .nav-icon-search-input {
   border: none;
   outline: none;
@@ -594,15 +598,16 @@ img {
   justify-content: center;
 }
 
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  color: #888;
-  font-family: 'Noto Color Emoji';
+.search-icon:after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url(/images/icons/search.png);
+  background-size: cover;
+  margin-right: 6px;
+  margin-left: 10px;
+  opacity: 0.8;
 }
 
 .collection_top_text {

@@ -95,9 +95,12 @@
             
             <div class="search-wrapper">
                 
+            <div class="search-input">
+                <span class="search-icon"></span>
                 <form onsubmit="return false;">
                     <input type="text" id="cs_search" class="search" placeholder="Search..." autocomplete="off">
                 </form>
+            <div>
 
                 <hr class="search-hr"/>
                 
