@@ -164,8 +164,8 @@ class CursorController extends Controller {
                 $cursorOriginalName = $cursorFile->getClientOriginalName();
                 $pointerOriginalName = $pointerFile->getClientOriginalName();
     
-                $cursorStoredName = uniqid() . '.' . $cursorFile->getClientOriginalExtension();
-                $pointerStoredName = uniqid() . '.' . $pointerFile->getClientOriginalExtension();
+                $cursorStoredName = $cursorFile->getClientOriginalName();
+                $pointerStoredName = $pointerFile->getClientOriginalName();
     
                 $cFilePath = $cursorFile->storeAs("public/cursors/{$saveto}", $cursorStoredName);
                 $pFilePath = $pointerFile->storeAs("public/pointers/{$saveto}", $pointerStoredName);
@@ -175,10 +175,8 @@ class CursorController extends Controller {
                 $cursor->name_en = $cursor->name;
                 $cursor->name_es = $cursor->name;
                 $cursor->cat = $category->id;
-                $cursor->c_file = basename($cFilePath);
+                $cursor->c_file = basename($cFilePath); // це буде оригінальне ім’я
                 $cursor->p_file = basename($pFilePath);
-                $cursor->c_file_original = $cursorOriginalName;
-                $cursor->p_file_original = $pointerOriginalName;
                 $cursor->offsetX = $request->input('offsetX')[$i];
                 $cursor->offsetY = $request->input('offsetY')[$i];
                 $cursor->offsetX_p = $request->input('offsetX_p')[$i];
