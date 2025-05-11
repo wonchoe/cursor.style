@@ -13,10 +13,17 @@ class ImageController extends Controller {
     {
         $normalizedSlug = preg_replace('/-(cursor|pointer)$/', '', $cursor_slug);
         $url = "collections/{$category_slug}/{$normalizedSlug}";
-        $cursor = Cursor::where('slug_url', $url)->firstOrFail();
+        
         
         $parts = explode('-', $cursor_slug);
+        if (count($parts) < 2) {
+            abort(404);
+        }
+    
         $type = array_pop($parts); // cursor або pointer
+        $id = $parts[0];
+        
+        $cursor = Cursor::where('id', $id)->firstOrFail();
 
         switch ($type) {
             case 'cursor':
@@ -39,10 +46,7 @@ class ImageController extends Controller {
     
         $response = response()->file($full_path, [
             'Content-Type' => 'image/svg+xml',
-        ]);
-        $response->headers->remove('Cache-Control');
-        $response->headers->remove('cache-control');        
-        $response->headers->remove('Set-Cookie');            
+        ]);          
         $response->headers->set('Cache-Tag', 'svg');
         $response->headers->set('X-Cache-SVG', 'true');
         return $response;

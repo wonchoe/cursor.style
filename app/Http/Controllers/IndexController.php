@@ -274,30 +274,20 @@ class IndexController extends Controller
         $collections = categories::all();
 
         foreach ($cursors as $cursorItem) {
+            // Просто додаємо колекцію як тимчасову властивість (не для збереження)
             $cursorItem->setRelation('collection', $collections->first(
                 fn($item) => $item->id == $cursorItem->cat
             ));
         
+            // Генерація SEO-шляху
             $seoCategory = Str::slug($cursorItem->collection->base_name_en);
             $seoCursor = Str::slug($cursorItem->name_en);
-            $baseSlug = "collections/{$seoCategory}/{$seoCursor}";
-        
-            // перевірка на унікальність
-            $finalSlug = $baseSlug;
-            if (
-                empty($cursorItem->slug_url) ||
-                cursor::where('slug_url', $baseSlug)->where('id', '!=', $cursorItem->id)->exists()
-            ) {
-                $finalSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
-                $cursorItem->slug_url = $finalSlug;
-                $cursorItem->save();
-            }
-        
-            $cursorItem->slug_url_final = $finalSlug;
-            $cursorItem->c_file_no_ext = $finalSlug . '-cursor';
-            $cursorItem->p_file_no_ext = $finalSlug . '-pointer';
+            $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
+                
+            $cursorItem->slug_url_final = $fullSlug;
+            $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
+            $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
         }
-        
         
     
         $response = response()->view('index', [
