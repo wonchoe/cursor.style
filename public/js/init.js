@@ -215,7 +215,7 @@ function setupMiliSearch() {
 
     if (query.length < 2) {
       resultsBox.classList.add('hidden');
-      document.querySelector('.search-hr').add('hidden');
+      document.querySelector('.search-hr').classList.add('hidden');
       resultsBox.innerHTML = '';
       return;
     }
@@ -238,7 +238,7 @@ function setupMiliSearch() {
             resultsBox.innerHTML = renderGroupedResults(data.hits);
           }
           resultsBox.classList.remove('hidden');
-          document.querySelector('.search-hr').remove('hidden');
+          document.querySelector('.search-hr').classList.remove('hidden');
         });
     }, 300);
   });
@@ -247,7 +247,7 @@ function setupMiliSearch() {
   input.addEventListener('focus', () => {
     if (resultsBox.innerHTML.trim()) {
       resultsBox.classList.remove('hidden');
-      document.querySelector('.search-hr').remove('hidden');
+      document.querySelector('.search-hr').classList.remove('hidden');
     }
   });
 
