@@ -158,16 +158,27 @@ class CursorController extends Controller {
                 $cursorFile = $request->file('c_file')[$i];
                 $pointerFile = $request->file('p_file')[$i];
     
-                $cFilePath = $cursorFile->store('public/cursors_new');
-                $pFilePath = $pointerFile->store('public/pointers_new');
+                $category = categories::find($request->input('cat_id')[$i]);
+                $saveto = $category->id . '-' . $category->alt_name;
+    
+                $cursorOriginalName = $cursorFile->getClientOriginalName();
+                $pointerOriginalName = $pointerFile->getClientOriginalName();
+    
+                $cursorStoredName = uniqid() . '.' . $cursorFile->getClientOriginalExtension();
+                $pointerStoredName = uniqid() . '.' . $pointerFile->getClientOriginalExtension();
+    
+                $cFilePath = $cursorFile->storeAs("public/cursors/{$saveto}", $cursorStoredName);
+                $pFilePath = $pointerFile->storeAs("public/pointers/{$saveto}", $pointerStoredName);
     
                 $cursor = new Cursor();
                 $cursor->name = $request->input('name')[$i];
                 $cursor->name_en = $cursor->name;
                 $cursor->name_es = $cursor->name;
-                $cursor->cat = $request->input('cat_id')[$i];
+                $cursor->cat = $category->id;
                 $cursor->c_file = basename($cFilePath);
                 $cursor->p_file = basename($pFilePath);
+                $cursor->c_file_original = $cursorOriginalName;
+                $cursor->p_file_original = $pointerOriginalName;
                 $cursor->offsetX = $request->input('offsetX')[$i];
                 $cursor->offsetY = $request->input('offsetY')[$i];
                 $cursor->offsetX_p = $request->input('offsetX_p')[$i];
@@ -175,19 +186,20 @@ class CursorController extends Controller {
                 $cursor->schedule = $request->input('schedule');
                 $cursor->save();
     
-                // 💬 Update translations
+                // Update translations
                 $langPath = resource_path('lang/en/cursors.php');
                 $translations = File::exists($langPath) ? include($langPath) : [];
                 $translations['c_' . $cursor->id] = $cursor->name;
                 File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
     
             } catch (\Throwable $e) {
-               
+                // optionally log the error
             }
         }
     
         return redirect()->route('cursors.create')->with('success', 'Cursors created successfully.');
     }
+    
     
         
     public function setBgUser() {
