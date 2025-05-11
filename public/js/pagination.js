@@ -1,16 +1,16 @@
 
-
 function renderPagination(currentPage, totalPages, maxVisible = 7) {
-    const wrapperWidth = document.querySelector('.pagination-wrapper');
-    wrapperWidth.style.display = 'block';                
+    const wrapper = document.querySelector('.pagination-wrapper');
+    wrapper.style.display = 'block';
+
     const pagination = document.querySelector('.pagination');
     pagination.innerHTML = '';
 
     const createPage = (label, page = null, isCurrent = false) => {
         const el = document.createElement(page ? 'a' : 'span');
         el.className = 'page-numbers-js' + (isCurrent ? ' current' : '');
-        if (label == '⬅️') el.dataset.arrow = 'left';
-        if (label == '➡️') el.dataset.arrow = 'right';
+        if (label === '⬅️') el.dataset.arrow = 'left';
+        if (label === '➡️') el.dataset.arrow = 'right';
         el.textContent = label;
         if (page) el.href = `?page=${page}`;
         return el;
@@ -25,18 +25,32 @@ function renderPagination(currentPage, totalPages, maxVisible = 7) {
 
     const pages = [];
 
-    const sideVisible = maxVisible - 2; // -2 бо 30 і 31 завжди праворуч
-    const rightEdgeStart = totalPages - 2; // напр. 29, 30, 31
+    const sideCount = Math.floor((maxVisible - 3) / 2); // -3: first, last, prev/next
+    let start = Math.max(2, currentPage - sideCount);
+    let end = Math.min(totalPages - 1, currentPage + sideCount);
 
-    for (let i = 1; i <= Math.min(sideVisible, totalPages); i++) {
+    // Корекція початку і кінця
+    if (currentPage <= sideCount + 2) {
+        start = 2;
+        end = Math.min(totalPages - 1, maxVisible - 2);
+    }
+    if (currentPage >= totalPages - sideCount - 1) {
+        start = Math.max(2, totalPages - (maxVisible - 3));
+        end = totalPages - 1;
+    }
+
+    // Перша
+    pages.push(1);
+
+    if (start > 2) pages.push('...');
+
+    for (let i = start; i <= end; i++) {
         pages.push(i);
     }
 
-    if (totalPages > maxVisible) {
-        pages.push('...');
-        pages.push(totalPages - 1);
-        pages.push(totalPages);
-    }
+    if (end < totalPages - 1) pages.push('...');
+
+    if (totalPages > 1) pages.push(totalPages);
 
     pages.forEach(p => {
         if (p === '...') {
@@ -49,12 +63,14 @@ function renderPagination(currentPage, totalPages, maxVisible = 7) {
         }
     });
 
+    // Next
     pagination.appendChild(
         currentPage < totalPages
             ? createPage('➡️', currentPage + 1)
             : createPage('➡️')
     );
 }
+
 
 function getMaxVisiblePages() {
     const wrapperWidth = document.querySelector('.pagination-wrapper')?.offsetWidth || 768;
