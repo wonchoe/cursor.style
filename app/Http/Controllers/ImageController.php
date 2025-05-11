@@ -89,46 +89,50 @@ class ImageController extends Controller {
     }
     
 
-    public function show($id) {
-        $p = explode('-', $id);
-        $cursor = cursor::findOrFail($p[1]);
-        if ($p[0] == 'c') {
-            $r = file_get_contents('resources/cursors/' . $cursor->c_file);
-            return response($r, 200)
-                            ->header('Content-Type', 'image/png')
-                            ->header('pragma', 'public')
-                            ->header('cache-control', 'max-age=86400, public')
-                            ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
-        } else if ($p[0] == 'p') {
-            $r = file_get_contents('resources/pointers/' . $cursor->p_file);
-            return response($r, 200)
-                            ->header('Content-Type', 'image/png')
-                            ->header('pragma', 'public')
-                            ->header('cache-control', 'max-age=86400, public')
-                            ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
-        } else {
+    public function show($id)
+    {
+        [$type, $cursorId] = explode('-', $id);
+        $cursor = Cursor::findOrFail($cursorId);
+    
+        $filename = $type === 'c' ? $cursor->c_file : ($type === 'p' ? $cursor->p_file : null);
+        if (!$filename) {
             abort(404);
         }
-        echo $cursor;
+    
+        $paths = [
+            resource_path(($type === 'c' ? 'cursors/' : 'pointers/') . $filename),
+            storage_path('app/public/' . $filename),
+            storage_path('app/public/' . ($type === 'c' ? 'cursors' : 'pointers') . "/{$cursor->cat}-{$cursor->name}/{$filename}"),
+        ];
+    
+        foreach ($paths as $path) {
+            if (file_exists($path)) {
+                return response(file_get_contents($path), 200)
+                    ->header('Content-Type', 'image/png')
+                    ->header('Pragma', 'public')
+                    ->header('Cache-Control', 'max-age=86400, public')
+                    ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
+            }
+        }
+    
+        abort(404, 'Image not found in any path.');
     }
+    
 
     public function showCollection($name)
     {
         
         $cat = categories::where('alt_name', '=', $name)->firstOrFail();
-
+   
         $localPath = base_path('resources/categories/' . $cat->img);
         $storagePath = storage_path('app/public/' . $cat->img);
-        $dynamicPath = storage_path('app/public/cursors/' . $cat->id . '-' . $cat->alt_name . '/' . $cat->img);
-        
+
         if (file_exists($localPath)) {
             $r = file_get_contents($localPath);
         } elseif (file_exists($storagePath)) {
             $r = file_get_contents($storagePath);
-        } elseif (file_exists($dynamicPath)) {
-            $r = file_get_contents($dynamicPath);
         } else {
-            abort(404, 'Image not found in resources, storage, or dynamic path.');
+            abort(404, 'Image not found in resources or storage.');
         }
     
         $collections_folder = $this->createCollectionsImagesFolders();
