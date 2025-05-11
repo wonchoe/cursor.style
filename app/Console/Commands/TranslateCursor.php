@@ -180,7 +180,7 @@ class TranslateCursor extends Command
                 
 
                 $offset += $batchSize;
-                sleep(1); // throttle
+//                sleep(1); // throttle
             }
         }
 
