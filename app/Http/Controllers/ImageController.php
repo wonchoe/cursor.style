@@ -89,45 +89,41 @@ class ImageController extends Controller {
     }
     
 
-    public function show($id)
-    {
-        // 1. Витягуємо ID (перше число до першого "-")
-        $parts = explode('-', $id);
-        $cursorId = $parts[0];
+    public function show($id) {
+        $p = explode('-', $id);
+        $cursor = cursor::findOrFail($p[1]);
     
-        // 2. Визначаємо тип
-        if (str_contains($id, 'pointer')) {
-            $type = 'p';
-        } elseif (str_contains($id, 'cursor')) {
-            $type = 'c';
+        if ($p[0] == 'c') {
+            $filename = $cursor->c_file;
+            $baseDir = 'cursors';
+        } elseif ($p[0] == 'p') {
+            $filename = $cursor->p_file;
+            $baseDir = 'pointers';
         } else {
-            abort(404, 'Unknown type in slug.');
+            abort(404);
         }
     
-        // 3. Завантажуємо курсор
-        $cursor = Cursor::findOrFail($cursorId);
-        $filename = $type === 'c' ? $cursor->c_file : $cursor->p_file;
+        $category = categories::findOrFail($cursor->cat);
+        $subfolder = $category->id . '-' . $category->alt_name;
     
-        // 4. Визначаємо підпапку типу "80-glitter"
-        $category = Category::findOrFail($cursor->cat);
-        $folder = "{$category->id}-{$category->alt_name}";
-        $base = $type === 'c' ? 'cursors' : 'pointers';
+        $paths = [
+            resource_path("{$baseDir}/{$filename}"),
+            storage_path("app/public/{$baseDir}/{$filename}"),
+            storage_path("app/public/{$baseDir}/{$subfolder}/{$filename}"),
+        ];
     
-        // 5. Повний шлях
-        $fullPath = storage_path("app/public/{$base}/{$folder}/{$filename}");
-    
-        // 6. Віддаємо файл
-        if (!file_exists($fullPath)) {
-            abort(404, 'File not found: ' . $fullPath);
+        foreach ($paths as $path) {
+            if (file_exists($path)) {
+                return response(file_get_contents($path), 200)
+                    ->header('Content-Type', mime_content_type($path))
+                    ->header('Pragma', 'public')
+                    ->header('Cache-Control', 'max-age=86400, public')
+                    ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
+            }
         }
     
-        return response(file_get_contents($fullPath), 200)
-            ->header('Content-Type', mime_content_type($fullPath))
-            ->header('Pragma', 'public')
-            ->header('Cache-Control', 'max-age=86400, public')
-            ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
+        abort(404, 'File not found.');
     }
-    
     
 
     public function showCollection($name)
