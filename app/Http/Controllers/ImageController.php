@@ -116,16 +116,19 @@ class ImageController extends Controller {
     {
         
         $cat = categories::where('alt_name', '=', $name)->firstOrFail();
-   
+
         $localPath = base_path('resources/categories/' . $cat->img);
         $storagePath = storage_path('app/public/' . $cat->img);
-
+        $dynamicPath = storage_path('app/public/cursors/' . $cat->id . '-' . $cat->alt_name . '/' . $cat->img);
+        
         if (file_exists($localPath)) {
             $r = file_get_contents($localPath);
         } elseif (file_exists($storagePath)) {
             $r = file_get_contents($storagePath);
+        } elseif (file_exists($dynamicPath)) {
+            $r = file_get_contents($dynamicPath);
         } else {
-            abort(404, 'Image not found in resources or storage.');
+            abort(404, 'Image not found in resources, storage, or dynamic path.');
         }
     
         $collections_folder = $this->createCollectionsImagesFolders();
