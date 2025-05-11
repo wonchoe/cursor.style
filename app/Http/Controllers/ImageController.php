@@ -91,34 +91,41 @@ class ImageController extends Controller {
 
     public function show($id)
     {
-        [$type, $cursorId] = explode('-', $id);
-        $cursor = Cursor::findOrFail($cursorId);
+        // 1. Витягуємо ID (перше число до першого "-")
+        $parts = explode('-', $id);
+        $cursorId = $parts[0];
     
-        $filename = $type === 'c' ? $cursor->c_file : ($type === 'p' ? $cursor->p_file : null);
-        if (!$filename) {
-            abort(404);
+        // 2. Визначаємо тип
+        if (str_contains($id, 'pointer')) {
+            $type = 'p';
+        } elseif (str_contains($id, 'cursor')) {
+            $type = 'c';
+        } else {
+            abort(404, 'Unknown type in slug.');
         }
     
-        $folder = "{$cursor->cat}-" . \Str::slug($cursor->name); // Формуємо папку типу 80-glitter
+        // 3. Завантажуємо курсор
+        $cursor = Cursor::findOrFail($cursorId);
+        $filename = $type === 'c' ? $cursor->c_file : $cursor->p_file;
+    
+        // 4. Визначаємо підпапку типу "80-glitter"
+        $category = Category::findOrFail($cursor->cat);
+        $folder = "{$category->id}-{$category->alt_name}";
         $base = $type === 'c' ? 'cursors' : 'pointers';
     
-        $paths = [
-            resource_path("{$base}/{$filename}"),
-            storage_path("app/public/{$filename}"),
-            storage_path("app/public/{$base}/{$folder}/{$filename}"),
-        ];
+        // 5. Повний шлях
+        $fullPath = storage_path("app/public/{$base}/{$folder}/{$filename}");
     
-        foreach ($paths as $path) {
-            if (file_exists($path)) {
-                return response(file_get_contents($path), 200)
-                    ->header('Content-Type', mime_content_type($path))
-                    ->header('Pragma', 'public')
-                    ->header('Cache-Control', 'max-age=86400, public')
-                    ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
-            }
+        // 6. Віддаємо файл
+        if (!file_exists($fullPath)) {
+            abort(404, 'File not found: ' . $fullPath);
         }
     
-        abort(404, 'Image not found in any path.');
+        return response(file_get_contents($fullPath), 200)
+            ->header('Content-Type', mime_content_type($fullPath))
+            ->header('Pragma', 'public')
+            ->header('Cache-Control', 'max-age=86400, public')
+            ->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
     }
     
     
