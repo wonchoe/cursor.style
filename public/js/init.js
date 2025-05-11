@@ -233,6 +233,7 @@ function setupMiliSearch() {
     timeout = setTimeout(() => {
       fetch(`/search`, {
         method: 'POST',
+        cache: 'no-store', 
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer masterKey123',
@@ -250,7 +251,7 @@ function setupMiliSearch() {
           resultsBox.classList.remove('hidden');
           document.querySelector('.search-hr').classList.remove('hidden');
         });
-    }, 300);
+    }, 100);
   });
 
   input.addEventListener('blur', () => setTimeout(() => resultsBox.classList.add('hidden'), 1200));

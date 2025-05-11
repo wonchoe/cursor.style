@@ -120,10 +120,16 @@ class IndexController extends Controller
             ->get();
     }
 
-    public function searchProxy(Request $request){
-        $response = $this->miliRequest( $request->input('lang', 'en'), $request->input('q'), $request->input('limit', 100));
-        return response()->json($response->json());        
+    public function searchProxy(Request $request)
+    {
+        $lang = $request->input('lang', 'en');
+        $query = $request->input('query'); // 👈 не q
+        $limit = $request->input('limit', 100);
+    
+        $response = $this->miliRequest($lang, $query, $limit);
+        return response()->json($response->json());
     }
+    
     public function miliRequest($lang, $query, $limit)
     {
         $hosts = [
@@ -166,9 +172,6 @@ class IndexController extends Controller
     
         throw new \Exception("❌ Meilisearch is unavailable on all hosts");
     }
-    
-    
-    
     
 
     public function search($q, Request $request)
