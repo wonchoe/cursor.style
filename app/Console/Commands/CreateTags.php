@@ -8,14 +8,14 @@ use Illuminate\Console\Command;
 
 class CreateTags extends Command
 {
-    protected $signature = 'tags:create {--limit=50}';
+    protected $signature = 'custom:tagsCreate {--limit=50}';
     protected $description = 'Генерує англомовні теги для курсорів через OpenRouter API';
     protected $languages = [ 'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh' ];
 
     private function requestTagsFromOpenRouter(array $items, string $lang, string $languageName): ?array
     {
         $prompt = "You are an assistant that generates relevant tags (1 to 10 short keywords or phrases) for UI items in a Chrome extension called \"Cursor Style\". Each item represents a unique mouse cursor inspired by games, cartoons, anime, or pop culture.
-        
+
         Your task is to generate tags **in the following language**: \"$languageName\".
         
         Generate 3 to 8 relevant tags (short keywords or phrases) that best describe the theme, style, category, or origin of the cursor.
@@ -34,16 +34,17 @@ class CreateTags extends Command
         Respond ONLY with valid JSON. For each item, return:
         - \"id\": same ID from input,
         - \"lang\": \"$lang\"
+        - \"name\": translated cursor name to $languageName
         - \"tags\": a single string of 1 to 10 space-separated keywords translated into $languageName
         
         Example output:
         [
-          { \"id\": 1, \"lang\": \"$lang\", \"tags\": \"герой бетмен дс темний\" },
-          { \"id\": 2, \"lang\": \"$lang\", \"tags\": \"марио нінтендо водопровідник червоний\" }
+          { \"id\": 1, \"lang\": \"$lang\", \"name\": \"Темний Лицар\", \"tags\": \"герой бетмен дс темний\" },
+          { \"id\": 2, \"lang\": \"$lang\", \"name\": \"Супер Маріо\", \"tags\": \"марио нінтендо водопровідник червоний\" }
         ]
         
         Important rules:
-        - Generate the tags directly in $languageName
+        - Generate the tags and name directly in $languageName
         - Return exactly \"$lang\" in the \"lang\" field
         - Do NOT include explanations, comments, or formatting like Markdown
         - Do NOT translate brand names or the name \"Cursor Style\"
@@ -51,6 +52,7 @@ class CreateTags extends Command
         Now generate tags for the following input:
         
         " . json_encode($items, JSON_PRETTY_PRINT);
+        
 
         try {
             $response = Http::withHeaders([
@@ -188,10 +190,15 @@ class CreateTags extends Command
                     if (!isset($item['id'], $item['tags']))
                         continue;
 
-                    DB::table('cursor_tag_translations')->updateOrInsert(
-                        ['cursor_id' => $item['id'], 'lang' => $lang],
-                        ['tags' => $item['tags'], 'updated_at' => now(), 'created_at' => now()]
-                    );
+                        DB::table('cursor_tag_translations')->updateOrInsert(
+                            ['cursor_id' => $item['id'], 'lang' => $lang],
+                            [
+                                'tags' => $item['tags'],
+                                'translation' => $item['name'] ?? null,
+                                'updated_at' => now(),
+                                'created_at' => now()
+                            ]
+                        );
                     $this->info("[$lang] ✔ ID {$item['id']} → {$item['tags']}");
                 }
 
