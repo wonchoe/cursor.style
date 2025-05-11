@@ -100,7 +100,7 @@
                 <form onsubmit="return false;">
                     <input type="text" id="cs_search" class="search" placeholder="Search..." autocomplete="off">
                 </form>
-            <div>
+            </div>
 
                 <hr class="search-hr"/>
                 
