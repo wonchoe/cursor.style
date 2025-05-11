@@ -221,7 +221,7 @@ function setupMiliSearch() {
     }
 
     timeout = setTimeout(() => {
-      fetch(`https://dev.cursor.style/search`, {
+      fetch(`/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
