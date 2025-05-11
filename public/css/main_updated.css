@@ -347,7 +347,10 @@ img {
 }
 
 .search-input{
-  display: flex;
+  display: flex
+  ;
+      align-content: center;
+      align-items: center;
 }
 
 .nav-icon-search-input {
@@ -578,18 +581,6 @@ img {
 ;
   align-content: center;
   align-items: center;
-}
-
-.search-wrapper:before {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url(/images/icons/search.png);
-  background-size: cover;
-  margin-right: 6px;
-  margin-left: 10px;
-  opacity: 0.8;
 }
 
 .search-wrapper form{
