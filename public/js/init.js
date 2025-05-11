@@ -256,12 +256,12 @@ function setupMiliSearch() {
 
   input.addEventListener('blur', () => setTimeout(() => {
     resultsBox.classList.add('hidden');
-    document.querySelector('.search-hr').classList.remove('hidden');
+    document.querySelector('.search-hr').classList.add('hidden');
   }, 500));
   input.addEventListener('focus', () => {
     if (resultsBox.innerHTML.trim()) {
       resultsBox.classList.remove('hidden');
-      document.querySelector('.search-hr').classList.add('hidden');
+      document.querySelector('.search-hr').classList.remove('hidden');
     }
   });
 
