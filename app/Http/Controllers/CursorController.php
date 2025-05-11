@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Storage;
 
 class CursorController extends Controller {
 
-    public function create()
+    public function create(Request $request)
     {
         $categories = categories::orderBy('id', 'DESC')->get();
-        $cursors = cursor::orderBy('id', 'DESC')->take(50)->get();
+        $cursors = cursor::orderBy('id', 'DESC')->where('cat', '=', $request->cat)->get();
     
         return view('admin.cursors.create', compact('categories', 'cursors'));
     }
