@@ -27,16 +27,16 @@ function redirectToSearch(event) {
   const input = document.getElementById('cs_search');
   const query = encodeURIComponent(input.value.trim());
   if (query.length > 0) {
-      window.location.href = '/search/' + query;
+    window.location.href = '/search/' + query;
   }
 }
 
 function handleSearchEnter(e) {
   if (e.key === 'Enter') {
-      const query = e.target.value.trim();
-      if (query) {
-          window.location.href = '/search/' + encodeURIComponent(query);
-      }
+    const query = e.target.value.trim();
+    if (query) {
+      window.location.href = '/search/' + encodeURIComponent(query);
+    }
   }
 }
 
@@ -133,51 +133,52 @@ function hoverMenu() {
     tab.addEventListener('mouseleave', () => {
       activeTab.classList.remove('hidden-by-hover');
     });
-  }); 
+  });
 }
 
-function attachEtagToCountClicks(){
+function attachEtagToCountClicks() {
   if (!document.documentElement.dataset.cursorstyle) return;
   const btnContainers = document.querySelectorAll('.btn-container');
 
   btnContainers.forEach(function (container) {
-      const statButtons = container.querySelectorAll('button[data-type="stat"]');
+    const statButtons = container.querySelectorAll('button[data-type="stat"]');
 
-      statButtons.forEach(function (btn) {
-          btn.addEventListener('click', function (e) {
-              const isAnyDisabled = Array.from(statButtons).some(b => b.disabled);
+    statButtons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        const isAnyDisabled = Array.from(statButtons).some(b => b.disabled);
 
-              if (isAnyDisabled) return;
-              const mainBtn = statButtons[0];
-              const cursorId = mainBtn.dataset.id;
-              const category = mainBtn.dataset.catbasename;
-              gtag('event', 'cursor_click', {
-                  cursor_id: cursorId,
-                  cursor_category: category
-              });
+        if (isAnyDisabled) return;
+        const mainBtn = statButtons[0];
+        const cursorId = mainBtn.dataset.id;
+        const category = mainBtn.dataset.catbasename;
+        gtag('event', 'cursor_click', {
+          cursor_id: cursorId,
+          cursor_category: category
+        });
 
-              console.log('Tracked click for cursor:', cursorId);
-          });
+        console.log('Tracked click for cursor:', cursorId);
       });
-  });  
+    });
+  });
 }
 
 
-function showMyCollection(){
+function showMyCollection() {
   if (!document.documentElement.dataset.cursorstyle) return;
-  if (document.querySelector('#mycollection_menu')){
+  if (document.querySelector('#mycollection_menu')) {
     document.querySelector('#mycollection_menu').style.display = 'block';
   }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(() => {
-    attachEtagToCountClicks();  
+    attachEtagToCountClicks();
     showMyCollection();
-  }, 500);  
+  }, 500);
   hoverMenu();
   injectButtonHandler();
   injectCloseModalInstaller();
+  setupMiliSearch();
 
   if (location.pathname.search('howto') > 0)
     howtoScaleImg();
@@ -193,4 +194,98 @@ function handleItemClick(event, url) {
   if (event.target.closest('.cursor-button')) return;
   if (event.target.closest('.pointerevent')) return;
   window.location.href = url;
+}
+
+function cleanStr(string) {
+  return string
+    .replace(/\s+/g, '-')              
+    .replace(/[^A-Za-z0-9\-]/g, '') 
+    .toLowerCase(); 
+}
+
+function setupMiliSearch() {
+  console.log('miliset');
+  let timeout = null;
+  const input = document.getElementById('cs_search');
+  const resultsBox = document.getElementById('search-results');
+
+  input.addEventListener('input', function () {
+    clearTimeout(timeout);
+    const query = this.value.trim();
+
+    if (query.length < 2) {
+      resultsBox.classList.add('hidden');
+      document.querySelector('.search-hr').add('hidden');
+      resultsBox.innerHTML = '';
+      return;
+    }
+
+    timeout = setTimeout(() => {
+      fetch(`https://dev.cursor.style/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer masterKey123',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify({ lang: 'en', query: query, limit: 15 })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (!data.hits || data.hits.length === 0) {
+            resultsBox.innerHTML = '<div style="padding:10px">No results</div>';
+          } else {
+            resultsBox.innerHTML = renderGroupedResults(data.hits);
+          }
+          resultsBox.classList.remove('hidden');
+          document.querySelector('.search-hr').remove('hidden');
+        });
+    }, 300);
+  });
+
+  input.addEventListener('blur', () => setTimeout(() => resultsBox.classList.add('hidden'), 1200));
+  input.addEventListener('focus', () => {
+    if (resultsBox.innerHTML.trim()) {
+      resultsBox.classList.remove('hidden');
+      document.querySelector('.search-hr').remove('hidden');
+    }
+  });
+
+  function renderGroupedResults(hits) {
+    const grouped = {};
+
+    hits.forEach(hit => {
+      const key = hit.cat || 'uncategorized';
+      if (!grouped[key]) {
+        grouped[key] = {
+          name: hit.cat_name || 'Uncategorized',
+          alt: hit.cat || 'Uncategorized',
+          img: hit.cat_img || null,
+          items: []
+        };
+      }
+      grouped[key].items.push(hit);
+    });
+
+    let html = '';
+    Object.values(grouped).forEach(group => {
+      html += `
+        <div class="category-block" style="margin-bottom:16px;">
+          <div class="category-header" style="display:flex;align-items:center;margin-bottom:5px;">
+            ${group.img ? `<img src="/collection/${group.alt}.png" height="32">` : ''}
+            <strong>${group.name}</strong>
+          </div>
+          <ul style="list-style:none;padding-left:10px;margin:0;">
+            ${group.items.map(cursor => `
+              <li onclick="window.location='/cursor/${cursor.id}'" style="cursor:pointer;display:flex;align-items:center;">
+                <img src="/cursors/${cursor.id}-${cleanStr(cursor.name)}-cursor.svg" width="32" height="32" style="margin-right:10px;">
+                ${cursor.name}
+              </li>
+            `).join('')}
+          </ul>
+        </div>`;
+    });
+
+    return html;
+  }
 }

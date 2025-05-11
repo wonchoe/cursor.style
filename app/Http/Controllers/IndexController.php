@@ -13,6 +13,7 @@ use App\Models\cursor;
 use App\Models\categories;
 use App\Models\Analytic;
 use App\Models\CursorTranslation;
+use Illuminate\Support\Facades\Log;
 
 use App;
 
@@ -117,6 +118,56 @@ class IndexController extends Controller
             ->get();
     }
 
+    public function searchProxy(Request $request){
+        $response = $this->miliRequest( $request->input('lang', 'en'), $request->input('q'), $request->input('limit', 100));
+        return response()->json($response->json());        
+    }
+    public function miliRequest($lang, $query, $limit)
+    {
+        $hosts = [
+            'http://meilisearch:7700',
+        ];
+    
+        // Завжди гарантуємо, що q — це рядок
+        $query = (string) $query;
+    
+        foreach ($hosts as $host) {
+            try {
+                Log::info("🔎 Запит до {$host}/indexes/cursors_{$lang}/search");
+                Log::info('📦 Тіло запиту: ' . json_encode([
+                    'q' => $query,
+                    'limit' => $limit,
+                ]));
+    
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer masterKey123',
+                    'Content-Type' => 'application/json',
+                ])
+                ->timeout(2)
+                ->withBody(json_encode([
+                    'q' => $query,
+                    'limit' => $limit,
+                ]), 'application/json')
+                ->post("{$host}/indexes/cursors_{$lang}/search");
+    
+                if ($response->successful()) {
+                    Log::info("✅ Успішна відповідь від {$host}");
+                    return $response;
+                } else {
+                    Log::warning("⚠️ Статус: " . $response->status() . "; Тіло: " . $response->body());
+                }
+            } catch (\Exception $e) {
+                Log::error("❌ Виняток при зверненні до {$host}: " . $e->getMessage());
+            }
+        }
+    
+        throw new \Exception("❌ Meilisearch is unavailable on all hosts");
+    }
+    
+    
+    
+    
+
     public function search($q, Request $request)
     {
         $lang = app()->getLocale();
@@ -126,14 +177,8 @@ class IndexController extends Controller
         if (!$query) return redirect('/');
     
         try {
-            // 🔍 Пошук через Meilisearch
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer masterKey123',
-                'Content-Type' => 'application/json',
-            ])->post("http://localhost:7700/indexes/cursors_{$lang}/search", [
-                'q' => $query,
-                'limit' => $limit,
-            ]);
+
+            $response = $this->miliRequest($lang, $query, $limit);
     
             if ($response->failed()) {
                 throw new \Exception("Meilisearch request failed");

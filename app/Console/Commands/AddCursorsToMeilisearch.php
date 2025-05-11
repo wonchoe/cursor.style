@@ -8,7 +8,7 @@ use App\Models\cursor_tag_translation;
 
 class AddCursorsToMeilisearch extends Command
 {
-    protected $signature = 'meilisearch:add-cursors';
+    protected $signature = 'meilisearch:add-cursors {--force : Drop and recreate each index before pushing data}';
     protected $description = 'Push all translated cursors and tags to Meilisearch for all languages';
 
     protected $languages = [
@@ -19,7 +19,12 @@ class AddCursorsToMeilisearch extends Command
 
     public function handle()
     {
-        $this->info("\n\u2728 Завантажуємо курсори з тегами у Meilisearch для всіх мов...\n");
+        $force = $this->option('force');
+
+        $this->info("\n✨ Завантажуємо курсори з тегами у Meilisearch для всіх мов...");
+        if ($force) {
+            $this->warn("⚠️  Увімкнено режим --force: індекси будуть повністю очищені перед додаванням\n");
+        }
 
         foreach ($this->languages as $lang) {
             $this->info("🌍 Мова: $lang");
@@ -33,13 +38,22 @@ class AddCursorsToMeilisearch extends Command
             foreach ($tagged as $item) {
                 if (!$item->cursor) continue;
 
+                $cursorTranslationKey = 'cursors.c_' . $item->cursor_id;
+                $name = __($cursorTranslationKey);
+
+                $catTranslationKey = 'collections.c_' . optional($item->cursor->categories)->id;
+                $catName = __($catTranslationKey);
+
                 $documents[] = [
                     'id' => $item->cursor_id,
-                    'name' => $item->cursor->name_en,
+                    'name' => $name !== $cursorTranslationKey ? $name : $item->cursor->name_en,
                     'tags' => $item->tags,
                     'lang' => $lang,
-                    'cat' => $item->cursor->category->alt_name ?? null,
-                    'cat_img' => $item->cursor->category->img ?? null,
+                    'cat' => optional($item->cursor->categories)->alt_name,
+                    'cat_name' => $catName !== $catTranslationKey
+                        ? $catName
+                        : optional($item->cursor->categories)->base_name_en,
+                    'cat_img' => optional($item->cursor->categories)->img,
                     'c_file' => $item->cursor->c_file,
                     'p_file' => $item->cursor->p_file,
                     'offsetX' => $item->cursor->offsetX,
@@ -51,17 +65,39 @@ class AddCursorsToMeilisearch extends Command
             }
 
             if (!empty($documents)) {
-                $response = Http::withHeaders([
-                    'Authorization' => 'Bearer masterKey123',
-                    'Content-Type' => 'application/json',
-                ])->post("http://localhost:7700/indexes/cursors_{$lang}/documents", $documents);
+                $hosts = [
+                    'http://localhost:7700',
+                    'http://meilisearch:7700',
+                ];
 
-                if ($response->failed()) {
-                    $this->error("❌ Помилка для мови [$lang]: " . $response->body());
-                    continue;
+                $response = null;
+
+                foreach ($hosts as $host) {
+                    try {
+                        if ($force) {
+                            Http::withHeaders([
+                                'Authorization' => 'Bearer masterKey123',
+                            ])->delete("{$host}/indexes/cursors_{$lang}");
+                            $this->line("🧹 Індекс [$lang] очищено на {$host}");
+                        }
+
+                        $response = Http::withHeaders([
+                            'Authorization' => 'Bearer masterKey123',
+                            'Content-Type' => 'application/json',
+                        ])->timeout(3)->post("{$host}/indexes/cursors_{$lang}/documents", $documents);
+
+                        if ($response->successful()) {
+                            $this->info("✅ Завантажено " . count($documents) . " курсорів у індекс [$lang] через {$host}\n");
+                            break;
+                        }
+                    } catch (\Exception $e) {
+                        continue;
+                    }
                 }
 
-                $this->info("✅ Завантажено " . count($documents) . " курсорів у індекс [$lang]\n");
+                if (!$response || $response->failed()) {
+                    $this->error("❌ Помилка для мови [$lang] — жоден Meilisearch не відповів.");
+                }
             } else {
                 $this->info("⚠️ Немає тегів для мови [$lang]\n");
             }

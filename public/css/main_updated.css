@@ -2,12 +2,103 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
+.search-dropdown {
+  position: absolute;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+}
+.hidden { display: none; }
+.search-dropdown ul { list-style: none; margin: 0; padding: 0; }
+.search-dropdown li { padding: 10px; cursor: pointer; }
+.search-dropdown li:hover { background: #f0f0f0; }
+
 .emoji {
   font-family: 'Noto Color Emoji', 'Segoe UI Emoji', sans-serif;
   font-variant-emoji: emoji;
   font-size: 1.2em;
   display: inline-block;
   line-height: 1;
+}
+
+#search-results {
+  background: white;
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.15);
+  padding: 0px 25px 0px 25px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+  left: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 210px;
+}
+
+.search-wrapper hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 0;
+  margin: 0px 10px 15px 10px;
+}
+
+.category-block {
+  margin-bottom: 20px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #464747;
+}
+
+.category-header img {
+  padding: 8px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 6px;
+  opacity: 0.7;
+}
+
+.category-header:hover{
+  background: #f0f0f0;
+}
+
+.category-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+
+.category-block li {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: #7d7f80;
+}
+
+.category-block li:hover {
+  background: #f0f0f0;
+}
+
+.category-block li img {
+  height: 32px;
+  margin-right: 10px;
+  border-radius: 4px;
+  padding: 5px;
+  opacity: 0.7;
 }
 
 
@@ -423,10 +514,10 @@ img {
 
 .search {
   float: right;
-  width: calc(100% - 33px);
+  width: calc(100% - 0px);
   box-sizing: border-box;
   border: none;
-  padding: 18px;
+  padding: 18px 18px 18px 10px;
   margin-top: 0px;
   font-size: 16px;
   color: #5f5e5e;
@@ -478,6 +569,23 @@ img {
   margin: 20px;
   width: 100%;
   margin-top: 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  display: flex
+;
+  align-content: center;
+  align-items: center;
+}
+
+.search-wrapper:before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url(/images/icons/search.png);
+  background-size: cover;
+  margin-right: 6px;
+  margin-left: 10px;
+  opacity: 0.8;
 }
 
 .search-wrapper form{

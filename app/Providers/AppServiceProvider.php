@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider {
     
 
     public function boot() {
-        umask(0002);
         date_default_timezone_set("America/New_York");
         Paginator::defaultView('vendor/pagination/bootstrap-4');
 

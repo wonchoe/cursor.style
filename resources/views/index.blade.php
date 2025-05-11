@@ -94,10 +94,14 @@
             </div>
             
             <div class="search-wrapper">
-                        <form method="GET" onsubmit="return redirectToSearch(event)">
-                            <span class="icon-search"></span>
-                            <input  value="{{ $query ?? '' }}" type="text" name="q" id="cs_search" class="search" placeholder="@lang('messages.main_page_search')" aria-label="Search">
-                        </form>
+                
+                <form onsubmit="return false;">
+                    <input type="text" id="cs_search" class="search" placeholder="Search..." autocomplete="off">
+                </form>
+
+                <hr class="search-hr"/>
+                
+                <div id="search-results" class="search-dropdown hidden"></div>
             </div>
 
             <div class="main__list" id="main_list">

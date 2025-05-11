@@ -26,11 +26,9 @@ services:
     depends_on:
       - mysql
     networks:
-      - webnet       
-
+      - webnet
     hostname: webhost
     
 networks:
   webnet:
-    driver: bridge
-    
+    external: true
