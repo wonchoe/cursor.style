@@ -41,55 +41,64 @@ class ImageController extends Controller {
         return base_path() . '/storage/app/public/collection';
     }
 
-    public function getSvg(Request $r) {
-        $cur_cursor = cursor::findOrFail($r->id);
+    public function getSvg(Request $r)
+    {
+        $cursor = cursor::findOrFail($r->id);
     
-        if (($r->type !== 'cursors') && ($r->type !== 'pointers'))
+        if (!in_array($r->type, ['cursors', 'pointers'])) {
             abort(404);
-    
-        if ($r->type == 'cursors') {
-            $get = $cur_cursor->c_file;
-        } else {
-            $get = $cur_cursor->p_file;
         }
     
-        $basePath = public_path("resources/{$r->type}/{$get}");
+        $filename = $r->type === 'cursors' ? $cursor->c_file : $cursor->p_file;
     
-        // Якщо не існує, пробуємо зі storage
-        if (!file_exists($basePath)) {
-            $basePath = storage_path("app/public/{$r->type}_new/{$get}");
-            if (!file_exists($basePath)) {
-                abort(404, 'SVG file not found.');
+        // 🧠 Категорія для підпапки
+        $category = categories::findOrFail($cursor->cat);
+        $subfolder = "{$category->id}-{$category->alt_name}";
+    
+        // 📂 Шляхи для пошуку
+        $paths = [
+            public_path("resources/{$r->type}/{$filename}"),
+            storage_path("app/public/{$r->type}_new/{$filename}"),
+            storage_path("app/public/{$r->type}/{$subfolder}/{$filename}"),
+        ];
+    
+        // 📄 Шукаємо файл
+        $file = null;
+        foreach ($paths as $path) {
+            if (file_exists($path)) {
+                $file = file_get_contents($path);
+                break;
             }
         }
     
-        $file = file_get_contents($basePath);
+        if (!$file) {
+            abort(404, 'SVG file not found.');
+        }
     
+        // 🏷 Вставляємо <desc> у SVG (тільки якщо знайдений <path>)
         $search_from = round(strlen($file) / 2);
-        $find = intval(strpos($file, '<path', $search_from));
-        $full_str = $file;
-    
-        if ($find) {
+        $find = strpos($file, '<path', $search_from);
+        if ($find !== false) {
             $part_one = substr($file, 0, $find);
             $part_two = substr($file, $find);
             $copyright = '<desc>cursor-style.com</desc>';
-            $full_str = $part_one . $copyright . $part_two;
+            $file = $part_one . $copyright . $part_two;
         }
     
+        // 📥 Куди зберігати результат
         $cursors_folder = $this->createCursorsImagesFolders();
         $pointers_folder = $this->createPointersImagesFolders();
     
-        if ($r->type == 'cursors') {
-            file_put_contents("{$cursors_folder}/{$r->id}-{$r->cursor}.svg", $full_str);
-        } else {
-            file_put_contents("{$pointers_folder}/{$r->id}-{$r->cursor}.svg", $full_str);
-        }
+        $outputFolder = $r->type === 'cursors' ? $cursors_folder : $pointers_folder;
+        file_put_contents("{$outputFolder}/{$r->id}-{$r->cursor}.svg", $file);
     
-        return response($full_str, 200)->header('Content-Type', 'image/svg+xml');
+        return response($file, 200)->header('Content-Type', 'image/svg+xml');
     }
+    
     
 
     public function show($id) {
+        dd($id);
         $p = explode('-', $id);
         $cursor = cursor::findOrFail($p[1]);
     
