@@ -146,8 +146,8 @@
                                                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                                                     data-offset-y="{{ $cursor->offsetY }}"
                                                     data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                                    data-c_file="https://cursor.style/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
-                                                    data-p_file="https://cursor.style/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                                    data-c_file="https://cursor.style/cursors/{{ $cursor->id . '-' . 'temp' }}-cursor.svg"
+                                                    data-p_file="https://cursor.style/pointers/{{ $cursor->id . '-' . 'temp' }}-pointer.svg">
                                                     <img title="Apply" src="/images/apply.svg">
                                                 </button>
                                             </span>
@@ -166,8 +166,8 @@
                                                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                                                     data-offset-y="{{ $cursor->offsetY }}"
                                                     data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                                    data-c_file="https://cursor.style/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
-                                                    data-p_file="https://cursor.style/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                                    data-c_file="https://cursor.style/cursors/{{ $cursor->id . '-' . 'temp' }}-cursor.svg"
+                                                    data-p_file="https://cursor.style/pointers/{{ $cursor->id . '-' . 'temp' }}-pointer.svg">
                                                     <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
                                                 </button>
                                             </span>
