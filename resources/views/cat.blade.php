@@ -91,97 +91,94 @@
                         </div>
                     </div>
 
-                        @if($cursors->isNotEmpty())
-            <div class="main__list" id="main_list">
-                @forelse($cursors as $key => $cursor)
-                    @if ($key > 0 && $key % 16 === 0)
-                        <div class="gads-wrapper">
-                        <!-- google ads here -->
-                            @include('other.google.infeed')
-                        <!-- google ads here -->
-                        </div>
-                    @endif
-                    @php
-                        $translation = $cursor->currentTranslation->name ?? $cursor->name_en;
-                        $slug = Str::slug($translation);
-                        if (empty($slug)) {
-                            $slug = Str::slug($cursor->name_en);
-                        }
-                    @endphp
-                    <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{ $cursor->id }}-{{ 
-                        $slug
-                    }}')">          
-                    <div class="div_ar_p">
-                        <p>{{ $cursor->currentTranslation->name ?? $cursor->name_en }}</p>
-                    </div>
+@if($category_cursors->isNotEmpty())
+    <h2 class="section-title">@lang('messages.more_from_collection')</h2>
+    <div class="main__list">
+        @forelse($category_cursors as $key => $cursor)
+            @if ($key > 0 && $key % 16 === 0)
+                <div class="gads-wrapper">
+                    @include('other.google.infeed')
+                </div>
+            @endif
 
-                    <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                        <img class="cursorimg"
-                            style="cursor: url({{ $cursor->c_file_no_ext }}) 0 0, auto !important;"
-                            src="{{ $cursor->c_file_no_ext }}">
+            @php
+                $translation = $cursor->currentTranslation->name ?? $cursor->name_en;
+                $slug = Str::slug($translation);
+                if (empty($slug)) {
+                    $slug = Str::slug($cursor->name_en);
+                }
+            @endphp
 
-                        <img class="cursorimg"
-                            style="cursor: url({{ $cursor->p_file_no_ext }}) 0 0, auto !important;"
-                            src="{{ $cursor->p_file_no_ext }}">
-                    </div>
-
-                    <span class="downloads-badge">
-                        <img src="/images/icons/download.png" style="width: 10px;">
-                        {{ number_format($cursor->totalClick + $cursor->todayClick) }}
-                    </span>
-
-                                    <div class="main__btns">
-                                        <div class="btn-container">
-                                            <span class="pointerevent">
-                                                <button class="img-btn" data-action="apply" data-type="stat"
-                                                    data-label="@lang('messages.add_to_collection')"
-                                                    data-disabled="@lang('messages.add_to_collection_added')"
-                                                    data-cataltname="{{ $cursor->collection->alt_name }}"
-                                                    data-catbasename_en="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
-                                                    data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
-                                                    data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
-                                                    data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
-                                                    data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
-                                                    data-offset-x="{{ $cursor->offsetX }}"
-                                                    data-offset-x_p="{{ $cursor->offsetX_p }}"
-                                                    data-offset-y="{{ $cursor->offsetY }}"
-                                                    data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                                    data-c_file="{{ $cursor->c_file_no_ext }}"
-                                                    data-p_file="{{ $cursor->p_file_no_ext }}">
-                                                    <img title="Apply" src="/images/apply.svg">
-                                                </button>
-                                            </span>
-
-                                            <span class="pointerevent">
-                                                <button class="img-btn" data-action="add" data-type="stat"
-                                                    data-label="@lang('messages.add_to_collection')"
-                                                    data-disabled="@lang('messages.add_to_collection_added')"
-                                                    data-cataltname="{{ $cursor->collection->alt_name }}"
-                                                    data-catbasename_en="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
-                                                    data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
-                                                    data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
-                                                    data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
-                                                    data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
-                                                    data-offset-x="{{ $cursor->offsetX }}"
-                                                    data-offset-x_p="{{ $cursor->offsetX_p }}"
-                                                    data-offset-y="{{ $cursor->offsetY }}"
-                                                    data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                                    data-c_file="{{ $cursor->c_file_no_ext }}"
-                                                    data-p_file="{{ $cursor->p_file_no_ext }}">
-                                                    <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
+            <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{ $cursor->id }}-{{ $slug }}')">
+                <div class="div_ar_p">
+                    <p>{{ $cursor->currentTranslation->name ?? $cursor->name_en }}</p>
                 </div>
 
-                @empty
-                    <div class="no_result">@lang('messages.no_result')</div>
-                @endforelse
-            </div>                      
-                        @else
-                            @include('other.nocursors')
-                        @endif
+                <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
+                    <img class="cursorimg"
+                        style="cursor: url({{ $cursor->c_file_no_ext }}) 0 0, auto !important;"
+                        src="{{ $cursor->c_file_no_ext }}">
+
+                    <img class="cursorimg"
+                        style="cursor: url({{ $cursor->p_file_no_ext }}) 0 0, auto !important;"
+                        src="{{ $cursor->p_file_no_ext }}">
+                </div>
+
+                <span class="downloads-badge">
+                    <img src="/images/icons/download.png" style="width: 10px;">
+                    {{ number_format($cursor->totalClick + $cursor->todayClick) }}
+                </span>
+
+                <div class="main__btns">
+                    <div class="btn-container">
+                        <span class="pointerevent">
+                            <button class="img-btn" data-action="apply" data-type="stat"
+                                data-label="@lang('messages.add_to_collection')"
+                                data-disabled="@lang('messages.add_to_collection_added')"
+                                data-cataltname="{{ $cursor->collection->alt_name }}"
+                                data-catbasename_en="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
+                                data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
+                                data-offset-x="{{ $cursor->offsetX }}"
+                                data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                data-offset-y="{{ $cursor->offsetY }}"
+                                data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                data-c_file="{{ $cursor->c_file_no_ext }}"
+                                data-p_file="{{ $cursor->p_file_no_ext }}">
+                                <img title="Apply" src="/images/apply.svg">
+                            </button>
+                        </span>
+
+                        <span class="pointerevent">
+                            <button class="img-btn" data-action="add" data-type="stat"
+                                data-label="@lang('messages.add_to_collection')"
+                                data-disabled="@lang('messages.add_to_collection_added')"
+                                data-cataltname="{{ $cursor->collection->alt_name }}"
+                                data-catbasename_en="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
+                                data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
+                                data-offset-x="{{ $cursor->offsetX }}"
+                                data-offset-x_p="{{ $cursor->offsetX_p }}"
+                                data-offset-y="{{ $cursor->offsetY }}"
+                                data-offset-y_p="{{ $cursor->offsetY_p }}"
+                                data-c_file="{{ $cursor->c_file_no_ext }}"
+                                data-p_file="{{ $cursor->p_file_no_ext }}">
+                                <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="no_result">@lang('messages.no_result')</div>
+        @endforelse
+    </div>
+@endif
+
 
 
 

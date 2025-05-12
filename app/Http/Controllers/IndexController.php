@@ -103,13 +103,45 @@ public function showCursorPreview(Request $r)
         abort(404);
     }
 
+
+    // 🆕 Отримуємо всі курсори з категорії цього курсора
+    $cursor = $cursors2[1];   
+    $category_cursors = collect();
+    if ($cursor) {
+        $category_cursors = cursor::whereDate('schedule', '<=', Carbon::today())
+            ->where('cat', $cursor->cat)
+            ->where('id', '<>', $excludeId)
+            ->orderBy('id')
+            ->get();
+
+        foreach ($category_cursors as $catCursor) {
+            $catCursor->currentTranslation;
+            $catCursor->collection = $collections->first(fn($item) => $item->id == $catCursor->cat);
+
+            $seoCategory = Str::slug($catCursor->collection->base_name_en);
+            $seoCursor = Str::slug($catCursor->currentTranslation->name ?? $catCursor->name_en);
+            if (!$seoCursor) {
+                $seoCursor = Str::slug($catCursor->name_en);
+            }
+
+            $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$catCursor->id}-{$seoCursor}";
+
+            $catCursor->slug_url_final = $fullSlug;
+            $catCursor->c_file_no_ext = $fullSlug . '-cursor';
+            $catCursor->p_file_no_ext = $fullSlug . '-pointer';
+            $catCursor->name_s = Str::slug($catCursor->name_en);
+        }
+    }
+
+    
     return response()
         ->view('cursor', [
             'random_cat' => $random_cat,
             'all_cursors' => $cursors2,
-            'cursor' => $cursors2[1] ?? null,
+            'cursor' => $cursor,
             'id_prev' => $id_prev,
-            'id_next' => $id_next
+            'id_next' => $id_next,
+            'category_cursors' => $category_cursors, // 🔥 новий список
         ])->header('Cache-Tag', 'details');
 }
 
