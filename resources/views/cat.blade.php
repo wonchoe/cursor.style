@@ -1,26 +1,25 @@
 @extends('layouts.app')
 @include('other.build')
 @section('title')
-    @lang('collections.' . $alt_name) @lang('collections.mouse_cursors') |
-    @lang('collections.' . $alt_name . '_short_descr')
+    {{ $collection->currentTranslation->name ?? $collection->base_name_en }}
+    {{ __('collections.mouse_cursors') }} |
+    {{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}
 @endsection
 
 @section('descr')
-    @lang('collections.' . $alt_name . '_descr')
+    {{ $collection->currentTranslation->desc ?? $collection->description }}
 @endsection
 
 @section('page_meta')
-    <meta property="og:title"
-        content="@lang('collections.' . $alt_name) @lang('collections.mouse_cursors') | @lang('collections.' . $alt_name . '_short_descr')" />
+    <meta property="og:title" content="{{ $collection->currentTranslation->name ?? $collection->base_name_en }} {{ __('collections.mouse_cursors') }} | {{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}">
     <meta property="og:image:width" content="700" />
     <meta property="og:image:height" content="350" />
-    <meta property="og:description" content="@lang('collections.' . $alt_name . '_descr')" />
+    <meta property="og:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}">
     <meta property="og:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@cursor.style" />
-    <meta name="twitter:title"
-        content="@lang('collections.' . $alt_name) @lang('collections.mouse_cursors') | @lang('collections.' . $alt_name . '_short_descr')" />
-    <meta name="twitter:description" content="@lang('collections.' . $alt_name . '_descr')" />
+    <meta name="twitter:title" content="{{ $collection->currentTranslation->name ?? $collection->base_name_en }} {{ __('collections.mouse_cursors') }} | {{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}">
+    <meta name="twitter:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}">
     <meta name="twitter:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
 @endsection
 
@@ -48,7 +47,7 @@
                         <ol>
                             <li><a href="/">@lang('messages.menu_main')</a></li>
                             <li><a href="/collections">@lang('messages.menu_collection')</a></li>
-                            <li class="active">@lang('collections.' . $alt_name)</li>
+                            <li class="active">{{ $collection->currentTranslation->name ?? $collection->base_name_en }}</li>
                         </ol>
                     </nav>
 
@@ -56,18 +55,19 @@
                     <div class="collection-description">
                         <div class="collection-description__img">
                             <img src="/collection/{{$alt_name}}.png"
-                                alt="@lang('collections.cursor_collection') @lang('collections.' . $alt_name)"
-                                title="@lang('collections.' . $alt_name . '_short_descr')">
+                            alt="@lang('collections.cursor_collection') {{ $collection->currentTranslation->name ?? $collection->base_name_en }}"
+                            title="{{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}">
                         </div>
 
                         <div class="collection-description__text">
-                            <h1 class="collection-description__title">
-                                @lang('collections.' . $alt_name) - @lang('messages.mouse_cursors')
-                            </h1>
+                        <h1 class="collection-description__title">
+                            {{ $collection->currentTranslation->name ?? $collection->base_name_en }}
+                            - @lang('messages.mouse_cursors')
+                        </h1>
 
                             <div class="collection-description__body">
                                 @php
-                                    $rawText = __('collections.' . $alt_name . '_descr');
+                                    $rawText = $collection->currentTranslation->desc ?? $collection->description;
                                     $text = strip_tags(stripslashes($rawText));
                                     $preview = Str::limit($text, 450, '...');
                                 @endphp
@@ -129,9 +129,9 @@
                                                     data-label="@lang('messages.add_to_collection')"
                                                     data-disabled="@lang('messages.add_to_collection_added')"
                                                     data-cataltname="{{ $cursor->collection->alt_name }}"
-                                                    data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
-                                                    data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
-                                                    data-catbasename="@lang('collections.' . $cursor->collection->alt_name)"
+                                                    data-catbasename_en="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                                    data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                                    data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
                                                     data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
                                                     data-name="@lang('cursors.c_' . $cursor->id)"
                                                     data-offset-x="{{ $cursor->offsetX }}"
@@ -149,9 +149,9 @@
                                                     data-label="@lang('messages.add_to_collection')"
                                                     data-disabled="@lang('messages.add_to_collection_added')"
                                                     data-cataltname="{{ $cursor->collection->alt_name }}"
-                                                    data-catbasename_en="@lang('collections.' . $cursor->collection->alt_name)"
-                                                    data-catbasename_es="@lang('collections.' . $cursor->collection->alt_name)"
-                                                    data-catbasename="@lang('collections.' . $cursor->collection->alt_name)"
+                                                    data-catbasename_en="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                                    data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
+                                                    data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
                                                     data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
                                                     data-name="@lang('cursors.c_' . $cursor->id)"
                                                     data-offset-x="{{ $cursor->offsetX }}"
@@ -175,20 +175,21 @@
 
 
                     <div class="random_cat">
-                        @foreach($random_cat as $item)
-                            <a href="/collections/{{$item->alt_name}}"
-                                title="@lang('collections.' . $item->alt_name . '_short_descr')">
-                                <div class="random_cat_obj">
-                                    <div class="random_cat_text">
-                                        <h2>@lang('collections.' . $item->alt_name) @lang('messages.collection')</h2>
-                                    </div>
-                                    <div class="random_cat_img">
-                                        <img src="/collection/{{$item->alt_name}}.png"
-                                            alt="@lang('collections.' . $item->alt_name)">
-                                    </div>
+                    @foreach($random_cat as $item)
+                        <a href="/collections/{{ $item->alt_name }}"
+                            title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
+                            <div class="random_cat_obj">
+                                <div class="random_cat_text">
+                                    <h2>{{ $item->currentTranslation->name ?? $item->base_name_en }} @lang('messages.collection')</h2>
                                 </div>
-                            </a>
-                        @endforeach
+                                <div class="random_cat_img">
+                                    <img src="/collection/{{ $item->alt_name }}.png"
+                                        alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
+                                        title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
                     </div>
 
 

@@ -409,44 +409,50 @@ class IndexController extends Controller
 
         return $value;
     }
-
     public function showCat($alt_name, Request $r)
     {
-
         $this->alt_name = $alt_name;
-
-
-        $collection = categories::where('alt_name', '=', $alt_name)->first();
-
-        if (!$collection)
+    
+        // Колекція з перекладом
+        $collection = categories::with('currentTranslation')
+            ->where('alt_name', $alt_name)
+            ->first();
+    
+        if (!$collection) {
             abort(404);
-
-
-        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
-
-        $items = cursor::whereDate('schedule', '<=', Carbon::today())->
-        where('cat', '=', $collection->id)->
-        where('id', '<>', $excludeId)->
-        orderBy('id')->get();
-
-        for ($i = 0; $i < count($items); $i++) {
-            $items[$i]->seo_link = $items[$i]->id . '/' . strtolower($alt_name) . '/' . strtolower(transliterator_transliterate('Russian-Latin/BGN', str_replace(' ', '_', $items[$i]->name)));
         }
-
-        $collections = categories::all();
-
-        foreach ($items as $key => $cursor) {
-            $this->cat_id = $items[$key]->cat;
-            $items[$key]->name_s = $this->cleanStr(string: $items[$key]->name_en);
-            $items[$key]->collection = $collections->first(function ($item) {
-                return $item->id == $this->cat_id; });
+    
+        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true'
+            ? 100000000 : 2082;
+    
+        // Курсори до цієї колекції
+        $items = cursor::whereDate('schedule', '<=', now())
+            ->where('cat', $collection->id)
+            ->where('id', '<>', $excludeId)
+            ->orderBy('id')
+            ->get();
+    
+        // Всі колекції з перекладами (для random_cat)
+        $collections = categories::with('currentTranslation')->get();
+    
+        foreach ($items as $cursor) {
+            $cursor->seo_link = $cursor->id . '/' . strtolower($alt_name) . '/' .
+                strtolower(transliterator_transliterate('Russian-Latin/BGN', str_replace(' ', '_', $cursor->name)));
+    
+            $cursor->name_s = $this->cleanStr(string: $cursor->name_en);
+            $cursor->collection = $collections->firstWhere('id', $cursor->cat);
         }
-
-        //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
+    
         $random_cat = $collections->random(3);
-
-        return response()->view('cat', ['alt_name' => $alt_name, 'cursors' => $items, 'collection' => $collection, 'random_cat' => $random_cat])->header('Cache-Tag', 'collection');
+    
+        return response()->view('cat', [
+            'alt_name' => $alt_name,
+            'cursors' => $items,
+            'collection' => $collection,
+            'random_cat' => $random_cat
+        ])->header('Cache-Tag', 'collection');
     }
+    
 
     public function showAllCat2()
     {
