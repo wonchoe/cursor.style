@@ -124,7 +124,7 @@
 
 
             @if($category_cursors->isNotEmpty())
-                <h2 class="section-title">@lang('messages.more_from_collection')</h2>
+                <h2 class="section-title">@lang('messages.mouse_cursors')</h2>
                 <div class="main__list">
                     @forelse($category_cursors as $key => $cursor)
                         @if ($key > 0 && $key % 16 === 0)
