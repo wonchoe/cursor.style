@@ -175,8 +175,8 @@ public function store(Request $request)
             $cursor->offsetX_p = $request->input('offsetX_p')[$i];
             $cursor->offsetY_p = $request->input('offsetY_p')[$i];
             $cursor->schedule = $request->input('schedule');
-            $cursor->c_file = null;
-            $cursor->p_file = null;
+            $cursor->c_file = $cursor->name;
+            $cursor->p_file = $cursor->name;
             $cursor->save();
 
             // 2. Now we can generate filenames using the ID
