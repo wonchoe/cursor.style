@@ -133,8 +133,8 @@
                     </div>
 
                     <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                        <img class="cursorimg" style="cursor: url(https://cursor.style/{{ $cursor->c_file_no_ext }}) 0 0, auto !important;" src="https://cursor.style/{{ $cursor->c_file_no_ext }}">
-                        <img class="cursorimg" style="cursor: url(https://cursor.style/{{ $cursor->p_file_no_ext }}) 0 0, auto !important;" src="https://cursor.style/{{ $cursor->p_file_no_ext }}">
+                        <img class="cursorimg" style="cursor: url({{ $cursor->c_file_no_ext }}) 0 0, auto !important;" src="{{ $cursor->c_file_no_ext }}">
+                        <img class="cursorimg" style="cursor: url({{ $cursor->p_file_no_ext }}) 0 0, auto !important;" src="{{ $cursor->p_file_no_ext }}">
                     </div>
 
                     <span class="downloads-badge">

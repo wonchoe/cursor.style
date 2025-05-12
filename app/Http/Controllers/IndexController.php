@@ -314,6 +314,9 @@ public function showCursorPreview(Request $r)
             // Генерація SEO-шляху
             $seoCategory = Str::slug($cursorItem->collection->base_name_en);
             $seoCursor = Str::slug($cursorItem->currentTranslation->name ?? $cursorItem->name_en);
+            if (!$seoCursor){
+                $seoCursor = Str::slug($cursorItem->name_en);
+            }
             $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
                 
             $cursorItem->slug_url_final = $fullSlug;
