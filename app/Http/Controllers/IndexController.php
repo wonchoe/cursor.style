@@ -174,6 +174,18 @@ public function showCursorPreview(Request $r)
 
     public function miliRequest($lang, $query, $limit)
     {
+        
+        $supportedLanguages = [
+            'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he',
+            'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru',
+            'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh'
+        ];
+
+        if (!in_array($lang, $supportedLanguages)) {
+            Log::warning("🌐 Мова '$lang' не підтримується — fallback на 'en'");
+            $lang = 'en';
+        }
+
         $hosts = [
             'http://localhost:7700',
             'http://meilisearch:7700'            
