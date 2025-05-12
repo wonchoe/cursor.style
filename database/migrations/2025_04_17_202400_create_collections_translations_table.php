@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('lang', 5);
             $table->unsignedBigInteger('collection_id');
             $table->string('name');
-            $table->string('short_desc');
-            $table->string('desc');
+            $table->text('short_desc');
+            $table->text('desc');
             $table->timestamps();
     
             $table->unique(['lang', 'collection_id']);
