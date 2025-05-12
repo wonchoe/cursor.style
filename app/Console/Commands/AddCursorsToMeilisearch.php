@@ -31,7 +31,16 @@ class AddCursorsToMeilisearch extends Command
             $this->info("🌍 Мова: $lang");
 
             $tagged = cursor_tag_translation::with('cursor.categories')
-                ->where('lang', $lang)
+                ->where(function ($q) use ($lang) {
+                    $q->where('lang', $lang)
+                    ->orWhere(function ($q2) use ($lang) {
+                        $q2->where('lang', 'en')->whereNotIn('cursor_id', function ($q3) use ($lang) {
+                            $q3->select('cursor_id')
+                                ->from('cursor_tag_translations')
+                                ->where('lang', $lang);
+                        });
+                    });
+                })
                 ->get();
 
             $documents = [];
@@ -62,6 +71,7 @@ class AddCursorsToMeilisearch extends Command
                     'name' => $name,
                     'tags' => $item->tags,
                     'lang' => $lang,
+                    'isFallback' => $item->lang !== $lang ? true : false, // 🆕
                     'cat' => optional($item->cursor->categories)->alt_name,
                     'cat_name' => $catName,
                     'cat_img' => optional($item->cursor->categories)->img,
