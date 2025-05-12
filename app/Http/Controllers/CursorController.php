@@ -13,6 +13,7 @@ use DB;
 use File;
 use Imagick;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class CursorController extends Controller {
@@ -157,43 +158,47 @@ class CursorController extends Controller {
             try {
                 $cursorFile = $request->file('c_file')[$i];
                 $pointerFile = $request->file('p_file')[$i];
-    
+
                 $category = categories::find($request->input('cat_id')[$i]);
-                $saveto = $category->id . '-' . $category->alt_name;
-    
-                $cursorOriginalName = $cursorFile->getClientOriginalName();
-                $pointerOriginalName = $pointerFile->getClientOriginalName();
-    
-                $cursorStoredName = $cursorFile->getClientOriginalName();
-                $pointerStoredName = $pointerFile->getClientOriginalName();
-                   
-                Storage::disk('public')->putFileAs("cursors/{$saveto}", $cursorFile, $cursorStoredName);
-                Storage::disk('public')->putFileAs("pointers/{$saveto}", $pointerFile, $pointerStoredName);
-                    
+                $catDir = $category->id . '-' . $category->alt_name;
+
+                $name = $request->input('name')[$i];
+                $safeName = Str::slug($name);
+
                 $cursor = new Cursor();
-                $cursor->name = $request->input('name')[$i];
-                $cursor->name_en = $cursor->name;
-                $cursor->name_es = $cursor->name;
+                $cursor->name = $name;
+                $cursor->name_en = $name;
+                $cursor->name_es = $name;
                 $cursor->cat = $category->id;
-                $cursor->c_file = basename($cursorStoredName); // це буде оригінальне ім’я
-                $cursor->p_file = basename($pointerStoredName);
                 $cursor->offsetX = $request->input('offsetX')[$i];
                 $cursor->offsetY = $request->input('offsetY')[$i];
                 $cursor->offsetX_p = $request->input('offsetX_p')[$i];
                 $cursor->offsetY_p = $request->input('offsetY_p')[$i];
                 $cursor->schedule = $request->input('schedule');
+                $cursor->save(); // спочатку зберігаємо, щоб отримати $cursor->id
+
+                $baseFilename = $cursor->id . '-' . $safeName;
+                $cStored = $baseFilename . '-cursor.svg';
+                $pStored = $baseFilename . '-pointer.svg';
+
+                Storage::disk('public')->putFileAs("collections/{$catDir}", $cursorFile, $cStored);
+                Storage::disk('public')->putFileAs("collections/{$catDir}", $pointerFile, $pStored);
+
+                $cursor->c_file = $cStored;
+                $cursor->p_file = $pStored;
                 $cursor->save();
-    
-                // Update translations
+
+                // Update lang file
                 $langPath = resource_path('lang/en/cursors.php');
                 $translations = File::exists($langPath) ? include($langPath) : [];
                 $translations['c_' . $cursor->id] = $cursor->name;
                 File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
-    
+
             } catch (\Throwable $e) {
-                // optionally log the error
+                // лог або continue
             }
         }
+
     
         return redirect()->route('cursors.create')->with('success', 'Cursors created successfully.');
     }
