@@ -15,6 +15,7 @@ use Imagick;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class CursorController extends Controller {
 
@@ -195,7 +196,7 @@ class CursorController extends Controller {
                 File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
 
             } catch (\Throwable $e) {
-                 dd($e->getMessage(), $e->getTrace());
+                 Log::error('Cursor Store Error', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             }
         }
 
