@@ -38,8 +38,8 @@
                                 <p>{{ $currentcursor->currentTranslation->name ?? $currentcursor->name_en }}</p>
                             </div>
                             <div class="main__item-img cs_pointer" data-cur-id="{{ $currentcursor->id }}" cursorshover="true">
-                                <img class="cursorimg" style="cursor: url(https://cursor.style/{{ $currentcursor->c_file_no_ext }}) 0 0, auto !important;" src="https://cursor.style/{{ $currentcursor->c_file_no_ext }}">
-                                <img class="cursorimg" style="cursor: url(https://cursor.style/{{ $currentcursor->p_file_no_ext }}) 0 0, auto !important;" src="https://cursor.style/{{ $currentcursor->p_file_no_ext }}">
+                                <img class="cursorimg" style="cursor: url({{ $currentcursor->c_file_no_ext }}) 0 0, auto !important;" src="{{ $currentcursor->c_file_no_ext }}">
+                                <img class="cursorimg" style="cursor: url({{ $currentcursor->p_file_no_ext }}) 0 0, auto !important;" src="{{ $currentcursor->p_file_no_ext }}">
                             </div>
                         </div>
                     @empty
