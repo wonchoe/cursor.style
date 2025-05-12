@@ -101,8 +101,16 @@
                         <!-- google ads here -->
                         </div>
                     @endif
-
-                    <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{ $cursor->id }}-{{ Str::slug($cursor->currentTranslation->name ?? $cursor->name_en) }}')">          
+                    @php
+                        $translation = $cursor->currentTranslation->name ?? $cursor->name_en;
+                        $slug = Str::slug($translation);
+                        if (empty($slug)) {
+                            $slug = Str::slug($cursor->name_en);
+                        }
+                    @endphp
+                    <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{ $cursor->id }}-{{ 
+                        $slug
+                    }}')">          
                     <div class="div_ar_p">
                         <p>{{ $cursor->currentTranslation->name ?? $cursor->name_en }}</p>
                     </div>
