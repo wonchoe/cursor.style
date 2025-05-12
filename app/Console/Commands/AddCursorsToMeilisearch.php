@@ -8,7 +8,7 @@ use App\Models\cursor_tag_translation;
 
 class AddCursorsToMeilisearch extends Command
 {
-    protected $signature = 'meilisearch:add-cursors {--force : Drop and recreate each index before pushing data}';
+    protected $signature = 'custom:meilisearchAddCursors {--force : Drop and recreate each index before pushing data}';
     protected $description = 'Push all translated cursors and tags to Meilisearch for all languages';
 
     protected $languages = [
