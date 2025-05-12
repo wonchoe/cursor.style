@@ -195,7 +195,7 @@ class CursorController extends Controller {
                 File::put($langPath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
 
             } catch (\Throwable $e) {
-                // лог або continue
+                 dd($e->getMessage(), $e->getTrace());
             }
         }
 
