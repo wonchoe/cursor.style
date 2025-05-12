@@ -38,8 +38,8 @@
                                 <p>{{ $currentcursor->currentTranslation->name ?? $currentcursor->name_en }}</p>
                             </div>
                             <div class="main__item-img cs_pointer" data-cur-id="{{ $currentcursor->id }}" cursorshover="true">
-                                <img class="cursorimg" style="cursor: url(/{{ $currentcursor->c_file_no_ext }}) 0 0, auto !important;" src="/{{ $currentcursor->c_file_no_ext }}">
-                                <img class="cursorimg" style="cursor: url(/{{ $currentcursor->p_file_no_ext }}) 0 0, auto !important;" src="/{{ $currentcursor->p_file_no_ext }}">
+                                <img class="cursorimg" style="cursor: url(https://cursor.style/{{ $currentcursor->c_file_no_ext }}) 0 0, auto !important;" src="https://cursor.style/{{ $currentcursor->c_file_no_ext }}">
+                                <img class="cursorimg" style="cursor: url(https://cursor.style/{{ $currentcursor->p_file_no_ext }}) 0 0, auto !important;" src="https://cursor.style/{{ $currentcursor->p_file_no_ext }}">
                             </div>
                         </div>
                     @empty
@@ -63,12 +63,12 @@
  
                     <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
                         <img class="cursorimg"
-                            style="cursor: url(/{{ $cursor->c_file_no_ext }}) 0 0, auto !important;"
-                            src="/{{ $cursor->c_file_no_ext }}">
+                            style="cursor: url(https://cursor.style/{{ $cursor->c_file_no_ext }}) 0 0, auto !important;"
+                            src="https://cursor.style/{{ $cursor->c_file_no_ext }}">
 
                         <img class="cursorimg"
-                            style="cursor: url(/{{ $cursor->p_file_no_ext }}) 0 0, auto !important;"
-                            src="/{{ $cursor->p_file_no_ext }}">
+                            style="cursor: url(https://cursor.style/{{ $cursor->p_file_no_ext }}) 0 0, auto !important;"
+                            src="https://cursor.style/{{ $cursor->p_file_no_ext }}">
                     </div>
 
 
@@ -89,8 +89,8 @@
                                     data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
                                     data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
                                     data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                    data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
-                                    data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                    data-c_file="https://cursor.style/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                    data-p_file="https://cursor.style/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                                     <img title="Apply" src="/images/apply.svg">
                                 </button>
                             </span>
@@ -107,8 +107,8 @@
                                     data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
                                     data-offset-x="{{ $cursor->offsetX }}" data-offset-x_p="{{ $cursor->offsetX_p }}"
                                     data-offset-y="{{ $cursor->offsetY }}" data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                    data-c_file="/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
-                                    data-p_file="/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
+                                    data-c_file="https://cursor.style/cursors/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                    data-p_file="https://cursor.style/pointers/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                                     <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
                                 </button>
                             </span>
