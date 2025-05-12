@@ -461,10 +461,10 @@ class IndexController extends Controller
 
     public function showAllCat()
     {
-        $cats = DB::table('categories')
+        $cats = categories::with('currentTranslation')
             ->select('id', 'base_name', 'alt_name', 'priority', 'description', 'short_descr', 'img')
             ->orderBy('id', 'desc')
-            ->paginate(20); // пагінація
+            ->paginate(20);
     
         return response()
             ->view('allcat', compact('cats'))

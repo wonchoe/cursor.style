@@ -27,4 +27,9 @@ class categories extends Model
         return $this->hasMany(CollectionTranslation::class, 'collection_id');
     }
 
+    public function currentTranslation()
+    {
+        return $this->hasOne(CollectionTranslation::class, 'collection_id')
+                    ->where('lang', app()->getLocale());
+    }    
 }
