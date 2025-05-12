@@ -211,7 +211,7 @@
                                 <div class="no_result">@lang('messages.no_result')</div>
                             @endforelse
                         </div>  
-
+                        @endif
 
 
             <div class="random_cat">
