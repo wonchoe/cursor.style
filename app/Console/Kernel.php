@@ -14,7 +14,11 @@ class Kernel extends ConsoleKernel {
         Commands\ReportGetCommand::class,
 	    Commands\GetGoogleAnalyticsData::class,
         Commands\GetCursorClickStats::class,
-        Commands\CreateTags::class
+
+        Commands\CreateTags::class,
+        Commands\TranslateCursor::class,
+        Commands\TranslateCollections::class,
+        Commands\AddCursorsToMeilisearch::class,
     ];
 
     protected function schedule(Schedule $schedule) {
@@ -31,7 +35,10 @@ class Kernel extends ConsoleKernel {
         $schedule->command('GetCursorClickStats --mode=today')->everyTwoHours();
         $schedule->command('GetCursorClickStats --mode=yesterday')->dailyAt('00:30');        
 
-        $schedule->command('custom:tagsCreate')->dailyAt('00:30');        
+        $schedule->command('custom:TranslateCursor')->dailyAt('00:00')->withoutOverlapping();
+        $schedule->command('custom:translate-collections')->dailyAt('02:00')->withoutOverlapping();
+        $schedule->command('custom:tagsCreate')->dailyAt('04:00')->withoutOverlapping();
+        $schedule->command('custom:meilisearchAddCursors')->dailyAt('06:00')->withoutOverlapping();;                       
     }
 
     protected function commands() {

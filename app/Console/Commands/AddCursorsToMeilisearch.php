@@ -54,7 +54,7 @@ class AddCursorsToMeilisearch extends Command
                     $catName = $catTranslated;
                 }
 
-                $this->info("🌍 Категорія: $catName");
+             //   $this->info("🌍 Категорія: $catName");
                 
 
                 $documents[] = [
