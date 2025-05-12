@@ -78,9 +78,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="{{ secure_asset('css/mycollection.css') }}{{ build_version() }}" />
-    <link rel="stylesheet" href="{{ secure_asset('css/main_updated.css') }}{{ build_version() }}" />
-    <link rel="stylesheet" href="{{ secure_asset('/css/chat.css')}}{{ build_version() }}" />
+    <link rel="stylesheet" href="https://cursor.style/css/mycollection.css{{ build_version() }}" />
+    <link rel="stylesheet" href="https://cursor.style/css/main_updated.css{{ build_version() }}" />
+    <link rel="stylesheet" href="https://cursor.style/css/chat.css{{ build_version() }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
     <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
@@ -92,8 +92,8 @@
     <link rel="canonical" href="https://{{ Request::host() }}{{ Request::getRequestUri() }}" />
 
     @yield('lib_top')
-    <script async src="{{ secure_asset('/js/lang.v2.js')}}{{ build_version() }}"></script>
-    <script src="{{ secure_asset('/js/init.js')}}{{ build_version() }}"></script>
+    <script async src="https://cursor.style/js/lang.v2.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/init.js{{ build_version() }}"></script>
 
     @if (request()->is('success'))
         <script>
@@ -236,8 +236,8 @@
 
     @yield('lib_bottom')
     @yield('js')
-    <script src="/js/chat.js{{ build_version() }}"></script>
-    <script src="/js/vote.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/chat.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/vote.js{{ build_version() }}"></script>
 </body>
 
 </html>

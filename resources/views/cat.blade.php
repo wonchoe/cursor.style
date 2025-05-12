@@ -15,18 +15,18 @@
     <meta property="og:image:width" content="700" />
     <meta property="og:image:height" content="350" />
     <meta property="og:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}">
-    <meta property="og:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
+    <meta property="og:image" content="https://cursor.style/collection/{{$alt_name}}.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@cursor.style" />
     <meta name="twitter:title" content="{{ $collection->currentTranslation->name ?? $collection->base_name_en }} {{ __('collections.mouse_cursors') }} | {{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}">
     <meta name="twitter:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}">
-    <meta name="twitter:image" content="https://en.cursor.style/collection/{{$alt_name}}.png" />
+    <meta name="twitter:image" content="https://cursor.style/collection/{{$alt_name}}.png" />
 @endsection
 
 @section('lib_top')
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
-    <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="https://cursor.style/images/favicon.png" />
 @endsection
 
 @section('main')
@@ -219,5 +219,6 @@
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/pagination.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/main.js{{ build_version() }}"></script>
 @endsection

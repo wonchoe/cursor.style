@@ -41,109 +41,109 @@ class IndexController extends Controller
         return $string;
     }
 
-public function showCursorPreview(Request $r)
-{
-    if (!$r->id) {
-        abort(404);
-    }
-
-    $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true'
-        ? 100000000 : 2082;
-
-    $after = cursor::whereDate('schedule', '<=', Carbon::today())
-        ->where('id', '<>', $excludeId)
-        ->where('id', '>=', $r->id)
-        ->orderBy('id', 'ASC')
-        ->limit(2)
-        ->get();
-
-    $before = cursor::whereDate('schedule', '<=', Carbon::today())
-        ->where('id', '<>', $excludeId)
-        ->where('id', '<', $r->id)
-        ->orderBy('id', 'DESC')
-        ->limit(1)
-        ->get();
-
-    $cursors2 = $before->merge($after);
-    $cursors2->load('currentTranslation');
-
-    $collections = categories::with('currentTranslation')->get();
-
-    foreach ($cursors2 as $cursorItem) {
-        $cursorItem->collection = $collections->first(fn($item) => $item->id == $cursorItem->cat);
-
-        $seoCategory = Str::slug($cursorItem->collection->base_name_en);
-        $seoCursor = Str::slug($cursorItem->currentTranslation->name ?? $cursorItem->name_en);
-        if (empty($seoCursor)) {
-            $seoCursor = Str::slug($cursorItem->name_en);
+    public function showCursorPreview(Request $r)
+    {
+        if (!$r->id) {
+            abort(404);
         }
-        $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
 
-        $cursorItem->slug_url_final = $fullSlug;
-        $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
-        $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
-        $cursorItem->name_s = Str::slug($cursorItem->name_en);
-    }
+        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true'
+            ? 100000000 : 2082;
 
-    $id_prev = null;
-    $id_next = null;
-
-    foreach ($cursors2 as $key => $cursor) {
-        if ($key === 0) {
-            $id_prev = [$cursor->id, $cursor->name_s];
-        }
-        if ($key === 2) {
-            $id_next = [$cursor->id, $cursor->name_s];
-        }
-    }
-
-    $random_cat = $collections->random(3);
-
-    if ($cursors2->isEmpty() || !isset($cursors2[1])) {
-        abort(404);
-    }
-
-
-    // 🆕 Отримуємо всі курсори з категорії цього курсора
-    $cursor = $cursors2[1];   
-    $category_cursors = collect();
-    if ($cursor) {
-        $category_cursors = cursor::whereDate('schedule', '<=', Carbon::today())
-            ->where('cat', $cursor->cat)
+        $after = cursor::whereDate('schedule', '<=', Carbon::today())
             ->where('id', '<>', $excludeId)
-            ->orderBy('id')
+            ->where('id', '>=', $r->id)
+            ->orderBy('id', 'ASC')
+            ->limit(2)
             ->get();
 
-        foreach ($category_cursors as $catCursor) {
-            $catCursor->currentTranslation;
-            $catCursor->collection = $collections->first(fn($item) => $item->id == $catCursor->cat);
+        $before = cursor::whereDate('schedule', '<=', Carbon::today())
+            ->where('id', '<>', $excludeId)
+            ->where('id', '<', $r->id)
+            ->orderBy('id', 'DESC')
+            ->limit(1)
+            ->get();
 
-            $seoCategory = Str::slug($catCursor->collection->base_name_en);
-            $seoCursor = Str::slug($catCursor->currentTranslation->name ?? $catCursor->name_en);
-            if (!$seoCursor) {
-                $seoCursor = Str::slug($catCursor->name_en);
+        $cursors2 = $before->merge($after);
+        $cursors2->load('currentTranslation');
+
+        $collections = categories::with('currentTranslation')->get();
+
+        foreach ($cursors2 as $cursorItem) {
+            $cursorItem->collection = $collections->first(fn($item) => $item->id == $cursorItem->cat);
+
+            $seoCategory = Str::slug($cursorItem->collection->base_name_en);
+            $seoCursor = Str::slug($cursorItem->currentTranslation->name ?? $cursorItem->name_en);
+            if (empty($seoCursor)) {
+                $seoCursor = Str::slug($cursorItem->name_en);
             }
+            $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
 
-            $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$catCursor->id}-{$seoCursor}";
-
-            $catCursor->slug_url_final = $fullSlug;
-            $catCursor->c_file_no_ext = $fullSlug . '-cursor';
-            $catCursor->p_file_no_ext = $fullSlug . '-pointer';
-            $catCursor->name_s = Str::slug($catCursor->name_en);
+            $cursorItem->slug_url_final = $fullSlug;
+            $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
+            $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
+            $cursorItem->name_s = Str::slug($cursorItem->name_en);
         }
-    }
 
-    
-    return response()
-        ->view('cursor', [
-            'random_cat' => $random_cat,
-            'all_cursors' => $cursors2,
-            'cursor' => $cursor,
-            'id_prev' => $id_prev,
-            'id_next' => $id_next,
-            'category_cursors' => $category_cursors, // 🔥 новий список
-        ])->header('Cache-Tag', 'details');
-}
+        $id_prev = null;
+        $id_next = null;
+
+        foreach ($cursors2 as $key => $cursor) {
+            if ($key === 0) {
+                $id_prev = [$cursor->id, $cursor->name_s];
+            }
+            if ($key === 2) {
+                $id_next = [$cursor->id, $cursor->name_s];
+            }
+        }
+
+        $random_cat = $collections->random(3);
+
+        if ($cursors2->isEmpty() || !isset($cursors2[1])) {
+            abort(404);
+        }
+
+
+        // 🆕 Отримуємо всі курсори з категорії цього курсора
+        $cursor = $cursors2[1];   
+        $category_cursors = collect();
+        if ($cursor) {
+            $category_cursors = cursor::whereDate('schedule', '<=', Carbon::today())
+                ->where('cat', $cursor->cat)
+                ->where('id', '<>', $excludeId)
+                ->orderBy('id')
+                ->get();
+
+            foreach ($category_cursors as $catCursor) {
+                $catCursor->currentTranslation;
+                $catCursor->collection = $collections->first(fn($item) => $item->id == $catCursor->cat);
+
+                $seoCategory = Str::slug($catCursor->collection->base_name_en);
+                $seoCursor = Str::slug($catCursor->currentTranslation->name ?? $catCursor->name_en);
+                if (!$seoCursor) {
+                    $seoCursor = Str::slug($catCursor->name_en);
+                }
+
+                $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$catCursor->id}-{$seoCursor}";
+
+                $catCursor->slug_url_final = $fullSlug;
+                $catCursor->c_file_no_ext = $fullSlug . '-cursor';
+                $catCursor->p_file_no_ext = $fullSlug . '-pointer';
+                $catCursor->name_s = Str::slug($catCursor->name_en);
+            }
+        }
+
+        
+        return response()
+            ->view('cursor', [
+                'random_cat' => $random_cat,
+                'all_cursors' => $cursors2,
+                'cursor' => $cursor,
+                'id_prev' => $id_prev,
+                'id_next' => $id_next,
+                'category_cursors' => $category_cursors, // 🔥 новий список
+            ])->header('Cache-Tag', 'details');
+    }
 
     private function searchFallback(string $query, string $lang = 'en'): \Illuminate\Support\Collection
     {
@@ -174,7 +174,7 @@ public function showCursorPreview(Request $r)
 
     public function miliRequest($lang, $query, $limit)
     {
-        
+
         $supportedLanguages = [
             'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he',
             'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru',
@@ -361,7 +361,7 @@ public function showCursorPreview(Request $r)
             if (!$seoCursor){
                 $seoCursor = Str::slug($cursorItem->name_en);
             }
-            $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
+            $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
                 
             $cursorItem->slug_url_final = $fullSlug;
             $cursorItem->c_file_no_ext = $fullSlug . '-cursor';

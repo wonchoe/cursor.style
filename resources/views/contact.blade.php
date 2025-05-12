@@ -95,5 +95,6 @@
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/pagination.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/main.js{{ build_version() }}"></script>
 @endsection

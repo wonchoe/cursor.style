@@ -13,21 +13,21 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
 
-    <link rel="stylesheet" href="{{ secure_asset('css/switcher.css') }}{{ build_version() }}">
+    <link rel="stylesheet" href="https://cursor.style/css/switcher.css{{ build_version() }}">
 
-    <script type="text/javascript" src="js/mycollection.js{{ build_version() }}"></script>
+    <script type="text/javascript" src="https://cursor.style/js/mycollection.js{{ build_version() }}"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 
     <!-- FONT picker -->
-    <link rel="stylesheet" href="css/fontpicker.css">
-    <script src="js/fontpicker.iife.js"></script>
+    <link rel="stylesheet" href="https://cursor.style/css/fontpicker.css">
+    <script src="https://cursor.style/js/fontpicker.iife.js"></script>
     <!-- END FONT picker -->
 
 
-    <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="https://cursor.style/images/favicon.png" />
 @endsection
 
 @section('main')
@@ -158,5 +158,5 @@
 
 @section('lib_bottom')
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script src="tabler/tablerClass.js"></script>
+    <script src="https://cursor.style/tabler/tablerClass.js"></script>
 @endsection

@@ -12,7 +12,7 @@
 @section('lib_top')
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
-    <link rel="icon" type="image/png" href="{{ secure_asset('images/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="https://cursor.style/images/favicon.png" />
 @endsection
 
 
@@ -105,6 +105,6 @@
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/pagination.js') }}{{ build_version() }}"></script>
-    <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/pagination.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/main.js{{ build_version() }}"></script>
 @endsection

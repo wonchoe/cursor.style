@@ -26,7 +26,7 @@
 
 @section('lib_top')
     @yield('css')
-    <link rel="icon" type="image/x-icon" href="{{ secure_asset('images/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="https://cursor.style/images/favicon.png" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 @endsection
 
@@ -230,6 +230,6 @@
 
 
 @section('lib_bottom')
-    <script src="{{ secure_asset('/js/pagination.js') }}{{ build_version() }}"></script>
-    <script src="{{ secure_asset('/js/main.js') }}{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/pagination.js{{ build_version() }}"></script>
+    <script src="https://cursor.style/js/main.js{{ build_version() }}"></script>
 @endsection
