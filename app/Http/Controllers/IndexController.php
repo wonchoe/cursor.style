@@ -74,7 +74,10 @@ public function showCursorPreview(Request $r)
 
         $seoCategory = Str::slug($cursorItem->collection->base_name_en);
         $seoCursor = Str::slug($cursorItem->currentTranslation->name ?? $cursorItem->name_en);
-        $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
+        if (empty($seoCursor)) {
+            $seoCursor = Str::slug($cursorItem->name_en);
+        }
+        $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
 
         $cursorItem->slug_url_final = $fullSlug;
         $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
