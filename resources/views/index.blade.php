@@ -158,8 +158,8 @@
                                                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                                                     data-offset-y="{{ $cursor->offsetY }}"
                                                     data-offset-y_p="{{ $cursor->offsetY_p }}"
-                                                    data-c_file="{{ $cursor->c_file_no_ext }}"
-                                                    data-p_file="{{ $cursor->p_file_no_ext }}"
+                                                    data-c_file="https://cursor.style/{{ $cursor->cat }}-temp/{{ $cursor->id . '-' . $cursor->name_s }}-cursor.svg"
+                                                    data-p_file="https://cursor.style/{{ $cursor->cat }}-temp{{ $cursor->category->alt_name }}/{{ $cursor->id . '-' . $cursor->name_s }}-pointer.svg">
                                                     <img title="Apply" src="/images/apply.svg">
                                                 </button>
                                             </span>
@@ -179,8 +179,7 @@
                                                     data-offset-y="{{ $cursor->offsetY }}"
                                                     data-offset-y_p="{{ $cursor->offsetY_p }}"
                                                     data-c_file="{{ $cursor->c_file_no_ext }}"
-                                                    data-p_file="{{ $cursor->p_file_no_ext }}"
-                                                    >
+                                                    data-p_file="{{ $cursor->p_file_no_ext }}">
                                                     <img title="@lang('messages.add_to_collection')" src="/images/plus.svg">
                                                 </button>
                                             </span>
