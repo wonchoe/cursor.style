@@ -3,6 +3,7 @@
         <li><a href="reports.cursor.style">📊 Reports</a></li>
         <li><a href="/admin/categories/create">📁 Categories</a></li>
         <li><a href="/admin/cursors/create">🖱️ Cursors</a></li>
+        <li><a href="/admin/logs">🖱️ LOGS</a></li>        
     </ul>
 </nav>
 

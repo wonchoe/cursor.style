@@ -13,6 +13,7 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\GA4AnalyticsController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Http\Request;
+use \Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 Route::get('/collections/{collection_slug}/{cursor_slug}', [ImageController::class, 'serveSvg'])
     ->name('cursor.file');
@@ -95,6 +96,7 @@ Route::prefix('/admin')->group(function() {
     Route::get('/cursors/create', [CursorController::class, 'create'])->name('cursors.create')->middleware('auth');
     Route::post('/cursors', [CursorController::class, 'store'])->name('cursors.store')->middleware('auth');
     Route::get('/reinitDb', [CursorController::class, 'reinitDb'])->name('cursors.reinitDb')->middleware('auth');
+    Route::get('/logs', [LogViewerController::class, 'index'])->middleware('auth');
 
     // Route::get('/', [DashboardController::class,'show'])->middleware('auth');
     // Route::get('/setCursorLang', [CursorController::class, 'setCursorLang'])->middleware('auth');
