@@ -113,8 +113,6 @@ public function showCursorPreview(Request $r)
         ])->header('Cache-Tag', 'details');
 }
 
-
-
     private function searchFallback(string $query, string $lang = 'en'): \Illuminate\Support\Collection
     {
         // Спрощуємо тег — прибираємо всі зайві символи
@@ -458,7 +456,10 @@ public function showCursorPreview(Request $r)
 
             $seoCategory = Str::slug($cursor->collection->base_name_en);
             $seoCursor = Str::slug($cursor->currentTranslation->name ?? $cursor->name_en);
-            $fullSlug = "collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
+            if (!$seoCursor){
+                $seoCursor = Str::slug($cursor->name_en);
+            }
+            $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
 
             $cursor->slug_url_final = $fullSlug;
             $cursor->c_file_no_ext = $fullSlug . '-cursor';
