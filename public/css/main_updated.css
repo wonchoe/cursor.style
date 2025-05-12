@@ -2,6 +2,13 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
+
+@media (max-width: 768px) {
+  #rewardBlock {
+      flex-direction: column;
+  }
+}
+
 .search-dropdown {
   position: absolute;
   background: white;
