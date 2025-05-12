@@ -92,35 +92,35 @@
                     </div>
 
                         @if($cursors->isNotEmpty())
-                            <div class="main__list">                        
-                            @foreach($cursors as $key => $cursor)
-                                @if ($key > 0 && $key % 16 === 0)
-                                    <div class="gads-wrapper infeed" style="width:100%">
-                                        <div class="googleads" style="width:100%">
-                                            @include('other.google.infeed')
-                                        </div>
-                                    </div>
-                                @endif
+            <div class="main__list" id="main_list">
+                @forelse($cursors as $key => $cursor)
+                    @if ($key > 0 && $key % 16 === 0)
+                        <div class="gads-wrapper">
+                        <!-- google ads here -->
+                            @include('other.google.infeed')
+                        <!-- google ads here -->
+                        </div>
+                    @endif
 
-                                <div class="main__item"
-                                    onclick="handleItemClick(event, '/details/{{$cursor->id}}-{{$cursor->name_s}}')">
-                                    <div class="div_ar_p">
-                                        <p>@lang('cursors.c_' . $cursor->id)</p>
-                                    </div>
-                                    <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                                        <img class="cursorimg"
-                                            style="cursor: url(/cursors/{{ $cursor->id }}-{{ $cursor->name_s }}-cursor.svg) 0 0, auto !important;"
-                                            src="{{ $cursor->c_file_prev ? asset('assets/' . $cursor->c_file_prev) : asset('cursors/' . $cursor->id . '-' . $cursor->name_s . '-cursor.svg') }}">
+                    <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{ $cursor->id }}-{{ Str::slug($cursor->currentTranslation->name ?? $cursor->name_en) }}')">          
+                    <div class="div_ar_p">
+                        <p>{{ $cursor->currentTranslation->name ?? $cursor->name_en }}</p>
+                    </div>
 
-                                        <img class="cursorimg"
-                                            style="cursor: url(/pointers/{{ $cursor->id }}-{{ $cursor->name_s }}-pointer.svg) 0 0, auto !important;"
-                                            src="{{ $cursor->p_file_prev ? asset('assets/' . $cursor->p_file_prev) : asset('pointers/' . $cursor->id . '-' . $cursor->name_s . '-pointer.svg') }}">
-                                    </div>
+                    <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
+                        <img class="cursorimg"
+                            style="cursor: url(/{{ $cursor->c_file_no_ext }}) 0 0, auto !important;"
+                            src="/{{ $cursor->c_file_no_ext }}">
 
-                                    <span class="downloads-badge">
-                                        <img src="/images/icons/download.png" style="width: 10px;">
-                                        {{ number_format($cursor->totalClick + $cursor->todayClick) }}
-                                    </span>
+                        <img class="cursorimg"
+                            style="cursor: url(/{{ $cursor->p_file_no_ext }}) 0 0, auto !important;"
+                            src="/{{ $cursor->p_file_no_ext }}">
+                    </div>
+
+                    <span class="downloads-badge">
+                        <img src="/images/icons/download.png" style="width: 10px;">
+                        {{ number_format($cursor->totalClick + $cursor->todayClick) }}
+                    </span>
 
                                     <div class="main__btns">
                                         <div class="btn-container">
@@ -133,7 +133,7 @@
                                                     data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
                                                     data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
                                                     data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
-                                                    data-name="@lang('cursors.c_' . $cursor->id)"
+                                                    data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
                                                     data-offset-x="{{ $cursor->offsetX }}"
                                                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                                                     data-offset-y="{{ $cursor->offsetY }}"
@@ -153,7 +153,7 @@
                                                     data-catbasename_es="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
                                                     data-catbasename="{{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }}"
                                                     data-cat="{{ $cursor->cat }}" data-id="{{ $cursor->id }}"
-                                                    data-name="@lang('cursors.c_' . $cursor->id)"
+                                                    data-name="{{ $cursor->currentTranslation->name ?? $cursor->name_en }}"
                                                     data-offset-x="{{ $cursor->offsetX }}"
                                                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                                                     data-offset-y="{{ $cursor->offsetY }}"
@@ -165,9 +165,12 @@
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                            </div>                            
+                </div>
+
+                @empty
+                    <div class="no_result">@lang('messages.no_result')</div>
+                @endforelse
+            </div>                      
                         @else
                             @include('other.nocursors')
                         @endif

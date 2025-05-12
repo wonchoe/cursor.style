@@ -57,12 +57,12 @@
                     @endif
                     <a class="collection__item_cat" href="/collections/{{ $item->alt_name }}">
                         <h2 class="collection__item_cat_title">
-                            {{ $item->currentTranslation->name ?? __('collections.' . $item->alt_name) }}
+                           {{ $item->currentTranslation->name ?? $item->base_name_en }}
                         </h2>
-                        <img class="main__cat-img"
-                            src="/collection/{{ $item->alt_name }}.png"
-                            alt="{{ $item->currentTranslation->name ?? __('collections.' . $item->alt_name) }}"
-                            title="{{ $item->currentTranslation->short_desc ?? __('collections.' . $item->alt_name . '_short_descr') }}">
+                    <img class="main__cat-img"
+                        src="/collection/{{ $item->alt_name }}.png"
+                        alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
+                        title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
                     </a>
                 @endforeach
             </div>

@@ -41,67 +41,76 @@ class IndexController extends Controller
         return $string;
     }
 
-    public function showCursorPreview(Request $r)
-    {
-        if (!$r->id) {
-            abort(404);
-        }
-
-        $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true' ? 100000000 : 2082;
-
-        $cursors = cursor::whereDate('schedule', '<=', Carbon::today())->where('id', '<>', $excludeId)->where('id', '>=', $r->id)->orderBy('id', 'ASC')->limit(2);
-        $cursors2 = cursor::whereDate('schedule', '<=', Carbon::today())->where('id', '<>', $excludeId)->where('id', '<', $r->id)->orderBy('id', 'DESC')->limit(1)->union($cursors)->get();
-
-
-        $collections = categories::all();
-
-        foreach ($cursors as $cursorItem) {
-            $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
-            $cursorItem->collection = $collections->first(
-                fn($item) => $item->id == $cursorItem->cat
-            );
-        }
-
-        foreach ($cursors2 as $cursorItem) {
-            $cursorItem->name_s = $this->cleanStr($cursorItem->name_en);
-            $cursorItem->collection = $collections->first(
-                fn($item) => $item->id == $cursorItem->cat
-            );
-        }        
-
-
-        foreach ($cursors2 as $key => $cursor) {
-            $cursors2[$key]->name_s = $this->cleanStr($cursors2[$key]->name_en);
-            if ($key == 0) {
-                $id_prev[] = $cursor->id;
-                $id_prev[] = $cursors2[$key]->name_s;
-            }
-            if ($key == 2) {
-                $id_next[] = $cursor->id;
-                $id_next[] = $cursors2[$key]->name_s;
-            }
-        }
-
-        if (!isset($id_prev))
-            $id_prev = null;
-        if (!isset($id_next))
-            $id_next = null;
-
-        //$random_cat = $result = categories::inRandomOrder()->limit(3)->get();
-        $random_cat = $collections->random(3);
-
-        if ($cursors2->isEmpty() || !isset($cursors2[1])) {
-            abort(404);
-        }
-
-        return response()
-            ->view('cursor', [
-            'random_cat' => $random_cat, 
-            'all_cursors' => $cursors2, 
-            'cursor' => $cursors2[1] ?? null, 
-            'id_prev' => $id_prev, 
-            'id_next' => $id_next])->header('Cache-Tag', 'details');
+public function showCursorPreview(Request $r)
+{
+    if (!$r->id) {
+        abort(404);
     }
+
+    $excludeId = isset($_COOKIE['hide_item_2082']) && $_COOKIE['hide_item_2082'] === 'true'
+        ? 100000000 : 2082;
+
+    $after = cursor::whereDate('schedule', '<=', Carbon::today())
+        ->where('id', '<>', $excludeId)
+        ->where('id', '>=', $r->id)
+        ->orderBy('id', 'ASC')
+        ->limit(2)
+        ->get();
+
+    $before = cursor::whereDate('schedule', '<=', Carbon::today())
+        ->where('id', '<>', $excludeId)
+        ->where('id', '<', $r->id)
+        ->orderBy('id', 'DESC')
+        ->limit(1)
+        ->get();
+
+    $cursors2 = $before->merge($after);
+    $cursors2->load('currentTranslation');
+
+    $collections = categories::with('currentTranslation')->get();
+
+    foreach ($cursors2 as $cursorItem) {
+        $cursorItem->collection = $collections->first(fn($item) => $item->id == $cursorItem->cat);
+
+        $seoCategory = Str::slug($cursorItem->collection->base_name_en);
+        $seoCursor = Str::slug($cursorItem->currentTranslation->name ?? $cursorItem->name_en);
+        $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
+
+        $cursorItem->slug_url_final = $fullSlug;
+        $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
+        $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
+        $cursorItem->name_s = Str::slug($cursorItem->name_en);
+    }
+
+    $id_prev = null;
+    $id_next = null;
+
+    foreach ($cursors2 as $key => $cursor) {
+        if ($key === 0) {
+            $id_prev = [$cursor->id, $cursor->name_s];
+        }
+        if ($key === 2) {
+            $id_next = [$cursor->id, $cursor->name_s];
+        }
+    }
+
+    $random_cat = $collections->random(3);
+
+    if ($cursors2->isEmpty() || !isset($cursors2[1])) {
+        abort(404);
+    }
+
+    return response()
+        ->view('cursor', [
+            'random_cat' => $random_cat,
+            'all_cursors' => $cursors2,
+            'cursor' => $cursors2[1] ?? null,
+            'id_prev' => $id_prev,
+            'id_next' => $id_next
+        ])->header('Cache-Tag', 'details');
+}
+
+
 
     private function searchFallback(string $query, string $lang = 'en'): \Illuminate\Support\Collection
     {
@@ -258,7 +267,6 @@ class IndexController extends Controller
     }
     
         
-    
     public function show(Request $r)
     {
         $order = 'desc';
@@ -285,11 +293,13 @@ class IndexController extends Controller
                 ->where('id', '<>', $excludeId)
                 ->orderBy($sort, $order)
                 ->paginate(32);
+            $cursors->load('currentTranslation');
         } else {
             $cursors = cursor::whereDate('schedule', '<=', Carbon::today())
                 ->orderBy($sort, $order)
                 ->where('id', '<>', $excludeId)
                 ->paginate(32);
+            $cursors->load('currentTranslation');                
         }
     
         $collections = categories::all();
@@ -302,7 +312,7 @@ class IndexController extends Controller
         
             // Генерація SEO-шляху
             $seoCategory = Str::slug($cursorItem->collection->base_name_en);
-            $seoCursor = Str::slug($cursorItem->name_en);
+            $seoCursor = Str::slug($cursorItem->currentTranslation->name ?? $cursorItem->name_en);
             $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
                 
             $cursorItem->slug_url_final = $fullSlug;
@@ -320,6 +330,7 @@ class IndexController extends Controller
         $response->headers->remove('Cache-Control');
         return $response;
     }
+
     public function showJsLang()
     {
         $lang = config('app.locale');
@@ -438,9 +449,17 @@ class IndexController extends Controller
         foreach ($items as $cursor) {
             $cursor->seo_link = $cursor->id . '/' . strtolower($alt_name) . '/' .
                 strtolower(transliterator_transliterate('Russian-Latin/BGN', str_replace(' ', '_', $cursor->name)));
-    
+
             $cursor->name_s = $this->cleanStr(string: $cursor->name_en);
-            $cursor->collection = $collections->firstWhere('id', $cursor->cat);
+            $cursor->setRelation('collection', $collections->firstWhere('id', $cursor->cat));
+
+            $seoCategory = Str::slug($cursor->collection->base_name_en);
+            $seoCursor = Str::slug($cursor->currentTranslation->name ?? $cursor->name_en);
+            $fullSlug = "collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
+
+            $cursor->slug_url_final = $fullSlug;
+            $cursor->c_file_no_ext = $fullSlug . '-cursor';
+            $cursor->p_file_no_ext = $fullSlug . '-pointer';
         }
     
         $random_cat = $collections->random(3);
@@ -468,15 +487,13 @@ class IndexController extends Controller
     public function showAllCat()
     {
         $cats = categories::with('currentTranslation')
-            ->select('id', 'base_name', 'alt_name', 'priority', 'description', 'short_descr', 'img')
             ->orderBy('id', 'desc')
             ->paginate(20);
-    
+
         return response()
             ->view('allcat', compact('cats'))
             ->header('Cache-Tag', 'collections');
     }
-
         
             public function setTopCursor(Request $request) {
         //        if ($request->type == 'stat') {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\cursor_tag_translation;
+use \App\Models\CursorTranslation;
 
 class cursor extends Model {
 
@@ -23,7 +24,6 @@ class cursor extends Model {
         'p_file_prev',
     ];
 
-    
     public function categories() {
         return $this->belongsTo('App\Models\categories', 'cat');
     }
@@ -33,4 +33,14 @@ class cursor extends Model {
         return $this->hasMany(cursor_tag_translation::class, 'cursor_id');
     }
 
+    public function translations()
+    {
+        return $this->hasMany(CursorTranslation::class, 'cursor_id');
+    }
+
+    public function currentTranslation()
+    {
+        return $this->hasOne(CursorTranslation::class, 'cursor_id')
+                    ->where('lang', app()->getLocale());
+    }
 }

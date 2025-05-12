@@ -8,6 +8,7 @@ use App\Models\cursor;
 
 class CursorTranslation extends Model
 {
+    use HasFactory;
     protected $fillable = ['lang', 'cursor_id', 'name'];
 
     public function cursor()

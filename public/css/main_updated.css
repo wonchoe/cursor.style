@@ -1275,7 +1275,7 @@ a.page-numbers-js.next:hover {
 .cursorimg {
   max-width: 128px;
   max-height: 128px;
-  min-width: 128px;
+  width: 100%;
   min-height: 40px;
   height: auto;
   display: block;
