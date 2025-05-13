@@ -285,7 +285,7 @@ function setupMiliSearch() {
     Object.values(grouped).forEach(group => {
       html += `
         <div class="category-block" style="margin-bottom:16px;">
-          <div class="category-header" onclick="window.location='https://uk.cursor.style/collections/${group.alt}'" style="display:flex;align-items:center;margin-bottom:5px;">
+          <div class="category-header" onclick="window.location='/collections/${group.alt}'" style="display:flex;align-items:center;margin-bottom:5px;">
             ${group.img ? `<img src="/collection/${group.alt}.png" height="32">` : ''}
             <strong>${group.name}</strong>
           </div>
