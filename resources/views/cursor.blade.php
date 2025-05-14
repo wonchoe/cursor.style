@@ -215,21 +215,21 @@
 
 
             <div class="random_cat">
-                @foreach($random_cat as $item)
-                    <a href="/collections/{{ $item->alt_name }}"
-                        title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
-                        <div class="random_cat_obj">
-                            <div class="random_cat_text">
-                                <h2>{{ $item->currentTranslation->name ?? $item->base_name_en }} @lang('messages.collection')
-                                </h2>
+                    @foreach($random_cat as $item)
+                        <a href="/collections/{{ $item->alt_name }}"
+                            title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
+                            <div class="random_cat_obj">
+                                <div class="random_cat_text">
+                                    <h2>{{ $item->currentTranslation->name ?? $item->base_name_en }} @lang('messages.collection')</h2>
+                                </div>
+                                <div class="random_cat_img">
+                                    <img src="/collection/{{ $item->id }}-{{ $item->alt_name }}.png"
+                                        alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
+                                        title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
+                                </div>
                             </div>
-                            <div class="random_cat_img">
-                                <img src="/collection/{{ $item->alt_name }}.png"
-                                    alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}">
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
+                        </a>
+                    @endforeach
             </div>
 
 
