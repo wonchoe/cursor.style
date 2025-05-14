@@ -275,6 +275,7 @@ function setupMiliSearch() {
           name: hit.cat_name || 'Uncategorized',
           alt: hit.cat || 'Uncategorized',
           img: hit.cat_img || null,
+          catid: hit.cat_id || null,
           items: []
         };
       }
@@ -286,7 +287,7 @@ function setupMiliSearch() {
       html += `
         <div class="category-block" style="margin-bottom:16px;">
           <div class="category-header" onclick="window.location='/collections/${group.alt}'" style="display:flex;align-items:center;margin-bottom:5px;">
-            ${group.img ? `<img src="/collection/${group.alt}.png" height="32">` : ''}
+            ${group.img ? `<img src="/collection/${group.catid}${group.alt}" height="32">` : ''}
             <strong>${group.name}</strong>
           </div>
           <ul style="list-style:none;padding-left:10px;margin:0;">
