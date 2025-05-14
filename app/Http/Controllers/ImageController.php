@@ -198,38 +198,36 @@ class ImageController extends Controller {
         abort(404, 'File not found.');
     }
     
-    public function showCollection($id, $alt = null)
-    {
-        // Якщо $alt закінчується на .png — обрізаємо його
-        $isImage = false;
-        if (Str::endsWith($alt, '.png')) {
-            $isImage = true;
-            $alt = Str::before($alt, '.png');
-        }
+public function showCollection($id, $alt = null)
+{
+    
+    // Визначаємо, чи це запит на PNG
+    $isImage = true;
 
-        // Шукаємо категорію
-        $cat = DB::table('categories')->where('id', $id)->first();
-        if (!$cat) {
-            abort(404, 'Category not found');
-        }
-
-        // Якщо запит на PNG — віддаємо зображення
-        if ($isImage) {
-            $path = storage_path("app/public/collections/{$cat->id}-{$cat->alt_name}/index.png");
-
-            if (!file_exists($path)) {
-                abort(404, 'Image not found');
-            }
-
-            return response()->file($path, [
-                'Content-Type' => 'image/png',
-                'Cache-Control' => 'public, max-age=604800', // 7 днів
-            ]);
-        }
-
-        // Інакше — повертаємо сторінку колекції
-        return view('collection.show', compact('cat'));
+    // Шукаємо категорію
+    $cat = DB::table('categories')->where('id', $id)->first();
+    if (!$cat) {
+        abort(404, 'Category not found');
     }
+
+    if ($isImage) {
+        $path = storage_path("app/public/collections/{$cat->id}-{$cat->alt_name}/index.png");
+
+        // 💣 Перевіримо повний шлях через лог, якщо треба
+        if (!file_exists($path)) {
+            \Log::warning("PNG not found: $path");
+            abort(404, 'Image not found');
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'image/png',
+            'Cache-Control' => 'public, max-age=604800',
+        ]);
+    }
+
+    // Повертаємо HTML сторінку колекції
+    return view('collection.show', compact('cat'));
+}
 
 
     // public function showCollection($name)
