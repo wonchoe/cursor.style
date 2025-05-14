@@ -81,7 +81,7 @@ Route::get('/{type}/{category}/{name}', [ImageController::class, 'show'])->where
 
 Route::get('/js/lang.js', [IndexController::class, 'showJsLang'])->name('assets.lang');
 
-Route::get('/collection/{id}-{name}.png', [ImageController::class, 'showCollection']);
+Route::get('/collection/{id}-{name}', [ImageController::class, 'showCollection']);
 
 
 Route::get('/animated', [CursorController::class, 'getAllAnimated']);
