@@ -73,6 +73,7 @@ class AddCursorsToMeilisearch extends Command
                     'lang' => $lang,
                     'isFallback' => $item->lang !== $lang ? true : false, // 🆕
                     'cat' => optional($item->cursor->categories)->alt_name,
+                    'cat_id' => $item->cursor->categories->id,
                     'cat_name' => $catName,
                     'cat_img' => optional($item->cursor->categories)->img,
                     'c_file' => $item->cursor->c_file,
