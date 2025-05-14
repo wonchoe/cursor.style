@@ -231,15 +231,22 @@ function setupMiliSearch() {
     }
 
     timeout = setTimeout(() => {
+      // Визначаємо lang з субдомену
+      const hostnameParts = location.hostname.split('.');
+      let lang = 'en';
+      if (hostnameParts.length > 2 && hostnameParts[0].length === 2) {
+        lang = hostnameParts[0];
+      }
+
       fetch(`/search`, {
         method: 'POST',
-        cache: 'no-store', 
+        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer masterKey123',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         },
-        body: JSON.stringify({ lang: 'en', query: query, limit: 15 })
+        body: JSON.stringify({ lang: lang, query: query, limit: 15 })
       })
         .then(res => res.json())
         .then(data => {
@@ -253,6 +260,7 @@ function setupMiliSearch() {
         });
     }, 100);
   });
+
 
   input.addEventListener('blur', () => setTimeout(() => {
     resultsBox.classList.add('hidden');
