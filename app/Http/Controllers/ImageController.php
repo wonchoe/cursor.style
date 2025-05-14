@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\cursor;
 use App\Models\categories;
+use DB;
 
 class ImageController extends Controller {
 
@@ -142,7 +143,7 @@ class ImageController extends Controller {
     
 
     public function show($id) {
-        dd($id);
+
         $p = explode('-', $id);
         $cursor = cursor::findOrFail($p[1]);
     
@@ -178,28 +179,47 @@ class ImageController extends Controller {
         abort(404, 'File not found.');
     }
     
-
-    public function showCollection($name)
+    public function showCollection($id, $alt)
     {
-        
-        $cat = categories::where('alt_name', '=', $name)->firstOrFail();
-   
-        $localPath = base_path('resources/categories/' . $cat->img);
-        $storagePath = storage_path('app/public/' . $cat->img);
+        $cat = DB::table('categories')->where('id', $id)->first();
 
-        if (file_exists($localPath)) {
-            $r = file_get_contents($localPath);
-        } elseif (file_exists($storagePath)) {
-            $r = file_get_contents($storagePath);
-        } else {
-            abort(404, 'Image not found in resources or storage.');
+        if (!$cat) {
+            abort(404, 'Category not found');
         }
+
+        $path = storage_path("app/public/collections/{$cat->id}-{$cat->alt_name}/index.png");
+
+        if (!file_exists($path)) {
+            abort(404, 'Image not found');
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'image/png',
+            'Cache-Control' => 'public, max-age=604800', // 7 днів
+        ]);
+    }    
+
+    // public function showCollection($name)
+    // {
+        
+    //     $cat = categories::where('alt_name', '=', $name)->firstOrFail();
+   
+    //     $localPath = base_path('resources/categories/' . $cat->img);
+    //     $storagePath = storage_path('app/public/' . $cat->img);
+
+    //     if (file_exists($localPath)) {
+    //         $r = file_get_contents($localPath);
+    //     } elseif (file_exists($storagePath)) {
+    //         $r = file_get_contents($storagePath);
+    //     } else {
+    //         abort(404, 'Image not found in resources or storage.');
+    //     }
     
-        $collections_folder = $this->createCollectionsImagesFolders();
-        file_put_contents($collections_folder . '/' . $name . '.png', $r);
+    //     $collections_folder = $this->createCollectionsImagesFolders();
+    //     file_put_contents($collections_folder . '/' . $name . '.png', $r);
     
-        return response($r, 200)->header('Content-Type', 'image/png');
-    }
+    //     return response($r, 200)->header('Content-Type', 'image/png');
+    // }
     
 
 }
