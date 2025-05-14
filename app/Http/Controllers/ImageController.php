@@ -7,51 +7,58 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\cursor;
 use App\Models\categories;
 use DB;
+use Illuminate\Support\Str;
 
 class ImageController extends Controller {
-
     public function serveSvg($category_slug, $cursor_slug)
     {
+        // Якщо в кінці є .svg — обрізаємо
+        if (Str::endsWith($cursor_slug, '.svg')) {
+            $cursor_slug = Str::beforeLast($cursor_slug, '.svg');
+        }
+
         $normalizedSlug = preg_replace('/-(cursor|pointer)$/', '', $cursor_slug);
         $url = "collections/{$category_slug}/{$normalizedSlug}";
-        
         
         $parts = explode('-', $cursor_slug);
         if (count($parts) < 2) {
             abort(404);
         }
-    
+
         $type = array_pop($parts); // cursor або pointer
         $id = $parts[0];
-        
+
         $cursor = Cursor::where('id', $id)->firstOrFail();
 
         switch ($type) {
             case 'cursor':
-                $filePath = 'public/' .$cursor->c_file;
+                $filePath = 'public/' . $cursor->c_file;
                 break;
-        
+
             case 'pointer':
-                $filePath = 'public/' .$cursor->p_file;
+                $filePath = 'public/' . $cursor->p_file;
                 break;
-        
+
             default:
                 abort(404);
         }
 
         $full_path = Storage::path($filePath);
-        
+
         if (!file_exists($full_path)) {
             abort(404);
         }
-    
+
         $response = response()->file($full_path, [
             'Content-Type' => 'image/svg+xml',
-        ]);          
+            'Cache-Control' => 'public, max-age=604800',
+        ]);
         $response->headers->set('Cache-Tag', 'svg');
         $response->headers->set('X-Cache-SVG', 'true');
+
         return $response;
     }
+
 
     public function createCursorsImagesFolders() {
         if (!is_dir(base_path() . '/storage/app/public/cursors')) {
@@ -179,25 +186,39 @@ class ImageController extends Controller {
         abort(404, 'File not found.');
     }
     
-    public function showCollection($id, $alt)
+    public function showCollection($id, $alt = null)
     {
-        $cat = DB::table('categories')->where('id', $id)->first();
+        // Якщо $alt закінчується на .png — обрізаємо його
+        $isImage = false;
+        if (Str::endsWith($alt, '.png')) {
+            $isImage = true;
+            $alt = Str::before($alt, '.png');
+        }
 
+        // Шукаємо категорію
+        $cat = DB::table('categories')->where('id', $id)->first();
         if (!$cat) {
             abort(404, 'Category not found');
         }
 
-        $path = storage_path("app/public/collections/{$cat->id}-{$cat->alt_name}/index.png");
+        // Якщо запит на PNG — віддаємо зображення
+        if ($isImage) {
+            $path = storage_path("app/public/collections/{$cat->id}-{$cat->alt_name}/index.png");
 
-        if (!file_exists($path)) {
-            abort(404, 'Image not found');
+            if (!file_exists($path)) {
+                abort(404, 'Image not found');
+            }
+
+            return response()->file($path, [
+                'Content-Type' => 'image/png',
+                'Cache-Control' => 'public, max-age=604800', // 7 днів
+            ]);
         }
 
-        return response()->file($path, [
-            'Content-Type' => 'image/png',
-            'Cache-Control' => 'public, max-age=604800', // 7 днів
-        ]);
-    }    
+        // Інакше — повертаємо сторінку колекції
+        return view('collection.show', compact('cat'));
+    }
+
 
     // public function showCollection($name)
     // {
