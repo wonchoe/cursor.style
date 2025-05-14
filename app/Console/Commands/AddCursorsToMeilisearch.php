@@ -65,15 +65,14 @@ class AddCursorsToMeilisearch extends Command
 
              //   $this->info("🌍 Категорія: $catName");
                 
-
+$this->info("🌍  UPD: $catName");
                 $documents[] = [
                     'id' => $item->cursor_id,
                     'name' => $name,
                     'tags' => $item->tags,
                     'lang' => $lang,
                     'isFallback' => $item->lang !== $lang ? true : false, // 🆕
-                    'cat' => optional($item->cursor->categories)->alt_name,
-                    'cat_id' => (string) $item->cursor->categories->id,
+                    'cat' => optional($item->cursor->categories)->alt_name,                    
                     'cat_name' => $catName,
                     'cat_img' => optional($item->cursor->categories)->img,
                     'c_file' => $item->cursor->c_file,
@@ -83,6 +82,7 @@ class AddCursorsToMeilisearch extends Command
                     'offsetX_p' => $item->cursor->offsetX_p,
                     'offsetY_p' => $item->cursor->offsetY_p,
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
+                    'cat_id' => $item->cursor->categories->id,
                 ];
             }
 
