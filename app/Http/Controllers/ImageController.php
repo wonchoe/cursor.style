@@ -10,45 +10,55 @@ use DB;
 use Illuminate\Support\Str;
 
 class ImageController extends Controller {
-public function serveSvg($category_slug, $cursor_slug)
-{
-    if (Str::endsWith($cursor_slug, '.svg')) {
-        $cursor_slug = Str::beforeLast($cursor_slug, '.svg');
-    }
+    public function serveSvg($category_slug, $cursor_slug)
+    {
 
-    $parts = explode('-', $cursor_slug);
+        // Якщо в кінці є .svg — обрізаємо
+        if (Str::endsWith($cursor_slug, '.svg')) {
+            $cursor_slug = Str::beforeLast($cursor_slug, '.svg');
+        }
 
-    if (count($parts) < 2) {
-        abort(404);
-    }
+        $normalizedSlug = preg_replace('/-(cursor|pointer)$/', '', $cursor_slug);
+        $url = "collections/{$category_slug}/{$normalizedSlug}";
+        
+                
+        $parts = explode('-', $cursor_slug);
+        
+        if (count($parts) < 2) {
+            abort(404);
+        }
 
-    $type = array_pop($parts); // cursor / pointer
-    $id = array_shift($parts); // ID курсора
+        $type = array_pop($parts); // cursor або pointer
+        $id = $parts[0];
 
-    if (!is_numeric($id)) {
-        abort(404, 'Invalid ID');
-    }
 
-    // Витягуємо курсор разом з його категорією
-    $cursor = Cursor::with('collection')->findOrFail($id);
+        $cursor = Cursor::where('id', $id)->firstOrFail();
 
-    // Перевіряємо чи URL-слуг збігається з фактичним alt_name
-    $expectedSlug = Str::slug($cursor->collection->alt_name);
-    if ($expectedSlug !== $category_slug) {
-        abort(404, 'Category slug mismatch');
-    }
+        switch ($type) {
+            case 'cursor':
+                $filePath = 'public/' . $cursor->c_file;
+                break;
 
-    // Формуємо правильний шлях
-    $folder = "{$cursor->collection->id}-{$cursor->collection->alt_name}";
-    $filename = "{$cursor->id}-" . Str::slug($cursor->name_en) . "-{$type}.svg";
-    $filePath = "collections/{$folder}/{$filename}";
+            case 'pointer':
+                $filePath = 'public/' . $cursor->p_file;
+                break;
 
-    $full_path = Storage::disk('public')->path($filePath);
-    // dd($full_path); // можна перевірити
+            default:
+                abort(404);
+        }
 
-    if (!file_exists($full_path)) {
-        abort(404, 'SVG file not found');
-    }
+        $full_path = Storage::path($filePath);
+        
+        if ($type=='cursor') {
+            $filename = $cursor->c_file;
+        } else {
+            $filename = $cursor->p_file;
+        }
+       // dd($filename);
+
+        if (!file_exists($full_path)) {
+            abort(404);
+        }
 
                
         $response = response()->file($full_path, [
