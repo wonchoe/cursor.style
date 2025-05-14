@@ -80,8 +80,8 @@ class IndexController extends Controller
             $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
 
             $cursorItem->slug_url_final = $fullSlug;
-            $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
-            $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
+            $cursorItem->c_file_no_ext = $fullSlug . '-cursor.svg';
+            $cursorItem->p_file_no_ext = $fullSlug . '-pointer.svg';
             $cursorItem->name_s = Str::slug($cursorItem->name_en);
         }
 
@@ -127,8 +127,8 @@ class IndexController extends Controller
                 $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$catCursor->id}-{$seoCursor}";
 
                 $catCursor->slug_url_final = $fullSlug;
-                $catCursor->c_file_no_ext = $fullSlug . '-cursor';
-                $catCursor->p_file_no_ext = $fullSlug . '-pointer';
+                $catCursor->c_file_no_ext = $fullSlug . '-cursor.svg';
+                $catCursor->p_file_no_ext = $fullSlug . '-pointer.svg';
                 $catCursor->name_s = Str::slug($catCursor->name_en);
             }
         }
@@ -267,8 +267,8 @@ class IndexController extends Controller
                     $fullSlug = "collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
     
                     $cursor->slug_url_final = $fullSlug;
-                    $cursor->c_file_no_ext = $fullSlug . '-cursor';
-                    $cursor->p_file_no_ext = $fullSlug . '-pointer';
+                    $cursor->c_file_no_ext = $fullSlug . '-cursor.svg';
+                    $cursor->p_file_no_ext = $fullSlug . '-pointer.svg';
                 }
     
                 return $cursor;
@@ -293,8 +293,8 @@ class IndexController extends Controller
                     $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
     
                     $cursorItem->slug_url_final = $fullSlug;
-                    $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
-                    $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
+                    $cursorItem->c_file_no_ext = $fullSlug . '-cursor.svg';
+                    $cursorItem->p_file_no_ext = $fullSlug . '-pointer.svg';
                 }
             }
     
@@ -364,8 +364,8 @@ class IndexController extends Controller
             $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
                 
             $cursorItem->slug_url_final = $fullSlug;
-            $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
-            $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
+            $cursorItem->c_file_no_ext = $fullSlug . '-cursor.svg';
+            $cursorItem->p_file_no_ext = $fullSlug . '-pointer.svg';
         }
         
     
@@ -509,8 +509,8 @@ class IndexController extends Controller
             $fullSlug = "https://cursor.style/collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
 
             $cursor->slug_url_final = $fullSlug;
-            $cursor->c_file_no_ext = $fullSlug . '-cursor';
-            $cursor->p_file_no_ext = $fullSlug . '-pointer';
+            $cursor->c_file_no_ext = $fullSlug . '-cursor.svg';
+            $cursor->p_file_no_ext = $fullSlug . '-pointer.svg';
         }
     
         $random_cat = $collections->random(3);
