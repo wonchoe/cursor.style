@@ -74,6 +74,7 @@ $this->info("🌍  UPD: $catName");
                     'isFallback' => $item->lang !== $lang ? true : false, // 🆕
                     'cat' => optional($item->cursor->categories)->alt_name,                    
                     'cat_name' => $catName,
+                    'cat_id' => $item->cursor->categories->id,
                     'cat_img' => optional($item->cursor->categories)->img,
                     'c_file' => $item->cursor->c_file,
                     'p_file' => $item->cursor->p_file,
@@ -82,7 +83,6 @@ $this->info("🌍  UPD: $catName");
                     'offsetX_p' => $item->cursor->offsetX_p,
                     'offsetY_p' => $item->cursor->offsetY_p,
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
-                    'cat_ids' => 'test',
                 ];
             }
 
@@ -100,7 +100,19 @@ $this->info("🌍  UPD: $catName");
                             Http::withHeaders([
                                 'Authorization' => 'Bearer masterKey123',
                             ])->delete("{$host}/indexes/cursors_{$lang}");
+
                             $this->line("🧹 Індекс [$lang] очищено на {$host}");
+
+                            // 🆕 Явне створення індексу з primaryKey
+                            Http::withHeaders([
+                                'Authorization' => 'Bearer masterKey123',
+                                'Content-Type' => 'application/json',
+                            ])->put("{$host}/indexes/cursors_{$lang}", [
+                                'uid' => "cursors_{$lang}",
+                                'primaryKey' => 'id',
+                            ]);
+
+                            $this->line("📦 Індекс [$lang] заново створено з primaryKey 'id'");
                         }
 
                         $response = Http::withHeaders([
