@@ -45,7 +45,7 @@ class AddCursorsToMeilisearch extends Command
 
             $documents = [];
 
-            $this->info("🌍 Update");
+            $this->info("🌍 Update1");
 
             foreach ($tagged as $item) {
                 if (!$item->cursor) continue;
@@ -75,7 +75,6 @@ class AddCursorsToMeilisearch extends Command
                     'isFallback' => $item->lang !== $lang ? true : false, // 🆕
                     'cat' => optional($item->cursor->categories)->alt_name,                    
                     'cat_name' => $catName,
-                    'cat_id' => $item->cursor->categories->id,
                     'cat_img' => optional($item->cursor->categories)->img,
                     'c_file' => $item->cursor->c_file,
                     'p_file' => $item->cursor->p_file,
