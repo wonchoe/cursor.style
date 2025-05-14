@@ -54,7 +54,7 @@ class ImageController extends Controller {
         } else {
             $filename = $cursor->p_file;
         }
-       // dd($filename);
+        dd($filename);
 
         if (!file_exists($full_path)) {
             abort(404);
