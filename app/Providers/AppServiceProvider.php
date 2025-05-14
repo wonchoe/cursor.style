@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider {
         date_default_timezone_set("America/New_York");
         Paginator::defaultView('vendor/pagination/bootstrap-4');
 
-        $this->createSymlinkIfNotExists(storage_path('app/public/collection'), public_path('collection'));
-        $this->createSymlinkIfNotExists(storage_path('app/public/cursors'), public_path('cursors'));
-        $this->createSymlinkIfNotExists(storage_path('app/public/pointers'), public_path('pointers'));
+        // $this->createSymlinkIfNotExists(storage_path('app/public/collection'), public_path('collection'));
+        // $this->createSymlinkIfNotExists(storage_path('app/public/cursors'), public_path('cursors'));
+        // $this->createSymlinkIfNotExists(storage_path('app/public/pointers'), public_path('pointers'));
 
          URL::forceScheme('https');
     }
