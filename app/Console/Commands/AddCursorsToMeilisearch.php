@@ -82,7 +82,7 @@ $this->info("🌍  UPD: $catName");
                     'offsetX_p' => $item->cursor->offsetX_p,
                     'offsetY_p' => $item->cursor->offsetY_p,
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
-                    'cat_id' => $item->cursor->categories->id,
+                    'cat_ids' => 'test',
                 ];
             }
 
