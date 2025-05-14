@@ -194,7 +194,7 @@
                                     <h2>{{ $item->currentTranslation->name ?? $item->base_name_en }} @lang('messages.collection')</h2>
                                 </div>
                                 <div class="random_cat_img">
-                                    <img src="/collection/{{ $item->id }}-{{ $item->alt_name }}.png"
+                                    <img data-id="1" src="/collection/{{ $item->id }}-{{ $item->alt_name }}.png"
                                         alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
                                         title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
                                 </div>
