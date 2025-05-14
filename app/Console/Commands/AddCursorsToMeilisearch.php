@@ -45,6 +45,8 @@ class AddCursorsToMeilisearch extends Command
 
             $documents = [];
 
+            $this->info("🌍 Update");
+
             foreach ($tagged as $item) {
                 if (!$item->cursor) continue;
 
@@ -64,8 +66,7 @@ class AddCursorsToMeilisearch extends Command
                 }
 
              //   $this->info("🌍 Категорія: $catName");
-                
-$this->info("🌍  UPD: $catName");
+
                 $documents[] = [
                     'id' => $item->cursor_id,
                     'name' => $name,
