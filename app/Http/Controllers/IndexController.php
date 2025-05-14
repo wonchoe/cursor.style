@@ -264,7 +264,7 @@ class IndexController extends Controller
                 if ($collection) {
                     $seoCategory = Str::slug($collection->base_name_en);
                     $seoCursor = Str::slug($cursor->name_en);
-                    $fullSlug = "collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
+                    $fullSlug = "/collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
     
                     $cursor->slug_url_final = $fullSlug;
                     $cursor->c_file_no_ext = $fullSlug . '-cursor.svg';
