@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class ImageController extends Controller {
     public function serveSvg($category_slug, $cursor_slug)
     {
+
         // Якщо в кінці є .svg — обрізаємо
         if (Str::endsWith($cursor_slug, '.svg')) {
             $cursor_slug = Str::beforeLast($cursor_slug, '.svg');
@@ -20,13 +21,16 @@ class ImageController extends Controller {
         $normalizedSlug = preg_replace('/-(cursor|pointer)$/', '', $cursor_slug);
         $url = "collections/{$category_slug}/{$normalizedSlug}";
         
+                
         $parts = explode('-', $cursor_slug);
+        
         if (count($parts) < 2) {
             abort(404);
         }
 
         $type = array_pop($parts); // cursor або pointer
         $id = $parts[0];
+
 
         $cursor = Cursor::where('id', $id)->firstOrFail();
 
@@ -49,6 +53,7 @@ class ImageController extends Controller {
             abort(404);
         }
 
+               
         $response = response()->file($full_path, [
             'Content-Type' => 'image/svg+xml',
             'Cache-Control' => 'public, max-age=604800',
