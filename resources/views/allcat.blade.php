@@ -60,7 +60,7 @@
                            {{ $item->currentTranslation->name ?? $item->base_name_en }}
                         </h2>
                     <img class="main__cat-img"
-                        src="collection/{{ $item->id }}-{{ $item->alt_name }}"
+                        src="collection/{{ $item->id }}-{{ $item->alt_name }}.png"
                         alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
                         title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
                     </a>
