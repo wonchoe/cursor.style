@@ -275,7 +275,7 @@ function setupMiliSearch() {
           name: hit.cat_name || 'Uncategorized',
           alt: hit.cat || 'Uncategorized',
           img: hit.cat_img || null,
-          catid: hit.cat_id || null,
+          catid: hit.catid || null,
           items: []
         };
       }
