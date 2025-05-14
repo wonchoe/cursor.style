@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use \Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 Route::get('/collections/{collection_slug}/{cursor_slug}', [ImageController::class, 'serveSvg'])
+    ->where('cursor_slug', '.*')
     ->name('cursor.file');
 
 
