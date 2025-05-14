@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class ImageController extends Controller {
     public function serveSvg($category_slug, $cursor_slug)
     {
-  dd($cursor_slug);
+  //dd($cursor_slug);
         // Якщо в кінці є .svg — обрізаємо
         if (Str::endsWith($cursor_slug, '.svg')) {
             $cursor_slug = Str::beforeLast($cursor_slug, '.svg');
@@ -54,7 +54,7 @@ class ImageController extends Controller {
         } else {
             $filename = $cursor->p_file;
         }
-        dd($filename);
+      //  dd($filename);
 
         if (!file_exists($full_path)) {
             abort(404);
