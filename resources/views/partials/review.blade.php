@@ -1,7 +1,4 @@
-<script
-  src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
-  type="module"
-></script>
+<link rel="preload" as="script" href="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" />
 
 <a href="https://chromewebstore.google.com/detail/cursor-style-–-custom-mou/bmjmipppabdlpjccanalncobmbacckjn/reviews?hl=en&authuser=2" target="_blank">
 <div class="review-container">
