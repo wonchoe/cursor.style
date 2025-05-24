@@ -1,0 +1,40 @@
+<?php
+
+return [
+    'title' => 'Cursor Style - Zásady používania súborov cookie',
+    'descr' => 'Zásady používania súborov cookie pri návšteve našej webovej stránky cursor.style alebo rozšírenia „Cursor Style“. Niektoré pravidlá, ktoré by ste mali zvážiť pri používaní nášho produktu.',
+    'text' => '<h2> Zásady používania súborov cookie </h2>
+<p> Keď navštívite našu webovú stránku cursor.style alebo rozšírenie "Cursor Style" na paneli prehliadača, alebo keď komunikujete s našimi zástupcami ("Služba"), použijeme (a umožníme tretím stranám použiť) webové majáky, cookies, pixely, skripty, značky, API a iné technológie ("Technológie sledovania"). Je to vysvetlené v týchto zásadách ("Zásady používania súborov cookie"), ktoré sú súčasťou našich <a href="/privacy"> Zásad ochrany osobných údajov </a>. </p>
+<p> Technológie sledovania nám umožňujú automaticky zhromažďovať informácie o vás a vašom správaní na internete, aby sme zlepšili vašu navigáciu v našej Službe, zlepšili výkon našej Služby a uľahčili vám používanie našej Služby. Taktiež používame tieto informácie na zhromažďovanie štatistík o používaní našej Služby, vykonávanie analýz, doručovanie obsahu, ktorý vyhovuje vašim záujmom, a spravovanie služieb pre našich Používateľov, zákazníkov a partnerov. Umožňujeme tiež tretím stranám zhromažďovať informácie o vás pomocou technológií sledovania. </p>
+<p> Čo sú súbory cookie? Súbory cookie sú malé textové súbory (skladajúce sa iba z písmen a čísel), ktoré webový server umiestňuje do vášho počítača alebo mobilného zariadenia pri návšteve webovej stránky. Používanie súboru cookie môže pomôcť zefektívniť naše Služby, napríklad zapamätaním vašich jazykových preferencií a nastavení. Viac informácií o súboroch cookie nájdete na <a href="http://www.allaboutcookies.org"> allaboutcookies.org </a>. </p>
+<p> Súbory cookie sa bežne používajú na výkon webových stránok. Používanie súborov cookie vám umožňuje efektívne prechádzať medzi stránkami. Súbory cookie si pamätajú vaše preferencie a zefektívňujú a zefektívňujú interakciu medzi vami a Službami. </p>
+<p> Používame technológie sledovania pri vašej návšteve alebo prístupe k našim Službám (zvyčajne pri návšteve našich webových stránok) - nazývajú sa „Technológie sledovania prvej strany“. Okrem toho sú technológie sledovania uložené inými organizáciami tretích strán (napríklad našimi poskytovateľmi analytických služieb, obchodnými partnermi a inzerentmi), ktorí uverejňujú obsah v našich Službách - nazývajú sa „Technológie sledovania tretích strán“. Oba typy technológií sledovania je možné uložiť buď na dobu vašej návštevy našich Služieb, alebo na opakované návštevy. </p>
+<h3> Aké typy technológií sledovania používame? Existuje päť hlavných typov technológií sledovania: </h3>
+<ul>
+<li> <b> Striktne nevyhnutné technológie sledovania </b> <br> <p> Tieto technológie sledovania sú nevyhnutné na to, aby ste sa mohli prihlásiť, navigovať a používať funkcie našich Služieb alebo poskytovať službu, o ktorú žiadate (napríklad vaše meno používateľa). Na použitie týchto technológií sledovania nepotrebujeme váš súhlas. Tieto technológie sledovania sa môžu používať na účely zabezpečenia a integrity, napríklad na identifikáciu porušení našich zásad, ako aj na podporu alebo bezpečnostné funkcie. </p> </li>
+<li> <b> Funkčné technológie sledovania </b> <br> <p>
+Tieto technológie sledovania umožňujú našim službám zapamätať si vaše voľby (ako je jazyk) a poskytovať pokročilé a personalizované funkcie. Tieto technológie sledovania sa napríklad používajú na autentifikáciu (aby si zapamätali, kedy ste prihlásení) a podporujú ďalšie funkcie našich Služieb. </p> </li>
+<li> <b> Technológie sledovania výkonu </b> <br> <p>
+Tieto technológie sledovania zhromažďujú informácie o vašej online aktivite (napríklad o dĺžke vašej návštevy našich Služieb), vrátane údajov o správaní a ukazovateľov zapojenia obsahu. Tieto technológie sledovania sa používajú na účely analýzy, výskumu a štatistiky (na základe agregovaných informácií). </p> </li>
+<li> <b> Marketingové alebo reklamné technológie sledovania </b> <br> <p>
+Tieto technológie sledovania sa používajú na poskytovanie špeciálnych ponúk a reklám na základe vašich záujmov, ako aj na vykonávanie e-mailových marketingových kampaní. Môžu sa tiež použiť na obmedzenie počtu zobrazení reklamy, ako aj na meranie účinnosti reklamnej kampane. Zvyčajne ich hosťujú naši inzerenti (napríklad reklamné siete) a dávajú im predstavu o ľuďoch, ktorí vidia a interagujú s ich reklamami, navštevujú ich webové stránky alebo používajú ich aplikáciu. </p> </li>
+<li> <b> Technológie sledovania sociálnych médií </b> <br> <p>
+Naša webová stránka obsahuje funkcie sociálnych sietí, ako sú tlačidlá Like alebo Share na Facebooku a Vkontakte, alebo služby prihlásenia tretích strán. Tieto funkcie sú buď zverejnené treťou stranou, alebo zverejnené priamo v našich Službách. Vaše interakcie s týmito funkciami sa riadia vyhlásením o ochrane osobných údajov spoločnosti, ktorá tieto funkcie poskytuje. </p> </li>
+</ul>
+<h3> Nasledujú súbory cookie, ktoré nájdete v našich Službách: </h3>
+<ul>
+<li> <b> Analytické cookies </b> <br> <p> Tieto technológie sledovania sa používajú na zhromažďovanie informácií o tom, ako interagujete s obsahom v našich Službách, na účely atribúcie (napríklad adresy URL odporúčaní) atď. Tieto informácie používame na zostavovanie správ, výpočet príjmov, ktoré nám prináležia, a na zlepšovanie Služieb a ponúkanie personalizovaných produktov a obsahu. </p> </li>
+<li> <b> Google Analytics </b> <br> <p> Tento súbor cookie sa používa na zhromažďovanie informácií o tom, ako návštevníci používajú našu Platformu. Tieto informácie používame na zostavovanie správ a na zlepšovanie Platformy. Súbory cookie zhromažďujú informácie v anonymnej forme vrátane počtu návštevníkov Platformy, odkiaľ návštevníci prišli na Platformu a stránok, ktoré navštívili. <br> <a href = "https://policies.google.com/privacy?hl=en" > Zásady ochrany osobných údajov </a> </p> </li>
+<li> <b> Google Tag Manager </b> <br> <p> Tento súbor cookie je spojený so službou Google Tag Manager, ktorú používame na načítavanie skriptov na stránkach našej webovej stránky. <br> <a href = "https: / /policies.google.com/privacy?hl=en"> Zásady ochrany osobných údajov </a> </p> </li>
+</ul>
+<p> Upozorňujeme, že nerozpoznávame ani nereagujeme na automatické upozornenia prehliadača týkajúce sa technológií sledovania, vrátane požiadaviek Do Not Track. Existujú však rôzne spôsoby správy a správy vašich nastavení súborov cookie. Nezabudnite, že pri odstraňovaní alebo blokovaní súborov cookie nemusia niektoré funkcie Služieb fungovať správne alebo nie tak efektívne. </p>
+<p> Väčšina webových prehliadačov vám poskytuje všeobecné informácie o súboroch cookie, umožňuje vám vidieť, aké súbory cookie sú uložené vo vašom zariadení, umožňuje vám ich všetky alebo jednotlivo odstrániť a tiež vám umožňuje blokovať alebo povoliť používanie súborov cookie pre všetky webové stránky alebo pre individuálne vybrané stránky. Môžete tiež samostatne deaktivovať súbory cookie tretích strán. Upozorňujeme, že nastavenia ponúkané prehliadačom alebo zariadením sa často vzťahujú iba na daný prehliadač alebo zariadenie. </p>
+<h3> Informácie o súboroch cookie nájdete zvyčajne v časti Pomocník webového prehliadača. </h3>
+<p> Nasledujú odkazy na niektoré bežne používané webové prehliadače: </p>
+<p><a href="https://support.google.com/chrome/answer/95647?hl=en"> Chrome </a> <br>
+<a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies"> Internet Explorer a Microsoft Edge </a> <br>
+<a href="https://support.mozilla.org/en/kb/kuki-informaciya-kotoruyu-veb-sajty-hranyat-na-vas"> Mozilla Firefox </a> <br>
+<a href="https://support.apple.com/ru-ru/guide/safari/sfri11471/mac"> Safari </a> </p>
+<p> Niektoré súbory cookie tretích strán pre cielenie / reklamu môžete vypnúť kliknutím na nasledujúci odkaz: <a href="http://optout.networkadvertising.org/?c=1"> Odhlásiť sa z reklamy založenej na záujmoch </a>. </p>
+				',
+];

@@ -1,0 +1,13 @@
+{
+    "web": {
+        "client_id": "26832423387-lgtck3m556idmne3cmi64291fg05f1ej.apps.googleusercontent.com",
+        "project_id": "adsense-460418",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "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",
+        "redirect_uris": [
+            "https://developers.google.com/oauthplayground"
+        ]
+    }
+}
