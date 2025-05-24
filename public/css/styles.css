@@ -1371,10 +1371,7 @@ a.page-numbers-js.next:hover {
   background-image: url(https://cursor.style/images/close.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  width: 58px;
-  height: 58px;
-  top: 14px;
-  left: 19px;
+  cursor: pointer;
 }
 
 .star_close {
