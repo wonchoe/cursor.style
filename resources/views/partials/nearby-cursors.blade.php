@@ -9,11 +9,11 @@
                 @if($loopCursor->id === $current_id) aria-current="true" @endif>
                 <div class="main__item-img cs_pointer" data-cur-id="{{ $loopCursor->id }}" cursorshover="true">
                     <img class="cursorimg"
-                         style="cursor: url({{ $loopCursor->c_file }}) 0 0, auto !important;"
-                         src="{{ $loopCursor->c_file }}">
+                         style="cursor: url({{ asset_cdn($loopCursor->c_file) }}) 0 0, auto !important;"
+                         src="{{ asset_cdn($loopCursor->c_file) }}">
                     <img class="cursorimg"
-                         style="cursor: url({{ $loopCursor->p_file }}) 0 0, auto !important;"
-                         src="{{ $loopCursor->p_file }}">
+                         style="cursor: url({{ asset_cdn($loopCursor->p_file) }}) 0 0, auto !important;"
+                         src="{{ asset_cdn($loopCursor->p_file) }}">
                 </div>
             </div>
         @endforeach

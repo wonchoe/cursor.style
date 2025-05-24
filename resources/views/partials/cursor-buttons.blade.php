@@ -18,8 +18,8 @@ $catName = $cursor->collection->currentTranslation->name ?? $cursor->collection-
                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                     data-offset-y="{{ $cursor->offsetY }}"
                     data-offset-y_p="{{ $cursor->offsetY_p }}"
-                    data-c_file="{{ $cursor->c_file }}"
-                    data-p_file="{{ $cursor->p_file }}">
+                    data-c_file="{{ asset_cdn($cursor->c_file) }}"
+                    data-p_file="{{ asset_cdn($cursor->p_file) }}">
                     <img title="@lang('messages.add_to_collection')" src="{{ asset_cdn('images/apply.svg') }}">
                 </button>
             </span>
@@ -36,8 +36,8 @@ $catName = $cursor->collection->currentTranslation->name ?? $cursor->collection-
                     data-offset-x_p="{{ $cursor->offsetX_p }}"
                     data-offset-y="{{ $cursor->offsetY }}"
                     data-offset-y_p="{{ $cursor->offsetY_p }}"
-                    data-c_file="{{ $cursor->c_file }}"
-                    data-p_file="{{ $cursor->p_file }}">
+                    data-c_file="{{ asset_cdn($cursor->c_file) }}"
+                    data-p_file="{{ asset_cdn($cursor->p_file) }}">
                     <img title="@lang('messages.add_to_collection')" src="{{ asset_cdn('images/plus.svg') }}">
                 </button>
             </span>            
