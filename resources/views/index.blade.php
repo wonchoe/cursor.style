@@ -17,7 +17,7 @@
 
 @push('styles')
     <link rel="icon" type="image/png" href="{{ asset_cdn('images/favicon.png') }}" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 @endpush
 
 @section('main')
