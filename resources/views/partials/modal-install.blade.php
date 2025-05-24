@@ -6,7 +6,7 @@
     </div>
     <div class="modal-center">
         <div class="modal-logo">
-            <img src="https://cursor.style/images/chrome.png"/>
+            <img loading="lazy" src="https://cursor.style/images/chrome.png"/>
         </div>
         <div class="modal-center-text">
             @lang('messages.m_2')

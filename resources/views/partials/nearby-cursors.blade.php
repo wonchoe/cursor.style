@@ -8,10 +8,10 @@
                 style="opacity: {{ $loopCursor->id === $current_id ? '1' : '0.2' }};"
                 @if($loopCursor->id === $current_id) aria-current="true" @endif>
                 <div class="main__item-img cs_pointer" data-cur-id="{{ $loopCursor->id }}" cursorshover="true">
-                    <img class="cursorimg"
+                    <img loading="lazy" class="cursorimg"
                          style="cursor: url({{ asset_cdn($loopCursor->c_file) }}) 0 0, auto !important;"
                          src="{{ asset_cdn($loopCursor->c_file) }}">
-                    <img class="cursorimg"
+                    <img loading="lazy" class="cursorimg"
                          style="cursor: url({{ asset_cdn($loopCursor->p_file) }}) 0 0, auto !important;"
                          src="{{ asset_cdn($loopCursor->p_file) }}">
                 </div>

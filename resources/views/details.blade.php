@@ -64,7 +64,7 @@
                             <h2>{{ $item->currentTranslation->name ?? $item->base_name_en }} @lang('messages.collection')</h2>
                         </div>
                         <div class="random_cat_img">
-                            <img src="{{ $item->img }}"
+                            <img loading="lazy" src="{{ $item->img }}"
                                  alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
                                  title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
                         </div>

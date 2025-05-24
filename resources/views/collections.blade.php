@@ -42,7 +42,7 @@
                         <h2 class="collection__item_cat_title">
                             {{ $item->currentTranslation->name ?? $item->base_name_en }}
                         </h2>
-                        <img class="main__cat-img"
+                        <img loading="lazy" class="main__cat-img"
                              src="{{ asset_cdn($item->img) }}"
                              alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
                              title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">

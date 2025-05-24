@@ -29,8 +29,8 @@
             <div class="cursor-reward-banner" id="rewardBanner">
                 <div id="rewardBlock">
                     <div class="cursor-images">
-                        <img src="{{ asset_cdn('/images/ads-cursor.png') }}" alt="Cursor" class="cursor-img">
-                        <img src="{{ asset_cdn('/images/ads-pointer.png') }}" alt="Pointer" class="cursor-img">
+                        <img src="{{ asset_cdn('/images/ads-cursor.png') }}" alt="Cursor" class="cursor-img" loading="lazy">
+                        <img src="{{ asset_cdn('/images/ads-pointer.png') }}" alt="Pointer" class="cursor-img" loading="lazy">
                     </div>
                     <div class="cursor-text" id="rewardText">
                         <h2><img class="gift" src="{{ asset_cdn('images/gift.svg') }}">@lang('messages.reward_title')</h2>

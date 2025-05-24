@@ -16,8 +16,8 @@
                 <p>{{ $translation }}</p>
             </div>
             <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                <img class="cursorimg" style="cursor: url({{ asset_cdn($cursor->c_file) }}) 0 0, auto !important;" src="{{ asset_cdn($cursor->c_file) }}">
-                <img class="cursorimg" style="cursor: url({{ asset_cdn($cursor->p_file) }}) 0 0, auto !important;" src="{{ asset_cdn($cursor->p_file) }}">
+                <img loading="lazy" class="cursorimg" style="cursor: url({{ asset_cdn($cursor->c_file) }}) 0 0, auto !important;" src="{{ asset_cdn($cursor->c_file) }}">
+                <img loading="lazy" class="cursorimg" style="cursor: url({{ asset_cdn($cursor->p_file) }}) 0 0, auto !important;" src="{{ asset_cdn($cursor->p_file) }}">
             </div>
 
             <span class="downloads-badge">

@@ -1,7 +1,7 @@
 <div class="container" id="install_container">
     <div class="install-panel">
         <div class="install-panel__logo">
-            <img src="{{ asset_cdn('images/chrome.png') }}" alt="@lang('messages.install_alt')" title="@lang('messages.install_title')">
+            <img loading="lazy" src="{{ asset_cdn('images/chrome.png') }}" alt="@lang('messages.install_alt')" title="@lang('messages.install_title')">
         </div>
         <div class="install-panel__left">
             <div class="install-panel__title">@lang('messages.install_text_1')</div>
