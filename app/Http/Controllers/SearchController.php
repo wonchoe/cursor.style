@@ -9,7 +9,7 @@ use App\Models\Cursors;
 use App\Models\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-
+use App\Support\CursorPresenter;
 
 use App;
 
@@ -103,74 +103,99 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
         $lang = app()->getLocale();
         $query = $q;
         $limit = 100;
-    
+
         if (!$query) return redirect('/');
-    
+
+        $collections = Collection::with('currentTranslation')->get();
+
         try {
             $response = $this->miliRequest($lang, $query, $limit);
-    
+
             if ($response->failed()) {
                 throw new \Exception("Meilisearch request failed");
             }
-    
+
             $ids = collect($response->json()['hits'])->pluck('id')->toArray();
-    
+
             $excludeId = ($_COOKIE['hide_item_2082'] ?? null) === 'true' ? 100000000 : 2082;
+
+            // Підтягуємо курсори одразу з currentTranslation
             $cursorModels = Cursors::whereIn('id', $ids)
                 ->whereDate('schedule', '<=', now())
                 ->where('id', '<>', $excludeId)
+                ->with('currentTranslation')
                 ->get();
-    
-            $collections = Collection::all();
-    
+
+            // Перетворюємо список id в колекцію курсорів у потрібному порядку
             $cursors = collect($ids)->map(function ($id) use ($cursorModels, $collections) {
                 $cursor = $cursorModels->firstWhere('id', $id);
                 if (!$cursor) return null;
-    
+
+                // Назва в slug-форматі
                 $cursor->name_s = Str::slug($cursor->name_en);
+
+                // Колекція
                 $collection = $collections->first(fn($item) => $item->id == $cursor->cat);
                 $cursor->setRelation('collection', $collection);
-    
+
+                // SEO, slug-и, файли
                 if ($collection) {
-                    $seoCategory = Str::slug($collection->base_name_en);
-                    $seoCursor = Str::slug($cursor->name_en);
-                    $fullSlug = "collections/{$seoCategory}/{$cursor->id}-{$seoCursor}";
-    
-                    $cursor->slug_url_final = $fullSlug;
-                    $cursor->c_file_no_ext = $fullSlug . '-cursor';
-                    $cursor->p_file_no_ext = $fullSlug . '-pointer';
+                    $seo = CursorPresenter::seo($cursor);
+                    $cursor->detailsSlug = $seo['detailsSlug'];
+                    $cursor->collectionSlug = $seo['collectionSlug'];
+                    $cursor->c_file = $seo['c_file'];
+                    $cursor->p_file = $seo['p_file'];
                 }
-    
+
+                // Теги для поточної мови (опціонально)
+                $tagTranslation = \App\Models\CursorTagTranslation::where('cursor_id', $cursor->id)
+                    ->where('lang', app()->getLocale())
+                    ->first();
+                if ($tagTranslation) {
+                    $cursor->tags = explode(' ', $tagTranslation->tags);
+                }
+
+                // Можна додати ще інші поля, якщо використовуєш їх у шаблоні (наприклад, seo_title, seo_description...)
+
                 return $cursor;
             })->filter();
-    
+
             $sort = 'search';
-    
+
         } catch (\Throwable $e) {
             logger()->warning('Meilisearch error: ' . $e->getMessage());
-    
+
+            // Фолбек логіка (аналогічно заповнюємо курсори як вище)
             $cursors = $this->searchFallback($query, $lang);
-            $collections = Collection::all();
-    
-            foreach ($cursors as $cursorItem) {
-                $cursorItem->name_s = Str::slug($cursorItem->name_en);
-                $collection = $collections->first(fn($item) => $item->id == $cursorItem->cat);
-                $cursorItem->setRelation('collection', $collection);
-    
+            $collections = Collection::with('currentTranslation')->get();
+
+            $cursors = collect($cursors)->map(function ($cursor) use ($collections) {
+                $cursor->name_s = Str::slug($cursor->name_en);
+
+                $collection = $collections->first(fn($item) => $item->id == $cursor->cat);
+                $cursor->setRelation('collection', $collection);
+
                 if ($collection) {
-                    $seoCategory = Str::slug($collection->base_name_en);
-                    $seoCursor = Str::slug($cursorItem->name_en);
-                    $fullSlug = "collections/{$seoCategory}/{$cursorItem->id}-{$seoCursor}";
-    
-                    $cursorItem->slug_url_final = $fullSlug;
-                    $cursorItem->c_file_no_ext = $fullSlug . '-cursor';
-                    $cursorItem->p_file_no_ext = $fullSlug . '-pointer';
+                    $seo = CursorPresenter::seo($cursor);
+                    $cursor->detailsSlug = $seo['detailsSlug'];
+                    $cursor->collectionSlug = $seo['collectionSlug'];
+                    $cursor->c_file = $seo['c_file'];
+                    $cursor->p_file = $seo['p_file'];
                 }
-            }
-    
+
+                $tagTranslation = \App\Models\CursorTagTranslation::where('cursor_id', $cursor->id)
+                    ->where('lang', app()->getLocale())
+                    ->first();
+                if ($tagTranslation) {
+                    $cursor->tags = explode(' ', $tagTranslation->tags);
+                }
+
+                return $cursor;
+            })->filter();
+
             $sort = 'fallback';
         }
-    
+
         return response()
             ->view('index', [
                 'cursors' => $cursors,
@@ -180,4 +205,5 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
             ->header('Cache-Tag', 'index')
             ->withoutCookie('Cache-Control');
     }
+
 }    
