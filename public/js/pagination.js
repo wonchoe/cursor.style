@@ -1,3 +1,4 @@
+if (typeof currentPage === 'undefined') currentPage = false;
 
 function renderPagination(currentPage, totalPages, maxVisible = 7) {
     const wrapper = document.querySelector('.pagination-wrapper');
