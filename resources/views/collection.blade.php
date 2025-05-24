@@ -44,7 +44,8 @@
 
                     @php
                         $rawText = $collection->currentTranslation->desc ?? $collection->description;
-                        $text = strip_tags(stripslashes($rawText));
+                        $text = preg_replace('/\\\\*"/', '"', $rawText);
+                        //$text = strip_tags(stripslashes($rawText));
                         $preview = Str::limit($text, 350, '...');
                     @endphp
 
