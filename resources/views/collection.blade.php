@@ -5,11 +5,11 @@
     <meta name="description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}" />
     <meta property="og:title" content="{{ $collection->currentTranslation->name ?? $collection->base_name_en }} {{ __('collections.mouse_cursors') }}" />
     <meta property="og:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}" />
-    <meta property="og:image" content="/collections/{{ $collection->slug }}/index.png" />
+    <meta property="og:image" content="{{ asset_cdn($collection->img) }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ $collection->currentTranslation->name ?? $collection->base_name_en }} {{ __('collections.mouse_cursors') }}" />
     <meta name="twitter:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}" />
-    <meta name="twitter:image" content="/collections/{{ $collection->slug }}/index.png" />
+    <meta name="twitter:image" content="{{ asset_cdn($collection->slug) }}" />
 @endsection
 
 @push('styles')
@@ -32,7 +32,7 @@
 
             <div class="collection-description">
                 <div class="collection-description__img">
-                    <img src="{{ $collection->img }}"
+                    <img src="{{ asset_cdn($collection->img) }}"
                          alt="{{ $collection->currentTranslation->name ?? $collection->base_name_en }}"
                          title="{{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}">
                 </div>
@@ -70,7 +70,7 @@
                                 <h2>{{ $item->currentTranslation->name ?? $item->base_name_en }} @lang('messages.collection')</h2>
                             </div>
                             <div class="random_cat_img">
-                                <img src="{{ $item->img }}"
+                                <img src="{{ asset_cdn($item->img) }}"
                                      alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
                                      title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
                             </div>
