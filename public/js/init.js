@@ -311,13 +311,13 @@ function setupMiliSearch() {
       html += `
         <div class="category-block" style="margin-bottom:16px;">
           <div class="category-header" onclick="window.location='/collections/${group.alt}'" style="display:flex;align-items:center;margin-bottom:5px;">
-            ${group.img ? `<img src="${window.assetCdnBase}/collection/${group.catid}-${group.alt}" height="32">` : ''}
+            ${group.img ? `<img src="${window.assetCdnBase}${group.img}" height="32">` : ''}
             <strong>${group.name}</strong>
           </div>
           <ul style="list-style:none;padding-left:10px;margin:0;">
             ${group.items.map(cursor => `
               <li onclick="window.location='/details/${cursor.id}-${cursor.name}'" style="cursor:pointer;display:flex;align-items:center;">
-                <img src="${window.assetCdnBase}/collections/${group.alt}/${cursor.id}-${cursor.name}-cursor" width="32" height="32" style="margin-right:10px;">
+                <img src="${window.assetCdnBase}/${cursor.c_file}" width="32" height="32" style="margin-right:10px;">
                 ${cursor.name}
               </li>
             `).join('')}
