@@ -311,7 +311,7 @@ function setupMiliSearch() {
       html += `
         <div class="category-block" style="margin-bottom:16px;">
           <div class="category-header" onclick="window.location='/collections/${group.alt}'" style="display:flex;align-items:center;margin-bottom:5px;">
-            ${group.img ? `<img src="${window.assetCdnBase}${group.img}" height="32">` : ''}
+            ${group.img ? `<img src="${window.assetCdnBase}/${group.img}" height="32">` : ''}
             <strong>${group.name}</strong>
           </div>
           <ul style="list-style:none;padding-left:10px;margin:0;">
