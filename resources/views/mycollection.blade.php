@@ -125,5 +125,5 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="https://cursor.style/js/mycollection.js{{ build_version() }}"></script>
-    <script src="https://cursor.style/tabler/tablerClass.js"></script>
+    <script src="https://cursor.style/js/tabler/tablerClass.js"></script>
 @endpush
