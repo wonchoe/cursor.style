@@ -50,6 +50,7 @@ Route::prefix('/admin')->group(function() {
 
 // MY COLLECTION
 Route::view('/mycollection', 'mycollection');
+Route::get('/mycollection', [CollectionsController::class, 'myCollection']);
 
 // CONTACT
 Route::view('/contact', 'contact');

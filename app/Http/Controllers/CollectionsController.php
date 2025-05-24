@@ -13,6 +13,27 @@ use App\Support\CursorPresenter;
 class CollectionsController extends Controller
 {
 
+
+    public function myCollection()
+    {
+        $collections = Collection::with('currentTranslation')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        foreach ($collections as $collection) {
+            $seo = CollectionPresenter::seo($collection);
+            $collection->slug = $seo['slug'];
+            $collection->url = $seo['url'];
+            $collection->img = $seo['img'];
+            $collection->trans = $seo['trans'];
+        }
+
+        return response()
+            ->view('mycollection', ['mycollection' => $collections])
+            ->header('Cache-Tag', 'collections');
+    }
+
+
     public function index()
     {
         $collections = Collection::with('currentTranslation')

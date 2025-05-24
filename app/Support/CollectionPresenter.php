@@ -29,7 +29,8 @@ class CollectionPresenter
         return [
             'slug' => $slug,
             'url' => "/collections/{$collection->id}-{$slug}",
-            'img' => "/{$collection->img}"
+            'img' => "/{$collection->img}",
+            'trans' => $name
         ];
     }
 }
