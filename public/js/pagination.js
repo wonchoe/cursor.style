@@ -81,15 +81,15 @@ function getMaxVisiblePages() {
 
 let maxVisible = getMaxVisiblePages();
 
-renderPagination(currentPage, totalPages, maxVisible);
+if (currentPage) renderPagination(currentPage, totalPages, maxVisible);
 
 document.addEventListener('DOMContentLoaded', function () {
-    renderPagination(currentPage, totalPages, maxVisible);
+    if (currentPage) renderPagination(currentPage, totalPages, maxVisible);
 });
 
 window.addEventListener('resize', () => {
     let maxVisible = getMaxVisiblePages();
-    renderPagination(currentPage, totalPages, maxVisible);
+    if (currentPage) renderPagination(currentPage, totalPages, maxVisible);
 });
 
 

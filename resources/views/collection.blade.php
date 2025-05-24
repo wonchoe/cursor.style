@@ -85,5 +85,4 @@
 
 @push('scripts')
     <script src="{{ asset_ver('js/pagination.js') }}"></script>
-    <script src="{{ asset_ver('js/main.js') }}"></script>
 @endpush
