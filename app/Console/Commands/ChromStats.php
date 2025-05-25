@@ -67,7 +67,7 @@ public function parseChromeStats($html)
 
     public function getReport($id, $project)
     {
-        $today = Carbon::now('America/New_York')->format('Y-m-d');
+        $today = Carbon::now('America/Los_Angeles')->format('Y-m-d');
 
         $url = "https://chrome-stats.com/d/{$id}/trends";
 
