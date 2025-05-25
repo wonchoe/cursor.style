@@ -12,58 +12,57 @@ class ChromStats extends Command
     protected $signature = 'custom:ChromStats';
     protected $description = 'Get data from Chrome stat';
 
-    public function parseChromeStats($html)
-    {
-        $result = [];
+public function parseChromeStats($html)
+{
+    $result = [
+        'users_total'    => null,
+        'rating_value'   => null,
+        'feedbacks_total'=> null,
+        'overal_rank'    => null,
+        'cat_name'       => null,
+        'cat_rank'       => null,
+    ];
 
-        // users_total
-        preg_match('/<td class="table-cell-3qU2Lo">Users<\/td>\s*<td class="table-cell-3qU2Lo">([^<]+)<\/td>/', $html, $m);
-        $result['users_total'] = isset($m[1]) ? (int) str_replace([',', '+', ' '], '', $m[1]) : null;
+    // Users
+    preg_match('/<td class="table-cell-3qU2Lo">Users<\/td>\s*<td class="table-cell-3qU2Lo">([^<]+)<\/td>/', $html, $m);
+    $result['users_total'] = isset($m[1]) ? (int) str_replace([',', '+', ' '], '', $m[1]) : null;
 
-        // rating_value
-        preg_match('/<td class="table-cell-3qU2Lo">Average rating<\/td>\s*<td class="table-cell-3qU2Lo">([^<]+)<\/td>/', $html, $m);
-        $result['rating_value'] = isset($m[1]) ? trim($m[1]) : null;
+    // Rating value
+    preg_match('/<td class="table-cell-3qU2Lo">Average rating<\/td>\s*<td class="table-cell-3qU2Lo">([^<]+)<\/td>/', $html, $m);
+    $result['rating_value'] = isset($m[1]) ? trim($m[1]) : null;
 
-        // feedbacks_total
-        preg_match('/<td class="table-cell-3qU2Lo">Rating count<\/td>\s*<td class="table-cell-3qU2Lo">([^<]+)<\/td>/', $html, $m);
-        $result['feedbacks_total'] = isset($m[1]) ? (int) str_replace([',', ' '], '', $m[1]) : null;
+    // Feedbacks total
+    preg_match('/<td class="table-cell-3qU2Lo">Rating count<\/td>\s*<td class="table-cell-3qU2Lo">([^<]+)<\/td>/', $html, $m);
+    $result['feedbacks_total'] = isset($m[1]) ? (int) str_replace([',', ' '], '', $m[1]) : null;
 
-        // overal_rank
-        if (preg_match('/<tr[^>]+id="overall-rank"[^>]*>(.*?)<\/tr>/si', $html, $m)) {
-            $tr = $m[1];
-            if (preg_match_all('/<td[^>]*>(.*?)<\/td>/si', $tr, $cells) && count($cells[1]) >= 2) {
-                $result['overal_rank'] = (int) preg_replace('/\D/', '', strip_tags($cells[1][1]));
-            } else {
-                $result['overal_rank'] = null;
-            }
-        } else {
-            $result['overal_rank'] = null;
+    // Overal rank
+    if (preg_match('/<tr[^>]+id="overall-rank"[^>]*>(.*?)<\/tr>/si', $html, $m)) {
+        $tr = $m[1];
+        if (preg_match_all('/<td[^>]*>(.*?)<\/td>/si', $tr, $cells) && count($cells[1]) >= 2) {
+            $result['overal_rank'] = (int) preg_replace('/\D/', '', strip_tags($cells[1][1]));
         }
-
-        // cat_rank (Just for Fun)
-        if (preg_match('/<tr[^>]+id="cat-lifestyle\/fun-rank"[^>]*>(.*?)<\/tr>/si', $html, $m)) {
-            $tr = $m[1];
-            if (preg_match_all('/<td[^>]*>(.*?)<\/td>/si', $tr, $cells) && count($cells[1]) >= 2) {
-                $result['cat_rank'] = (int) preg_replace('/\D/', '', strip_tags($cells[1][1]));
-            } else {
-                $result['cat_rank'] = null;
-            }
-        } else {
-            // fallback на інший варіант ідентифікатора
-            if (preg_match('/<tr[^>]+id="cat-lifestyle.fun-rank"[^>]*>(.*?)<\/tr>/si', $html, $m)) {
-                $tr = $m[1];
-                if (preg_match_all('/<td[^>]*>(.*?)<\/td>/si', $tr, $cells) && count($cells[1]) >= 2) {
-                    $result['cat_rank'] = (int) preg_replace('/\D/', '', strip_tags($cells[1][1]));
-                } else {
-                    $result['cat_rank'] = null;
-                }
-            } else {
-                $result['cat_rank'] = null;
-            }
-        }
-
-        return $result;
     }
+
+    // Категорія: перший <tr> після overall-rank з id="cat-*"
+    $catRow = null;
+    if (preg_match('/<tr[^>]+id="overall-rank"[^>]*>.*?<\/tr>(.*?)(<tr[^>]+id="cat-[^"]*-rank"[^>]*>.*?<\/tr>)/si', $html, $m)) {
+        $catRowHtml = $m[2];
+        if (preg_match('/<tr[^>]+id="cat-([^"]*)-rank"[^>]*>(.*?)<\/tr>/si', $catRowHtml, $trMatch)) {
+            $cat_tr = $trMatch[2];
+            if (preg_match_all('/<td[^>]*>(.*?)<\/td>/si', $cat_tr, $cells) && count($cells[1]) >= 2) {
+                // Назва категорії
+                if (preg_match('/<a[^>]*>([^<]+)<\/a>/', $cells[1][0], $catNameMatch)) {
+                    $result['cat_name'] = trim($catNameMatch[1]);
+                }
+                // Ранк по категорії
+                $result['cat_rank'] = (int) preg_replace('/\D/', '', strip_tags($cells[1][1]));
+            }
+        }
+    }
+
+    return $result;
+}
+
 
 
     public function getReport($id, $project)
@@ -101,7 +100,7 @@ class ChromStats extends Command
         if (isset($data['cat_rank'])) {
             $reports->cat_rank = $data['cat_rank'];
         }
-        $reports->save();
+       $reports->save();
         $this->info($reports);
     }
 
@@ -113,11 +112,11 @@ class ChromStats extends Command
     public function handle()
     {
         date_default_timezone_set("America/Los_Angeles");
-        $this->getReport('imomahaddnhnhfggpmpbphdiobpmahof', 'youtube_skins_com');
-        $this->getReport('gideponcmplkbifbmopkmhncghnkpjng', 'ad_skipper');
+        // $this->getReport('imomahaddnhnhfggpmpbphdiobpmahof', 'youtube_skins_com');
+        // $this->getReport('gideponcmplkbifbmopkmhncghnkpjng', 'ad_skipper');
         $this->getReport('oodajhdbojacdmkhkiafdhicifcdjoig', 'fb_zone');
-        $this->getReport('oinkhgpjmeccknjbbccabjfonamfmcbn', 'cursor_land_com');
-        $this->getReport('bmjmipppabdlpjccanalncobmbacckjn', 'cursor_style');
+        // $this->getReport('oinkhgpjmeccknjbbccabjfonamfmcbn', 'cursor_land_com');
+        // $this->getReport('bmjmipppabdlpjccanalncobmbacckjn', 'cursor_style');
         return 0;
     }
 }
