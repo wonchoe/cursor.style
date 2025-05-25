@@ -41,7 +41,7 @@
             </span>
             <br>
             <span class="short_descr">
-                {{ $cursor->collection->currentTranslation->short_desc }}
+                {{ $cursor->collection->currentTranslation->short_desc ?? '' }}
             </span>
         </h2>
             

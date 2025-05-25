@@ -66,7 +66,7 @@ class IndexController extends Controller
             ->where('id', '<>', $excludeId);
 
         $collections = Collection::with('currentTranslation')->get();
-
+        
         // Current cursor
         $cursor = (clone $baseQuery)->where('id', $r->id)->firstOrFail();
 
