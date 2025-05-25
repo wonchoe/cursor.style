@@ -48,7 +48,22 @@
                                     </div>
                                 </td>
                                 <td>{{ $report->users_total ?? 0 }}</td>
-                                <td>{{ $report->rating_value ?? 0 }}</td>
+                                <td>
+                                    {{ $report->rating_value ?? 0 }}
+
+                                    @if (isset($report->rating_value_comparison))
+                                        @php
+                                            $diffText = trim(str_replace(['(', ')'], '', $report->rating_value_comparison));
+                                            // Для рейтингів, наприклад 4.86 (+0.01)
+                                            $diff = (float) str_replace(['+', '-'], '', $diffText);
+                                            $isIncreased = strpos($report->rating_value_comparison, '+') !== false;
+                                            $colorClass = $diff == 0 ? 'bg-secondary' : ($isIncreased ? 'bg-success' : 'bg-danger');
+                                            $sign = $diff == 0 ? '0' : ($isIncreased ? '+' . $diff : '-' . $diff);
+                                        @endphp
+
+                                        <span class="badge {{ $colorClass }} ms-1">{{ $sign }}</span>
+                                    @endif
+                                </td>
                                 <td>
                                     {{ $report->feedbacks_total ?? 0 }}
 
