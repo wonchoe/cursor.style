@@ -50,6 +50,19 @@ class ReportsController extends Controller {
             // Сортуємо дані в реверсному порядку для порівняння
             foreach ($data->reverse() as $report) {
                 if ($previousData) {
+                    // Порівняння рейтингу з попереднім днем
+                    if ($report->rating_value !== 0 && isset($previousData->rating_value)) {
+                        if ($report->rating_value > $previousData->rating_value) {
+                            $report->rating_sign = '<i class="fas fa-arrow-up text-emerald-500"></i>';
+                            $difference = round($report->rating_value - $previousData->rating_value, 2);
+                            $report->rating_value_comparison = ' (+' . $difference . ')';
+                        } elseif ($report->rating_value < $previousData->rating_value) {
+                            $report->rating_sign = '<i class="fas fa-arrow-down text-orange-500"></i>';
+                            $difference = round($previousData->rating_value - $report->rating_value, 2);
+                            $report->rating_value_comparison = ' (-' . $difference . ')';
+                        }
+                    }
+
                     // Порівняння з попереднім днем
                     if ($report->feedbacks_total !== 0) {
                         if ($report->feedbacks_total > $previousData->feedbacks_total) {
