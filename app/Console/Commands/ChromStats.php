@@ -41,7 +41,7 @@ class ChromStats extends Command {
             $reports->cat_rank = $response->allRanks[1]->value;
         }
         $reports->save();  
-        $this->info($response);
+        $this->info($reports);
     }
     
     public function __construct() {
