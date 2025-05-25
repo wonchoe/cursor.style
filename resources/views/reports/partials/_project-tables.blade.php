@@ -48,7 +48,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $report->users_total ?? 0 }}</td>
-                                <td>{{ $report->rating ?? 0 }}</td>
+                                <td>{{ $report->rating_value ?? 0 }}</td>
                                 <td>
                                     {{ $report->feedbacks_total ?? 0 }}
 
