@@ -41,7 +41,7 @@
             </span>
             <br>
             <span class="short_descr">
-                {{ $cursor->collection-> short_descr }}
+                {{ $item->currentTranslation->short_desc }}
             </span>
         </h2>
             
