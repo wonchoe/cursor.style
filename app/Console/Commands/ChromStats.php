@@ -112,11 +112,11 @@ public function parseChromeStats($html)
     public function handle()
     {
         date_default_timezone_set("America/Los_Angeles");
-        // $this->getReport('imomahaddnhnhfggpmpbphdiobpmahof', 'youtube_skins_com');
-        // $this->getReport('gideponcmplkbifbmopkmhncghnkpjng', 'ad_skipper');
+        $this->getReport('imomahaddnhnhfggpmpbphdiobpmahof', 'youtube_skins_com');
+        $this->getReport('gideponcmplkbifbmopkmhncghnkpjng', 'ad_skipper');
         $this->getReport('oodajhdbojacdmkhkiafdhicifcdjoig', 'fb_zone');
-        // $this->getReport('oinkhgpjmeccknjbbccabjfonamfmcbn', 'cursor_land_com');
-        // $this->getReport('bmjmipppabdlpjccanalncobmbacckjn', 'cursor_style');
+        $this->getReport('oinkhgpjmeccknjbbccabjfonamfmcbn', 'cursor_land_com');
+        $this->getReport('bmjmipppabdlpjccanalncobmbacckjn', 'cursor_style');
         return 0;
     }
 }
