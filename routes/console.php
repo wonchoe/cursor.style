@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\Schedule;
 
 
 Schedule::command('adsense:fetch')->everyFiveMinutes();
- 
+Schedule::command('custom:ChromStats')->hourly();
 
-// Замість Schedule::job() -> Schedule::call() з dispatch-ом job'и
 
 Schedule::call(function () {
     \Log::info('Schedule RUN ' . now());
