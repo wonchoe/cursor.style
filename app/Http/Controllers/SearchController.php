@@ -67,9 +67,7 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
         foreach ($hosts as $host) {
             try {
                 Log::info('📦 Тіло запиту: ' . json_encode([
-                    'lang' => $lang,
-                    'q' => $query,
-                    'limit' => $limit,
+                    $lang => $query
                 ]));
     
                 $response = Http::withHeaders([
