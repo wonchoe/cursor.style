@@ -51,10 +51,13 @@
                                 <td>
                                     {{ $report->rating_value ?? 0 }}
 
-                                    @if (isset($report->rating_value_comparison))
+                                    @if (
+                                        isset($report->rating_value_comparison) &&
+                                        !empty($report->rating_value) &&
+                                        $report->rating_value != 0
+                                    )
                                         @php
                                             $diffText = trim(str_replace(['(', ')'], '', $report->rating_value_comparison));
-                                            // Для рейтингів, наприклад 4.86 (+0.01)
                                             $diff = (float) str_replace(['+', '-'], '', $diffText);
                                             $isIncreased = strpos($report->rating_value_comparison, '+') !== false;
                                             $colorClass = $diff == 0 ? 'bg-secondary' : ($isIncreased ? 'bg-success' : 'bg-danger');
@@ -64,10 +67,16 @@
                                         <span class="badge {{ $colorClass }} ms-1">{{ $sign }}</span>
                                     @endif
                                 </td>
-                                <td>
-                                    {{ $report->feedbacks_total ?? 0 }}
 
-                                    @if (isset($report->feedbacks_total_comparison))
+
+                                <td>
+                                    {{ !empty($report->feedbacks_total) && $report->feedbacks_total != 0 ? $report->feedbacks_total : '' }}
+
+                                    @if (
+                                        isset($report->feedbacks_total_comparison) &&
+                                        !empty($report->feedbacks_total) &&
+                                        $report->feedbacks_total != 0
+                                    )
                                         @php
                                             $diffText = trim(str_replace(['(', ')'], '', $report->feedbacks_total_comparison));
                                             $diff = (int) str_replace(['+', '-'], '', $diffText);
@@ -80,9 +89,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $report->overal_rank ?? 0 }}
+                                    {{ !empty($report->overal_rank) && $report->overal_rank != 0 ? $report->overal_rank : '' }}
 
-                                    @if (isset($report->overal_rank_comparison))
+                                    @if (
+                                        isset($report->overal_rank_comparison) &&
+                                        !empty($report->overal_rank) &&
+                                        $report->overal_rank != 0
+                                    )
                                         @php
                                             $diffText = trim(str_replace(['(', ')'], '', $report->overal_rank_comparison));
                                             $diff = (int) str_replace(['+', '-'], '', $diffText);
@@ -95,9 +108,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $report->cat_rank ?? 0 }}
+                                    {{ !empty($report->cat_rank) && $report->cat_rank != 0 ? $report->cat_rank : '' }}
 
-                                    @if (isset($report->cat_rank_comparison))
+                                    @if (
+                                        isset($report->cat_rank_comparison) &&
+                                        !empty($report->cat_rank) &&
+                                        $report->cat_rank != 0
+                                    )
                                         @php
                                             $diffText = trim(str_replace(['(', ')'], '', $report->cat_rank_comparison));
                                             $diff = (int) str_replace(['+', '-'], '', $diffText);
@@ -109,6 +126,7 @@
                                         <span class="badge {{ $colorClass }} ms-1">{{ $sign }}</span>
                                     @endif
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>
