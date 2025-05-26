@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-use App\Models\reports;
+use App\Models\Reports;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_AnalyticsData;
@@ -78,25 +78,25 @@ public function fetchStats($analytics, $propertyId, $date, $eventLabel)
 
 
 $labels = [
-    'cursor_style_chrome',
-    'youtube_skins_com',
-    'cursor_land_chrome',
+    'cursor_style',
+    'fb_zone',
     'ad_skipper',
-    'fb_zone_chrome',
+    'youtube_skins_com',
+    'cursor_land_com',
 ];
 
 foreach ($labels as $label) {
     $todayStats = $this->fetchStats($analytics, $ga4PropertyId, $today, $label);
     $yesterdayStats = $this->fetchStats($analytics, $ga4PropertyId, $yesterday, $label);
 
-    // Reports::updateOrCreate(
-    //     ['date' => $today, 'project' => $label],
-    //     ['installs' => $todayStats['install'], 'uninstalls' => $todayStats['uninstall']]
-    // );
-    // Reports::updateOrCreate(
-    //     ['date' => $yesterday, 'project' => $label],
-    //     ['installs' => $yesterdayStats['install'], 'uninstalls' => $yesterdayStats['uninstall']]
-    // );
+    Reports::updateOrCreate(
+        ['date' => $today, 'project' => $label],
+        ['installs' => $todayStats['install'], 'uninstalls' => $todayStats['uninstall']]
+    );
+    Reports::updateOrCreate(
+        ['date' => $yesterday, 'project' => $label],
+        ['installs' => $yesterdayStats['install'], 'uninstalls' => $yesterdayStats['uninstall']]
+    );
 
     $this->info("GA4 $label TODAY: installs={$todayStats['install']}, uninstalls={$todayStats['uninstall']}");
     $this->info("GA4 $label YESTERDAY: installs={$yesterdayStats['install']}, uninstalls={$yesterdayStats['uninstall']}");
