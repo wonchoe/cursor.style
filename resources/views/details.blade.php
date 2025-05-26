@@ -35,13 +35,14 @@
         @include('partials.nearby-cursors', ['cursors' => $all_cursors, 'current_id' => $cursor->id])
 
         @if($category_cursors->isNotEmpty())
+        
         <h2 class="section-title">
             <span class="title">
                 {{ $cursor->collection->currentTranslation->name ?? $cursor->collection->base_name_en }} - @lang('messages.collection')
             </span>
             <br>
             <span class="short_descr">
-                {{ $cursor->collection->currentTranslation->short_desc ?? '' }}
+                {{ $cursor->collection->currentTranslation->short_desc ?? $cursor->collection->short_descr ?? '' }}
             </span>
         </h2>
             

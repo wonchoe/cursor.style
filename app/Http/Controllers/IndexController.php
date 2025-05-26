@@ -60,15 +60,19 @@ class IndexController extends Controller
         if (!$r->id) {
             abort(404);
         }
+        //app()->setLocale('uk');
 
         $excludeId = $r->cookie('hide_item_2082') === 'true' ? 100000000 : 2082;
         $baseQuery = Cursors::whereDate('schedule', '<=', now())
-            ->where('id', '<>', $excludeId);
+            ->where('id', '<>', $excludeId)->with('currentTranslation');
 
         $collections = Collection::with('currentTranslation')->get();
-        
+
         // Current cursor
-        $cursor = (clone $baseQuery)->where('id', $r->id)->firstOrFail();
+        $cursor = (clone $baseQuery)
+            ->where('id', $r->id)
+            ->with(['currentTranslation', 'collection.currentTranslation'])
+            ->firstOrFail();
 
         // Додаємо описи з seo_cursor_texts для поточної мови
         $seoText = \App\Models\SeoCursorText::where('cursor_id', $cursor->id)
@@ -86,6 +90,8 @@ class IndexController extends Controller
         $cursor->collectionSlug = $seo['collectionSlug'];        
         $cursor->c_file = $seo['c_file'];
         $cursor->p_file = $seo['p_file'];
+        $cursor->short_desc = $seo['short_desc'];
+        
         $cursor->name_s = Str::slug($cursor->name_en);
 
         $tagTranslation = \App\Models\CursorTagTranslation::where('cursor_id', $cursor->id)
@@ -112,6 +118,7 @@ class IndexController extends Controller
 
         // Вибираємо курсори в правильному порядку
         $cursors = (clone $baseQuery)->whereIn('id', $windowIds)->get()->keyBy('id');
+
         $window = \Illuminate\Database\Eloquent\Collection::make(
             array_map(fn($id) => $cursors[$id] ?? null, $windowIds)
         )->filter();
@@ -128,7 +135,7 @@ class IndexController extends Controller
             $c->name_s = Str::slug($c->name_en);
         }
 
-        $centralIndex = $window->search(fn($c) => $c && $c->id === $cursor->id);
+        $centralIndex = $window->search(fn($c) => $c && $c->id === $cursor->id);        
 
         // 3 випадкові інші колекції
         $random = $collections->where('id', '!=', $cursor->cat)->random(3);

@@ -19,10 +19,14 @@ class CursorPresenter
      */
     public static function seo(Cursors $cursor): array
     {
-        
+
         // Беремо переклад категорії → fallback на base_name_en
         $categoryName = $cursor->collection->currentTranslation->name
             ?? $cursor->collection->base_name_en
+            ?? '';
+
+        $categoryDesc = $cursor->collection->currentTranslation->short_desc
+            ?? $cursor->collection->short_desc
             ?? '';
 
         // Переклад курсора → fallback на name_en
@@ -57,7 +61,8 @@ class CursorPresenter
             'c_file_no_ext' => "{$baseSlug}-cursor",
             'p_file_no_ext' => "{$baseSlug}-pointer",
             'c_file' => "/{$cursor->c_file}",
-            'p_file' => "/{$cursor->p_file}"                        
+            'p_file' => "/{$cursor->p_file}",
+            'short_desc' => $categoryDesc
         ];
     }
 }
