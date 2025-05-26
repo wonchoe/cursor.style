@@ -30,7 +30,7 @@ class AddCursorsToMeilisearch extends Command
             app()->setLocale($lang); // 👈 ДОДАЙ ЦЕ            
             $this->info("🌍 Мова: $lang");
 
-            $tagged = CursorTagTranslation::with('cursor.categories')
+            $tagged = CursorTagTranslation::with('cursor.Collection')
                 ->where(function ($q) use ($lang) {
                     $q->where('lang', $lang)
                     ->orWhere(function ($q2) use ($lang) {
