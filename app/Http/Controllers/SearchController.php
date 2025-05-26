@@ -66,8 +66,8 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
     
         foreach ($hosts as $host) {
             try {
-                Log::info("🔎 Запит до {$host}/indexes/cursors_{$lang}/search");
                 Log::info('📦 Тіло запиту: ' . json_encode([
+                    'lang' => $lang,
                     'q' => $query,
                     'limit' => $limit,
                 ]));
@@ -84,7 +84,6 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
                 ->post("{$host}/indexes/cursors_{$lang}/search");
     
                 if ($response->successful()) {
-                    Log::info("✅ Успішна відповідь від {$host}");
                     return $response;
                 } else {
                     Log::warning("⚠️ Статус: " . $response->status() . "; Тіло: " . $response->body());
