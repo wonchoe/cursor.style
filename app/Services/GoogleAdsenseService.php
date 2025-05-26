@@ -29,7 +29,6 @@ class GoogleAdsenseService
             ]);
 
             $data = json_decode($response->getBody()->getContents(), true);
-            logger()->info('Access token retrieved', ['token' => substr($data['access_token'] ?? 'N/A', 0, 10) . '...']);
             return $data['access_token'] ?? null;
 
         } catch (\Throwable $e) {
@@ -66,9 +65,9 @@ class GoogleAdsenseService
                 return null;
             }
 
-            logger()->info('Retrieved AdSense account', [
-                'accountFullPath' => $accountFullPath,
-            ]);
+            // logger()->info('Retrieved AdSense account', [
+            //     'accountFullPath' => $accountFullPath,
+            // ]);
 
             // 2. Retrieve AFC ad client
             $adClientsResp = $this->client->get("$accountFullPath/adclients", [
@@ -97,10 +96,10 @@ class GoogleAdsenseService
                 return null;
             }
 
-            logger()->info('Retrieved AdSense ad client', [
-                'adClientResource' => $adClientResource,
-                'adClientId' => $adClientId,
-            ]);
+            // logger()->info('Retrieved AdSense ad client', [
+            //     'adClientResource' => $adClientResource,
+            //     'adClientId' => $adClientId,
+            // ]);
 
             // 3. Generate report
             $reportUrl = "$accountFullPath/reports:generate";
@@ -134,13 +133,13 @@ class GoogleAdsenseService
 
             $fullUrlWithQuery = $fullUrl . '?' . $queryString;
 
-            logger()->info('Calling AdSense reports:generate', [
-                'url' => $fullUrlWithQuery,
-                'account' => $accountFullPath,
-                'ad_client' => $adClientId,
-                'dateRange' => $dateRange,
-                'query_string' => $queryString,
-            ]);
+            // logger()->info('Calling AdSense reports:generate', [
+            //     'url' => $fullUrlWithQuery,
+            //     'account' => $accountFullPath,
+            //     'ad_client' => $adClientId,
+            //     'dateRange' => $dateRange,
+            //     'query_string' => $queryString,
+            // ]);
 
             $response = $this->client->get($fullUrlWithQuery, [
                 'headers' => [
@@ -150,9 +149,6 @@ class GoogleAdsenseService
             ]);
 
             $result = json_decode($response->getBody()->getContents(), true);
-            logger()->info('AdSense report retrieved successfully', [
-                'response' => $result,
-            ]);
             return $result;
 
         } catch (\GuzzleHttp\Exception\ClientException $e) {

@@ -57,8 +57,6 @@ class FetchAdsenseData extends Command
                     ]
                 );
             }
-
-            $this->info("Saved report for $range.");
         }
 
         return Command::SUCCESS;
