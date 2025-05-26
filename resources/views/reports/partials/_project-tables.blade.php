@@ -70,7 +70,7 @@
 
 
                                 <td>
-                                    {{ !empty($report->feedbacks_total) && $report->feedbacks_total != 0 ? $report->feedbacks_total : '' }}
+                                    {{ (isset($report->feedbacks_total) && $report->feedbacks_total !== '') ? $report->feedbacks_total : 0 }}
 
                                     @if (
                                         isset($report->feedbacks_total_comparison) &&
@@ -84,12 +84,11 @@
                                             $colorClass = $diff === 0 ? 'bg-secondary' : ($isIncreased ? 'bg-success' : 'bg-danger');
                                             $sign = $diff === 0 ? '0' : ($isIncreased ? '+' . $diff : '-' . $diff);
                                         @endphp
-
                                         <span class="badge {{ $colorClass }} ms-1">{{ $sign }}</span>
                                     @endif
                                 </td>
                                 <td>
-                                    {{ !empty($report->overal_rank) && $report->overal_rank != 0 ? $report->overal_rank : '' }}
+                                    {{ (isset($report->overal_rank) && $report->overal_rank !== '') ? $report->overal_rank : 0 }}
 
                                     @if (
                                         isset($report->overal_rank_comparison) &&
@@ -103,12 +102,11 @@
                                             $colorClass = $diff === 0 ? 'bg-secondary' : ($isImproved ? 'bg-success' : 'bg-danger');
                                             $sign = $diff === 0 ? '0' : ($isImproved ? '+' . $diff : '-' . $diff);
                                         @endphp
-
                                         <span class="badge {{ $colorClass }} ms-1">{{ $sign }}</span>
                                     @endif
                                 </td>
                                 <td>
-                                    {{ !empty($report->cat_rank) && $report->cat_rank != 0 ? $report->cat_rank : '' }}
+                                    {{ (isset($report->cat_rank) && $report->cat_rank !== '') ? $report->cat_rank : 0 }}
 
                                     @if (
                                         isset($report->cat_rank_comparison) &&
@@ -122,7 +120,6 @@
                                             $colorClass = $diff === 0 ? 'bg-secondary' : ($isImproved ? 'bg-success' : 'bg-danger');
                                             $sign = $diff === 0 ? '0' : ($isImproved ? '+' . $diff : '-' . $diff);
                                         @endphp
-
                                         <span class="badge {{ $colorClass }} ms-1">{{ $sign }}</span>
                                     @endif
                                 </td>
