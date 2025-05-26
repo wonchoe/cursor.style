@@ -3,7 +3,7 @@
         <div class="star_main_title">@lang('messages.vote_1')</div>
         <div class="star_title">@lang('messages.vote_2')</div>
         <a href="#" id="star_img_container">
-            <img style="width: 256px; margin: 20px;" src="{{ asset_cdn('images/star.gif') }}">
+            <img loading="lazy" style="width: 256px; margin: 20px;" src="{{ asset_cdn('images/star.gif') }}">
         </a>
         <button class="cursor-button" data-label="@lang('messages.vote_3')" id="star_vote"></button>
         <div class="maybelater" id="maybelater">@lang('messages.vote_4')</div>
