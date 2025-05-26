@@ -12,7 +12,7 @@ Schedule::command('custom:GetGoogleAnalyticsData')->everyMinute();
 
 // Create translation
 Schedule::command('custom:translate-collections')->everyTenMinutes();
-Schedule::command('custom:translate-collections')->everyTenMinutes();
+Schedule::command('custom:TranslateCursor')->everyTenMinutes();
 
 // Create tags for SEO
 Schedule::command('custom:tagsCreate')->everyTenMinutes();
