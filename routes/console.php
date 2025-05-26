@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('adsense:fetch')->everyFiveMinutes();
 Schedule::command('custom:ChromStats')->hourly();
-
+Schedule::command('custom:GetGoogleAnalyticsData')->hourly();
 
 Schedule::call(function () {
     \Log::info('Schedule RUN ' . now());
@@ -25,3 +25,4 @@ Schedule::call(function () {
 Schedule::call(function () {
     (new SeoBatchFetchAndSaveJob())->handle();
 })->everyTenMinutes();
+
