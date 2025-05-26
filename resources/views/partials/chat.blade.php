@@ -1,4 +1,14 @@
+@php
+    $animations = [
+        asset_cdn('/lottie/among_us.lottie'),
+        asset_cdn('/lottie/elephant.lottie'),
+        asset_cdn('/lottie/fish.lottie'),
+    ];
+    $randomAnimation = $animations[array_rand($animations)];
+@endphp
+
 <div class="chat-container" id="chatContainer">
+
     <div class="chat-header">
         <div id="welcomeUser" data-lang-tag="welcome_to_the_chat">@lang('messages.chat_welcome')</div>
         <div class="selector-container glass-container">
@@ -9,7 +19,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="messages-wrapper">
         <div id="floatingDate"></div>

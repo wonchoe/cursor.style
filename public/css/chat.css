@@ -945,7 +945,7 @@ div.cchat-flag[data-title="undefined"] {
   margin-right: -9px;
 }
 
-.cchat-flag img{
+.cchat-flag img {
   width: 15px;
   height: auto;
 }
@@ -1480,7 +1480,7 @@ li:not(.cchat-self) .cchat-msg::before {
 }
 
 
-#pLoad{
+#pLoad {
   text-align: center;
   display: flex;
   align-content: center;
@@ -1489,11 +1489,11 @@ li:not(.cchat-self) .cchat-msg::before {
   width: 100%;
 }
 
-#pLoad img{
+#pLoad img {
   max-width: 70px;
 }
 
-.chat-news-room-msg{
+.chat-news-room-msg {
   display: flex;
   flex-direction: row;
 }
