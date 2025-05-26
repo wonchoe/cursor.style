@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-use App\Models\reports;
+use App\Models\Reports;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_AnalyticsData;
@@ -70,12 +70,12 @@ class GetGoogleAnalyticsData extends Command
         $todayStats = $this->fetchStats($analytics, $ga4PropertyId, $today);
         $yesterdayStats = $this->fetchStats($analytics, $ga4PropertyId, $yesterday);
         
-        reports::updateOrCreate(
+        Reports::updateOrCreate(
             ['date' => $today, 'project' => 'cursor_style'],
             ['installs' => $todayStats['install'], 'uninstalls' => $todayStats['uninstall']]
         );
         
-        reports::updateOrCreate(
+        Reports::updateOrCreate(
             ['date' => $yesterday, 'project' => 'cursor_style'],
             ['installs' => $yesterdayStats['install'], 'uninstalls' => $yesterdayStats['uninstall']]
         );
