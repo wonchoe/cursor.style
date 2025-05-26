@@ -13,7 +13,7 @@ use Google_Service_AnalyticsData_RunReportRequest;
 
 class GetGoogleAnalyticsData extends Command
 {
-    protected $signature = 'GetGoogleAnalyticsData';
+    protected $signature = 'custom:GetGoogleAnalyticsData';
     protected $description = 'Get GA4 installs and uninstalls';
 
     public function fetchStats($analytics, $propertyId, $date, $eventLabel)
