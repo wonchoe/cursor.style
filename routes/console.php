@@ -10,6 +10,18 @@ Schedule::command('adsense:fetch')->everyFiveMinutes();
 Schedule::command('custom:ChromStats')->hourly();
 Schedule::command('custom:GetGoogleAnalyticsData')->everyMinute();
 
+// Create translation
+Schedule::command('custom:translate-collections')->everyTenMinutes();
+Schedule::command('custom:translate-collections')->everyTenMinutes();
+
+// Create tags for SEO
+Schedule::command('custom:tagsCreate')->everyTenMinutes();
+
+// Add to search
+Schedule::command('custom:meilisearchAddCursors')->everyTenMinutes();
+
+
+
 Schedule::call(function () {
     \Log::info('Schedule RUN ' . now());
 })->everyThirtyMinutes();

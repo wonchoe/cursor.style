@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use App\Models\cursor_tag_translation;
+use App\Models\CursorTagTranslation;
 
 class AddCursorsToMeilisearch extends Command
 {
@@ -30,7 +30,7 @@ class AddCursorsToMeilisearch extends Command
             app()->setLocale($lang); // 👈 ДОДАЙ ЦЕ            
             $this->info("🌍 Мова: $lang");
 
-            $tagged = cursor_tag_translation::with('cursor.categories')
+            $tagged = CursorTagTranslation::with('cursor.categories')
                 ->where(function ($q) use ($lang) {
                     $q->where('lang', $lang)
                     ->orWhere(function ($q2) use ($lang) {

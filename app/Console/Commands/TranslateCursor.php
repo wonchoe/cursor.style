@@ -1,8 +1,8 @@
 <?php
 namespace App\Console\Commands;
-use App\Models\cursor;
+use App\Models\Cursors;
 use App\Models\CursorTranslation;
-use App\Models\categories;
+use App\Models\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Console\Command;
@@ -107,7 +107,7 @@ class TranslateCursor extends Command
     public function handle()
     {
         $this->info("🚀 Старт повного циклу: мова → курсори → запит...");
-        $totalCursors = cursor::count();
+        $totalCursors = Cursors::count();
         $this->info("Загальна кількість курсорів: $totalCursors");
         $batchSize = 50;
 
@@ -118,7 +118,7 @@ class TranslateCursor extends Command
 
             while (true) {
                 // 1. Отримуємо 50 курсорів
-                $cursors = cursor::with('categories')
+                $cursors = Cursors::with('categories')
                     ->orderBy('id')
                     ->offset($offset)
                     ->limit($batchSize)
