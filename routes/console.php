@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('adsense:fetch')->everyFiveMinutes();
 Schedule::command('custom:ChromStats')->hourly();
-Schedule::command('custom:GetGoogleAnalyticsData')->hourly();
+Schedule::command('custom:GetGoogleAnalyticsData')->everyMinute();
 
 Schedule::call(function () {
     \Log::info('Schedule RUN ' . now());
