@@ -13,13 +13,12 @@ class ImageController extends Controller {
     public function serveImage($category_slug, $cursor_slug)
     {
 
-        $target = base_path('storage/app/public/collections');
+        $target = storage_path('app/public/collections'); // абсолютний шлях
         $link = public_path('collections');
 
         if (!is_link($link)) {
             symlink($target, $link);
         }
-
 
         // Обрізаємо .svg якщо є
         if (Str::endsWith($cursor_slug, '.svg')) {
