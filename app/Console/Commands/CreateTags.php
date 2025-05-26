@@ -124,7 +124,7 @@ class CreateTags extends Command
 
             while (true) {
                 // 1. Отримуємо 50 курсорів
-                $cursors = Cursors::with('categories')
+                $cursors = Cursors::with('Colection')
                     ->orderBy('id')
                     ->offset($offset)
                     ->limit($batchSize)
