@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Models\CollectionTranslation;
-use App\Models\categories;
+use App\Models\Collection;
 
 class TranslateCollections extends Command
 {
@@ -25,7 +25,7 @@ class TranslateCollections extends Command
         foreach ($this->languages as $lang) {
             $this->info("\n🌍 Language: $lang");
             
-            $batch = categories::whereNotIn('id', function ($query) use ($lang) {
+            $batch = Collection::whereNotIn('id', function ($query) use ($lang) {
                     $query->select('collection_id')
                           ->from('collections_translations')
                           ->where('lang', $lang);
