@@ -118,7 +118,7 @@ class TranslateCursor extends Command
 
             while (true) {
                 // 1. Отримуємо 50 курсорів
-                $cursors = Cursors::with('categories')
+                $cursors = Cursors::with('Collection')
                     ->orderBy('id')
                     ->offset($offset)
                     ->limit($batchSize)
