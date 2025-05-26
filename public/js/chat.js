@@ -8,7 +8,8 @@ function generateAvatarList() {
     avatarDiv.className = 'avatar-item';
     const img = document.createElement('img');
     img.src =  window.assetCdnBase + `/images/avatars/avatar_${i}.svg`;
-    img.onclick = () => selectAvatar(`avatar_${i}`);
+    img.loading = "lazy";    
+    img.onclick = () => selectAvatar(`avatar_${i}`);        
     avatarDiv.appendChild(img);
     avatarGrid.appendChild(avatarDiv);
   }
