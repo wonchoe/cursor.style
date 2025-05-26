@@ -9,7 +9,7 @@ class CursorTagTranslation extends Model
 {
 
     
-    protected $table = 'cursor_tag_translation';
+    protected $table = 'cursor_tag_translations';
     protected $fillable = [
         'cursor_id',
         'lang',
