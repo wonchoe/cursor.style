@@ -93,44 +93,45 @@ class AddCursorsToMeilisearch extends Command
                 ];
 
                 $response = null;
-
                 foreach ($hosts as $host) {
                     try {
                         if ($force) {
+                            // Drop index якщо force
                             Http::withHeaders([
                                 'Authorization' => 'Bearer masterKey123',
                             ])->delete("{$host}/indexes/cursors_{$lang}");
 
                             $this->line("🧹 Індекс [$lang] очищено на {$host}");
-
-                            Http::withHeaders([
-                                'Authorization' => 'Bearer masterKey123',
-                                'Content-Type' => 'application/json',
-                            ])->put("{$host}/indexes/cursors_{$lang}", [
-                                'uid' => "cursors_{$lang}",
-                                'primaryKey' => 'id',
-                            ]);
-
-                            $this->line("📦 Індекс [$lang] заново створено з primaryKey 'id'");
                         }
 
-                        // --- Batch insert documents ---
-                        foreach (collect($documents)->chunk(500) as $chunk) {
+                        // Явно створити індекс з primaryKey = 'id' (завжди, навіть якщо не дропали)
+                        Http::withHeaders([
+                            'Authorization' => 'Bearer masterKey123',
+                            'Content-Type' => 'application/json',
+                        ])->put("{$host}/indexes/cursors_{$lang}", [
+                            'uid' => "cursors_{$lang}",
+                            'primaryKey' => 'id',
+                        ]);
+
+                        $this->line("📦 Індекс [$lang] створено/оновлено з primaryKey 'id'");
+
+                        // Заливати батчами по 500 для стабільності
+                        $chunks = array_chunk($documents, 500);
+                        foreach ($chunks as $chunk) {
                             $response = Http::withHeaders([
                                 'Authorization' => 'Bearer masterKey123',
                                 'Content-Type' => 'application/json',
-                            ])->timeout(10)->post("{$host}/indexes/cursors_{$lang}/documents", $chunk->values()->all());
+                            ])->timeout(10)->post("{$host}/indexes/cursors_{$lang}/documents", $chunk);
 
                             if ($response->successful()) {
-                                $this->info("✅ Завантажено батч з " . $chunk->count() . " курсорів у індекс [$lang] через {$host}");
+                                $this->info("✅ Завантажено батч з " . count($chunk) . " курсорів у індекс [$lang] через {$host}");
                             } else {
-                                $this->error("❌ Помилка при завантаженні батча для [$lang] через {$host}: " . $response->body());
+                                $this->error("❌ Помилка завантаження батча у індекс [$lang] через {$host}");
+                                // $this->error($response->body());
                             }
                         }
-                        // Якщо все ок — переходимо до наступної мови
-                        break;
+                        break; // якщо вдалося — виходь з циклу hosts
                     } catch (\Exception $e) {
-                        $this->error("❌ Виняток: " . $e->getMessage());
                         continue;
                     }
                 }
