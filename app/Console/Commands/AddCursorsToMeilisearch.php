@@ -43,6 +43,7 @@ class AddCursorsToMeilisearch extends Command
                 })
                 ->get();
 
+            $this->info("🔍 Знайдено " . $tagged->count() . " записів для [$lang]");
             $documents = [];
 
             $this->info("🌍 Update1");
@@ -87,6 +88,7 @@ class AddCursorsToMeilisearch extends Command
                 ];
             }
 
+            $this->info("🔍 До імпорту: " . count($documents) . " документів для [$lang]");
 
             if (!empty($documents)) {
                 $hosts = [
