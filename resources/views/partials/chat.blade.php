@@ -9,6 +9,16 @@
 
 <div class="chat-container" id="chatContainer">
 
+    @php
+        // Список webm-файлів (оновлюй якщо додаєш нові)
+        $loaders = ['among_us.webm', 'Bus.webm'];
+        $loader = $loaders[array_rand($loaders)];
+    @endphp
+
+    <div id="preloader" class="preloader">
+        <video preload="auto" src="{{ asset_cdn('loaders/'.$loader) }}" autoplay loop muted style="width:200px;height:200px;display:block"></video>
+    </div>
+
     <div class="chat-header">
         <div id="welcomeUser" data-lang-tag="welcome_to_the_chat">@lang('messages.chat_welcome')</div>
         <div class="selector-container glass-container">
