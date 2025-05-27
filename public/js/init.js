@@ -261,7 +261,7 @@ function setupMiliSearch() {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer masterKey123',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'X-CSRF-TOKEN': document.querySelector('#token').value,
           'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({ lang: lang, query: query, limit: 15 })
