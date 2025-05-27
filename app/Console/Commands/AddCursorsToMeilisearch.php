@@ -30,7 +30,7 @@ class AddCursorsToMeilisearch extends Command
             app()->setLocale($lang); // 👈 ДОДАЙ ЦЕ            
             $this->info("🌍 Мова: $lang");
 
-            $tagged = CursorTagTranslation::with('cursor.Collection')
+            $tagged = CursorTagTranslation::with('cursor.collection')
                 ->where(function ($q) use ($lang) {
                     $q->where('lang', $lang)
                     ->orWhere(function ($q2) use ($lang) {
@@ -55,12 +55,12 @@ class AddCursorsToMeilisearch extends Command
                     $name = $item->cursor->name_en;
                 }                          
 
-                $catAlt = optional($item->cursor->categories)->alt_name;
+                $catAlt = optional($item->cursor->collection)->alt_name;
                 $catKey = "collections.{$catAlt}";
                 $catTranslated = trans($catKey, [], $lang);
                 
                 if ($catTranslated === $catKey) {
-                    $catName = optional($item->cursor->categories)->base_name_en;
+                    $catName = optional($item->cursor->collection)->base_name_en;
                 } else {
                     $catName = $catTranslated;
                 }
@@ -73,10 +73,10 @@ class AddCursorsToMeilisearch extends Command
                     'tags' => $item->tags,
                     'lang' => $lang,
                     'isFallback' => $item->lang !== $lang ? true : false, // 🆕
-                    'cat' => optional($item->cursor->categories)->alt_name,
-                    'catid' => optional($item->cursor->categories)->id,
+                    'cat' => optional($item->cursor->collection)->alt_name,
+                    'catid' => optional($item->cursor->collection)->id,
                     'cat_name' => $catName,
-                    'cat_img' => optional($item->cursor->categories)->img,
+                    'cat_img' => optional($item->cursor->collection)->img,
                     'c_file' => $item->cursor->c_file,
                     'p_file' => $item->cursor->p_file,
                     'offsetX' => $item->cursor->offsetX,
@@ -86,6 +86,7 @@ class AddCursorsToMeilisearch extends Command
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
                 ];
             }
+
 
             if (!empty($documents)) {
                 $hosts = [
