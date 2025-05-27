@@ -91,11 +91,11 @@ if (rewardBanner) {
 let redirectTimerStarted = false;
 
 function startLoading() {
-const rewardBlock = document.getElementById('rewardBlock');
-const loader = document.getElementById('loader');
+  const rewardBlock = document.getElementById('rewardBlock');
+  const loader = document.getElementById('loader');
 
-if (rewardBlock) rewardBlock.style.display = 'none';
-if (loader) loader.style.display = 'flex';
+  if (rewardBlock) rewardBlock.style.display = 'none';
+  if (loader) loader.style.display = 'flex';
 
   setCookie("hide_item_2082", "true", 3650);
 
@@ -114,11 +114,18 @@ if (loader) loader.style.display = 'flex';
 }
 
 
-function showMyCollection(){
+function showMyCollection() {
   if (!document.documentElement.dataset.cursorstyle) return;
-  if (document.querySelector('#mycollection_menu')){
+  if (document.querySelector('#mycollection_menu')) {
     document.querySelector('#mycollection_menu').style.display = 'block';
   }
 }
 
 showMyCollection();
+
+
+setTimeout(() => {
+  if (document.querySelector('#preloader')) {
+    document.querySelector('#preloader').style.display = 'none';
+  }
+}, 2000);
