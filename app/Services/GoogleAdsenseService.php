@@ -19,6 +19,12 @@ class GoogleAdsenseService
     public function getAccessToken(): ?string
     {
         try {
+        $refreshToken = config('services.adsense.refresh_token');
+        if (empty($refreshToken)) {
+            logger()->warning('No AdSense refresh token set in config.');
+            return null;
+        }
+
             $response = $this->client->post('https://oauth2.googleapis.com/token', [
                 'form_params' => [
                     'client_id' => config('services.adsense.client_id'),

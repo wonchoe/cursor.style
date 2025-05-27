@@ -11,33 +11,18 @@ Schedule::command('custom:ChromStats')->hourly();
 Schedule::command('custom:GetGoogleAnalyticsData')->everyMinute();
 
 // Create translation
-Schedule::command('custom:translate-collections')->everyTenMinutes();
-Schedule::command('custom:TranslateCursor')->everyTenMinutes();
+Schedule::command('custom:translate-collections')->everyFiveMinutes();
+Schedule::command('custom:TranslateCursor')->everyFiveMinutes();
 
 // Create tags for SEO
-Schedule::command('custom:tagsCreate')->everyTenMinutes();
+Schedule::command('custom:tagsCreate')->everyFiveMinutes();
 
 // Add to search
-Schedule::command('custom:meilisearchAddCursors')->everyTenMinutes();
+Schedule::command('custom:meilisearchAddCursors')->everyFiveMinutes();
 
-Schedule::command('custom:GetCursorClickStats')->everyTenMinutes();
+Schedule::command('custom:GetCursorClickStats')->everyFiveMinutes();
 
-
-
-
-Schedule::call(function () {
-    \Log::info('Schedule RUN ' . now());
-})->everyThirtyMinutes();
-
-Schedule::call(function () {
-    (new SeoDiscoveryJob())->handle();
-})->hourly();
-
-Schedule::call(function () {
-    (new SeoBatchPrepareAndSendJob())->handle();
-})->everyFiveMinutes();
-
-Schedule::call(function () {
-    (new SeoBatchFetchAndSaveJob())->handle();
-})->everyTenMinutes();
-
+// SEO chatGPT
+Schedule::command('custom:seoSiscovery')->everyFiveMinutes();
+Schedule::command('custom:seoBatchPrepareSend')->everyFiveMinutes();
+Schedule::command('custom:seoBatchFetchSave')->everyFiveMinutes();
