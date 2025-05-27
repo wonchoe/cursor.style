@@ -92,52 +92,72 @@ class AddCursorsToMeilisearch extends Command
                     'http://meilisearch:7700',
                 ];
 
-                $response = null;
-                foreach ($hosts as $host) {
-                    try {
-                        if ($force) {
-                            // Drop index якщо force
+                // Якщо --force, дропаємо індекс на всіх хостах
+                if ($force) {
+                    foreach ($hosts as $host) {
+                        try {
                             Http::withHeaders([
                                 'Authorization' => 'Bearer masterKey123',
                             ])->delete("{$host}/indexes/cursors_{$lang}");
-
                             $this->line("🧹 Індекс [$lang] очищено на {$host}");
+                        } catch (\Exception $e) {
+                            // Може бути 404 — ок
                         }
+                    }
+                }
 
-                        // Явно створити індекс з primaryKey = 'id' (завжди, навіть якщо не дропали)
-                        Http::withHeaders([
+                // Створити індекс тільки якщо нема (перевірка по 404)
+                $indexCreated = false;
+                foreach ($hosts as $host) {
+                    try {
+                        $getResponse = Http::withHeaders([
                             'Authorization' => 'Bearer masterKey123',
-                            'Content-Type' => 'application/json',
-                        ])->put("{$host}/indexes/cursors_{$lang}", [
-                            'uid' => "cursors_{$lang}",
-                            'primaryKey' => 'id',
-                        ]);
+                        ])->get("{$host}/indexes/cursors_{$lang}");
 
-                        $this->line("📦 Індекс [$lang] створено/оновлено з primaryKey 'id'");
-
-                        // Заливати батчами по 500 для стабільності
-                        $chunks = array_chunk($documents, 500);
-                        foreach ($chunks as $chunk) {
-                            $response = Http::withHeaders([
+                        if ($getResponse->status() === 404) {
+                            // POST, а не PUT!
+                            Http::withHeaders([
                                 'Authorization' => 'Bearer masterKey123',
                                 'Content-Type' => 'application/json',
-                            ])->timeout(10)->post("{$host}/indexes/cursors_{$lang}/documents", $chunk);
-
-                            if ($response->successful()) {
-                                $this->info("✅ Завантажено батч з " . count($chunk) . " курсорів у індекс [$lang] через {$host}");
-                            } else {
-                                $this->error("❌ Помилка завантаження батча у індекс [$lang] через {$host}");
-                                // $this->error($response->body());
-                            }
+                            ])->post("{$host}/indexes", [
+                                'uid' => "cursors_{$lang}",
+                                'primaryKey' => 'id',
+                            ]);
+                            $this->line("📦 Індекс [$lang] створено з primaryKey 'id' через {$host}");
+                        } else {
+                            $this->line("ℹ️ Індекс [$lang] вже існує на {$host}");
                         }
-                        break; // якщо вдалося — виходь з циклу hosts
+                        $indexCreated = true;
+                        $activeHost = $host;
+                        break;
                     } catch (\Exception $e) {
                         continue;
                     }
                 }
 
-                if (!$response || $response->failed()) {
-                    $this->error("❌ Помилка для мови [$lang] — жоден Meilisearch не відповів.");
+                if (!$indexCreated) {
+                    $this->error("❌ Не вдалося створити або знайти індекс для [$lang] — пропускаємо цю мову.");
+                    continue;
+                }
+
+                // Заливати батчами по 500 для стабільності
+                $chunks = array_chunk($documents, 500);
+                foreach ($chunks as $chunk) {
+                    try {
+                        $response = Http::withHeaders([
+                            'Authorization' => 'Bearer masterKey123',
+                            'Content-Type' => 'application/json',
+                        ])->timeout(10)->post("{$activeHost}/indexes/cursors_{$lang}/documents", $chunk);
+
+                        if ($response->successful()) {
+                            $this->info("✅ Завантажено батч з " . count($chunk) . " курсорів у індекс [$lang] через {$activeHost}");
+                        } else {
+                            $this->error("❌ Помилка завантаження батча у індекс [$lang] через {$activeHost}");
+                            // $this->error($response->body());
+                        }
+                    } catch (\Exception $e) {
+                        $this->error("❌ Exception при додаванні батча у індекс [$lang]: " . $e->getMessage());
+                    }
                 }
             } else {
                 $this->info("⚠️ Немає тегів для мови [$lang]\n");
