@@ -257,10 +257,12 @@ function setupMiliSearch() {
       fetch(`/search`, {
         method: 'POST',
         cache: 'no-store',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer masterKey123',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({ lang: lang, query: query, limit: 15 })
       })
