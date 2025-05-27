@@ -10,6 +10,27 @@ use Illuminate\Support\Facades\Artisan;
 
 class ImageController extends Controller {
 
+    // OLD IMAGE ROUTE
+    public function show($type, $category, $name)
+    {
+        // Перевіряємо, чи $type виглядає як c-1234 або p-5678
+        if (preg_match('/^(c|p)-(\d+)$/', $type, $m)) {
+            $typeLetter = $m[1];    // "c" або "p"
+            $id = $m[2];            // числовий id
+
+            // Формуємо новий URL
+            $cursorType = ($typeLetter === 'c') ? 'cursor' : 'pointer';
+            $newUrl = "/collections/0-any/{$id}-any-{$cursorType}.svg";
+
+            // 301 редірект
+            return redirect($newUrl, 301);
+        }
+
+        // Якщо не співпало — віддаємо 404
+        abort(404);
+    }
+
+
     public function serveImage($category_slug, $cursor_slug)
     {
 
