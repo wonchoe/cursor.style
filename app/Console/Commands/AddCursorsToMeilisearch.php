@@ -27,7 +27,7 @@ class AddCursorsToMeilisearch extends Command
         }
 
         foreach ($this->languages as $lang) {
-            app()->setLocale($lang); // 👈 ДОДАЙ ЦЕ            
+            app()->setLocale($lang);
             $this->info("🌍 Мова: $lang");
 
             $tagged = CursorTagTranslation::with('cursor.collection')
@@ -46,34 +46,30 @@ class AddCursorsToMeilisearch extends Command
             $this->info("🔍 Знайдено " . $tagged->count() . " записів для [$lang]");
             $documents = [];
 
-            $this->info("🌍 Update1");
-
             foreach ($tagged as $item) {
                 if (!$item->cursor) continue;
 
                 $name = trans("cursors.c_{$item->cursor_id}", [], $lang);
                 if ($name === "cursors.c_{$item->cursor_id}") {
                     $name = $item->cursor->name_en;
-                }                          
+                }
 
                 $catAlt = optional($item->cursor->collection)->alt_name;
                 $catKey = "collections.{$catAlt}";
                 $catTranslated = trans($catKey, [], $lang);
-                
+
                 if ($catTranslated === $catKey) {
                     $catName = optional($item->cursor->collection)->base_name_en;
                 } else {
                     $catName = $catTranslated;
                 }
 
-             //   $this->info("🌍 Категорія: $catName");
-
                 $documents[] = [
                     'id' => $item->cursor_id,
                     'name' => $name,
                     'tags' => $item->tags,
                     'lang' => $lang,
-                    'isFallback' => $item->lang !== $lang ? true : false, // 🆕
+                    'isFallback' => $item->lang !== $lang ? true : false,
                     'cat' => optional($item->cursor->collection)->alt_name,
                     'catid' => optional($item->cursor->collection)->id,
                     'cat_name' => $catName,
@@ -107,7 +103,6 @@ class AddCursorsToMeilisearch extends Command
 
                             $this->line("🧹 Індекс [$lang] очищено на {$host}");
 
-                            // 🆕 Явне створення індексу з primaryKey
                             Http::withHeaders([
                                 'Authorization' => 'Bearer masterKey123',
                                 'Content-Type' => 'application/json',
@@ -119,16 +114,23 @@ class AddCursorsToMeilisearch extends Command
                             $this->line("📦 Індекс [$lang] заново створено з primaryKey 'id'");
                         }
 
-                        $response = Http::withHeaders([
-                            'Authorization' => 'Bearer masterKey123',
-                            'Content-Type' => 'application/json',
-                        ])->timeout(3)->post("{$host}/indexes/cursors_{$lang}/documents", $documents);
+                        // --- Batch insert documents ---
+                        foreach (collect($documents)->chunk(500) as $chunk) {
+                            $response = Http::withHeaders([
+                                'Authorization' => 'Bearer masterKey123',
+                                'Content-Type' => 'application/json',
+                            ])->timeout(10)->post("{$host}/indexes/cursors_{$lang}/documents", $chunk->values()->all());
 
-                        if ($response->successful()) {
-                            $this->info("✅ Завантажено " . count($documents) . " курсорів у індекс [$lang] через {$host}\n");
-                            break;
+                            if ($response->successful()) {
+                                $this->info("✅ Завантажено батч з " . $chunk->count() . " курсорів у індекс [$lang] через {$host}");
+                            } else {
+                                $this->error("❌ Помилка при завантаженні батча для [$lang] через {$host}: " . $response->body());
+                            }
                         }
+                        // Якщо все ок — переходимо до наступної мови
+                        break;
                     } catch (\Exception $e) {
+                        $this->error("❌ Виняток: " . $e->getMessage());
                         continue;
                     }
                 }
