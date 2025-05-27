@@ -20,6 +20,9 @@ Schedule::command('custom:tagsCreate')->everyTenMinutes();
 // Add to search
 Schedule::command('custom:meilisearchAddCursors')->everyTenMinutes();
 
+Schedule::command('custom:GetCursorClickStats')->everyTenMinutes();
+
+
 
 
 Schedule::call(function () {
