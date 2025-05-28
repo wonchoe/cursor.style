@@ -26,3 +26,6 @@ Schedule::command('custom:GetCursorClickStats')->everyThirtyMinutes();
 Schedule::command('custom:seoSiscovery')->everyThirtyMinutes();
 Schedule::command('custom:seoBatchPrepareSend')->everyThirtyMinutes();
 Schedule::command('custom:seoBatchFetchSave')->everyThirtyMinutes();
+
+// sitemap
+Schedule::command('generate:multisitemap')->daily();
