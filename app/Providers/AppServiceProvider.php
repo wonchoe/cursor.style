@@ -37,7 +37,6 @@ class AppServiceProvider extends ServiceProvider
         if (in_array($potentialLang, $availableLocales)) {
             app()->setLocale($potentialLang);
         }        
-        app()->setLocale('uk');
         
     }
 }
