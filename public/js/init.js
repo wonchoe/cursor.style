@@ -300,6 +300,8 @@ function setupMiliSearch() {
         grouped[key] = {
           name: hit.cat_name || 'Uncategorized',
           alt: hit.cat || 'Uncategorized',
+          cursor_url: hit.cursor_url || `/details/${cursor.id}-${cursor.name}`,
+          collection_url: hit.collection_url || `/collections/${group.catid}-${group.alt}`,
           img: hit.cat_img || null,
           catid: hit.catid || null,
           items: []
@@ -312,13 +314,13 @@ function setupMiliSearch() {
     Object.values(grouped).forEach(group => {
       html += `
         <div class="category-block" style="margin-bottom:16px;">
-          <div class="category-header" onclick="window.location='/collections/${group.catid}-${group.alt}'" style="display:flex;align-items:center;margin-bottom:5px;">
+          <div class="category-header" onclick="window.location='${group.collection_url}'" style="display:flex;align-items:center;margin-bottom:5px;">
             ${group.img ? `<img src="${window.assetCdnBase}/${group.img}" height="32">` : ''}
             <strong>${group.name}</strong>
           </div>
           <ul style="list-style:none;padding-left:10px;margin:0;">
             ${group.items.map(cursor => `
-              <li onclick="window.location='/details/${cursor.id}-${cursor.name}'" style="cursor:pointer;display:flex;align-items:center;">
+              <li onclick="window.location='${cursor.cursor_url}'" style="cursor:pointer;display:flex;align-items:center;">
                 <img src="${window.assetCdnBase}/${cursor.c_file}" width="32" height="32" style="margin-right:10px;">
                 ${cursor.name}
               </li>

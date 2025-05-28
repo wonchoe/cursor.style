@@ -4,12 +4,20 @@
     <title>
         {{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}
     </title>
-    <meta name="description"
-          content="{{ $cursor->seo_description ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}">
+    <meta name="description" content="{{ $cursor->seo_description ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}">
     <meta property="og:image:width" content="700" />
     <meta property="og:image:height" content="350" />
-    <meta property="og:image" content="{{ asset_cdn($cursor->c_file) }}.png" />
+    <meta property="og:image" content="{{ asset_cdn($cursor->c_file) }}" />
     <link rel="icon" type="image/png" href="{{ asset_cdn('images/favicon.png') }}" />
+    
+    @if (request()->routeIs('cursor.details') && strpos(request()->path(), 'details/') === 0)
+        {{-- Легасі роут --}}
+    {!! renderHreflangLinks($cursor->id, $translations) !!}
+    @else
+        {{-- Новий SEO роут --}}
+    {!! renderHreflangLinksForCursor($cursor->id, $cursor->cat, $translations, $translationsCat, $collection_base_name) !!}
+    @endif
+
 @endsection
 
 @section('main')

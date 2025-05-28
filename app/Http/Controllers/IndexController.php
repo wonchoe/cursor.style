@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cursors;
 use App\Models\CursorTranslation;
+use App\Models\CollectionTranslation;
 use App\Models\Collection;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -40,9 +41,17 @@ class IndexController extends Controller
         foreach ($cursors as $cursor) {
             $seo = CursorPresenter::seo($cursor);
             $cursor->slug_url_final = $seo['slug_url_final'];
+            $cursor->catTrans = $seo['catTrans'];
+            $cursor->cursorTrans = $seo['cursorTrans'];            
             $cursor->collectionSlug = $seo['collectionSlug'];
             $cursor->c_file = $seo['c_file'];
             $cursor->p_file = $seo['p_file'];
+            $cursor->details_url = route('collection.cursor.details', [
+                'cat' => $cursor->cat,
+                'collection_slug' => $cursor->catTrans,
+                'id' => $cursor->id,
+                'cursor_slug' => $cursor->cursorTrans,
+            ]);  
         }
 
         return response()
@@ -55,12 +64,44 @@ class IndexController extends Controller
     }
 
 
+    public function detailsLegacy($id, $name)
+    {
+        // 1. Дістаємо курсор і колекцію з бази
+        $cursor = Cursors::with('collection')->findOrFail($id);
+        $collection = $cursor->collection;
+        // Отримуємо переклад для поточної мови, або беремо англійську
+        $lang = app()->getLocale();
+        $translations = $cursor->translations->pluck('name', 'lang')->toArray();
+        $translationsCat = $collection->translations->pluck('name', 'lang')->toArray();
+
+        // Генеруємо slug'и (як у новій структурі)
+        $catSlug = isset($translationsCat[$lang]) ? slugify($translationsCat[$lang]) : slugify($collection->base_name_en);
+        $cursorSlug = isset($translations[$lang]) ? slugify($translations[$lang].' cursor') : slugify($cursor->name_en.' cursor');
+
+        // 2. Формуємо новий URL з правильними ключами!
+        $url = route('collection.cursor.details', [
+            'cat' => $collection->id,
+            'collection_slug' => $catSlug,
+            'id' => $cursor->id,
+            'cursor_slug' => $cursorSlug,
+        ]);
+
+        // 3. Повертаємо 301 редірект
+        return redirect()->to($url, 301);
+    }
+
+
     public function details(Request $r)
     {
-        if (!$r->id) {
+        // $cursor_slug = $r->cursor_slug;
+        // $collection_slug = $r->collection_slug;
+        // $r->id = explode('-',$cursor_slug)[0];
+        // $r->cat = explode('-',$collection_slug)[0];
+
+        if ((!$r->id) or (!$r->cat)) {
             abort(404);
         }
-        //app()->setLocale('uk');
+
 
         $excludeId = $r->cookie('hide_item_2082') === 'true' ? 100000000 : 2082;
         $baseQuery = Cursors::whereDate('schedule', '<=', now())
@@ -73,6 +114,10 @@ class IndexController extends Controller
             ->where('id', $r->id)
             ->with(['currentTranslation', 'collection.currentTranslation'])
             ->firstOrFail();
+            
+
+        $translations = CursorTranslation::where('cursor_id', $r->id)->pluck('name', 'lang')->toArray();
+        $translationsCat = CollectionTranslation::where('collection_id', $r->cat)->pluck('name', 'lang')->toArray();
 
         // Додаємо описи з seo_cursor_texts для поточної мови
         $seoText = \App\Models\SeoCursorText::where('cursor_id', $cursor->id)
@@ -84,7 +129,7 @@ class IndexController extends Controller
             $cursor->seo_description = $seoText->seo_description;
             $cursor->seo_page = $seoText->seo_page;
         }
-
+        
         $seo = CursorPresenter::seo($cursor);
         $cursor->detailsSlug = $seo['detailsSlug'];
         $cursor->collectionSlug = $seo['collectionSlug'];        
@@ -159,8 +204,15 @@ class IndexController extends Controller
             $catCursor->detailsSlug = $seo['detailsSlug'];
             $catCursor->c_file = $seo['c_file'];
             $catCursor->p_file = $seo['p_file'];
-            $catCursor->name_s = Str::slug($catCursor->name_en);
+            $catCursor->name_s = slugify($catCursor->name_en);
+            $catCursor->details_url = route('collection.cursor.details', [
+                'cat' => $catCursor->cat,
+                'collection_slug' => $seo['catTrans'],
+                'id' => $catCursor->id,
+                'cursor_slug' => $seo['cursorTrans'],
+            ]);             
         }
+
         // Переходимо до шаблону, передаємо central, сусідів ліво/право
         return response()
             ->view('details', [
@@ -170,7 +222,11 @@ class IndexController extends Controller
                 'id_prev' => $window->get($centralIndex - 1) ? [$window->get($centralIndex - 1)->id, $window->get($centralIndex - 1)->name_s] : null,
                 'id_next' => $window->get($centralIndex + 1) ? [$window->get($centralIndex + 1)->id, $window->get($centralIndex + 1)->name_s] : null,
                 'category_cursors' => $category_cursors,
-                'random' => $random, // <-- додати сюди!
+                'random' => $random,
+                'translations' => $translations,
+                'translationsCat' => $translationsCat,
+                'collection_base_name' => $catCursor->collection->base_name_en,
+                'collection_id' => $r->cat
                 // інші змінні
             ])
             ->header('Cache-Tag', 'details');

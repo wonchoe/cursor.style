@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use App\Models\CursorTagTranslation;
+use App\Support\CollectionPresenter;
+use App\Support\CursorPresenter;
 
 class AddCursorsToMeilisearch extends Command
 {
@@ -64,6 +66,25 @@ class AddCursorsToMeilisearch extends Command
                     $catName = $catTranslated;
                 }
 
+                // --- Додаємо SEO URL-и
+                $seoCursor = CursorPresenter::seo($item->cursor); // має повертати slug, slug_url_final тощо
+                $seoCollection = null;
+                if ($item->cursor->collection) {
+                    $seoCollection = CollectionPresenter::seo($item->cursor->collection);
+                    $collection_url = route('collection.show', [
+                        'id' => $item->cursor->collection,
+                        'slug' => $seoCollection['trans'],
+                    ]);                      
+                }
+            
+
+                $item->cursor->details_url = route('collection.cursor.details', [
+                    'cat' => $item->cursor->cat,
+                    'collection_slug' => $seoCursor['catTrans'],
+                    'id' => $item->cursor->id,
+                    'cursor_slug' => $seoCursor['cursorTrans'],
+                ]);
+
                 $documents[] = [
                     'id' => $item->cursor_id,
                     'name' => $name,
@@ -81,6 +102,9 @@ class AddCursorsToMeilisearch extends Command
                     'offsetX_p' => $item->cursor->offsetX_p,
                     'offsetY_p' => $item->cursor->offsetY_p,
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
+                    // Нові поля ↓↓↓
+                    'cursor_url' => $item->cursor->details_url ?? '', // або details_url, якщо є
+                    'collection_url' => $collection_url ?? '',
                 ];
             }
 

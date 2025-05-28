@@ -129,7 +129,7 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
                 if (!$cursor) return null;
 
                 // Назва в slug-форматі
-                $cursor->name_s = Str::slug($cursor->name_en);
+                $cursor->name_s = slugify($cursor->name_en);
 
                 // Колекція
                 $collection = $collections->first(fn($item) => $item->id == $cursor->cat);
@@ -142,6 +142,12 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
                     $cursor->collectionSlug = $seo['collectionSlug'];
                     $cursor->c_file = $seo['c_file'];
                     $cursor->p_file = $seo['p_file'];
+                    $cursor->details_url = route('collection.cursor.details', [
+                        'cat' => $cursor->cat,
+                        'collection_slug' => $seo['catTrans'],
+                        'id' => $cursor->id,
+                        'cursor_slug' => $seo['cursorTrans'],
+                    ]);                      
                 }
 
                 // Теги для поточної мови (опціонально)
@@ -178,6 +184,12 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
                     $cursor->collectionSlug = $seo['collectionSlug'];
                     $cursor->c_file = $seo['c_file'];
                     $cursor->p_file = $seo['p_file'];
+                    $cursor->details_url = route('collection.cursor.details', [
+                        'cat' => $cursor->cat,
+                        'collection_slug' => $seo['catTrans'],
+                        'id' => $cursor->id,
+                        'cursor_slug' => $seo['cursorTrans'],
+                    ]);                     
                 }
 
                 $tagTranslation = \App\Models\CursorTagTranslation::where('cursor_id', $cursor->id)

@@ -20,7 +20,7 @@ class CollectionPresenter
             ?? $collection->base_name_en
             ?? 'collection-' . $collection->id;
 
-        $slug = Str::slug($name);
+        $slug = slugify($name);
 
         if (empty($slug)) {
             $slug = 'collection-' . $collection->id;

@@ -11,7 +11,7 @@
             $slug = Str::slug($translation) ?: Str::slug($cursor->name_en);
         @endphp
 
-        <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '/details/{{ $cursor->id }}-{{ $slug }}')">
+        <div class="main__item" data-container-id="{{ $cursor->id }}" onclick="handleItemClick(event, '{{ $cursor->details_url }}')">
             <div class="div_ar_p">
                 <p>{{ $translation }}</p>
             </div>

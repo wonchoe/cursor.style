@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Support\CollectionPresenter;
 use App\Support\CursorPresenter;
+use \App\Models\CollectionTranslation;
 
 class CollectionsController extends Controller
 {
@@ -45,7 +46,11 @@ class CollectionsController extends Controller
             $collection->slug = $seo['slug'];
             $collection->url = $seo['url'];
             $collection->img = $seo['img'];
-        }
+            $collection->details_url = route('collection.show', [
+                'id' => $collection->id,
+                'slug' => $seo['trans'],
+            ]);                  
+        }    
 
         return response()
             ->view('collections', compact('collections'))
@@ -63,6 +68,7 @@ class CollectionsController extends Controller
             $col->slug = $seo['slug'];
             $col->url = $seo['url'];
             $col->img = $seo['img'];
+            $col->trans = $seo['trans'];            
         }
 
 
@@ -71,6 +77,9 @@ class CollectionsController extends Controller
         if (!$collection) {
             abort(404);
         }
+
+        $translations = CollectionTranslation::where('collection_id', $id)
+            ->pluck('name', 'lang')->toArray();        
 
         // Визначаємо ID для виключення курсора
         $excludeId = ($request->cookie('hide_item_2082') === 'true') ? 100000000 : 2082;
@@ -88,6 +97,12 @@ class CollectionsController extends Controller
             $cursor->collectionSlug = $seo['collectionSlug'];
             $cursor->c_file = $seo['c_file'];
             $cursor->p_file = $seo['p_file'];
+            $cursor->details_url = route('collection.cursor.details', [
+                'cat' => $cursor->cat,
+                'collection_slug' => $seo['catTrans'],
+                'id' => $cursor->id,
+                'cursor_slug' => $seo['cursorTrans'],
+            ]);        
         }
 
         // Випадкові 3 колекції, крім основної
@@ -98,6 +113,7 @@ class CollectionsController extends Controller
             'cursors' => $items,
             'collection' => $collection,
             'random' => $random,
+            'translations' => $translations
         ])->header('Cache-Tag', 'collection');
     }
 

@@ -9,7 +9,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ $collection->currentTranslation->name ?? $collection->base_name_en }} {{ __('collections.mouse_cursors') }}" />
     <meta name="twitter:description" content="{{ $collection->currentTranslation->desc ?? $collection->description }}" />
-    <meta name="twitter:image" content="{{ asset_cdn($collection->slug) }}" />
+    <meta name="twitter:image" content="{{ asset_cdn($collection->img) }}" />
+
+    {!! renderHreflangLinksForCollection($collection->id, $translations, $collection->base_name_en) !!}
+
 @endsection
 
 @push('styles')
@@ -63,7 +66,7 @@
 
             <div class="random_cat">
                 @foreach($random as $item)
-                    <a href="{{ $item->url }}"
+                    <a href="{{ $url = getUrl(null, null, $item->id) }}"
                        title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
                         <div class="random_cat_obj">
                             <div class="random_cat_text">

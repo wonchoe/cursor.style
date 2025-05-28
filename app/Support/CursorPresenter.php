@@ -35,8 +35,10 @@ class CursorPresenter
             ?? '';
 
         // Генеруємо слаги
-        $categorySlug = Str::slug($categoryName);
-        $cursorSlug = Str::slug($cursorName);
+        $categorySlug = slugify($categoryName);
+        $cursorSlug = slugify($cursorName);
+        $catTrans = $categorySlug;
+        $cursorTrans = $cursorSlug . '-' .cursorWordList()[app()->getLocale()];
 
         // Fallback якщо slug порожній (наприклад, китайська або пустий name)
         if (empty($categorySlug)) {
@@ -62,7 +64,9 @@ class CursorPresenter
             'p_file_no_ext' => "{$baseSlug}-pointer",
             'c_file' => "/{$cursor->c_file}",
             'p_file' => "/{$cursor->p_file}",
-            'short_desc' => $categoryDesc
+            'short_desc' => $categoryDesc,
+            'catTrans' => $catTrans,
+            'cursorTrans' => $cursorTrans
         ];
     }
 }

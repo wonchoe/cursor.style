@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\LogViewerController;
 use App\Http\Controllers\Admin\AdminCollectionsController;
 use App\Http\Controllers\Admin\AdminCursorController;
 
+
 // MAIN
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/{type?}', [IndexController::class, 'index'])
@@ -34,7 +35,13 @@ Route::prefix('/collections')->group(function() {
 });
 
 // DETAILS
-Route::get('/details/{id}-{name}', [IndexController::class,'details'])->name('cursor.details');
+Route::get('/details/{id}-{name}', [IndexController::class,'detailsLegacy'])->name('cursor.details');
+Route::get(
+    '/collections/{cat}-{collection_slug}/{id}-{cursor_slug}',
+    [IndexController::class, 'details']
+)
+->where(['cat' => '[0-9]+', 'id' => '[0-9]+'])
+->name('collection.cursor.details');
 
 
 
@@ -85,11 +92,11 @@ Route::group([], function () {
         return app(ImageController::class)->serveImage('legacy', $slug);
     })->whereIn('type', ['cursors', 'pointers'])->where('ext', 'svg|png');
 
-    // 2. Нові URL: /collections/neon-cursors/1234-yellow-cursor(.svg|.png)
+    // IMAGE (svg/png)
     Route::get('/collections/{collection_slug}/{cursor_slug}.{ext?}', function ($collection_slug, $cursor_slug, $ext = 'svg') {
-        $slug = Str::endsWith($cursor_slug, ".{$ext}") ? $cursor_slug : "{$cursor_slug}.{$ext}";
+        $slug = "{$cursor_slug}.{$ext}";
         return app(ImageController::class)->serveImage($collection_slug, $slug);
-    })->where('ext', 'svg|png')->name('cursor.file');
+    })->where('ext', 'svg|png');
 
     // 3. Старий формат з type=c-1234 або p-1234: /c-1234/category/name
     Route::get('/{type}/{category}/{name}', [ImageController::class, 'show'])
