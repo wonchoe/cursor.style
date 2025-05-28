@@ -19,8 +19,15 @@ class AddCursorsToMeilisearch extends Command
         'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh'
     ];
 
+
     public function handle()
     {
+        function route_path($name, $parameters = [])
+        {
+            $url = route($name, $parameters, false);
+            return parse_url($url, PHP_URL_PATH);
+        }
+
         $force = $this->option('force');
 
         $this->info("\n✨ Завантажуємо курсори з тегами у Meilisearch для всіх мов...");
@@ -71,14 +78,14 @@ class AddCursorsToMeilisearch extends Command
                 $seoCollection = null;
                 if ($item->cursor->collection) {
                     $seoCollection = CollectionPresenter::seo($item->cursor->collection);
-                    $collection_url = route('collection.show', [
+                    $collection_url = route_path('collection.show', [
                         'id' => $item->cursor->collection,
                         'slug' => $seoCollection['trans'],
                     ]);                      
                 }
             
 
-                $item->cursor->details_url = route('collection.cursor.details', [
+                $item->cursor->details_url = route_path('collection.cursor.details', [
                     'cat' => $item->cursor->cat,
                     'collection_slug' => $seoCursor['catTrans'],
                     'id' => $item->cursor->id,
@@ -103,10 +110,11 @@ class AddCursorsToMeilisearch extends Command
                     'offsetY_p' => $item->cursor->offsetY_p,
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
                     // Нові поля ↓↓↓
-                    'cursor_url' => $item->cursor->details_url ?? '', // або details_url, якщо є
+                    'cursor_url' => $item->cursor->details_url ?? '',
                     'collection_url' => $collection_url ?? '',
                 ];
             }
+
 
             $this->info("🔍 До імпорту: " . count($documents) . " документів для [$lang]");
 
