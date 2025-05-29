@@ -48,10 +48,17 @@ class ImageController extends Controller {
         }
 
         $manager = new ImageManager(new Driver());
-        $image = $manager->read($pngPath)->toWebp(80);
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($pngPath);
+
+        // Зменшуємо до 450px по ширині (висота пропорційно)
+        $image->scaleDown(width: 450);
+
+        $image = $image->toWebp(75);
         $image->save($webpPath);
 
-        return response($image, 200)->header('Content-Type', 'image/webp');
+        return response($image->toString(), 200)->header('Content-Type', 'image/webp');
+
     }
 
     public function serveImage($category_slug, $cursor_slug)
