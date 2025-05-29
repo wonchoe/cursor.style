@@ -110,98 +110,106 @@ class CreateTags extends Command
 
 
 
-    public function handle()
-    {
-        $this->info("🚀 Старт повного циклу: мова → курсори → запит...");
-        $totalCursors = Cursors::count();
-        $this->info("Загальна кількість курсорів: $totalCursors");
-        $batchSize = 50;
+public function handle()
+{
+    $this->info("🚀 Старт повного циклу: мова → курсори → запит...");
+    $totalCursors = Cursors::count();
+    $this->info("Загальна кількість курсорів: $totalCursors");
+    $batchSize = 50;
 
-        foreach ($this->languages as $lang) {
-            $this->info("🌍 Мова: $lang");
+    foreach ($this->languages as $lang) {
+        $this->info("🌍 Мова: $lang");
+        $offset = 0;
 
-            $offset = 0;
+        while (true) {
+            // 1. Отримуємо 50 курсорів
+            $cursors = Cursors::with('Collection')
+                ->orderBy('id')
+                ->offset($offset)
+                ->limit($batchSize)
+                ->get();
 
-            while (true) {
-                // 1. Отримуємо 50 курсорів
-                $cursors = Cursors::with('Collection')
-                    ->orderBy('id')
-                    ->offset($offset)
-                    ->limit($batchSize)
-                    ->get();
-                $this->info("Отримано курсорів: " . $cursors->count() . " зі зміщенням $offset");
+            $this->info("Отримано курсорів: " . $cursors->count() . " зі зміщенням $offset");
 
-                if ($cursors->isEmpty()) {
-                    $this->info("✅ Курсори закінчились для мови $lang");
-                    break;
-                }
-
-                $batch = [];
-
-                // 2. Перевіряємо кожен курсор на наявність перекладу
-                foreach ($cursors as $cursor) {
-                    $exists = DB::table('cursor_tag_translations')
-                        ->where('cursor_id', $cursor->id)
-                        ->where('lang', $lang)
-                        ->exists();
-
-                    if (!$exists) {
-                        // Якщо перекладу нема — додаємо в батч
-                        $enTags = DB::table('cursor_tag_translations')
-                            ->where('cursor_id', $cursor->id)
-                            ->where('lang', 'en')
-                            ->value('tags');
-
-                        if ($lang === 'en') {
-                            $batch[] = [
-                                'id' => $cursor->id,
-                                'cursor' => $cursor->name_en,
-                                'cat' => $cursor->categories->base_name_en ?? ''
-                            ];
-                        } elseif ($enTags) {
-                            $batch[] = [
-                                'id' => $cursor->id,
-                                'tags' => $enTags
-                            ];
-                        }
-                    }
-                }
-
-                // 3. Якщо нема чого обробляти — далі
-                if (empty($batch)) {
-                    $offset += $batchSize;
-                    continue;
-                }
-
-                // 4. Відправка
-                $this->info("➡ Відправка " . count($batch) . " курсорів для мови [$lang]");
-
-                $result = $this->requestTagsFromOpenRouter($batch, $lang, $this->getLanguageName($lang));
-
-                if (!$result) {
-                    $this->error("❌ Помилка запиту [$lang]");
-                    continue;
-                }
-
-                // 5. Збереження
-                foreach ($result as $item) {
-                    if (!isset($item['id'], $item['tags']))
-                        continue;
-
-                    DB::table('cursor_tag_translations')->updateOrInsert(
-                        ['cursor_id' => $item['id'], 'lang' => $lang],
-                        ['tags' => $item['tags'], 'updated_at' => now(), 'created_at' => now()]
-                    );
-                    $this->info("[$lang] ✔ ID {$item['id']} → {$item['tags']}");
-                }
-
-                $offset += $batchSize;
-                sleep(1); // throttle
+            if ($cursors->isEmpty()) {
+                $this->info("✅ Курсори закінчились для мови $lang");
+                break;
             }
-        }
 
-        $this->info("🎉 Завершено.");
+            $cursorIds = $cursors->pluck('id')->toArray();
+
+            // 2. Вибираємо всі id для яких вже є теги
+            $existingTagIds = DB::table('cursor_tag_translations')
+                ->where('lang', $lang)
+                ->whereIn('cursor_id', $cursorIds)
+                ->pluck('cursor_id')
+                ->toArray();
+
+            // 3. Вибираємо англомовні теги для всіх курсорів цієї пачки (на всяк випадок, якщо мова не en)
+            $enTagsMap = [];
+            if ($lang !== 'en') {
+                $enTagsMap = DB::table('cursor_tag_translations')
+                    ->where('lang', 'en')
+                    ->whereIn('cursor_id', $cursorIds)
+                    ->pluck('tags', 'cursor_id')
+                    ->toArray();
+            }
+
+            $batch = [];
+
+            
+            foreach ($cursors as $cursor) {
+                if (in_array($cursor->id, $existingTagIds)) {
+                    continue; // Пропускаємо, якщо вже є теги для цієї мови
+                }
+
+                if ($lang === 'en') {
+                    $batch[] = [
+                        'id' => $cursor->id,
+                        'cursor' => $cursor->name_en,
+                        'cat' => $cursor->collection->base_name_en ?? ''
+                    ];
+                } elseif (!empty($enTagsMap[$cursor->id])) {
+                    $batch[] = [
+                        'id' => $cursor->id,
+                        'tags' => $enTagsMap[$cursor->id]
+                    ];
+                }
+            }
+
+            if (empty($batch)) {
+                $offset += $batchSize;
+                continue;
+            }
+
+            $this->info("➡ Відправка " . count($batch) . " курсорів для мови [$lang]");
+
+            $result = $this->requestTagsFromOpenRouter($batch, $lang, $this->getLanguageName($lang));
+
+            if (!$result) {
+                $this->error("❌ Помилка запиту [$lang]");
+                continue;
+            }
+
+            foreach ($result as $item) {
+                if (!isset($item['id'], $item['tags']))
+                    continue;
+
+                DB::table('cursor_tag_translations')->updateOrInsert(
+                    ['cursor_id' => $item['id'], 'lang' => $lang],
+                    ['tags' => $item['tags'], 'updated_at' => now(), 'created_at' => now()]
+                );
+                $this->info("[$lang] ✔ ID {$item['id']} → {$item['tags']}");
+            }
+
+            $offset += $batchSize;
+            sleep(1); // throttle
+        }
     }
+
+    $this->info("🎉 Завершено.");
+}
+
 
 
 
