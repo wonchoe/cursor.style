@@ -30,7 +30,28 @@ class ImageController extends Controller {
         abort(404);
     }
 
+    public function serveWebp($collection, $file)
+    {
+        $pngPath = public_path("collections/$collection/{$file}.png");
+        $webpPath = public_path("collections/$collection/{$file}.webp");
 
+        // Якщо вже є webp
+        if (file_exists($webpPath)) {
+            return response()->file($webpPath, ['Content-Type' => 'image/webp']);
+        }
+
+        // Якщо немає png, 404
+        if (!file_exists($pngPath)) {
+            abort(404);
+        }
+
+        // Генеруємо webp через Intervention Image
+        $image = Image::make($pngPath)->encode('webp', 90);
+        $image->save($webpPath);
+
+        return response($image, 200)->header('Content-Type', 'image/webp');
+    }
+    
     public function serveImage($category_slug, $cursor_slug)
     {
 

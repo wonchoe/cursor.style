@@ -29,3 +29,7 @@ Schedule::command('custom:seoBatchFetchSave')->everyThirtyMinutes();
 
 // sitemap
 Schedule::command('generate:multisitemap')->daily();
+
+// Submit sitemap to google
+Schedule::command('custom:sitemap')->monthly();
+

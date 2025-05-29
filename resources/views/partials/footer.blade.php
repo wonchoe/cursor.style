@@ -1,4 +1,4 @@
-<div class="footer">
+<footer class="footer" role="contentinfo">
     <div class="container">
         <div class="copyright">
             © 2019–{{ now()->year }} 🖱️ Cursor.Style — by 
@@ -16,4 +16,4 @@
     <div id="wrapfabtest">
         <div class="adBanner"></div>
     </div>
-</div>
+</foote>

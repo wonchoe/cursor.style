@@ -23,7 +23,7 @@
             title="@lang('messages.cursor_style_logo_title')" />
     </a>
     <div class="container">
-        <div class="nav">
+        <nav class="nav">
             <ul>
                 <li><a class="top_menu_link" href="/">@lang('messages.menu_main')</a></li>
                 <li><a class="top_menu_link" href="/collections">@lang('messages.allcollections')</a></li>
@@ -43,12 +43,12 @@
                 <li><a class="top_menu_link" id="mycollection_menu"
                         href="/mycollection">@lang('messages.mycollection')</a></li>
             </ul>
-        </div>
-        <div class="burger">
+        </>
+        <nav class="burger">
             <div class="burger__line"></div>
             <div class="burger__line"></div>
             <div class="burger__line"></div>
-        </div>
+        </nav>
     </div>
 </div>
 

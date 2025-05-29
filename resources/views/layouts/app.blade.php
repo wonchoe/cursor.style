@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-    <head>
+
+<head>
     @yield('head_meta')
 
     <meta charset="utf-8" />
@@ -32,9 +33,12 @@
     </script>
     <script async src="{{ asset_ver('js/lang.v2.js') }}"></script>
     <script src="{{ asset_ver('js/init.js') }}"></script>
-    </head>
+</head>
+
 <body>
     <div id="ovelay" class="overlay" style="display:none"></div>
+
+
     <div class="master-container">
         <div class="sidebar-left">
             <div class="gads-wrapper">
@@ -43,9 +47,13 @@
         </div>
 
         <div class="main-container">
-            @include('partials.header')
-            @yield('main')
-                    </div>
+            <header>
+                @include('partials.header')
+            </header>
+            <main>
+                @yield('main')
+            </main>
+        </div>
 
         <div class="sidebar-right">
             <div class="gads-wrapper">
@@ -54,7 +62,9 @@
         </div>
     </div>
 
-    @include('partials.install-bottom')    
+
+    @include('partials.install-bottom')
+
 
     @include('partials.footer')
 
@@ -62,5 +72,6 @@
     <script src="{{ asset_ver('js/main.js') }}"></script>
     <script src="{{ asset_ver('js/chat.js') }}"></script>
     <script src="{{ asset_ver('js/vote.js') }}"></script>
-    </body>
+</body>
+
 </html>

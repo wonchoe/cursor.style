@@ -683,12 +683,11 @@ img {
 }
 
 .install-panel__logo img {
-  height: auto;
   display: block;
   margin: 0 auto;
   object-fit: contain;
-  width: 50%;
-  max-width: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 .tabs_menu {
@@ -1289,11 +1288,17 @@ a.page-numbers-js.next:hover {
 }
 
 .logo img {
-  width: 100%;
+  width: 204px;
+  height: 87px;
 }
 
 .banner__tabs img {
   width: 100%;
+}
+
+.rateus-img{
+  width: 350px;
+  height: 132px;
 }
 
 .search:focus,
@@ -1304,14 +1309,29 @@ a.page-numbers-js.next:hover {
 }
 
 .cursorimg {
+  width: 128px;
+  height: 128px;
   max-width: 128px;
   max-height: 128px;
-  width: 100%;
   min-height: 40px;
-  height: auto;
   display: block;
   margin: 0 auto;
   object-fit: contain;
+}
+
+.add-btn-img, .apply-btn-img{
+  width: 38px;
+  height: 38px;
+}
+
+.main__list_near .cursorimg {
+    width: 70px;
+    height: 70px;
+}
+
+.download-count-img{
+    width: 10px;
+    height: 10px;
 }
 
 #install_container {
@@ -1924,6 +1944,8 @@ button.close {
 
 .main__cat-img {
   padding: 20px;
+width: 410px;
+    height: 225px;  
 }
 
 
@@ -1960,6 +1982,10 @@ button.close {
 a.collection__item_cat {
   display: block;
   min-width: 0;
+display: flex
+;
+    flex-direction: column;
+    align-items: center;  
 }
 
 .collection__ad {
@@ -2062,6 +2088,8 @@ a.collection__item_cat {
 }
 
 .collection-description__img img {
+    width: 300px;
+    height: 158px;  
   max-width: 300px;
   display: block;
   border-radius: 5px;
@@ -2215,14 +2243,18 @@ display: inline-block;
 
 .random_cat_img {
   padding: 10px 0;
+    display: flex
+;
+    justify-content: center;  
 }
 
 .random_cat_img img {
   max-width: 100%;
-  height: auto;
   object-fit: contain;
   transition: transform 0.2s ease;
   padding: 20px;
+  width: 286px;
+  height: 163px;  
 }
 
 .random_cat_obj:hover .random_cat_img img {
@@ -3049,6 +3081,7 @@ button.img-btn:disabled {
 
 #rewardBlock .gift{
   width:34px;
+  height:34px;
 }
 
 #rewardBanner{
@@ -3100,7 +3133,7 @@ button.img-btn:disabled {
     opacity: 0;
     position: absolute;
     bottom: 10px;
-    right: 10px;    
+    right: 10px;   
 }
 
 .main__item:hover .downloads-badge {
@@ -3110,6 +3143,7 @@ button.img-btn:disabled {
 
 .downloads-badge img{
   width: 10px;
+  height: 10px;
 }
 
 .sidebar-right{

@@ -101,6 +101,9 @@ Route::group([], function () {
     // 3. Старий формат з type=c-1234 або p-1234: /c-1234/category/name
     Route::get('/{type}/{category}/{name}', [ImageController::class, 'show'])
         ->where('type', '^(c|p)-[0-9]+$');
+
+    Route::get('collections/{collection}/{file}.webp', [ImageController::class, 'webp']);        
+
 });
 
 

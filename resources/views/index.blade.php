@@ -33,7 +33,7 @@
                         <img src="{{ asset_cdn('/images/ads-pointer.png') }}" alt="Pointer" class="cursor-img" loading="lazy">
                     </div>
                     <div class="cursor-text" id="rewardText">
-                        <h2><img class="gift" src="{{ asset_cdn('images/gift.svg') }}">@lang('messages.reward_title')</h2>
+                        <h2><img class="gift" alt="Gift for rate" title="Gift for rate" src="{{ asset_cdn('images/gift.svg') }}">@lang('messages.reward_title')</h2>
                         <p>@lang('messages.reward_text')</p>
                         <button onclick="startLoading()" class="cursor-btn">@lang('messages.reward_button')</button>
                     </div>

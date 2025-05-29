@@ -21,7 +21,7 @@
             </div>
 
             <span class="downloads-badge">
-                <img src="{{ asset_cdn('images/icons/download.png') }}" style="width: 10px;">
+                <img src="{{ asset_cdn('images/icons/download.png') }}" alt="Downloads" title="Downloads" class="download-count-img">
                 {{ number_format($cursor->totalClick + $cursor->todayClick) }}
             </span>
 

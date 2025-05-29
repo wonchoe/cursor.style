@@ -35,7 +35,7 @@
 
             <div class="collection-description">
                 <div class="collection-description__img">
-                    <img loading="lazy" src="{{ asset_cdn($collection->img) }}"
+                    <img src="{{ asset_cdn($collection->img) }}"
                          alt="{{ $collection->currentTranslation->name ?? $collection->base_name_en }}"
                          title="{{ $collection->currentTranslation->short_desc ?? $collection->short_descr }}">
                 </div>
