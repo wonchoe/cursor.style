@@ -50,7 +50,7 @@
                         @endif
                         class="main__cat-img"
                         src="{{ asset_cdn($item->img) }}"
-                        alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
+                        alt="{{ $item->alt }}"
                         title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}"
                     >
                 </a>

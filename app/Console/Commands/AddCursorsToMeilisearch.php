@@ -10,8 +10,8 @@ use App\Support\CursorPresenter;
 
 class AddCursorsToMeilisearch extends Command
 {
-    protected $signature = 'custom:meilisearchAddCursors {--force : Drop and recreate each index before pushing data}';
-    protected $description = 'Push all translated cursors and tags to Meilisearch for all languages';
+    protected $signature = 'custom:meilisearchSyncCursors {--force : Drop and recreate each index before pushing data}';
+    protected $description = 'Sync only new cursors to Meilisearch for all languages';
 
     protected $languages = [
         'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he',
@@ -19,6 +19,12 @@ class AddCursorsToMeilisearch extends Command
         'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh'
     ];
 
+    protected $meiliHosts = [
+        'http://localhost:7700',
+        'http://meilisearch:7700',
+    ];
+
+    protected $meiliApiKey = 'masterKey123';
 
     public function handle()
     {
@@ -30,33 +36,115 @@ class AddCursorsToMeilisearch extends Command
 
         $force = $this->option('force');
 
-        $this->info("\n✨ Завантажуємо курсори з тегами у Meilisearch для всіх мов...");
-        if ($force) {
-            $this->warn("⚠️  Увімкнено режим --force: індекси будуть повністю очищені перед додаванням\n");
-        }
+        $this->info("\n✨ Синхронізуємо курсори у Meilisearch для всіх мов...");
 
         foreach ($this->languages as $lang) {
             app()->setLocale($lang);
             $this->info("🌍 Мова: $lang");
+            $index = "cursors_{$lang}";
 
-            $tagged = CursorTagTranslation::with('cursor.collection')
-                ->where(function ($q) use ($lang) {
-                    $q->where('lang', $lang)
-                    ->orWhere(function ($q2) use ($lang) {
-                        $q2->where('lang', 'en')->whereNotIn('cursor_id', function ($q3) use ($lang) {
-                            $q3->select('cursor_id')
-                                ->from('cursor_tag_translations')
-                                ->where('lang', $lang);
-                        });
-                    });
-                })
+            // 1. Drop index if --force
+            if ($force) {
+                foreach ($this->meiliHosts as $host) {
+                    try {
+                        Http::withHeaders([
+                            'Authorization' => 'Bearer ' . $this->meiliApiKey,
+                        ])->delete("{$host}/indexes/{$index}");
+                        $this->line("🧹 Індекс [$lang] очищено на {$host}");
+                    } catch (\Exception $e) {
+                        // Може бути 404 — ок
+                    }
+                }
+            }
+
+            // 2. Створити індекс якщо нема (перевірка по 404)
+            $indexCreated = false;
+            foreach ($this->meiliHosts as $host) {
+                try {
+                    $getResponse = Http::withHeaders([
+                        'Authorization' => 'Bearer ' . $this->meiliApiKey,
+                    ])->get("{$host}/indexes/{$index}");
+
+                    if ($getResponse->status() === 404) {
+                        Http::withHeaders([
+                            'Authorization' => 'Bearer ' . $this->meiliApiKey,
+                            'Content-Type' => 'application/json',
+                        ])->post("{$host}/indexes", [
+                            'uid' => $index,
+                            'primaryKey' => 'id',
+                        ]);
+                        $this->line("📦 Індекс [$lang] створено на {$host}");
+                    } else {
+                        $this->line("ℹ️ Індекс [$lang] вже існує на {$host}");
+                    }
+                    $indexCreated = true;
+                    $activeHost = $host;
+                    break;
+                } catch (\Exception $e) {
+                    continue;
+                }
+            }
+
+            if (!$indexCreated) {
+                $this->error("❌ Не вдалося створити або знайти індекс для [$lang] — пропускаємо цю мову.");
+                continue;
+            }
+
+            // 3. Витягуємо всі id з Meili (через пагінацію, id -> int)
+            $meiliIds = [];
+            $limit = 1000;
+            $offset = 0;
+            do {
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $this->meiliApiKey,
+                ])->get("{$activeHost}/indexes/{$index}/documents", [
+                    'fields' => 'id',
+                    'limit' => $limit,
+                    'offset' => $offset,
+                ]);
+                $meiliIdsRaw = $response->json();
+                $docs = $meiliIdsRaw['results'] ?? $meiliIdsRaw;
+                $batch = collect($docs)->pluck('id')->map(fn($id) => (int)$id)->toArray();
+
+                $meiliIds = array_merge($meiliIds, $batch);
+                $offset += $limit;
+            } while (count($batch) === $limit);
+
+            // 4. Всі id з бази (id -> int)
+$dbIdsRaw = CursorTagTranslation::with('cursor')
+    ->where('lang', $lang)
+    ->get()
+    ->filter(fn($item) => $item->cursor) // залишає тільки ті, у кого реально є курсор
+    ->pluck('cursor_id')
+    ->toArray();
+$dbIds = array_map('intval', $dbIdsRaw);
+
+
+            // DEBUG — подивитись як виглядають id
+            $this->line("Meili ids: " . implode(',', array_slice($meiliIds, 0, 10)) . ' ...');
+            $this->line("DB ids: " . implode(',', array_slice($dbIds, 0, 10)) . ' ...');
+
+            // 5. Знаходимо тільки відсутні у Meili
+            $missingIds = array_diff($dbIds, $meiliIds);
+
+            $this->line("Missing ids: " . implode(',', array_slice($missingIds, 0, 10)) . ' ... [' . count($missingIds) . ']');
+
+            if (count($missingIds) == 0) {
+                $this->info("✅ Всі курсори для [$lang] вже є, скіпаємо.");
+                continue;
+            }
+
+            $this->info("🔍 Додаємо " . count($missingIds) . " нових курсорів для [$lang]...");
+
+            // 6. Витягуємо потрібні CursorTagTranslation
+            $tagged = CursorTagTranslation::with('cursor.collection', 'cursor')
+                ->where('lang', $lang)
+                ->whereIn('cursor_id', $missingIds)
                 ->get();
 
-            $this->info("🔍 Знайдено " . $tagged->count() . " записів для [$lang]");
             $documents = [];
-
             foreach ($tagged as $item) {
-                if (!$item->cursor) continue;
+                if (!$item->cursor || !$item->cursor_id) continue; // Скіпаємо порожні
 
                 $name = trans("cursors.c_{$item->cursor_id}", [], $lang);
                 if ($name === "cursors.c_{$item->cursor_id}") {
@@ -73,17 +161,15 @@ class AddCursorsToMeilisearch extends Command
                     $catName = $catTranslated;
                 }
 
-                // --- Додаємо SEO URL-и
-                $seoCursor = CursorPresenter::seo($item->cursor); // має повертати slug, slug_url_final тощо
+                $seoCursor = CursorPresenter::seo($item->cursor);
                 $seoCollection = null;
                 if ($item->cursor->collection) {
                     $seoCollection = CollectionPresenter::seo($item->cursor->collection);
                     $collection_url = route_path('collection.show', [
                         'id' => $item->cursor->collection,
                         'slug' => $seoCollection['trans'],
-                    ]);                      
+                    ]);
                 }
-            
 
                 $item->cursor->details_url = route_path('collection.cursor.details', [
                     'cat' => $item->cursor->cat,
@@ -93,7 +179,7 @@ class AddCursorsToMeilisearch extends Command
                 ]);
 
                 $documents[] = [
-                    'id' => $item->cursor_id,
+                    'id' => (int)$item->cursor_id, // тип INT для сумісності!
                     'name' => $name,
                     'tags' => $item->tags,
                     'lang' => $lang,
@@ -109,94 +195,32 @@ class AddCursorsToMeilisearch extends Command
                     'offsetX_p' => $item->cursor->offsetX_p,
                     'offsetY_p' => $item->cursor->offsetY_p,
                     'created_at' => $item->cursor->created_at->toDateTimeString(),
-                    // Нові поля ↓↓↓
                     'cursor_url' => $item->cursor->details_url ?? '',
                     'collection_url' => $collection_url ?? '',
                 ];
             }
 
+            // 7. Батчимо і заливаємо
+            $chunks = array_chunk($documents, 500);
+            foreach ($chunks as $chunk) {
+                try {
+                    $response = Http::withHeaders([
+                        'Authorization' => 'Bearer ' . $this->meiliApiKey,
+                        'Content-Type' => 'application/json',
+                    ])->timeout(10)->post("{$activeHost}/indexes/{$index}/documents", $chunk);
 
-            $this->info("🔍 До імпорту: " . count($documents) . " документів для [$lang]");
-
-            if (!empty($documents)) {
-                $hosts = [
-                    'http://localhost:7700',
-                    'http://meilisearch:7700',
-                ];
-
-                // Якщо --force, дропаємо індекс на всіх хостах
-                if ($force) {
-                    foreach ($hosts as $host) {
-                        try {
-                            Http::withHeaders([
-                                'Authorization' => 'Bearer masterKey123',
-                            ])->delete("{$host}/indexes/cursors_{$lang}");
-                            $this->line("🧹 Індекс [$lang] очищено на {$host}");
-                        } catch (\Exception $e) {
-                            // Може бути 404 — ок
-                        }
+                    if ($response->successful()) {
+                        $this->info("✅ Завантажено батч з " . count($chunk) . " курсорів у індекс [$lang] через {$activeHost}");
+                    } else {
+                        $this->error("❌ Помилка завантаження батча у індекс [$lang] через {$activeHost}");
                     }
+                } catch (\Exception $e) {
+                    $this->error("❌ Exception при додаванні батча у індекс [$lang]: " . $e->getMessage());
                 }
-
-                // Створити індекс тільки якщо нема (перевірка по 404)
-                $indexCreated = false;
-                foreach ($hosts as $host) {
-                    try {
-                        $getResponse = Http::withHeaders([
-                            'Authorization' => 'Bearer masterKey123',
-                        ])->get("{$host}/indexes/cursors_{$lang}");
-
-                        if ($getResponse->status() === 404) {
-                            // POST, а не PUT!
-                            Http::withHeaders([
-                                'Authorization' => 'Bearer masterKey123',
-                                'Content-Type' => 'application/json',
-                            ])->post("{$host}/indexes", [
-                                'uid' => "cursors_{$lang}",
-                                'primaryKey' => 'id',
-                            ]);
-                            $this->line("📦 Індекс [$lang] створено з primaryKey 'id' через {$host}");
-                        } else {
-                            $this->line("ℹ️ Індекс [$lang] вже існує на {$host}");
-                        }
-                        $indexCreated = true;
-                        $activeHost = $host;
-                        break;
-                    } catch (\Exception $e) {
-                        continue;
-                    }
-                }
-
-                if (!$indexCreated) {
-                    $this->error("❌ Не вдалося створити або знайти індекс для [$lang] — пропускаємо цю мову.");
-                    continue;
-                }
-
-                // Заливати батчами по 500 для стабільності
-                $chunks = array_chunk($documents, 500);
-                foreach ($chunks as $chunk) {
-                    try {
-                        $response = Http::withHeaders([
-                            'Authorization' => 'Bearer masterKey123',
-                            'Content-Type' => 'application/json',
-                        ])->timeout(10)->post("{$activeHost}/indexes/cursors_{$lang}/documents", $chunk);
-
-                        if ($response->successful()) {
-                            $this->info("✅ Завантажено батч з " . count($chunk) . " курсорів у індекс [$lang] через {$activeHost}");
-                        } else {
-                            $this->error("❌ Помилка завантаження батча у індекс [$lang] через {$activeHost}");
-                            // $this->error($response->body());
-                        }
-                    } catch (\Exception $e) {
-                        $this->error("❌ Exception при додаванні батча у індекс [$lang]: " . $e->getMessage());
-                    }
-                }
-            } else {
-                $this->info("⚠️ Немає тегів для мови [$lang]\n");
             }
         }
 
-        $this->info("\n🎉 Завершено додавання курсорів у Meilisearch для всіх мов.\n");
+        $this->info("\n🎉 Синхронізація завершена для всіх мов.\n");
         return 0;
     }
 }

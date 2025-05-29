@@ -46,6 +46,7 @@ class CollectionsController extends Controller
             $collection->slug = $seo['slug'];
             $collection->url = $seo['url'];
             $collection->img = $seo['img'];
+            $collection->alt = $seo['alt'];
             $collection->details_url = route('collection.show', [
                 'id' => $collection->id,
                 'slug' => $seo['trans'],
