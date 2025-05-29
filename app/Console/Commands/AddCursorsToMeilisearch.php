@@ -43,16 +43,29 @@ class AddCursorsToMeilisearch extends Command
             $this->info("🌍 Мова: $lang");
             $index = "cursors_{$lang}";
 
-            // 1. Drop index if --force
+            // 1. Drop index if --force, дочекайся завершення таску!
             if ($force) {
                 foreach ($this->meiliHosts as $host) {
                     try {
-                        Http::withHeaders([
+                        $deleteResponse = Http::withHeaders([
                             'Authorization' => 'Bearer ' . $this->meiliApiKey,
                         ])->delete("{$host}/indexes/{$index}");
-                        $this->line("🧹 Індекс [$lang] очищено на {$host}");
+
+                        $deleteTaskId = $deleteResponse->json()['taskUid'] ?? null;
+                        if ($deleteTaskId) {
+                            $this->line("🧹 Видаляємо індекс [$lang] на {$host}, очікуємо завершення...");
+                            // Чекаємо поки видалення завершиться
+                            do {
+                                usleep(250 * 1000); // 0.25 секунди пауза
+                                $taskStatus = Http::withHeaders([
+                                    'Authorization' => 'Bearer ' . $this->meiliApiKey,
+                                ])->get("{$host}/tasks/{$deleteTaskId}")->json();
+                                $status = $taskStatus['status'] ?? '';
+                            } while ($status !== 'succeeded' && $status !== 'failed');
+                            $this->line("🗑 Індекс [$lang] видалено на {$host} (статус: $status)");
+                        }
                     } catch (\Exception $e) {
-                        // Може бути 404 — ок
+                        // 404 — ок, якщо індекс не існує
                     }
                 }
             }
@@ -66,7 +79,7 @@ class AddCursorsToMeilisearch extends Command
                     ])->get("{$host}/indexes/{$index}");
 
                     if ($getResponse->status() === 404) {
-                        Http::withHeaders([
+                        $createResponse = Http::withHeaders([
                             'Authorization' => 'Bearer ' . $this->meiliApiKey,
                             'Content-Type' => 'application/json',
                         ])->post("{$host}/indexes", [
@@ -90,7 +103,7 @@ class AddCursorsToMeilisearch extends Command
                 continue;
             }
 
-            // 3. Витягуємо всі id з Meili (через пагінацію, id -> int)
+            // 3. Витягуємо всі id з Meili (limit 2000, бо <=1500 курсорів)
             $meiliIds = [];
             $limit = 1000;
             $offset = 0;
@@ -104,23 +117,16 @@ class AddCursorsToMeilisearch extends Command
                 ]);
                 $meiliIdsRaw = $response->json();
                 $docs = $meiliIdsRaw['results'] ?? $meiliIdsRaw;
-                $batch = collect($docs)->pluck('id')->map(fn($id) => (int)$id)->toArray();
+                $batch = collect($docs)->pluck('id')->map(fn($id) => (string)$id)->toArray();
 
                 $meiliIds = array_merge($meiliIds, $batch);
                 $offset += $limit;
-            } while (count($batch) === $limit);
+            } while (count($batch) === $limit); // Якщо останній батч менше limit — це кінець
 
-            // 4. Всі id з бази (id -> int)
-$dbIdsRaw = CursorTagTranslation::with('cursor')
-    ->where('lang', $lang)
-    ->get()
-    ->filter(fn($item) => $item->cursor) // залишає тільки ті, у кого реально є курсор
-    ->pluck('cursor_id')
-    ->toArray();
-$dbIds = array_map('intval', $dbIdsRaw);
+            // 4. Всі id з бази
+            $dbIdsRaw = CursorTagTranslation::where('lang', $lang)->pluck('cursor_id')->toArray();
+            $dbIds = array_map('strval', $dbIdsRaw);
 
-
-            // DEBUG — подивитись як виглядають id
             $this->line("Meili ids: " . implode(',', array_slice($meiliIds, 0, 10)) . ' ...');
             $this->line("DB ids: " . implode(',', array_slice($dbIds, 0, 10)) . ' ...');
 
@@ -144,7 +150,7 @@ $dbIds = array_map('intval', $dbIdsRaw);
 
             $documents = [];
             foreach ($tagged as $item) {
-                if (!$item->cursor || !$item->cursor_id) continue; // Скіпаємо порожні
+                if (!$item->cursor) continue;
 
                 $name = trans("cursors.c_{$item->cursor_id}", [], $lang);
                 if ($name === "cursors.c_{$item->cursor_id}") {
@@ -179,7 +185,7 @@ $dbIds = array_map('intval', $dbIdsRaw);
                 ]);
 
                 $documents[] = [
-                    'id' => (int)$item->cursor_id, // тип INT для сумісності!
+                    'id' => (string)$item->cursor_id, // тип string для сумісності!
                     'name' => $name,
                     'tags' => $item->tags,
                     'lang' => $lang,
