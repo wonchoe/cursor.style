@@ -184,7 +184,7 @@ class AddCursorsToMeilisearch extends Command
                     'cursor_slug' => $seoCursor['cursorTrans'],
                 ]);
 
-                $img = str_replace('.png', '.svg', optional($item->cursor->collection)->img);
+                $img = str_replace('.png', '.webp', optional($item->cursor->collection)->img);
 
                 $documents[] = [
                     'id' => (string)$item->cursor_id, // тип string для сумісності!
