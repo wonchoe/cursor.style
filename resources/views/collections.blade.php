@@ -43,7 +43,7 @@
                         {{ $item->currentTranslation->name ?? $item->base_name_en }}
                     </h2>
                     <img
-                        @if ($key < 2)
+                        @if ($key < 4)
                             loading="eager"
                         @else
                             loading="lazy"
