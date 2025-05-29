@@ -30,24 +30,31 @@
             </nav>
 
             <div class="collection__list">
-                @foreach ($collections as $key => $item)
-                    @if ($key % 18 == 0)
-                        <div class="gads-wrapper infeed" style="width:100%">
-                            <div class="googleads" style="width:100%">
-                                @include('ads.google.infeed')
-                            </div>
+            @foreach ($collections as $key => $item)
+                @if ($key % 18 == 0)
+                    <div class="gads-wrapper infeed" style="width:100%">
+                        <div class="googleads" style="width:100%">
+                            @include('ads.google.infeed')
                         </div>
-                    @endif
-                    <a class="collection__item_cat" href="{{ $item->url }}">
-                        <h2 class="collection__item_cat_title">
-                            {{ $item->currentTranslation->name ?? $item->base_name_en }}
-                        </h2>
-                        <img loading="lazy" class="main__cat-img"
-                             src="{{ asset_cdn($item->img) }}"
-                             alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
-                             title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}">
-                    </a>
-                @endforeach
+                    </div>
+                @endif
+                <a class="collection__item_cat" href="{{ $item->url }}">
+                    <h2 class="collection__item_cat_title">
+                        {{ $item->currentTranslation->name ?? $item->base_name_en }}
+                    </h2>
+                    <img
+                        @if ($key < 2)
+                            loading="eager"
+                        @else
+                            loading="lazy"
+                        @endif
+                        class="main__cat-img"
+                        src="{{ asset_cdn($item->img) }}"
+                        alt="{{ $item->currentTranslation->name ?? $item->base_name_en }}"
+                        title="{{ $item->currentTranslation->short_desc ?? $item->short_descr }}"
+                    >
+                </a>
+            @endforeach
             </div>
 
             @if ($collections->lastPage() > 1)
