@@ -48,7 +48,7 @@ class ImageController extends Controller {
         }
 
         $manager = new ImageManager(new Driver());
-        $image = $manager->read($pngPath)->toWebp(90);
+        $image = $manager->read($pngPath)->toWebp(80);
         $image->save($webpPath);
 
         return response($image, 200)->header('Content-Type', 'image/webp');
