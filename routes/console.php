@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('adsense:fetch')->everyFiveMinutes();
 Schedule::command('custom:ChromStats')->hourly();
+
+// Cursor installs/uninstalls
 Schedule::command('custom:GetGoogleAnalyticsData')->everyFiveMinutes();
 
 // Create translation
@@ -15,12 +17,12 @@ Schedule::command('custom:translate-collections')->everyThirtyMinutes();
 Schedule::command('custom:TranslateCursor')->everyThirtyMinutes();
 
 // Create tags for SEO
-Schedule::command('custom:tagsCreate')->everyThirtyMinutes();
+Schedule::command('custom:tagsCreate')->dailyAt('05:00');
 
 // Add to search
-Schedule::command('custom:meilisearchAddCursors')->dailyAt('05:00');
+Schedule::command('custom:meilisearchAddCursors')->dailyAt('05:10');
 
-Schedule::command('custom:GetCursorClickStats')->everyThirtyMinutes();
+Schedule::command('custom:GetCursorClickStats')->everyFiveMinutes();
 
 // SEO chatGPT
 Schedule::command('custom:seoSiscovery')->everyThirtyMinutes();
@@ -28,7 +30,7 @@ Schedule::command('custom:seoBatchPrepareSend')->everyThirtyMinutes();
 Schedule::command('custom:seoBatchFetchSave')->everyThirtyMinutes();
 
 // sitemap
-Schedule::command('generate:multisitemap')->daily();
+Schedule::command('generate:multisitemap')->dailyAt('05:20');
 
 // Submit sitemap to google
 Schedule::command('custom:sitemap')->monthly();
