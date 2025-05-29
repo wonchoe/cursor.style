@@ -177,7 +177,8 @@ class IndexController extends Controller
             $c->collectionSlug = $seo['collectionSlug'];
             $c->c_file = $seo['c_file'];
             $c->p_file = $seo['p_file'];
-            $c->name_s = Str::slug($c->name_en);
+            $c->name_s = slugify($c->name_en);
+            $c->cursor_slug = $seo['cursorTrans'];
         }
 
         $centralIndex = $window->search(fn($c) => $c && $c->id === $cursor->id);        
