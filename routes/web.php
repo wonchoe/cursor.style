@@ -102,7 +102,7 @@ Route::group([], function () {
     Route::get('/{type}/{category}/{name}', [ImageController::class, 'show'])
         ->where('type', '^(c|p)-[0-9]+$');
 
-    Route::get('collections/{collection}/{file}.webp', [ImageController::class, 'webp']);        
+    Route::get('collections/{collection}/{file}.webp', [ImageController::class, 'serveWebp']);        
 
 });
 

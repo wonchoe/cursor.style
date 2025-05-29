@@ -7,6 +7,8 @@ use App\Models\Cursors;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Artisan;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ImageController extends Controller {
 
@@ -45,13 +47,13 @@ class ImageController extends Controller {
             abort(404);
         }
 
-        // Генеруємо webp через Intervention Image
-        $image = Image::make($pngPath)->encode('webp', 90);
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($pngPath)->toWebp(90);
         $image->save($webpPath);
 
         return response($image, 200)->header('Content-Type', 'image/webp');
     }
-    
+
     public function serveImage($category_slug, $cursor_slug)
     {
 
