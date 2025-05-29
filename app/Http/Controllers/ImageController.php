@@ -54,7 +54,7 @@ class ImageController extends Controller {
         // Зменшуємо до 450px по ширині (висота пропорційно)
         $image->scaleDown(width: 450);
 
-        $image = $image->toWebp(75);
+        $image = $image->toWebp(85);
         $image->save($webpPath);
 
         return response($image->toString(), 200)->header('Content-Type', 'image/webp');
