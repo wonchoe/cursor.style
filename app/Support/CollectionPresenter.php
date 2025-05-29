@@ -26,10 +26,12 @@ class CollectionPresenter
             $slug = 'collection-' . $collection->id;
         }
 
+        $webpImg = str_replace('.png', '.webp', $collection->img);
+
         return [
             'slug' => $slug,
             'url' => "/collections/{$collection->id}-{$slug}",
-            'img' => "/{$collection->img}",
+            'img' => "/{$webpImg}",
             'trans' => $name
         ];
     }
