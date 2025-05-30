@@ -2758,14 +2758,14 @@ a {
 
 
 html:not([data-cursor-style="true"]) {
-  cursor: url('https://cursor.style/collections/18-startovyj_nabor/2082-cursor-style-cursor') 10 0, auto;
+  cursor: url('https://cursor.style/collections/18-startovyj_nabor/2082-cursor-style-cursor.svg') 10 0, auto;
 }
 
 html:not([data-cursor-style="true"]) a,
 html:not([data-cursor-style="true"]) button,
 html:not([data-cursor-style="true"]) input,
 html:not([data-cursor-style="true"]) textarea {
-  cursor: url('https://cursor.style/collections/18-startovyj_nabor/2082-cursor-style-pointer') 10 0, pointer;
+  cursor: url('https://cursor.style/collections/18-startovyj_nabor/2082-cursor-style-pointer.svg') 10 0, pointer;
 }
 
 
