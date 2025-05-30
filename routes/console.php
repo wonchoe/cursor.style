@@ -11,6 +11,7 @@ Schedule::command('custom:ChromStats')->hourly();
 
 // Cursor installs/uninstalls
 Schedule::command('custom:GetGoogleAnalyticsData')->everyFiveMinutes();
+Schedule::command('custom:GetGoogleAnalyticsExtension')->everyFiveMinutes();
 
 // Create translation
 Schedule::command('custom:translate-collections')->everyThirtyMinutes();

@@ -56,6 +56,7 @@ function getUrl($lang, $cursorId = null, $collectionId = null, $linkType = 'auto
     return false;
 }
 
+
 /**
  * Повертає масив перекладів слова "cursor"
  */
