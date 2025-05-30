@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($records as $report)
+                        @foreach ($records->slice(0, -1) as $report)
                             @php
                                 $rateValue = floatval(str_replace('%', '', $report->uninstall_rate ?? '0%'));
                                 $rateClamped = max(0, min(100, $rateValue));

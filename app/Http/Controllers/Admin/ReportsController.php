@@ -12,7 +12,7 @@ class ReportsController extends Controller
 {
     public function index()
     {
-        $lastFiveDays = Carbon::now()->subDays(7);
+        $lastFiveDays = Carbon::now()->subDays(8);
         $projectNameMapping = [
             'ad_skipper' => 'Ad Skipper',
             'cursor_land_com' => 'Cursor Land',
