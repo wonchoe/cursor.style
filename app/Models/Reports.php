@@ -17,6 +17,9 @@ class Reports extends Model
         'rating_value',
         'feedbacks_total',
         'overal_rank',
-        'cat_rank'
+        'cat_rank',
+        'extension_install',
+        'extension_active',
+        'extension_update',        
     ];    
 }
