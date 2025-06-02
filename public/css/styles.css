@@ -1301,8 +1301,9 @@ a.page-numbers-js.next:hover {
 }
 
 .rateus-img{
-  width: 350px;
+  width: 132px;
   height: 132px;
+  max-width:unset;
 }
 
 .search:focus,
