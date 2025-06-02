@@ -1005,8 +1005,8 @@ div.cchat-flag[data-title="undefined"] {
 .cchat-flag::after {
   content: attr(data-title);
   position: absolute;
-  top: 165%;
-  left: 100%;
+  top: -23px;
+  left: 137%;
   transform: translateX(-50%) scale(0.95);
   opacity: 0;
   padding: 5px 16px;
