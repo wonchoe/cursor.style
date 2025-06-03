@@ -25,6 +25,8 @@ class GoogleAdsenseService
             return null;
         }
 
+        logger()->info('Refresh token: '. $refreshToken);
+
             $response = $this->client->post('https://oauth2.googleapis.com/token', [
                 'form_params' => [
                     'client_id' => config('services.adsense.client_id'),
