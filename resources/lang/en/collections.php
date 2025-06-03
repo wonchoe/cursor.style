@@ -339,4 +339,7 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'undertale-Pixel' => 'Undertale Pixel',
   'undertale-Pixel_short_descr' => 'All your favorite characters from Undertale brought to life in a colorful and creative way',
   'undertale-Pixel_descr' => 'Step into the world of Undertale and meet every beloved hero and quirky character from the game. From heartwarming moments to epic adventures, this set captures the charm and spirit of Undertale, perfect for fans who want to celebrate the entire cast in their own style.',
+  'helluva-boss' => 'Helluva Boss',
+  'helluva-boss_short_descr' => 'A colorful collection inspired by the Helluva Boss universe, featuring favorite characters in playful designs.',
+  'helluva-boss_descr' => 'Explore vibrant designs based on the Helluva Boss series, perfect for fans who want to personalize their browser with creative and fun visuals from the animated world. Each item is crafted to capture the unique personalities and styles of the show\'s beloved characters.',
 );
