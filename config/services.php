@@ -39,6 +39,9 @@ return [
         'client_id' => env('ADSENSE_CLIENT_ID'),
         'client_secret' => env('ADSENSE_CLIENT_SECRET'),
         'refresh_token' => env('ADSENSE_REFRESH_TOKEN'),
+    ],
+    'openai' => [
+        'key' => env('OPENAI_API_KEY'),
     ],    
 
 ];
