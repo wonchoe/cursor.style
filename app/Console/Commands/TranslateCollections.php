@@ -20,7 +20,14 @@ class TranslateCollections extends Command
         'uk', 'vi', 'zh'
     ];
 
-    private $key = config('services.openrouter.key');
+    private $key;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->key = config('services.openrouter.key');
+    }
+
 
     public function handle()
     {

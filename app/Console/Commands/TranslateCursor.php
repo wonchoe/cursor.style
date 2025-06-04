@@ -13,8 +13,15 @@ class TranslateCursor extends Command
     protected $description = 'Генерує англомовні теги для курсорів через OpenRouter API';
     protected $languages = [ 'en', 'am', 'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fil', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'vi', 'zh' ];
 
-    private $key = config('services.openrouter.key');
-    
+    private $key;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->key = config('services.openrouter.key');
+    }
+
+
     private function requestTagsFromOpenRouter(array $items, string $lang, string $languageName): ?array
     {
         $prompt = "You are an assistant that translates UI item names into high-quality, natural-sounding equivalents for multilingual software.
