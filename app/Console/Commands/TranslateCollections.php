@@ -20,6 +20,8 @@ class TranslateCollections extends Command
         'uk', 'vi', 'zh'
     ];
 
+    private $key = config('services.openrouter.key');
+
     public function handle()
     {
         foreach ($this->languages as $lang) {
@@ -86,7 +88,7 @@ class TranslateCollections extends Command
 
         try {
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer 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',
+                'Authorization' => 'Bearer '.$this->key,
                 'Content-Type' => 'application/json',
                 'HTTP-Referer' => 'https://cursor.style',
                 'X-Title' => 'CursorStyleCollectionTranslator'

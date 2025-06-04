@@ -107,7 +107,8 @@ Return result as a JSON: {\"cursor_id\": {$item->cursor_id}, \"lang\": \"{$item-
 
         // 4. Відправляємо файл у OpenAI
         try {
-            $response = Http::withToken(env('OPENAI_API_KEY'))
+            $key = config('services.openai.key');
+            $response = Http::withToken($key)
                 ->attach(
                     'file',
                     fopen($filename, 'r'),
@@ -125,7 +126,8 @@ Return result as a JSON: {\"cursor_id\": {$item->cursor_id}, \"lang\": \"{$item-
             $fileId = $response->json('id');
 
             // Тепер створюємо сам batch:
-            $batchReq = Http::withToken(env('OPENAI_API_KEY'))
+            $key = config('services.openai.key');
+            $batchReq = Http::withToken($key)
                 ->post('https://api.openai.com/v1/batches', [
                     'input_file_id' => $fileId,
                     'endpoint' => '/v1/chat/completions',

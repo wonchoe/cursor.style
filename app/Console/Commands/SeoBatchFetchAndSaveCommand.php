@@ -40,7 +40,8 @@ class SeoBatchFetchAndSaveCommand extends Command
             ->toArray();
 
         foreach ($pendingBatches as $batchId) {
-            $resp = Http::withToken(env('OPENAI_API_KEY'))
+            $key = config('services.openai.key');
+            $resp = Http::withToken($key)
                 ->get("https://api.openai.com/v1/batches/{$batchId}");
             if (!$resp->successful()) continue;
 
@@ -66,7 +67,8 @@ class SeoBatchFetchAndSaveCommand extends Command
             $outputFileId = $batchInfo['output_file_id'] ?? null;
             if (!$outputFileId) continue;
 
-            $fileResp = Http::withToken(env('OPENAI_API_KEY'))
+            $key = config('services.openai.key');
+            $fileResp = Http::withToken($key)
                 ->get("https://api.openai.com/v1/files/{$outputFileId}/content");
 
             $lines = explode("\n", $fileResp->body());
