@@ -342,4 +342,7 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'helluva-boss' => 'Helluva Boss',
   'helluva-boss_short_descr' => 'A colorful collection inspired by the Helluva Boss universe, featuring favorite characters in playful designs.',
   'helluva-boss_descr' => 'Explore vibrant designs based on the Helluva Boss series, perfect for fans who want to personalize their browser with creative and fun visuals from the animated world. Each item is crafted to capture the unique personalities and styles of the show\'s beloved characters.',
+  'sesame-street' => 'Sesame Street',
+  'sesame-street_short_descr' => 'Colorful and cheerful characters from the world-famous Sesame Street, bringing fun and learning together',
+  'sesame-street_descr' => 'Dive into the playful universe of Sesame Street, where beloved characters inspire curiosity, kindness, and creativity. This collection celebrates the timeless charm and educational spirit of the classic show, making every interaction bright and joyful for kids and fans of all ages.',
 );
