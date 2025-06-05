@@ -81,7 +81,7 @@ if (rewardBanner) {
       if (hoursPassed >= HOURS_LIMIT) {
         rewardBanner.style.display = 'block';
         if (document.querySelector('#seoBlock')) {
-          document.querySelector('#seoBlock').style.display = 'none';
+          //document.querySelector('#seoBlock').style.display = 'none';
         }
       }
     }
