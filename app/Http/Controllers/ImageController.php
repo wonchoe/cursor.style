@@ -6,12 +6,76 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Cursors;
 use DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Imagick;
+use ImagickPixel;
 
 class ImageController extends Controller {
 
+public function serveThumbnail($collection_slug, $filename)
+{
+    $svgPath = storage_path("app/public/collections/{$collection_slug}/{$filename}.svg");
+    $thumbDir = storage_path("app/public/collections/{$collection_slug}/thumbs");
+    $pngPath = "{$thumbDir}/{$filename}.png";
+
+    if (file_exists($pngPath)) {
+        return response()->file($pngPath);
+    }
+
+    if (!file_exists($svgPath)) {
+        abort(404, 'SVG not found.');
+    }
+
+    $svgContent = file_get_contents($svgPath);
+
+    // Витягуємо base64 PNG з href
+    if (!preg_match('/href="data:image\/png;base64,([^"]+)"/', $svgContent, $match)) {
+        abort(500, 'No embedded PNG found in SVG.');
+    }
+
+    $pngData = base64_decode($match[1]);
+
+    // Читаємо PNG з memory через Imagick
+    try {
+        $imagick = new \Imagick();
+        $imagick->readImageBlob($pngData);
+
+        // Примусово PNG + прозорість
+        $imagick->setImageBackgroundColor(new \ImagickPixel('transparent'));
+        $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
+        $imagick->setImageFormat('png');
+
+        // Масштабуємо
+        $imagick->resizeImage(300, 300, \Imagick::FILTER_LANCZOS, 1, true);
+        $imagick->unsharpMaskImage(1, 0.5, 1, 0.05);
+        // Створюємо папку, якщо треба
+        if (!\Illuminate\Support\Facades\File::exists($thumbDir)) {
+            \Illuminate\Support\Facades\File::makeDirectory($thumbDir, 0755, true);
+        }
+
+        // Зберігаємо
+        $imagick->writeImage($pngPath);
+        $imagick->clear();
+        $imagick->destroy();
+
+        // Права — читання
+        chmod($pngPath, 0644);
+
+    } catch (\Throwable $e) {
+        abort(500, 'Thumbnail generation failed: ' . $e->getMessage());
+    }
+
+    $response = response()->file($pngPath);
+    $response->headers->set('Cache-Tag', 'thumb');
+    return $response;
+}
+
+
+
+    
     // OLD IMAGE ROUTE
     public function show($type, $category, $name)
     {

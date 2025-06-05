@@ -86,6 +86,11 @@ Route::post('/feedback', [IndexController::class, 'sendEmailFeedBack']);
 // IMAGES
 // GROUP: TEMP + UNIVERSAL ROUTES FOR CURSOR IMAGES
 Route::group([], function () {
+    
+    Route::get('/collections/{collection_slug}/thumb/{filename}.png', [ImageController::class, 'serveThumbnail'])
+        ->where('filename', '[0-9]+-[a-z0-9\\-]+-(cursor|pointer)');
+
+
     // 1. Старі URL: /cursors/1234-yellow-cursor(.svg|.png)
     Route::get('/{type}/{id}-{cursor}.{ext?}', function ($type, $id, $cursor, $ext = 'svg') {
         $slug = "{$id}-{$cursor}.{$ext}";
@@ -103,7 +108,6 @@ Route::group([], function () {
         ->where('type', '^(c|p)-[0-9]+$');
 
     Route::get('collections/{collection}/{file}.webp', [ImageController::class, 'serveWebp']);        
-
 });
 
 
