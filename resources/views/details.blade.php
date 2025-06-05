@@ -18,6 +18,31 @@
     {!! renderHreflangLinksForCursor($cursor->id, $cursor->cat, $translations, $translationsCat, $collection_base_name) !!}
     @endif
 
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
+    "image": [
+        "{{ asset_cdn($cursor->c_file) }}"
+    ],
+    "description": "{{ Str::limit(strip_tags($cursor->seo_description ?? $cursor->currentTranslation->short_desc ?? $cursor->short_descr ?? $cursor->currentTranslation->name ?? $cursor->name_en), 160) }}",
+    "sku": "cursor-{{ $cursor->id }}",
+    "brand": {
+        "@type": "Brand",
+        "name": "Cursor Style"
+    },
+    "url": "{{ url()->current() }}",
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock",
+        "url": "{{ url()->current() }}"
+    }
+    }
+    </script>
+
 @endsection
 
 @section('main')
