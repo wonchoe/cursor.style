@@ -13,6 +13,9 @@
     <meta name="twitter:title" content="@lang('messages.og_title')" />
     <meta name="twitter:description" content="@lang('messages.main_page_descr')" />
     <meta name="twitter:image" content="{{ asset_cdn('images/img.jpg') }}" />
+    @if (!empty($isSearch))
+        <meta name="robots" content="noindex, follow">
+    @endif    
 @endsection
 
 @push('styles')

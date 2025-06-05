@@ -210,8 +210,9 @@ private function searchFallback(string $query, string $lang = 'en'): \Illuminate
                 'cursors' => $cursors,
                 'query' => $query,
                 'sort' => $sort,
+                'isSearch' => true
             ])
-            ->header('Cache-Tag', 'index')
+            ->header('Cache-Tag', 'search')
             ->withoutCookie('Cache-Control');
     }
 
