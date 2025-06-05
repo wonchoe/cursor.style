@@ -1,24 +1,5 @@
-@extends('layouts.app')
-
-@section('head_meta')
-    <title>
-        {{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}
-    </title>
-    <meta name="description" content="{{ $cursor->seo_description ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}">
-    <meta property="og:image:width" content="700" />
-    <meta property="og:image:height" content="350" />
-    <meta property="og:image" content="{{ asset_cdn($cursor->c_file) }}" />
-    <link rel="icon" type="image/png" href="{{ asset_cdn('images/favicon.png') }}" />
-    
-    @if (request()->routeIs('cursor.details') && strpos(request()->path(), 'details/') === 0)
-        {{-- Легасі роут --}}
-    {!! renderHreflangLinks($cursor->id, $translations) !!}
-    @else
-        {{-- Новий SEO роут --}}
-    {!! renderHreflangLinksForCursor($cursor->id, $cursor->cat, $translations, $translationsCat, $collection_base_name) !!}
-    @endif
 @php
-    $cdnSvg = asset_cdn($cursor->c_file); // https://.../collections/3-multfilmy/1217-name-pointer.svg
+    $cdnSvg = asset_cdn($cursor->p_file); // https://.../collections/3-multfilmy/1217-name-pointer.svg
 
     // Витягуємо категорію з шляху
     $thumbCdn = preg_replace_callback(
@@ -30,30 +11,50 @@
     $finalImage = preg_replace('/\.svg$/', '.png', $thumbCdn);
 @endphp
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
-  "image": [
-    "{{ $finalImage }}"
-  ],
-  "description": "{{ Str::limit(strip_tags($cursor->seo_description ?? $cursor->currentTranslation->short_desc ?? $cursor->short_descr ?? $cursor->currentTranslation->name ?? $cursor->name_en), 160) }}",
-  "sku": "cursor-{{ $cursor->id }}",
-  "brand": {
-    "@type": "Brand",
-    "name": "Cursor Style"
-  },
-  "url": "{{ url()->current() }}",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "price": "0.00",
-    "availability": "https://schema.org/InStock",
-    "url": "{{ url()->current() }}"
-  }
-}
-</script>
+@extends('layouts.app')
+
+@section('head_meta')
+    <title>
+        {{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}
+    </title>
+    <meta name="description" content="{{ $cursor->seo_description ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}">
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image" content="{{ $finalImage }}" />
+    <link rel="icon" type="image/png" href="{{ asset_cdn('images/favicon.png') }}" />
+    
+    @if (request()->routeIs('cursor.details') && strpos(request()->path(), 'details/') === 0)
+        {{-- Легасі роут --}}
+    {!! renderHreflangLinks($cursor->id, $translations) !!}
+    @else
+        {{-- Новий SEO роут --}}
+    {!! renderHreflangLinksForCursor($cursor->id, $cursor->cat, $translations, $translationsCat, $collection_base_name) !!}
+    @endif
+
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
+    "image": [
+        "{{ $finalImage }}"
+    ],
+    "description": "{{ Str::limit(strip_tags($cursor->seo_description ?? $cursor->currentTranslation->short_desc ?? $cursor->short_descr ?? $cursor->currentTranslation->name ?? $cursor->name_en), 160) }}",
+    "sku": "cursor-{{ $cursor->id }}",
+    "brand": {
+        "@type": "Brand",
+        "name": "Cursor Style"
+    },
+    "url": "{{ url()->current() }}",
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock",
+        "url": "{{ url()->current() }}"
+    }
+    }
+    </script>
 
 
 @endsection
