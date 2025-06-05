@@ -1202,6 +1202,7 @@ a.page-numbers-js.next:hover {
 }
 
 .seo-block {
+  display: block !important;
   width: 100%;
   max-width: 1000px;
   background-color: #f8f8f8;
