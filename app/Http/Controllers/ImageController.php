@@ -62,7 +62,7 @@ public function serveThumbnail($collection_slug, $filename)
         $imagick->destroy();
 
         // Права — читання
-        chmod($pngPath, 0644);
+        chmod($pngPath, 0755);
 
     } catch (\Throwable $e) {
         abort(500, 'Thumbnail generation failed: ' . $e->getMessage());

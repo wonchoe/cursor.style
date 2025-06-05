@@ -87,7 +87,7 @@ Route::post('/feedback', [IndexController::class, 'sendEmailFeedBack']);
 // GROUP: TEMP + UNIVERSAL ROUTES FOR CURSOR IMAGES
 Route::group([], function () {
     
-    Route::get('/collections/{collection_slug}/thumb/{filename}.png', [ImageController::class, 'serveThumbnail'])
+    Route::get('/collections/{collection_slug}/thumbs/{filename}.png', [ImageController::class, 'serveThumbnail'])
         ->where('filename', '[0-9]+-[a-z0-9\\-]+-(cursor|pointer)');
 
 
