@@ -36,9 +36,12 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
-    "image": [
-        "{{ $finalImage }}"
-    ],
+    "image": {
+        "@type": "ImageObject",
+        "url": "{{ $finalImage }}",
+        "width": 300,
+        "height": 300
+    },
     "description": "{{ Str::limit(strip_tags($cursor->seo_description ?? $cursor->currentTranslation->short_desc ?? $cursor->short_descr ?? $cursor->currentTranslation->name ?? $cursor->name_en), 160) }}",
     "sku": "cursor-{{ $cursor->id }}",
     "brand": {
@@ -55,7 +58,6 @@
     }
     }
     </script>
-
 
 @endsection
 
