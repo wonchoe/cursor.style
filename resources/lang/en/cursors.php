@@ -2292,4 +2292,11 @@ return array (
   'c_2738' => 'Snuffy',
   'c_2739' => 'Telly Monster',
   'c_2740' => 'Zoe',
+  'c_2741' => 'Aubrey',
+  'c_2743' => 'Hero',
+  'c_2744' => 'Kel',
+  'c_2745' => 'Mari',
+  'c_2746' => 'Omori',
+  'c_2747' => 'Sunny',
+  'c_2748' => 'Basil',
 );

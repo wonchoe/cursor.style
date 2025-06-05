@@ -345,4 +345,7 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'sesame-street' => 'Sesame Street',
   'sesame-street_short_descr' => 'Colorful and cheerful characters from the world-famous Sesame Street, bringing fun and learning together',
   'sesame-street_descr' => 'Dive into the playful universe of Sesame Street, where beloved characters inspire curiosity, kindness, and creativity. This collection celebrates the timeless charm and educational spirit of the classic show, making every interaction bright and joyful for kids and fans of all ages.',
+  'omori' => 'Omori',
+  'omori_short_descr' => 'A unique and emotional adventure inspired by classic RPGs.',
+  'omori_descr' => 'Embark on a heartfelt journey through a surreal world filled with mystery, challenges, and unforgettable moments. Inspired by classic RPGs, this collection brings to life the vibrant characters and evocative atmosphere of Omori, capturing both its whimsical charm and emotional depth.',
 );
