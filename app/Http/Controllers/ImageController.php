@@ -15,81 +15,107 @@ use ImagickPixel;
 
 class ImageController extends Controller {
 
-public function serveThumbnail($collection_slug, $filename)
-{
-    $svgPath = storage_path("app/public/collections/{$collection_slug}/{$filename}.svg");
-    $thumbDir = storage_path("app/public/collections/{$collection_slug}/thumbs");
-    $pngPath = "{$thumbDir}/{$filename}.png";
+    public function serveThumbnail($collection_slug, $filename)
+    {
+        $svgPath = storage_path("app/public/collections/{$collection_slug}/{$filename}.svg");
+        $thumbDir = storage_path("app/public/collections/{$collection_slug}/thumbs");
+        $pngPath = "{$thumbDir}/{$filename}.png";
 
-    if (file_exists($pngPath)) {
-        return response()->file($pngPath);
-    }
-
-    if (!file_exists($svgPath)) {
-        abort(404, 'SVG not found.');
-    }
-
-    $svgContent = file_get_contents($svgPath);
-
-    // Витягуємо base64 PNG з href
-    if (!preg_match('/href="data:image\/png;base64,([^"]+)"/', $svgContent, $match)) {
-        abort(500, 'No embedded PNG found in SVG.');
-    }
-
-    $pngData = base64_decode($match[1]);
-
-    // Читаємо PNG з memory через Imagick
-    try {
-        $imagick = new \Imagick();
-        $imagick->readImageBlob($pngData);
-
-        // Примусово PNG + прозорість
-        $imagick->setImageBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
-        $imagick->setImageFormat('png');
-
-        // Масштабуємо збереженням пропорцій (вписати в 300x300)
-        $imagick->thumbnailImage(300, 300, true);
-
-        // Отримуємо фактичні розміри
-        $thumbWidth = $imagick->getImageWidth();
-        $thumbHeight = $imagick->getImageHeight();
-
-        // Створюємо прозорий квадрат 300x300
-        $canvas = new \Imagick();
-        $canvas->newImage(300, 300, new \ImagickPixel('transparent'), 'png');
-
-        // Центруємо оригінал у канвасі
-        $x = (300 - $thumbWidth) / 2;
-        $y = (300 - $thumbHeight) / 2;
-        $canvas->compositeImage($imagick, \Imagick::COMPOSITE_DEFAULT, $x, $y);
-
-        // Покращуємо чіткість
-        $canvas->unsharpMaskImage(1, 0.5, 1, 0.05);
-
-        // Створюємо папку, якщо треба
-        if (!\Illuminate\Support\Facades\File::exists($thumbDir)) {
-            \Illuminate\Support\Facades\File::makeDirectory($thumbDir, 0755, true);
+        if (file_exists($pngPath)) {
+            return response()->file($pngPath);
         }
 
-        // Зберігаємо файл
-        $canvas->writeImage($pngPath);
-        $canvas->clear();
-        $canvas->destroy();
-        $imagick->clear();
-        $imagick->destroy();
+        if (!file_exists($svgPath)) {
+            abort(404, 'SVG not found.');
+        }
 
-        // Виставляємо права
-        chmod($pngPath, 0664);
+        $svgContent = file_get_contents($svgPath);
 
-    } catch (\Throwable $e) {
-        abort(500, 'Thumbnail generation failed: ' . $e->getMessage());
+        // Витягуємо base64 PNG з href, якщо є
+        if (preg_match('/href="data:image\/png;base64,([^"]+)"/', $svgContent, $match)) {
+            $pngData = base64_decode($match[1]);
+        } else {
+            // Якщо немає вбудованого PNG — конвертуємо SVG у PNG напряму
+            $pngData = $this->svgToPng($svgContent, 300, 300);
+            if (!$pngData) {
+                abort(500, 'SVG to PNG conversion failed.');
+            }
+        }
+
+        try {
+            $imagick = new \Imagick();
+            $imagick->readImageBlob($pngData);
+            $imagick->setImageBackgroundColor(new \ImagickPixel('transparent'));
+            $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
+            $imagick->setImageFormat('png');
+            $imagick->thumbnailImage(300, 300, true);
+
+            $thumbWidth = $imagick->getImageWidth();
+            $thumbHeight = $imagick->getImageHeight();
+
+            $canvas = new \Imagick();
+            $canvas->newImage(300, 300, new \ImagickPixel('transparent'), 'png');
+            $x = (300 - $thumbWidth) / 2;
+            $y = (300 - $thumbHeight) / 2;
+            $canvas->compositeImage($imagick, \Imagick::COMPOSITE_DEFAULT, $x, $y);
+            $canvas->unsharpMaskImage(1, 0.5, 1, 0.05);
+
+            if (!\Illuminate\Support\Facades\File::exists($thumbDir)) {
+                \Illuminate\Support\Facades\File::makeDirectory($thumbDir, 0755, true);
+            }
+
+            $canvas->writeImage($pngPath);
+            $canvas->clear();
+            $canvas->destroy();
+            $imagick->clear();
+            $imagick->destroy();
+            chmod($pngPath, 0664);
+
+        } catch (\Throwable $e) {
+            \Log::error('File download error', ['msg' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            abort(500, 'File error: ' . $e->getMessage());
+        }
+
+        $response = response()->file($pngPath);
+        $response->headers->set('Cache-Tag', 'thumb');
+        return $response;
     }
 
-    $response = response()->file($pngPath);
-    $response->headers->set('Cache-Tag', 'thumb');
-    return $response;
-}
+    /**
+     * Конвертує SVG string в PNG (як blob)
+     */
+    protected function svgToPng(string $svg, int $width = 300, int $height = 300): ?string
+    {
+        try {
+            $svg = preg_replace('/\swidth="[^"]*"/i', '', $svg);
+            $svg = preg_replace('/\sheight="[^"]*"/i', '', $svg);
+            $svg = preg_replace("/\swidth='[^']*'/i", '', $svg);
+            $svg = preg_replace("/\sheight='[^']*'/i", '', $svg);
+
+            // Додаємо width/height у <svg ...>
+            $svg = preg_replace(
+                '/<svg\b([^>]*)>/i',
+                '<svg$1 width="' . $width . 'px" height="' . $height . 'px">',
+                $svg,
+                1
+            );
+
+            $im = new \Imagick();
+            $im->setBackgroundColor(new \ImagickPixel('transparent'));
+            $im->setResolution(300, 300);
+            $im->readImageBlob($svg);
+            $im->setImageFormat('png');
+            $im->resizeImage($width, $height, \Imagick::FILTER_LANCZOS, 1, true);
+            $pngData = $im->getImageBlob();
+            $im->clear();
+            $im->destroy();
+            return $pngData;
+        } catch (\Throwable $e) {
+            \Log::error('SVG to PNG conversion failed', ['msg' => $e->getMessage()]);
+            return null;
+        }
+    }
+
 
 
 

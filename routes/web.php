@@ -81,8 +81,6 @@ Route::view('/feedback', 'feedback');
 Route::post('/feedback', [IndexController::class, 'sendEmailFeedBack']);
 
 
-
-
 // IMAGES
 // GROUP: TEMP + UNIVERSAL ROUTES FOR CURSOR IMAGES
 Route::group([], function () {
