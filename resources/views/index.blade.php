@@ -29,7 +29,7 @@
     <div class="main">
         <div class="container">
 
-            <div class="cursor-reward-banner" id="rewardBanner">
+            <div class="cursor-reward-banner" id="rewardBanner" style="display: block;">
                 <div id="rewardBlock">
                     <div class="cursor-images">
                         <img src="{{ asset_cdn('/images/ads-cursor.png') }}" alt="Cursor" class="cursor-img" loading="lazy">
