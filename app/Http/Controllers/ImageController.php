@@ -48,20 +48,38 @@ public function serveThumbnail($collection_slug, $filename)
         $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
         $imagick->setImageFormat('png');
 
-        // Масштабуємо
-        $imagick->resizeImage(300, 300, \Imagick::FILTER_LANCZOS, 1, true);
-        $imagick->unsharpMaskImage(1, 0.5, 1, 0.05);
+        // Масштабуємо збереженням пропорцій (вписати в 300x300)
+        $imagick->thumbnailImage(300, 300, true);
+
+        // Отримуємо фактичні розміри
+        $thumbWidth = $imagick->getImageWidth();
+        $thumbHeight = $imagick->getImageHeight();
+
+        // Створюємо прозорий квадрат 300x300
+        $canvas = new \Imagick();
+        $canvas->newImage(300, 300, new \ImagickPixel('transparent'), 'png');
+
+        // Центруємо оригінал у канвасі
+        $x = (300 - $thumbWidth) / 2;
+        $y = (300 - $thumbHeight) / 2;
+        $canvas->compositeImage($imagick, \Imagick::COMPOSITE_DEFAULT, $x, $y);
+
+        // Покращуємо чіткість
+        $canvas->unsharpMaskImage(1, 0.5, 1, 0.05);
+
         // Створюємо папку, якщо треба
         if (!\Illuminate\Support\Facades\File::exists($thumbDir)) {
             \Illuminate\Support\Facades\File::makeDirectory($thumbDir, 0755, true);
         }
 
-        // Зберігаємо
-        $imagick->writeImage($pngPath);
+        // Зберігаємо файл
+        $canvas->writeImage($pngPath);
+        $canvas->clear();
+        $canvas->destroy();
         $imagick->clear();
         $imagick->destroy();
 
-        // Права — читання
+        // Виставляємо права
         chmod($pngPath, 0664);
 
     } catch (\Throwable $e) {
