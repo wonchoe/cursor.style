@@ -17,41 +17,43 @@
         {{-- Новий SEO роут --}}
     {!! renderHreflangLinksForCursor($cursor->id, $cursor->cat, $translations, $translationsCat, $collection_base_name) !!}
     @endif
+@php
+    $cdnSvg = asset_cdn($cursor->c_file); // https://.../collections/3-multfilmy/1217-name-pointer.svg
 
-    @php
-        $cdnSvg = asset_cdn($cursor->c_file); // повна CDN-силка на .svg
-        $thumbCdn = str_replace('collections/', 'collections/thumbs/', $cdnSvg);
-        $thumbCdn = preg_replace('/\.svg$/', '.png', $thumbCdn);
+    // Витягуємо категорію з шляху
+    $thumbCdn = preg_replace_callback(
+        '#/collections/([^/]+)/#',
+        fn($m) => "/collections/{$m[1]}/thumbs/",
+        $cdnSvg
+    );
 
-        // Перевіряємо чи фізичний файл існує локально (щоб не лінкати неіснуючі картинки)
-        $localThumbPath = public_path(parse_url($thumbCdn, PHP_URL_PATH));
-        $finalImage = file_exists($localThumbPath) ? $thumbCdn : $cdnSvg;
-    @endphp
+    $finalImage = preg_replace('/\.svg$/', '.png', $thumbCdn);
+@endphp
 
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
-    "image": [
-        "{{ $finalImage }}"
-    ],
-    "description": "{{ Str::limit(strip_tags($cursor->seo_description ?? $cursor->currentTranslation->short_desc ?? $cursor->short_descr ?? $cursor->currentTranslation->name ?? $cursor->name_en), 160) }}",
-    "sku": "cursor-{{ $cursor->id }}",
-    "brand": {
-        "@type": "Brand",
-        "name": "Cursor Style"
-    },
-    "url": "{{ url()->current() }}",
-    "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0.00",
-        "availability": "https://schema.org/InStock",
-        "url": "{{ url()->current() }}"
-    }
-    }
-    </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
+  "image": [
+    "{{ $finalImage }}"
+  ],
+  "description": "{{ Str::limit(strip_tags($cursor->seo_description ?? $cursor->currentTranslation->short_desc ?? $cursor->short_descr ?? $cursor->currentTranslation->name ?? $cursor->name_en), 160) }}",
+  "sku": "cursor-{{ $cursor->id }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Cursor Style"
+  },
+  "url": "{{ url()->current() }}",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "0.00",
+    "availability": "https://schema.org/InStock",
+    "url": "{{ url()->current() }}"
+  }
+}
+</script>
 
 
 @endsection
