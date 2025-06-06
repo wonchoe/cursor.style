@@ -32,7 +32,7 @@
     @endif
 
     <script type="application/ld+json">
-    {
+{
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "{{ $cursor->seo_title ?? $cursor->currentTranslation->name ?? $cursor->name_n ?? $cursor->name_en }}",
@@ -54,9 +54,42 @@
         "priceCurrency": "USD",
         "price": "0.00",
         "availability": "https://schema.org/InStock",
-        "url": "{{ url()->current() }}"
+        "url": "{{ url()->current() }}",
+        "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "0.00",
+                "currency": "USD"
+            },
+            "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 0,
+                    "unitCode": "d"
+                },
+                "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 0,
+                    "unitCode": "d"
+                }
+            },
+            "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "US"
+            }
+        },
+        "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "returnPolicyCategory": "NoReturns",
+            "merchantReturnDays": 0
+        }
     }
-    }
+}
+
     </script>
 
 @endsection
