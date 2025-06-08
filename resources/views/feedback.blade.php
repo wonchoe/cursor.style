@@ -11,6 +11,7 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
     <link rel="icon" type="image/png" href="https://cursor.style/images/favicon.png" />
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 @endsection
 
 @section('main')
@@ -32,7 +33,6 @@
     }
 </style>
 
-<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
 
     <div class="main">

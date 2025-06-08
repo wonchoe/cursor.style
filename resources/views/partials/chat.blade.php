@@ -1,12 +1,3 @@
-@php
-    $animations = [
-        asset_cdn('/lottie/among_us.lottie'),
-        asset_cdn('/lottie/elephant.lottie'),
-        asset_cdn('/lottie/fish.lottie'),
-    ];
-    $randomAnimation = $animations[array_rand($animations)];
-@endphp
-
 <div class="chat-container" id="chatContainer">
 
     @php
