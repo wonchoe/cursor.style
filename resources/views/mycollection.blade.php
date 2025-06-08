@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
     <script src="https://cursor.style/js/fontpicker.iife.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <link rel="stylesheet" href="{{ asset_ver('css/mycollection.css') }}" />
 @endpush
 
 

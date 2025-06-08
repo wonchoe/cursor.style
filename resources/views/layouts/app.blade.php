@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="{{ asset_ver('css/mycollection.css') }}" />
+
     <link rel="stylesheet" href="{{ asset_ver('css/styles.css') }}" />
     <link rel="stylesheet" href="{{ asset_ver('css/chat.css') }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round" />
