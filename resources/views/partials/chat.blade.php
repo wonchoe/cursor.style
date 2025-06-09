@@ -88,7 +88,7 @@
     <input type="text" id="loginInput" class="md-input" data-lang-placeholder="pick_your_cool_name" placeholder="@lang('messages.chat_pick_your_cool_name')" maxlength="24">
     <div id="userNameFeedback" style="font-size: 12px; margin-top: 5px;"></div>
     <div class="avatar-preview">
-        <img id="selectedAvatar" src="{{ asset_cdn('images/avatars/avatar_17.svg') }}" width="48">
+        <img loading="lazy" id="selectedAvatar" src="{{ asset_cdn('images/avatars/avatar_17.svg') }}" width="48">
         <button class="md-button md-button-secondary" onclick="showAvatarSelector()" data-lang-tag="choose_avatar">@lang('messages.chat_choose_avatar')</button>
     </div>
     <div class="button-group">
