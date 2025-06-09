@@ -31,7 +31,7 @@
         window.assetCdnBase = "{{ rtrim(config('app.asset_cdn', 'https://cursor.style'), '/') }}";
     </script>
     <script async src="{{ asset_ver('js/lang.v2.js') }}"></script>
-    <script src="{{ asset_ver('js/init.js') }}"></script>
+    <script src="{{ asset_ver('js/init.js') }}" defer></script>
 
     <style>
 
