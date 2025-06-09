@@ -1,5 +1,5 @@
 @if($all_cursors->isNotEmpty())
-<div class="near-wrapper">
+<div class="near-wrapper" style="height: 160px !important;">
     <div class="main__list_near">
         @foreach ($all_cursors as $loopCursor)
             <div 
