@@ -19,7 +19,7 @@
 
 <div class="header">
     <a class="logo" href="/">
-        <img src="{{ asset_cdn('images/logo.webp') }}" alt="@lang('messages.cursor_style')"
+        <img src="{{ asset_cdn('images/logo.png') }}" alt="@lang('messages.cursor_style')"
             title="@lang('messages.cursor_style_logo_title')" />
     </a>
     <div class="container">
