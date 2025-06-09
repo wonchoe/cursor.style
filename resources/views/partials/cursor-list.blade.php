@@ -17,10 +17,10 @@
                 <p>{{ $translation }}</p>
             </div>
             <div class="main__item-img cs_pointer" data-cur-id="{{ $cursor->id }}" cursorshover="true">
-                <img alt="{{ $translation }}" title="{{ $translation }}" loading="{{ $key < 3 ? 'eager' : 'lazy' }}"
+                <img alt="{{ $translation }}" title="{{ $translation }}" fetchpriority="high" loading="{{ $key < 3 ? 'eager' : 'lazy' }}"
                     class="cursorimg" style="cursor: url({{ asset_cdn($cursor->c_file) }}) 0 0, auto !important;"
                     src="{{ asset_cdn($cursor->c_file) }}">
-                <img alt="{{ $translation }}" title="{{ $translation }}" loading="{{ $key < 3 ? 'eager' : 'lazy' }}"
+                <img alt="{{ $translation }}" title="{{ $translation }}" fetchpriority="high" loading="{{ $key < 3 ? 'eager' : 'lazy' }}"
                     class="cursorimg" style="cursor: url({{ asset_cdn($cursor->p_file) }}) 0 0, auto !important;"
                     src="{{ asset_cdn($cursor->p_file) }}">
             </div>
