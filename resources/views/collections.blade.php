@@ -32,7 +32,7 @@
             <div class="collection__list">
             @foreach ($collections as $key => $item)
                 @if ($key % 18 == 0)
-                    <div class="gads-wrapper infeed" style="width:100%">
+                    <div class="gads-wrapper infeed" style="width:100%; height:230px;">
                         <div class="googleads" style="width:100%">
                             @include('ads.google.infeed')
                         </div>
