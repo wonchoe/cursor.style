@@ -2546,7 +2546,7 @@ a {
 
 .near-wrapper {
   display: flex;
-  height: 100%;
+  height: 160px;
   width: 100%;
   background: white;
   border-radius: 5px;
