@@ -18,7 +18,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
-    <link rel="stylesheet" href="{{ asset_ver('css/styles.css') }}" />
+    <link rel="stylesheet" href="/css/styles.css?v=37" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/critical.css?v=37">
     <link rel="stylesheet" href="{{ asset_ver('css/chat.css') }}" />
     <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -31,6 +32,10 @@
     </script>
     <script async src="{{ asset_ver('js/lang.v2.js') }}"></script>
     <script src="{{ asset_ver('js/init.js') }}"></script>
+
+    <style>
+
+    </style>
 </head>
 
 <body>
