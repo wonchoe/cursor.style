@@ -22,3 +22,4 @@ yarn-error.log
 /.vscode
 /.zed
 /public/collections
+build.txt
