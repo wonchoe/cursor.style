@@ -23,3 +23,4 @@ yarn-error.log
 /.zed
 /public/collections
 build.txt
+/storage/app/seo_batches/
