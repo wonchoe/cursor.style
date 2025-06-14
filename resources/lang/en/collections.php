@@ -348,4 +348,13 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'omori' => 'Omori',
   'omori_short_descr' => 'A unique and emotional adventure inspired by classic RPGs.',
   'omori_descr' => 'Embark on a heartfelt journey through a surreal world filled with mystery, challenges, and unforgettable moments. Inspired by classic RPGs, this collection brings to life the vibrant characters and evocative atmosphere of Omori, capturing both its whimsical charm and emotional depth.',
+  'avatar-the-last-airbender' => 'Avatar: The Last Airbender',
+  'avatar-the-last-airbender_short_descr' => 'A magical world where elemental bending shapes the fate of nations.',
+  'avatar-the-last-airbender_descr' => 'Experience the epic journey of heroes and villains in a land where water, earth, fire, and air come alive. Inspired by the beloved animated series, this collection brings to life the iconic style and spirit of Avatar: The Last Airbender, perfect for fans who want to add a touch of adventure and nostalgia to their browser.',
+  'love-is' => 'Love Is',
+  'love-is_short_descr' => 'Charming scenes of a boy and girl expressing love and friendship in classic comic style.',
+  'love-is_descr' => 'A delightful collection inspired by the classic "Love Is" comics, featuring a boy and girl in sweet, everyday moments of care, joy, and togetherness. Perfect for fans of timeless romance and nostalgic cartoons, this set brings warm feelings and a touch of tenderness to your browser.',
+  'cookie-run' => 'Cookie Run 2025',
+  'cookie-run_short_descr' => 'Whimsical worlds and cookie heroes in a sweet fantasy universe.',
+  'cookie-run_descr' => 'Explore the delightful realms of Cookie Run, where cookie characters come to life in magical adventures. Inspired by the popular mobile franchise, this collection brings playful charm and colorful designs from the entire Cookie Run universe.',
 );
