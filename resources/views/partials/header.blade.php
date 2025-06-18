@@ -43,12 +43,12 @@
                 <li><a class="top_menu_link" id="mycollection_menu"
                         href="/mycollection">@lang('messages.mycollection')</a></li>
             </ul>
-        </>
-        <nav class="burger">
+            </nav>
+        <div class="burger">
             <div class="burger__line"></div>
             <div class="burger__line"></div>
             <div class="burger__line"></div>
-        </nav>
+        </div>
     </div>
 </div>
 
