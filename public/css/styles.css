@@ -299,6 +299,10 @@ img {
   .nav {
     display: none;
   }
+  .near-wrapper{
+    display: none !important;
+  }
+  
 
   .burger {
     display: block;
