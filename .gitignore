@@ -25,4 +25,8 @@ yarn-error.log
 /public/collections
 build.txt
 /storage/app/seo_batches/
+<<<<<<< HEAD
 google.json
+=======
+google.json
+>>>>>>> 59afd5655a4a09f7471d5f0ed8a646fb61debfd9
