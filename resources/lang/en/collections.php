@@ -357,4 +357,7 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'cookie-run' => 'Cookie Run 2025',
   'cookie-run_short_descr' => 'Whimsical worlds and cookie heroes in a sweet fantasy universe.',
   'cookie-run_descr' => 'Explore the delightful realms of Cookie Run, where cookie characters come to life in magical adventures. Inspired by the popular mobile franchise, this collection brings playful charm and colorful designs from the entire Cookie Run universe.',
+  'kirby-advantures' => 'Kirby Advantures',
+  'kirby-advantures_short_descr' => 'Cute and colorful adventures await in this charming world.',
+  'kirby-advantures_descr' => 'Step into a delightful universe full of action, whimsy, and unforgettable characters. Inspired by classic adventures and vibrant design, this collection brings the essence of Kirby\'s world to your screen.',
 );
