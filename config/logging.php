@@ -129,8 +129,14 @@ return [
         'seojobs' => [
             'driver' => 'single',
             'path' => storage_path('logs/seojobs.log'),
-            'level' => 'info', // або 'debug'
-        ],        
+            'level' => 'info',
+        ],
+        'chatlogs' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/chatlogs.log'),
+            'level' => 'debug',
+        ],
+
 
     ],
 

@@ -9,12 +9,16 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\GA4AnalyticsController;
+use App\Http\Controllers\Admin\ChatLogsController;
 use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\ReportsChartController;
 use App\Http\Controllers\Admin\LogViewerController;
 use App\Http\Controllers\Admin\AdminCollectionsController;
 use App\Http\Controllers\Admin\AdminCursorController;
 
+
+// LOGS
+Route::post('/chatlogs', [ChatLogsController::class, 'chat']);
 
 // MAIN
 Route::get('/', [IndexController::class, 'index'])->name('home');

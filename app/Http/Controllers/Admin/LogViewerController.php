@@ -11,7 +11,6 @@ class LogViewerController extends Controller
 
     public function index(Request $request)
     {
-        // Список файлів логів
         $files = collect(File::files(base_path($this->logPath)))
             ->filter(fn($f) => in_array($f->getExtension(), ['log', 'txt']))
             ->map(fn($f) => $f->getFilename());
@@ -35,7 +34,6 @@ public function fetch(Request $request)
 
     $logs = $this->groupLaravelLogs($path);
 
-    // --- Додаємо фільтрацію по рівню, якщо потрібно ---
     if ($level && in_array($level, ['info', 'warning', 'error', 'debug', 'other'])) {
         $logs = array_filter($logs, function($log) use ($level) {
             if ($level === 'other') {
@@ -48,15 +46,13 @@ public function fetch(Request $request)
             }
             return str_contains($log, strtoupper($level));
         });
-        $logs = array_values($logs); // Reindex після фільтра
+        $logs = array_values($logs); 
     }
 
     $total = count($logs);
 
-    // --- Робимо reverse, щоб найновіші були першими ---
     $logs = array_reverse($logs);
 
-    // --- Slice без додаткового reverse! ---
     $slice = array_slice($logs, ($page - 1) * $perPage, $perPage);
 
     return response()->json([
@@ -76,7 +72,6 @@ public function fetch(Request $request)
         return response()->json(['success' => true]);
     }
 
-    // --- Групування логів (один лог = один блок навіть якщо багаторядковий) ---
     protected function groupLaravelLogs($file)
     {
         $lines = explode("\n", File::get($file));
@@ -84,7 +79,6 @@ public function fetch(Request $request)
         $current = '';
 
         foreach ($lines as $line) {
-            // Лог починається з [дата]
             if (preg_match('/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\]/', $line)) {
                 if ($current) $logs[] = $current;
                 $current = $line;
