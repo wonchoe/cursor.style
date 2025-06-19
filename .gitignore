@@ -25,3 +25,4 @@ yarn-error.log
 /public/collections
 build.txt
 /storage/app/seo_batches/
+google.json
