@@ -63,8 +63,9 @@ A simple project with maximum optimization and cost-efficiency, built using avai
 ---
 
 ## 🌐 CDN Strategy: Cloudflare + CloudFront
-![CF Layer 1](./diagrams/cf1.png)
-![CF Layer 2](./diagrams/cf2.png)
+
+<img src=".diagrams/cf1.png">
+<img src=".diagrams/cf2.png">
 
 - Initially used only CloudFront, but request limits led to added cost
 - Final setup: Cloudflare in front of CloudFront
