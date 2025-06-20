@@ -1,6 +1,11 @@
 # Cursor.style - Infrastructure Overview & Architecture
 
 
+![GitHub repo size](https://img.shields.io/github/repo-size/wonchoe/cursor.style)
+![GitHub stars](https://img.shields.io/github/stars/wonchoe/cursor.style?style=social)
+![Laravel](https://img.shields.io/badge/Laravel-12-red)
+![AWS](https://img.shields.io/badge/AWS-Deployed-orange)
+![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
 A simple project with maximum optimization and cost-efficiency, built using available tools and free-tier services wherever possible.
 
