@@ -360,4 +360,10 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'kirby-advantures' => 'Kirby Advantures',
   'kirby-advantures_short_descr' => 'Cute and colorful adventures await in this charming world.',
   'kirby-advantures_descr' => 'Step into a delightful universe full of action, whimsy, and unforgettable characters. Inspired by classic adventures and vibrant design, this collection brings the essence of Kirby\'s world to your screen.',
+  'murder-drones' => 'Murder Drones',
+  'murder-drones_short_descr' => 'Dark, futuristic style inspired by the Murder Drones animated series.',
+  'murder-drones_descr' => 'A dark sci-fi themed set inspired by the Murder Drones universe, blending robotic aesthetics with eerie charm. Perfect for fans of dystopian animations, this stylish set brings the essence of the series to your browser experience. Subtle robotic movements and character-inspired visuals enhance navigation in a fun and immersive way.',
+  'dragon-ball' => 'Dragon Ball',
+  'dragon-ball_short_descr' => 'Epic energy battles and legendary warriors brought to your screen.',
+  'dragon-ball_descr' => 'Step into the world of Dragon Ball, where Saiyans, epic transformations, and fierce rivalries come alive. This collection captures the dynamic spirit of the anime, blending power and nostalgia into your everyday browsing with subtle cursor details inspired by its iconic style.',
 );
