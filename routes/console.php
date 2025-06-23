@@ -21,7 +21,7 @@ Schedule::command('custom:TranslateCursor')->everyThirtyMinutes();
 Schedule::command('custom:tagsCreate')->dailyAt('05:00');
 
 // Add to search
-Schedule::command('custom:meilisearchAddCursors')->dailyAt('05:10');
+Schedule::command('custom:meilisearchAddCursors --force')->dailyAt('05:10');
 
 Schedule::command('custom:GetCursorClickStats')->everyFiveMinutes();
 
