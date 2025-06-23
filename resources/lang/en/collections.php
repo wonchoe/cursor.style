@@ -366,4 +366,13 @@ The collection has already added the PewDiePie cursor, Shane Dawson cursor, Ray 
   'dragon-ball' => 'Dragon Ball',
   'dragon-ball_short_descr' => 'Epic energy battles and legendary warriors brought to your screen.',
   'dragon-ball_descr' => 'Step into the world of Dragon Ball, where Saiyans, epic transformations, and fierce rivalries come alive. This collection captures the dynamic spirit of the anime, blending power and nostalgia into your everyday browsing with subtle cursor details inspired by its iconic style.',
+  'geometry-dash' => 'Geometry Dash',
+  'geometry-dash_short_descr' => 'Jump into the vibrant world of Geometry Dash with this energetic and colorful theme.',
+  'geometry-dash_descr' => 'A bold and rhythmic journey awaits inside the fast-paced universe of Geometry Dash. Inspired by its pulsing beats, sharp shapes, and dynamic levels, this collection brings the game\'s intensity right to your screen. Perfect for fans who want a stylish way to customize their browser while keeping the spirit of the game alive.',
+  'the-powerpuff-girls' => 'The Powerpuff Girls',
+  'the-powerpuff-girls_short_descr' => 'Colorful, action-packed fun with a heroic twist.',
+  'the-powerpuff-girls_descr' => 'This vibrant set brings to life the charm and attitude of a beloved animated universe. Featuring expressive poses and dynamic designs, it adds a playful spark to your browser experience—perfect for fans of animated series who want their screen to reflect a little more energy and personality.',
+  'labubu' => 'Labubu',
+  'labubu_short_descr' => 'Whimsical creatures with a mischievous charm and wild expressions.',
+  'labubu_descr' => 'Dive into a playful world of quirky adventures with these unique characters. Designed to bring a touch of fun and personality to your browser experience, each piece captures the spirit of Labubu in every detail.',
 );
