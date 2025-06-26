@@ -51,7 +51,11 @@ return [
     */
 
     'channels' => [
-
+        'datadog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/datadog.log'),
+            'level' => 'debug',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),

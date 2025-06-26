@@ -78,7 +78,15 @@ class GetCursorClickStats extends Command
             try {
                 foreach ($batch as $cursorId => $clicks) {
                     if ($mode === 'yesterday') {
-                        DB::table('cursors')->where('id', $cursorId)->increment('totalClick', $clicks);
+                        $current = DB::table('cursors')->where('id', $cursorId)->value('totalClick');
+
+                        if (!is_null($current)) {
+                            $newTotal = $current + $clicks;
+
+                            DB::table('cursors')->where('id', $cursorId)->update(['totalClick' => $newTotal]);
+                        } else {
+                            $this->warn("⚠️ cursor_id={$cursorId} not found. Skipping...");
+                        }
                     } else {
                         DB::table('cursors')->where('id', $cursorId)->update(['todayClick' => $clicks]);
                     }
