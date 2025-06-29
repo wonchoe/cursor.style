@@ -24,6 +24,7 @@ Schedule::command('custom:tagsCreate')->dailyAt('05:00');
 Schedule::command('custom:meilisearchAddCursors --force')->dailyAt('05:10');
 
 Schedule::command('custom:GetCursorClickStats')->everyFiveMinutes();
+Schedule::command('custom:GetCursorClickStats --mode=yesterday')->daily();
 
 // SEO chatGPT
 Schedule::command('custom:seoSiscovery')->everyThirtyMinutes();
