@@ -10,7 +10,7 @@ use App\Support\CursorPresenter;
 
 class AddCursorsToMeilisearch extends Command
 {
-    protected $signature = 'custom:meilisearchSyncCursors {--force : Drop and recreate each index before pushing data}';
+    protected $signature = 'custom:meilisearchAddCursors {--force : Drop and recreate each index before pushing data}';
     protected $description = 'Sync only new cursors to Meilisearch for all languages';
 
     protected $languages = [
